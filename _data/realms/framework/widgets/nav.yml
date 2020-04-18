@@ -3,3 +3,7 @@ menu: |
   - [**Home**](/framework/index.html)
     - [Overview](/framework/index.html#overview)
     - [Requirements](/framework/index.html#requirements)
+  - [**Getting started**](/framework/gettingstarted.html)
+    - [Quick Start](/framework/gettingstarted.html#quickstart)
+    - [Full Features Demo](/framework/gettingstarted.html#full-features-demonstration-application)
+    - [Project directory](/framework/gettingstarted.html#project-directory-structure)

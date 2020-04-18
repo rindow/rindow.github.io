@@ -1,7 +1,7 @@
 ### Site settings
 lang: en
 title: "Rindow"
-description: "Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description."
+description: "Rindow develops various frameworks. PHP Application Framework, Machine Learing Framework, Mathematics Libraries, etc."
 author: "rindow&trade;"
 #since: "Your site is since YYYY"
 #baseurl: "/my_dir"
@@ -10,7 +10,7 @@ url: "https://rindow.github.io"
 #email: your-email@domain.com
 #twitter_username: your_twitter_username
 #github_username:  your_github_username
-#google_analytics_id: UA-XXXXXXXX-XX
+google_analytics_id: UA-12321104-4
 #google_site_verification: XXXXXXXXXXXXXXXXXXXXXXXXXXX
 #google_custom_search_engine_id: "XXXXXXXX:XXXXXXXXXXXXXXXXXXX"
 #disqus_shortname: your_disqus_shortname
