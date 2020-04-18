@@ -1,0 +1,12 @@
+{% include get-widget-data-and-options name="recentposts" include=include %}
+<div class="widgetwrapper widget-recentposts">
+  <h4>{% if inwidget_options.caption %}{{ inwidget_options.caption }}{% else %}Recent Posts{% endif %}</h4>
+  <ul>
+    {% for post in site.posts limit:10 %}
+      <li>
+        <span class="post-date">{{ post.date | date: "%b %-d, %Y" }}</span>
+        <a class="post-link" href="{% include get-relative-url url=post.url %}">{{ post.title }}</a>
+      </li>
+    {% endfor %}
+  </ul>
+</div>

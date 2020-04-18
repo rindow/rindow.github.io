@@ -1,0 +1,29 @@
+{% capture frameworkscript %}{% include get-theme-value name="frameworkscript" %}{% endcapture %}
+{% capture jqueryscript %}{% include get-theme-value name="jqueryscript" %}{% endcapture %}
+{% capture mathscript %}{% include get-theme-value name="mathscript" %}{% endcapture %}
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+{% if jqueryscript !="" %}<script src="{{ jqueryscript }}"></script>{% endif %}
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+{% if frameworkscript !="" %}<script src="{{ frameworkscript }}"></script>{% endif %}
+{% if mathscript !="" and page.math == "enable" %}<script src="{{ mathscript }}"></script>{% endif %}
+<script>
+  $(document).ready(function () {
+    for(var level = 1; level <= 6; level++) {
+      $(".document h"+level).each(function () {
+        var id = $(this).attr("id");
+        if(typeof id !== "undefined" && id !== null) {
+          $(this).prepend("<a name=\""+id+"\" href=\"#"+id+"\"></a>");
+          $(this).attr("class","title");
+        }
+      });
+    }
+    {% capture table_style %}{% include get-theme-value name="table_style" %}{% endcapture %}
+    $(".post-content table").each(function () {
+      $(this).attr("class","table{% if table_style != "" %} {{ table_style }}{% endif %}");
+    });
+    {% include get-theme-value name="script_bottom" %}
+  });
+</script>
+{% if page.type == "blog" %}
+  {% include services/disqus-script.html %}
+{% endif %}

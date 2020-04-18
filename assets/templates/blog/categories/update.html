@@ -1,0 +1,21 @@
+---
+layout: default
+type: blog
+permalink: /blog/categories/update.html
+---
+{% capture filename %}{{ page.name | split:"." | first }}{% endcapture %}
+{% for category in site.data.widgets.categories %}
+  {% if category[1] == filename %}{% assign cat_name = category[0] %}{% endif %}
+{% endfor %}
+<h2>Recent Posts: {% if cat_name %}{{ cat_name }}{% else %}This category is not defined.{% endif %}</h2>
+
+{% for post in site.categories.pinup limit:site.paginate %}
+  {% include post.html post=post %}
+{% endfor %}
+{% if cat_name %}
+  {% for post in site.categories[cat_name] limit:site.paginate %}
+    {% if post.categories contains "pinup" %}{% else %}
+      {% include post.html post=post %}
+    {% endif %}
+  {% endfor %}
+{% endif %}

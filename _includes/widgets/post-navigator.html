@@ -1,0 +1,14 @@
+<nav class="navigator">
+  <ul class="nav">
+    {% if page.previous %}
+      <li class="nav-item"><a class="nav-link" href="{% include get-relative-url url=page.previous.url %}">Previous</a></li>
+    {% else %}
+      <li class="nav-item"><a class="nav-link disabled" href="#">Previous</a></li>
+    {% endif %}
+    {% if page.next %}
+      <li class="nav-item"><a class="nav-link" href="{% include get-relative-url url=page.next.url %}">Next</a></li>
+    {% else %}
+      <li class="nav-item"><a class="nav-link disabled" href="#">Next</a></li>
+    {% endif %}
+  </ul>
+</nav>

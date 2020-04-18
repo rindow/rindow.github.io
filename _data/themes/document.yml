@@ -1,0 +1,38 @@
+frameworkcss: https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css
+#frameworkcsstheme:
+frameworkscript: https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js
+jqueryscript: https://code.jquery.com/jquery-3.4.1.slim.min.js
+mathscript: http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML
+css: /assets/themes/rindow/css/style.css
+favicon: /assets/themes/rindow/img/favicon.ico
+touch_icon: /assets/themes/rindow/img/apple-touch-icon-precomposed.png
+#header_image: /assets/themes/rindow/img/title.jpg
+#header_pattern: "linear-gradient(to bottom,#563d7c 0,#6f5499 100%)"
+header_pattern: "linear-gradient(to bottom, rgb(75, 0, 130), rgb(221, 160, 221))"
+header_text_color: "white"
+header_style: fluid # fluid or fit
+header_title_class: "header-title"
+header_description_class: "header-description"
+#footer: disable
+#wallpaper_image: /assets/themes/rindow/img/wallpaper.jpg
+#wallpaper_pattern: "linear-gradient(to bottom,#563d7c 0,#6f5499 100%)"
+#content_text_color: "white"
+#wallpaper_repeat: repeat
+#navbar_brand_icon: glyphicon-home
+navbar_brand_caption: "rindow"
+#navbar_brand_image: /assets/themes/rindow/img/navlogo.png
+navbar_brand_image: /assets/themes/rindow/img/apple-touch-icon-precomposed.png
+navbar_brand_image_alt: rindow
+#navbar_layout: top
+navbar_style: navbar-expand-lg navbar-light bg-light
+navbar_layout: top # top or middle or bottom or none
+#navbar_style: navbar-default navbar-fixed-top navbar-inverse
+navbar_search_box: true
+sidearea_layout: left # right or left or both or none
+table_style: table-striped
+doc_navigator: bottom # top or bottom or both or none
+doc_breadcrumb: enable
+#script_top: ! '
+#'
+#script_bottom: ! '
+#'

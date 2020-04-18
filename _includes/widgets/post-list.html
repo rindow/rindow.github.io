@@ -1,0 +1,15 @@
+<div class="widgetwrapper widget-post-list">
+{% if include.posts %}
+{% assign posts = include.posts %}
+{% else %}
+{% assign posts = site.posts %}
+{% endif %}
+{% for post in site.categories.pinup limit:site.paginate %}
+  {% include post.html post=post %}
+{% endfor %}
+{% for post in posts limit:site.paginate %}
+  {% if post.categories contains "pinup" %}{% else %}
+    {% include post.html post=post %}
+  {% endif %}
+{% endfor %}
+</div>

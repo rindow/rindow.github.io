@@ -1,0 +1,9 @@
+{% include get-widget-data-and-options name="doc-list" include=include %}
+<div class="widgetwrapper widget-doc-list">
+{% if widget_options.caption %}<h2>{{ widget_options.caption }}</h2>{% endif %}
+  <ul>
+  {% for doc in widget_options.collection %}
+    {% if doc != page %}<li><a href="{% include get-relative-url url=doc.url %}">{{ doc.title }}</a></li>{% endif %}
+  {% endfor %}
+  </ul>
+</div>

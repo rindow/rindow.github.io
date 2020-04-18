@@ -1,0 +1,1 @@
+{% capture getfileextname %}{{ include.url | split:"/" | last }}{% endcapture %}{% capture getfileext %}{{ getfileextname | split:"." | last }}{% endcapture %}{% if getfileextname != "" and getfileextname != getfileext %}{{ getfileext }}{% endif %}

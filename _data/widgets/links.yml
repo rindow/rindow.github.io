@@ -1,0 +1,19 @@
+# Links widget
+links:
+- caption: GitHub Pages
+  url: https://pages.github.com/
+
+- caption: Writing posts
+  url: http://jekyllrb.com/docs/posts/
+
+- caption: Markdown Basics
+  url: https://help.github.com/articles/markdown-basics
+
+- caption: Liquid for Designers
+  url: https://github.com/Shopify/liquid/wiki/Liquid-for-Designers
+
+- caption: Bootstrap
+  url: http://getbootstrap.com/
+
+- caption: jekyll
+  url: http://jekyllrb.com/

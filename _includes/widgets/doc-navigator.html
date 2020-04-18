@@ -1,0 +1,74 @@
+{% capture doc_navigator %}{% include get-theme-value name="doc_navigator" %}{% endcapture %}
+{% capture doc_breadcrumb %}{% include get-theme-value name="doc_breadcrumb" %}{% endcapture %}
+{% include set-current-collection %}{% assign collection = globalcurrentcollection %}
+{% if collection == null or collection.navigator != "disable" %}
+{% assign previous_title = "" %}
+{% assign previous_id = "" %}
+{% assign next_title = "" %}
+{% assign next_id = "" %}
+{% assign upper_title = "" %}
+{% assign upper_id = "" %}
+{% assign grand_upper_title = "" %}
+{% assign grand_upper_id = "" %}
+{% if include.enable_title %}
+  {% for doc in collection.docs %}
+    {% assign section = doc.id | split:"/" | last %}
+    {% if page.previous_section == section %}
+      {% assign previous_title = doc.title %}
+      {% assign previous_id = doc.id %}
+    {% endif %}
+    {% if page.next_section == section %}
+      {% assign next_title = doc.title %}
+      {% assign next_id = doc.id %}
+    {% endif %}
+    {% if page.upper_section == section %}
+      {% assign upper_title = doc.title %}
+      {% assign upper_id = doc.id %}
+    {% endif %}
+    {% if page.grand_upper_section == section %}
+      {% assign grand_upper_title = doc.title %}
+      {% assign grand_upper_id = doc.id %}
+    {% endif %}
+  {% endfor %}
+{% endif %}
+{% if include.enable_title == "top" and doc_breadcrumb == "enable" %}
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    {% if page.grand_upper_section %}<li class="breadcrumb-item"><a href="{{ grand_upper_id | append:".html" }}">{{ grand_upper_title }}</a></li>{% endif %}
+    {% if page.upper_section %}<li class="breadcrumb-item"><a href="{{ upper_id | append:".html" }}">{{ upper_title }}</a></li>{% endif %}
+    <li class="breadcrumb-item active" aria-current="page">{{ page.title }}</li>
+  </ol>
+</nav>
+{% endif %}
+{% if doc_navigator==include.enable_title or doc_navigator=="both" %}
+<nav role="navigation" class="navigator container-fluid">
+  <div class="row justify-content-md-center">
+  <ul class="nav">
+    {% if page.previous_section %}
+      <li class="nav-item"><a class="nav-link" href="{{ previous_id | append:".html" }}">Previous</a></li>
+    {% else %}
+      <li class="nav-item"><a class="nav-link disabled" href="#">Previous</a></li>
+    {% endif %}
+    {% if page.upper_section %}
+      <li class="nav-item"><a class="nav-link" href="{{ upper_id | append:".html" }}">Up</a></li>
+    {% else %}
+      <li class="nav-item"><a class="nav-link disabled" href="#">Up</a></li>
+    {% endif %}
+    {% if page.next_section %}
+      <li class="nav-item"><a class="nav-link" href="{{ next_id | append:".html" }}">Next</a></li>
+    {% else %}
+      <li class="nav-item"><a class="nav-link disabled" href="#">Next</a></li>
+    {% endif %}
+  </ul>
+  </div>
+</nav>
+{% endif %}
+{% if include.enable_title == "bottom" and doc_navigator != "" and doc_navigator != "none" %}
+<nav>
+  <div class="row">
+    {% if previous_title %}<div class="col-6 text-sm-left">{{ previous_title }}</div>{% endif %}
+    {% if previous_title %}<div class="col-6 text-sm-right">{{ next_title }}</div>{% endif %}
+  </div>
+</nav>
+{% endif %}
+{% endif %}

@@ -1,0 +1,15 @@
+---
+layout: default
+type: blog
+---
+<div class="blog">
+{% include widgets/post-navigator.html %}
+{% include post.html post=page %}
+{% if site.blog.share %}<div class="share text-right">
+	{% include widgets/share-button.html %}
+</div>{% endif %}
+{% include widgets/post-navigator.html %}
+{% if site.blog.comment %}<div class="comments">
+	{% include widgets/comment.html %}
+</div>{% endif %}
+</div>

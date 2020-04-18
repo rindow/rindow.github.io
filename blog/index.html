@@ -1,0 +1,55 @@
+---
+layout: default
+type: blog
+---
+{% if site.blogpagination %}
+<!-- Pagination links -->
+<ul class="nav">
+  {% if paginator.previous_page %}
+    <li class="nav-item"><a class="nav-link" href="{% include get-relative-url url=paginator.previous_page_path %}">Previous</a></li>
+  {% else %}
+    <li class="nav-item"><a class="nav-link disabled" href="#">Previous</a></li>
+  {% endif %}
+  <li class="nav-item"><a class="nav-link disabled" href="#">Page: {{ paginator.page }} of {{ paginator.total_pages }}</a></li>
+  {% if paginator.next_page %}
+    <li class="nav-item"><a class="nav-link" href="{% include get-relative-url url=paginator.next_page_path %}">Next</a></li>
+  {% else %}
+    <li class="nav-item"><a class="nav-link disabled" href="#">Next</a></li>
+  {% endif %}
+</ul>
+{% endif %}
+
+<!-- This loops through the paginated posts -->
+{% for post in site.categories.pinup limit:site.paginate %}
+  {% include post.html post=post %}
+{% endfor %}
+{% if site.blogpagination %}
+  {% for post in paginator.posts %}
+    {% if post.categories contains "pinup" %}{% else %}
+      {% include post.html post=post %}
+    {% endif %}
+  {% endfor %}
+{% else %}
+  {% for post in site.posts limit:site.paginate %}
+    {% if post.categories contains "pinup" %}{% else %}
+      {% include post.html post=post %}
+    {% endif %}
+  {% endfor %}
+{% endif %}
+
+{% if site.blogpagination %}
+<!-- Pagination links -->
+<ul class="nav">
+  {% if paginator.previous_page %}
+    <li class="nav-item"><a class="nav-link" href="{% include get-relative-url url=paginator.previous_page_path %}">Previous</a></li>
+  {% else %}
+    <li class="nav-item"><a class="nav-link disabled" href="#">Previous</a></li>
+  {% endif %}
+  <span class="page_number ">Page: {{ paginator.page }} of {{ paginator.total_pages }}</span>
+  {% if paginator.next_page %}
+    <li class="nav-item"><a class="nav-link" href="{% include get-relative-url url=paginator.next_page_path %}">Next</a></li>
+  {% else %}
+    <li class="nav-item" class=""><a class="nav-link disabled" href="#">Next</a></li>
+  {% endif %}
+</ul>
+{% endif %}

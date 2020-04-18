@@ -1,0 +1,33 @@
+{% include get-widget-data-and-options name="carousel" include=include %}
+<div class="widgetwrapper widget-carousel">
+<div id="carousel-gh_pages-generic" class="carousel slide" data-ride="carousel">
+  <!-- Indicators -->
+  <ol class="carousel-indicators">
+    {% for slide in widget_data.slides %}
+    <li data-target="#carousel-gh_pages-generic" data-slide-to="{{ forloop.index | minus:1 }}"{% if forloop.index == 1 %} class="active"{% endif %}></li>
+    {% endfor %}
+  </ol>
+
+  <!-- Wrapper for slides -->
+  <div class="carousel-inner">
+    {% for slide in widget_data.slides %}
+    <div class="carousel-item{% if forloop.index == 1 %} active{% endif %}">
+      <img src="{{ slide.image | prepend:site.images_path | relative_url}}" class="d-block w-100" alt="Slide">
+      <div class="carousel-caption d-none d-md-block">
+        {{ slide.caption }}
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+
+  <!-- Controls -->
+  <a class="carousel-control-prev" href="#carousel-gh_pages-generic" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="carousel-control-next" href="#carousel-gh_pages-generic" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>
+</div>

@@ -1,0 +1,57 @@
+---
+---
+{% capture header_image %}{% include get-theme-value name="header_image" %}{% endcapture %}
+{% capture wallpaper_image %}{% include get-theme-value name="wallpaper_image" %}{% endcapture %}
+{% capture header_pattern %}{% include get-theme-value name="header_pattern" %}{% endcapture %}
+{% capture header_text_color %}{% include get-theme-value name="header_text_color" %}{% endcapture %}
+{% capture wallpaper_pattern %}{% include get-theme-value name="wallpaper_pattern" %}{% endcapture %}
+{% capture wallpaper_repeat %}{% include get-theme-value name="wallpaper_repeat" %}{% endcapture %}
+{% capture content_text_color %}{% include get-theme-value name="content_text_color" %}{% endcapture %}
+body {
+	{% if wallpaper_image !="" %}
+	background-image: url("{{ wallpaper_image  | relative_url }}");
+		{% if wallpaper_repeat !="" %}
+		background-repeat: {{ wallpaper_repeat }}
+		{% else %}
+		background-size: contain;
+		{% endif %}
+	{% elsif wallpaper_pattern !="" %}
+	background-image: {{ wallpaper_pattern }};
+	{% endif %}
+	{% if content_text_color !="" %}
+	color: {{ content_text_color }};
+	{% endif %}
+}
+.jumbotron {
+	{% if header_image !="" %}
+		{% if header_image !="disable" %}
+		background-image: url("{{ header_image | relative_url }}");
+		background-size: cover;
+		{% endif %}
+	{% elsif header_pattern !="" %}
+	background-image: {{ header_pattern }};
+	{% else %}
+	background-color: transparent;
+	{% endif %}
+	{% if header_text_color !="" %}
+	h1,h2,h3,h4,h5,h6,p {
+		color: {{ header_text_color }};
+	}
+	{% endif %}
+}
+.widget-nav {
+    ul {
+        list-style-type: none;
+        padding-inline-start: 1em;
+    }
+}
+.widget-nav > ul {
+    padding-inline-start: 0;
+}
+pre.highlight {
+    padding: 1em;
+    border: solid;
+    border-color: #f0f0f0;
+    border-width: 1px;
+}
+@import "code-highlight.css";

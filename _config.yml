@@ -1,0 +1,120 @@
+### Site settings
+lang: en
+title: "Rindow"
+description: "Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description."
+author: "rindow&trade;"
+#since: "Your site is since YYYY"
+#baseurl: "/my_dir"
+exclude: [ "README.md", "LICENSE", "Gemfile", "Gemfile.lock", "rindow-ghpages-bootstrap.gemspec" ]
+url: "https://rindow.github.io"
+#email: your-email@domain.com
+#twitter_username: your_twitter_username
+#github_username:  your_github_username
+#google_analytics_id: UA-XXXXXXXX-XX
+#google_site_verification: XXXXXXXXXXXXXXXXXXXXXXXXXXX
+#google_custom_search_engine_id: "XXXXXXXX:XXXXXXXXXXXXXXXXXXX"
+#disqus_shortname: your_disqus_shortname
+
+### Build settings
+plugins:
+  - jekyll-paginate
+permalink: "/blog/:year/:month/:day/:title.html"
+images_path: "/assets/img/"
+sass:
+  style: :compressed
+markdown: kramdown  # kramdown or GFM
+#gems: [jekyll-test-plugin, jekyll-jsonify, jekyll-assets]
+
+### Appearance
+appearance:
+  theme: rindow
+  ###
+  ### Example to enable a wallpaper.
+  ###
+  #header_text_color: "brown"
+  #header_image: none
+  #wallpaper_image: /assets/themes/default/img/wallpaper.png
+  #wallpaper_repeat: repeat
+
+### Blog
+blogpagination: true
+paginate: 5
+paginate_path: "blog/page:num/" # DON'T TOUCH THIS PATH.
+blog:
+  title: "Blog Title"
+  description: "Blog description"
+  title_position: article
+  enable_author: true
+  comment: true
+  share: true
+  category: true
+  #sidearea:
+  #  primary:
+  #    widgets:
+  #    - { widget: categories, caption: "Categories" }
+  #    - { widget: recentposts, caption: "Recent Posts" }
+  #    - { widget: subscribe, caption: "Subscribe" }
+  #theme: blog
+
+### Navigation Bar
+sitesearchscript: true
+navbar:
+  menu:
+    - caption: "Projects"
+      menu:
+        - { caption: "Neural Networks", link: "/neuralnetworks/index.html" }
+        - { caption: "Mathematics", link: "/mathematics/index.html"}
+        - { caption: "Framework", link: "/framework/index.html"}
+    - { caption: "Blog", link: "/blog/" }
+    - { caption: "About", link: "/about/" }
+
+footer:
+  links:
+    - { caption: "About", link: "/about/" }
+    #- { caption: "Sitemap", link: "/sitemap/" }
+
+### Document collections
+collections:
+  neuralnetworks:
+    title: "Rindow Neural Networks"
+    description: "Neural networks library for PHP"
+    output: true
+    theme: document
+    #comment: true
+    #share: true
+    #lang: en
+    #navigator: disable
+    sidearea:
+      primary:
+        widgets:
+        - { widget: search, caption: "Search" }
+        - { widget: nav, name: menu, realm: neuralnetworks, caption: "Contents" }
+  mathematics:
+    title: "Rindow Mathematics"
+    description: "Mathematics libraries for PHP"
+    output: true
+    theme: document
+    #comment: true
+    #share: true
+    #lang: en
+    #navigator: disable
+    sidearea:
+      primary:
+        widgets:
+        - { widget: search, caption: "Search" }
+        - { widget: nav, name: menu, realm: mathematics, caption: "Contents" }
+
+  framework:
+    title: "Rindow Framework"
+    description: "PHP application framework"
+    output: true
+    theme: document
+    #comment: true
+    #share: true
+    #lang: en
+    #navigator: disable
+    sidearea:
+      primary:
+        widgets:
+        - { widget: search, caption: "Search" }
+        - { widget: nav, name: menu, realm: framework, caption: "Contents" }

@@ -1,0 +1,17 @@
+{% capture footer %}{% include get-theme-value name="footer" %}{% endcapture %}{% if footer != "disable" %}
+<footer class="site-footer">
+  <p>{% if site.author %}{{ site.author }}{% else %}{{ site.title }}{% endif %}({% if site.since %}{{ site.since }}-{% endif %}{{ 'now' | date: "%Y" }}) All rights reserved. </p>
+  <ul class="list-inline">
+    {% for nav in site.footer.links %}
+        <li class="list-inline-item"><a href="{{ nav.link | relative_url }}">{{ nav.caption }}</a></li>
+    {% endfor %}
+  </ul>
+  <ul class="list-inline">
+    {% if site.email %}<li class="list-inline-item">
+      <a href="mailto:{{ site.email }}">{{ site.email }}</a>
+    </li>{% endif %}
+    {% include services/github-follow.html %}
+    {% include services/twitter-follow.html %}
+  </ul>
+</footer>
+{% endif %}

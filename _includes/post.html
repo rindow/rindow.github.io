@@ -1,0 +1,27 @@
+{% assign post=include.post %}
+<div class="post">
+  <header class="post-header">
+    <h2><a href="{% include get-relative-url url=post.url %}">{{ post.title }}</a></h2>
+    <p class="meta">{{ post.date | date: "%b %-d, %Y" }}{% if site.blog.enable_author %}{% if post.author %}{% if post.author.display_name %} • {{ post.author.display_name }}{% else %} • {{ post.author }}{% endif %}{% endif %}{% endif %}{% if post.meta %} • {{ post.meta }}{% endif %}</p>
+  </header>
+  <article class="post-content">
+    {{ post.content }}
+  </article>
+  {% if site.blog.category and post.categories.size > 0 %}<p class="post-categories text-right">
+    {% for category in post.categories %}
+      <a href="{% include get-category-url category=category %}"><span class="badge badge-primary">{{ category }}</span></a>
+    {% endfor %}
+    {% if site.blog.comment %}
+      {% include widgets/comment-count.html url=post.url %}
+    {% endif %}
+  </p>{% endif %}
+  {% if site.blog.comment and post.comments.size > 0 %}<div class="post-comments">
+    <h4 class="post-comment-title">Comment:</h4>
+    {% for comment in post.comments %}
+    <div class="post-comment">
+      <p class="meta">{{ comment.date | date: "%b %-d, %Y" }}{% if comment.author %} • {{ comment.author }}{% endif %}</p>
+      <p class="post-comment-content">{{ comment.content }}</p>
+    </div>
+    {% endfor %}
+  </div>{% endif %}
+</div>

@@ -1,0 +1,18 @@
+{% include set-current-collection %}{% assign collection = globalcurrentcollection %}
+{% if page.type == "blog" and site.blog.sidearea[include.name] %}
+{% assign sidearea = site.blog.sidearea[include.name] %}
+{% elsif page.collection and collection and collection.sidearea[include.name] %}
+{% assign sidearea = collection.sidearea[include.name] %}
+{% elsif site.data.widgets.sidearea[include.name] %}
+{% assign sidearea = site.data.widgets.sidearea[include.name] %}
+{% else %}
+{% assign sidearea = null %}
+{% endif %}
+{% if sidearea %}
+<div role="complementary" class="sidearea sidearea-{{ include.name }}">
+{% for widget in sidearea.widgets %}
+  {% if widget.realm %}{% assign data = site.data.realms[widget.realm].widgets[widget.widget] %}{% else %}{% assign data = site.data.widgets[widget.widget] %}{% endif %}
+  {% include {{ widget.widget | prepend: "widgets/" | append: ".html" }} options=widget data=data %}
+{% endfor %}
+</div>
+{% endif %}

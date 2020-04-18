@@ -1,0 +1,18 @@
+{% include get-widget-data-and-options name="categories" include=include %}
+<div class="widgetwrapper widget-categories">
+  <h4>{% if widget_options.caption %}{{ widget_options.caption }}{% else %}Categories{% endif %}</h4>
+  <ul>
+    {% for category in site.categories %}
+      {% assign cat_name = category[0] %}
+      {% if widget_data[cat_name] %}
+        <li>
+          <a href="{% include get-category-url category=cat_name %}">{{ cat_name }} <span class="badge badge-primary badge-pill">{{ category[1] | size }}</span></a>
+        </li>
+      {% else %}
+        {% if cat_name != "highlight" and cat_name != "pinup" %}
+          <li>{{ cat_name }} <span class="badge badge-primary badge-pill">{{ category[1] | size }}</span></li>
+        {% endif %}
+      {% endif %}
+    {% endfor %}
+  </ul>
+</div>

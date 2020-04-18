@@ -1,0 +1,44 @@
+{% capture frameworkcss %}{% include get-theme-value name="frameworkcss" %}{% endcapture %}
+{% capture frameworkcsstheme %}{% include get-theme-value name="frameworkcsstheme" %}{% endcapture %}
+{% capture css %}{% include get-theme-value name="css" %}{% endcapture %}
+{% capture font1 %}{% include get-theme-value name="font1" %}{% endcapture %}
+{% capture font2 %}{% include get-theme-value name="font2" %}{% endcapture %}
+{% capture font3 %}{% include get-theme-value name="font3" %}{% endcapture %}
+{% capture favicon %}{% include get-theme-value name="favicon" %}{% endcapture %}
+{% capture touch_icon %}{% include get-theme-value name="touch_icon" %}{% endcapture %}
+{% if page.collection %}{% include set-current-collection %}{% assign header = globalcurrentcollection %}
+{% elsif page.type == "blog" %}{% assign header = site.blog %}
+{% else %}{% assign header = "" %}
+{% endif %}
+{% if page.title %}{% assign title = page.title %}{% endif %}
+{% if header.title %}{% capture title %}{{ title }}{% if title %} : {% endif %}{{ header.title }}{% endcapture %}{% endif %}
+{% if site.title %}{% capture title %}{{ title }}{% if title != null and title != "" %} : {% endif %}{{ site.title }}{% endcapture %}{% endif %}
+{% if page.description %}{% assign description = page.description %}
+{% elsif header.description %}{% assign description = header.description %}
+{% else %}{% assign description = site.description %}
+{% endif %}
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>{{ title | truncate: 64, "..." }}</title>
+  {% if site.google_site_verification %}<meta name="google-site-verification" content="{{ site.google_site_verification }}" />{% endif %}
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, minimum-scale=1, user-scalable=no" />
+  <meta name="description" content="{{ description }}">
+  <link rel="canonical" href="{% include get-absolute-url url=page.url %}">
+  {% if frameworkcss !="" %}<link rel="stylesheet" href="{{ frameworkcss }}">{% endif %}
+  {% if frameworkcsstheme !="" %}<link rel="stylesheet" href="{{ frameworkcsstheme }}">{% endif %}
+  <link rel="stylesheet" href="{{ '/assets/css/core.css' | relative_url }}">
+  {% if css !="" %}<link rel="stylesheet" href="{{ css | relative_url }}">{% endif %}
+  {% if font1 !="" %}<link rel="stylesheet" type="text/css" href="{{ font1 }}">{% endif %}
+  {% if font2 !="" %}<link rel="stylesheet" type="text/css" href="{{ font2 }}">{% endif %}
+  {% if font3 !="" %}<link rel="stylesheet" type="text/css" href="{{ font2 }}">{% endif %}
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <![endif]-->
+  {% if touch_icon !="" %}<link rel="apple-touch-icon-precomposed" href="{{ touch_icon | relative_url }}">{% endif %}
+  {% if favicon !="" %}<link rel="icon" href="{{ favicon | relative_url }}">{% endif %}
+  {% include services/google-analytics.html %}
+</head>

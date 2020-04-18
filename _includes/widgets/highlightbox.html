@@ -1,0 +1,32 @@
+{% include get-widget-data-and-options name="highlightbox" include=include %}
+{% assign highlight = "highlight" %}
+{% if widget_options.category %}{% assign highlight = widget_options.category %}{% endif %}
+<div class="widgetwrapper widget-highlightbox">
+  <div class="row">
+  {% for post in site.categories[highlight] limit:9 %}
+    <div class="col-12 col-sm-4 col-md-4 col-lg-4">
+      {% if post.image %}
+        <div class="row highlightbox">
+          <div class="col-4 col-sm-12 col-md-12 col-lg-12 highlightimage">
+            {% if post.link %}<a href="{{ post.link | relative_url }}">{% endif %}<img class="img-rounded img-responsive" src="{{ post.image | prepend:site.images_path | relative_url }}" alt="{{ post.image_alt }}">{% if post.link %}</a>{% endif %}
+          </div>
+          <div class="col-8 col-sm-12 col-md-12 col-lg-12 caption">
+            <h3>{{ post.title }}</h3>
+            {{ post.content }}
+          </div>
+        </div>
+      {% else %}
+        <p>
+          {% if post.title %}<header class="post-header">
+            <h1>{{ post.title }}</h1>
+            {% if post.meta %}<p class="meta">{{ post.meta }}</p>{% endif %}
+          </header>{% endif %}
+          <article class="post-content">
+          {{ post.content }}
+          </article>
+        </p>
+      {% endif %}
+    </div>
+  {% endfor %}
+  </div>
+</div>

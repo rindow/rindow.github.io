@@ -1,0 +1,19 @@
+### Side Area
+primary:
+  widgets:
+  - { widget: search, caption: "Search" }
+  - { widget: links, caption: "Links" }
+  - { widget: recentposts, caption: "Recent Posts" }
+  - { widget: subscribe, caption: "Subscribe" }
+  - { widget: categories, caption: "Categories" }
+  #- { widget: free-area, name: side }
+secondary:
+  widgets:
+    - { widget: search, caption: "Search" }
+    - { widget: links, caption: "Links" }
+top:
+  widgets:
+    - { widget: google-cse }
+#floating:
+#  widgets:
+#    - { widget: free-area, name: mobile }
