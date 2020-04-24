@@ -13,7 +13,10 @@
 {% if page.title %}{% assign title = page.title %}{% endif %}
 {% if header.title %}{% capture title %}{{ title }}{% if title %} : {% endif %}{{ header.title }}{% endcapture %}{% endif %}
 {% if site.title %}{% capture title %}{{ title }}{% if title != null and title != "" %} : {% endif %}{{ site.title }}{% endcapture %}{% endif %}
-{% if page.description %}{% assign description = page.description %}
+{% if page.meta_description %}{% assign description = page.meta_description %}
+{% elsif header.meta_description %}{% assign description = header.meta_description %}
+{% elsif site.meta_description %}{% assign description = site.meta_description %}
+{% elsif page.description %}{% assign description = page.description %}
 {% elsif header.description %}{% assign description = header.description %}
 {% else %}{% assign description = site.description %}
 {% endif %}

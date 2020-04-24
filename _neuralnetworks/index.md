@@ -7,7 +7,7 @@ next_section: gettingstarted
 Hello there!
 ------------
 
-The Rindow Neural Networks is a high-level neural networks library for deep learning.
+The Rindow Neural Networks is a high-level neural networks library for machine learning.
 
 The goal is to be able to describe a network model in PHP as well as Python
 using a description method similar to Keras.
