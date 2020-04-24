@@ -1,6 +1,7 @@
 ---
 layout: document
 title: "Rindow Neural Networks"
+meta_description: "Rindow Neural Networks is a high-level neural networks library for machine learning. The goal is to be able to describe a network model in PHP as well as Python using a description method similar to Keras."
 next_section: gettingstarted
 ---
 

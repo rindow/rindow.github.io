@@ -1,6 +1,7 @@
 ---
 layout: document
 title: "Rindow Framework"
+meta_description: "The Rindow Framework is a PHP Application Framework that provides a modern programming and configuration model to all PHP programmers. Rindow is modular and your program will be modular and that is independence to PHP frameworks."
 next_section: gettingstarted
 ---
 Overview

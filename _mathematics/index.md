@@ -1,6 +1,7 @@
 ---
 layout: document
 title: "Rindow mathematics libraries"
+meta_description: "An environment for vector operations suitable for scientific calculation and machine learning is provided on PHP. It also provides a PHP array extension that is optimal for vector operations."
 next_section: matrix
 ---
 
