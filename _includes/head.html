@@ -16,9 +16,12 @@
 {% if page.meta_description %}{% assign description = page.meta_description %}
 {% elsif header.meta_description %}{% assign description = header.meta_description %}
 {% elsif site.meta_description %}{% assign description = site.meta_description %}
-{% elsif page.description %}{% assign description = page.description %}
-{% elsif header.description %}{% assign description = header.description %}
-{% else %}{% assign description = site.description %}
+{% else %}{% assign description = nil %}
+{% endif %}
+{% if page.meta_keywords %}{% assign keywords = page.meta_keywords %}
+{% elsif header.meta_keywords %}{% assign keywords = header.meta_keywords %}
+{% elsif site.meta_keywords %}{% assign keywords = site.meta_keywords %}
+{% else %}{% assign keywords = nil %}
 {% endif %}
 <head>
   <meta charset="utf-8">
@@ -26,7 +29,8 @@
   <title>{{ title | truncate: 64, "..." }}</title>
   {% if site.google_site_verification %}<meta name="google-site-verification" content="{{ site.google_site_verification }}" />{% endif %}
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, minimum-scale=1, user-scalable=no" />
-  <meta name="description" content="{{ description }}">
+  {% if description %}<meta name="description" content="{{ description }}">{% endif %}
+  {% if keywords %}<meta name="keywords" content="{{ keywords }}">{% endif %}
   <link rel="canonical" href="{% include get-absolute-url url=page.url %}">
   {% if frameworkcss !="" %}<link rel="stylesheet" href="{{ frameworkcss }}">{% endif %}
   {% if frameworkcsstheme !="" %}<link rel="stylesheet" href="{{ frameworkcsstheme }}">{% endif %}

@@ -2,6 +2,8 @@
 lang: en
 title: "Rindow"
 description: "Rindow develops various frameworks. PHP Application Framework, Machine Learing Framework, Mathematics Libraries, etc."
+#meta_description: "default meta tag description.Google does not recommend that all pages have the same description"
+#meta_keywors: "default meta tag keywors.Google does not recommend that all pages have the same description"
 author: "rindow&trade;"
 #since: "Your site is since YYYY"
 #baseurl: "/my_dir"
