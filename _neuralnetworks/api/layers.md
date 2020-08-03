@@ -21,11 +21,21 @@ Layers
 ------
 
 - [**Dense**](dense.html): Regular densely-connected Neural Networks layer.
+- [**Flatten**](flatten.html): Flattens the input.
 - [**ReLU**](relu.html): Rectified Linear Unit activation function.
 - [**Sigmoid**](sigmoid.html): Sigmoid activation function.
 - [**Softmax**](softmax.html): Softmax activation function.
 - [**Dropout**](dropout.html): Applies Dropout to the input.
 - [**BatchNormalization**](batchnormalization.html): Normalize the previous activation function layer at each batch.
+- [**Conv1D**](conv1d.html): 1D convolution layer.
+- [**Conv2D**](conv2d.html): 2D convolution layer.
+- [**Conv3D**](conv3d.html): 3D convolution layer.
+- [**MaxPooling1D**](maxpooling1d.html): Max pooling operation for 1D temporal data.
+- [**MaxPooling2D**](maxpooling2d.html): Max pooling operation for 2D temporal data.
+- [**MaxPooling3D**](maxpooling3d.html): Max pooling operation for 3D temporal data.
+- [**AveragePooling1D**](averagepooling1d.html): Average pooling operation for 1D temporal data.
+- [**AveragePooling2D**](averagepooling2d.html): Average pooling operation for 2D temporal data.
+- [**AveragePooling3D**](averagepooling3d.html): Average pooling operation for 3D temporal data.
 
 
 Examples

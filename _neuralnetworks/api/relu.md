@@ -3,7 +3,7 @@ layout: document
 title: "ReLU"
 grand_upper_section: index
 upper_section: apitoc
-previous_section: dense
+previous_section: flatten
 next_section: sigmoid
 ---
 

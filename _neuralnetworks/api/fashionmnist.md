@@ -1,28 +1,28 @@
 ---
 layout: document
-title: "Mnist"
+title: "FashionMnist"
 grand_upper_section: index
 upper_section: apitoc
-previous_section: adam
-next_section: fashionmnist
+previous_section: mnist
+next_section: cifar10
 ---
 
 
 - **namespace**: Rindow\NeuralNetworks\Dataset
-- **classname**: Mnist
+- **classname**: FashionMnist
 
-MNIST handwritten digits sample dataset.
-See [MNIST web site](http://yann.lecun.com/exdb/mnist/).
+Fashion MNIST images sample dataset.
+See [Fashion MNIST web site](https://github.com/zalandoresearch/fashion-mnist).
 
 Methods
 -------
 
 ### constructor
 ```php
-$builer->mnist()
+$builer->fashionMnist()
 return $mnist
 ```
-You can create a Mnist dataset instances with the Dataset Builder.
+You can create a Fashion Mnist dataset instances with the Dataset Builder.
 
 
 ### loadData
@@ -31,18 +31,18 @@ public function loadData(string $filePath=null)
 return [[$train_images, $train_labels],
         [$test_images,  $test_labels ]];
 ```
-Load dataset from the MNIST public site. And translate to NDArray.
+Load dataset from the Fashion-MNIST public site. And translate to NDArray.
 Downloaded data is cached.
 
 Arguments:
 
 - **filePath**: path where to cache the dataset locally.
-    - Default path is sys_get_temp_dir().'/rindow/nn/datasets/mnist'
+    - Default path is sys_get_temp_dir().'/rindow/nn/datasets/fashionmnist'
 
 Examples
 
 ```php
-$mnist = $nn->datasets()->mnist();
+$mnist = $nn->datasets()->fashionMnist();
 [[$train_images, $train_labels],
  [$test_images,  $test_labels ]] = $mnist->loadData(__DIR__.'/../data/mnist');
 ```

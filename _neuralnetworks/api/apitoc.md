@@ -17,11 +17,21 @@ next_section: neuralnetworks
     - [ModelLoader](modelloader.html)
 - Layers
     - [Dense](dense.html)
+    - [Flatten](flatten.html)
     - [ReLU](relu.html)
     - [Sigmoid](sigmoid.html)
     - [Softmax](softmax.html)
     - [Dropout](dropout.html)
     - [BatchNormalization](batchnormalization.html)
+    - [Conv1D](conv1d.html)
+    - [Conv2D](conv2d.html)
+    - [Conv3D](conv3d.html)
+    - [MaxPooling1D](maxpooling1d.html)
+    - [MaxPooling2D](maxpooling2d.html)
+    - [MaxPooling3D](maxpooling3d.html)
+    - [AveragePooling1D](averagepooling1d.html)
+    - [AveragePooling2D](averagepooling2d.html)
+    - [AveragePooling3D](averagepooling3d.html)
 - Losses
     - [MeanSquaredError](meansquarederror.html)
     - [BinaryCrossEntropy](binarycrossentropy.html)
@@ -32,3 +42,5 @@ next_section: neuralnetworks
     - [Adam](adam.html)
 - Datasets
     - [MNIST](mnist.html)
+    - [Fashion-MNIST](fashionmnist.html)
+    - [CIFAR-10](cifar10.html)

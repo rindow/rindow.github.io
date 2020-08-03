@@ -18,7 +18,9 @@ Please refer to each dataset for usage.
 Datasets
 --------
 
-- [**mnist**](minist.html): MNIST handwritten digits dataset.
+- [**Mnist**](mnist.html): MNIST handwritten digits dataset.
+- [**FashionMnist**](fashionmnist.html): Fashion MNIST dataset.
+- [**Cifar10**](cifar10.html): CIFAR-10 image dataset.
 
 
 Examples

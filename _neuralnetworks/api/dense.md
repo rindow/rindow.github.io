@@ -4,7 +4,7 @@ title: "Dense"
 grand_upper_section: index
 upper_section: apitoc
 previous_section: modelloader
-next_section: relu
+next_section: flatten
 ---
 
 - **namespace**: Rindow\NeuralNetworks\Layer
@@ -41,7 +41,7 @@ Arguments
 
 Options
 
-- **input_shape**: Tell the first layer the shape of the input data. In input_shape, the batch dimension is not included.
+- **input_shape**: Specify the first layer the shape of the input data. In input_shape, the batch dimension is not included.
 - **activation**: N/A. Currently not implemented
 - **use_bias**: N/A. Currently not implemented
 - **kernel_initializer**: name of kernel initializer

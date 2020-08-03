@@ -3,7 +3,7 @@ layout: document
 title: "MeanSquaredError"
 grand_upper_section: index
 upper_section: apitoc
-previous_section: batchnormalization
+previous_section: averagepooling3d
 next_section: binarycrossentropy
 ---
 
