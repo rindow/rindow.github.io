@@ -7,7 +7,7 @@ previous_section: relu
 next_section: softmax
 ---
 
-- **namespace**: Rindow\NeuralNetworks\Layer
+- **namespace**: Rindow\NeuralNetworks\Activation
 - **classname**: Sigmoid
 
 Sigmoid activation function.
@@ -17,12 +17,15 @@ Methods
 
 ### constructor
 ```php
-$builer->Sigmoid()
+Rindow\NeuralNetworks\Activation\FunctionFactory::factory($backend,'sigmoid');
 ```
-You can create a Sigmoid layer instances with the Layer Builder.
+You can create a Sigmoid function instances with the FunctionFactory.
+Generally, FunctionFactory is called inside the layer class.
 
 Examples
 
 ```php
-$model->add($nn->layers()->Sigmoid());
+$model->add($nn->layers()->Activation('sigmoid'));
+...
+$model->add($nn->layers()->Dense(10,['activation'=>'sigmoid']));
 ```

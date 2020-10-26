@@ -4,7 +4,7 @@ title: "BatchNormalization"
 grand_upper_section: index
 upper_section: apitoc
 previous_section: dropout
-next_section: meansquarederror
+next_section: conv1d
 ---
 
 - **namespace**: Rindow\NeuralNetworks\Layer

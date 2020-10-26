@@ -17,10 +17,10 @@ next_section: neuralnetworks
     - [ModelLoader](modelloader.html)
 - Layers
     - [Dense](dense.html)
+    - [Activation](activation.html)
     - [Flatten](flatten.html)
-    - [ReLU](relu.html)
-    - [Sigmoid](sigmoid.html)
-    - [Softmax](softmax.html)
+    - [Concatenate](concatenate.html)
+    - [RepeatVector](repeatvector.html)
     - [Dropout](dropout.html)
     - [BatchNormalization](batchnormalization.html)
     - [Conv1D](conv1d.html)
@@ -32,6 +32,15 @@ next_section: neuralnetworks
     - [AveragePooling1D](averagepooling1d.html)
     - [AveragePooling2D](averagepooling2d.html)
     - [AveragePooling3D](averagepooling3d.html)
+    - [SimpleRNN](simplernn.html)
+    - [LSTM](lstm.html)
+    - [GRU](gru.html)
+    - [Attention](attention.html)
+- Activations
+    - [ReLU](relu.html)
+    - [Sigmoid](sigmoid.html)
+    - [Softmax](softmax.html)
+    - [Tanh](tanh.html)
 - Losses
     - [MeanSquaredError](meansquarederror.html)
     - [BinaryCrossEntropy](binarycrossentropy.html)
@@ -44,3 +53,6 @@ next_section: neuralnetworks
     - [MNIST](mnist.html)
     - [Fashion-MNIST](fashionmnist.html)
     - [CIFAR-10](cifar10.html)
+- Data\\Sequence
+    - [Preprocessor](preprocessor.html)
+    - [Tokenizer](tokenizer.html)

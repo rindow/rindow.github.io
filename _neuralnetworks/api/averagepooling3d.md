@@ -4,7 +4,7 @@ title: "AveragePooling3D"
 grand_upper_section: index
 upper_section: apitoc
 previous_section: averagepooling2d
-next_section: meansquarederror
+next_section: simplernn
 ---
 
 - **namespace**: Rindow\NeuralNetworks\Layer
@@ -14,7 +14,7 @@ next_section: meansquarederror
 This layer reduces the size of three-dimensional input data by using the av erage value in the window as a representative value. The number of channels is preserved.
  It can be used for 3D data of more than one channel.
  Input data can be a 5D array of batch size, depth, height, width and number of channels.
- 
+
 AveragePooling3D implements the operation:
 
 - output := averagepooling(input)

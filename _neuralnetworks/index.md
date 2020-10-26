@@ -10,8 +10,7 @@ Hello there!
 
 The Rindow Neural Networks is a high-level neural networks library for machine learning.
 
-The goal is to be able to describe a network model in PHP as well as Python
-using a description method similar to Keras.
+The goal is to make it easy to write network models in PHP, just like Keras on Python.
 
 If you use the rindow_openblas php extension,
 you can calculate at speed close to CPU version of tensorflow.

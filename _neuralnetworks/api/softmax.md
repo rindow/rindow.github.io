@@ -4,10 +4,10 @@ title: "Softmax"
 grand_upper_section: index
 upper_section: apitoc
 previous_section: sigmoid
-next_section: dropout
+next_section: tanh
 ---
 
-- **namespace**: Rindow\NeuralNetworks\Layer
+- **namespace**: Rindow\NeuralNetworks\Activation
 - **classname**: Softmax
 
 Softmax activation function.
@@ -17,12 +17,15 @@ Methods
 
 ### constructor
 ```php
-$builer->Softmax()
+Rindow\NeuralNetworks\Activation\FunctionFactory::factory($backend,'softmax');
 ```
-You can create a Softmax layer instances with the Layer Builder.
+You can create a Softmax function instances with the FunctionFactory.
+Generally, FunctionFactory is called inside the layer class.
 
 Examples
 
 ```php
-$model->add($nn->layers()->Softmax());
+$model->add($nn->layers()->Activation('softmax'));
+...
+$model->add($nn->layers()->Dense(10,['activation'=>'softmax']));
 ```

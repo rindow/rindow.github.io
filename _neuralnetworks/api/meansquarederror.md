@@ -3,7 +3,7 @@ layout: document
 title: "MeanSquaredError"
 grand_upper_section: index
 upper_section: apitoc
-previous_section: averagepooling3d
+previous_section: softmax
 next_section: binarycrossentropy
 ---
 

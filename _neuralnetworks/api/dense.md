@@ -4,7 +4,7 @@ title: "Dense"
 grand_upper_section: index
 upper_section: apitoc
 previous_section: modelloader
-next_section: flatten
+next_section: activation
 ---
 
 - **namespace**: Rindow\NeuralNetworks\Layer
@@ -28,7 +28,7 @@ $builer->Dense(
         'input_shape'=>array $shape=null,
         'activation'=>null,
         'use_bias'=>true,
-        'kernel_initializer'=>'sigmoid_normal',
+        'kernel_initializer'=>'glorot_uniform',
         'bias_initializer'=>'zeros',
     ]
 )
@@ -42,8 +42,8 @@ Arguments
 Options
 
 - **input_shape**: Specify the first layer the shape of the input data. In input_shape, the batch dimension is not included.
-- **activation**: N/A. Currently not implemented
-- **use_bias**: N/A. Currently not implemented
+- **activation**: Activation function. Default is nothing.
+- **use_bias**: Whether the layer uses a bias vector. Default is true.
 - **kernel_initializer**: name of kernel initializer
 - **bias_initializer**: name of bias initializer
 

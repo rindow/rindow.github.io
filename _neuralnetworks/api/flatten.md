@@ -3,15 +3,15 @@ layout: document
 title: "Flatten"
 grand_upper_section: index
 upper_section: apitoc
-previous_section: dense
-next_section: relu
+previous_section: activation
+next_section: concatenate
 ---
 
 - **namespace**: Rindow\NeuralNetworks\Layer
 - **classname**: Flatten
 
 Flattens the input. Just reshape from input data to flat shape in this layer.
-Does not affect the batch size. 
+Does not affect the batch size.
 
 Flatten implements the operation:
 
