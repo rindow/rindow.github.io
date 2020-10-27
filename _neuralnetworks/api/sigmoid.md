@@ -2,9 +2,9 @@
 layout: document
 title: "Sigmoid"
 grand_upper_section: index
-upper_section: apitoc
-previous_section: relu
-next_section: softmax
+upper_section: api/apitoc
+previous_section: api/relu
+next_section: api/softmax
 ---
 
 - **namespace**: Rindow\NeuralNetworks\Activation

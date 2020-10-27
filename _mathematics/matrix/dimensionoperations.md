@@ -2,7 +2,7 @@
 layout: document
 title: "Dimension Operations"
 upper_section: index
-previous_section: arrayobjects
+previous_section: matrix/arrayobjects
 ---
 Overview
 --------

@@ -2,9 +2,9 @@
 layout: document
 title: "AveragePooling2D"
 grand_upper_section: index
-upper_section: apitoc
-previous_section: averagepooling1d
-next_section: averagepooling3d
+upper_section: api/apitoc
+previous_section: api/averagepooling1d
+next_section: api/averagepooling3d
 ---
 
 - **namespace**: Rindow\NeuralNetworks\Layer
@@ -49,7 +49,7 @@ Input shape
 
 [Batch size, input data height, input data width, number of channels] when **data_format** is "channels_last", [Batch size, number of input channels, input data height, input data width] when "channels_first".
  Four-dimensional NDArray.
- 
+
 Output shape
 
 [Batch size, input data height, input data width, number of filters] regardless of input shape and **data_format**.

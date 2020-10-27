@@ -2,9 +2,9 @@
 layout: document
 title: "Layers"
 grand_upper_section: index
-upper_section: apitoc
-previous_section: models
-next_section: losses
+upper_section: api/apitoc
+previous_section: api/models
+next_section: api/losses
 ---
 Overview
 -------

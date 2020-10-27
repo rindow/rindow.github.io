@@ -2,9 +2,9 @@
 layout: document
 title: "NeuralNetworks"
 grand_upper_section: index
-upper_section: apitoc
-previous_section: tableofconents
-next_section: models
+upper_section: api/apitoc
+previous_section: api/tableofconents
+next_section: api/models
 ---
 Overview
 -------

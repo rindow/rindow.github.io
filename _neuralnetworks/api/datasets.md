@@ -2,9 +2,9 @@
 layout: document
 title: "Datasets"
 grand_upper_section: index
-upper_section: apitoc
-previous_section: optimizers
-next_section: sequential
+upper_section: api/apitoc
+previous_section: api/optimizers
+next_section: api/sequential
 ---
 Overview
 -------

@@ -2,9 +2,9 @@
 layout: document
 title: "ReLU"
 grand_upper_section: index
-upper_section: apitoc
-previous_section: attention
-next_section: sigmoid
+upper_section: api/apitoc
+previous_section: api/attention
+next_section: api/sigmoid
 ---
 
 - **namespace**: Rindow\NeuralNetworks\Activation

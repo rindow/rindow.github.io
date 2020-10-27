@@ -2,9 +2,9 @@
 layout: document
 title: "AveragePooling3D"
 grand_upper_section: index
-upper_section: apitoc
-previous_section: averagepooling2d
-next_section: simplernn
+upper_section: api/apitoc
+previous_section: api/averagepooling2d
+next_section: api/simplernn
 ---
 
 - **namespace**: Rindow\NeuralNetworks\Layer

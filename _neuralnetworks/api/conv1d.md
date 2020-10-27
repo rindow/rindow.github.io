@@ -2,9 +2,9 @@
 layout: document
 title: "Conv1D"
 grand_upper_section: index
-upper_section: apitoc
-previous_section: batchnormalization
-next_section: conv2d
+upper_section: api/apitoc
+previous_section: api/batchnormalization
+next_section: api/conv2d
 ---
 
 
@@ -45,8 +45,8 @@ You can create a Conv1D layer instances with the Layer Builder.
 
 Arguments
 
-- **filters**: Positive integer. Number of output filters in the convolution. Reflected in the number of dimensions in the output space. 
-- **kernel_size**: Positive integer or array of integer. Specify the window size when performing convolution.  This size is reflected in the size of the kernel parameter. 
+- **filters**: Positive integer. Number of output filters in the convolution. Reflected in the number of dimensions in the output space.
+- **kernel_size**: Positive integer or array of integer. Specify the window size when performing convolution.  This size is reflected in the size of the kernel parameter.
 
 
 Options
@@ -71,7 +71,7 @@ Output shape
 
 [Batch size, output data size, number of filters] regardless of input shape and **data_format**.
  Three-dimensional NDArray.
- 
+
 Examples
 
 ```php

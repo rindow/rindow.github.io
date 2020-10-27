@@ -2,9 +2,9 @@
 layout: document
 title: "Concatenate"
 grand_upper_section: index
-upper_section: apitoc
-previous_section: flatten
-next_section: repeatvector
+upper_section: api/apitoc
+previous_section: api/flatten
+next_section: api/repeatvector
 ---
 
 - **namespace**: Rindow\NeuralNetworks\Layer

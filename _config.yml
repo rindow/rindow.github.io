@@ -14,9 +14,8 @@ url: "https://rindow.github.io"
 #github_username:  your_github_username
 google_analytics_id: UA-12321104-4
 #google_site_verification: XXXXXXXXXXXXXXXXXXXXXXXXXXX
-#google_custom_search_engine_id: "XXXXXXXX:XXXXXXXXXXXXXXXXXXX"
+google_custom_search_engine_id: 000482340f7b9f4bc
 #disqus_shortname: your_disqus_shortname
-
 ### Build settings
 plugins:
   - jekyll-paginate
@@ -90,8 +89,8 @@ collections:
     sidearea:
       primary:
         widgets:
-        - { widget: search, caption: "Search" }
-        - { widget: nav, name: menu, realm: neuralnetworks, caption: "Contents" }
+        - { widget: google-cse, name: sidearea, caption: "Search" }
+        - { widget: navv, name: neuralnetworks, item: menu, caption: "Contents" }
   mathematics:
     title: "Rindow Mathematics"
     description: "Mathematics libraries for PHP"
@@ -105,8 +104,8 @@ collections:
     sidearea:
       primary:
         widgets:
-        - { widget: search, caption: "Search" }
-        - { widget: nav, name: menu, realm: mathematics, caption: "Contents" }
+        - { widget: google-cse, name: sidearea, caption: "Search" }
+        - { widget: navv, name: mathematics, item: menu, caption: "Contents" }
 
   framework:
     title: "Rindow Framework"
@@ -121,5 +120,5 @@ collections:
     sidearea:
       primary:
         widgets:
-        - { widget: search, caption: "Search" }
-        - { widget: nav, name: menu, realm: framework, caption: "Contents" }
+        - { widget: google-cse, name: sidearea, caption: "Search" }
+        - { widget: navv, name: framework, item: menu, caption: "Contents" }

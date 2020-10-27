@@ -2,9 +2,9 @@
 layout: document
 title: "Activation"
 grand_upper_section: index
-upper_section: apitoc
-previous_section: dense
-next_section: flatten
+upper_section: api/apitoc
+previous_section: api/dense
+next_section: api/flatten
 ---
 
 - **namespace**: Rindow\NeuralNetworks\Layer

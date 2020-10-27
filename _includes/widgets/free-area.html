@@ -1,4 +1,4 @@
-{% include get-widget-data-and-options name="free-area" include=include %}
+{% include get-widget-data-and-options widget="free-area" include=include %}
 <div class="widgetwrapper widget-free-area widget-free-area-{{widget_options.name}}">
-{% if widget_data[widget_options.name] %}{% if widget_options.markdownify %}{{ widget_data[widget_options.name] | markdownify }}{% else %}{{ widget_data[widget_options.name] }}{% endif %}{% else %}Not found free area "{{ widget_options.name }}"{% if widget_options.realm %} in realm:{{ widget_options.realm }}{% endif %}{% endif %}
+{% if widget_data[widget_options.item] %}{% if widget_options.markdownify %}{{ widget_data[widget_options.item] | markdownify }}{% else %}{{ widget_data[widget_options.item] }}{% endif %}{% else %}Not found free area "{{ widget_options.name }}"{% if widget_options.name %} in name:{{ widget_options.name }}{% endif %}{% endif %}
 </div>

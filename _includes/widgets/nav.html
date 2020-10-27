@@ -1,5 +1,5 @@
-{% include get-widget-data-and-options name="nav" include=include %}
+{% include get-widget-data-and-options widget="nav" include=include %}
 <div class="widgetwrapper widget-nav widget-nav-{{widget_options.name}}">
     <h4>{% if widget_options.caption %}{{ widget_options.caption }}{% else %}Contents{% endif %}</h4>
-{% if widget_data[widget_options.name] %}{{ widget_data[widget_options.name] | markdownify }}{% else %}Not found free area "{{ widget_options.name }}"{% if widget_options.realm %} in realm:{{ widget_options.realm }}{% endif %}{% endif %}
+{% if widget_data[widget_options.item] %}{{ widget_data[widget_options.item] | markdownify }}{% else %}Not found free area "{{ widget_options.name }}"{% if widget_options.name %} in name:{{ widget_options.name }}{% endif %}{% endif %}
 </div>

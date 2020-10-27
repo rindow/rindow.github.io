@@ -1,0 +1,18 @@
+### Free Area
+menu:
+- caption: Home
+  link: /framework/index.html
+  menu:
+  - caption: Overview
+    link: /framework/index.html#overview
+  - caption: Requirements
+    link: /framework/index.html#requirements
+- caption: Getting started
+  link: /framework/gettingstarted.html
+  menu:
+  - caption: Quick Start
+    link: /framework/gettingstarted.html#quickstart
+  - caption: Full Features Demo
+    link: /framework/gettingstarted.html#full-features-demonstration-application
+  - caption: Project directory
+    link: /framework/gettingstarted.html#project-directory-structure

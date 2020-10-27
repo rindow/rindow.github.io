@@ -1,8 +1,8 @@
-{% include get-widget-data-and-options name="links" include=include %}
+{% include get-widget-data-and-options widget="links" include=include %}
 <div class="widgetwrapper widget-links">
   <h4>{% if widget_options.caption %}{{ widget_options.caption }}{% else %}Links{% endif %}</h4>
   <ul>
-    {% for link in site.data.widgets.links.links %}
+    {% for link in widget_data.links %}
       <li>
         <a href="{{ link.url }}">{{ link.caption }}</a>
       </li>

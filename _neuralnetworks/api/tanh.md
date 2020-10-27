@@ -2,9 +2,9 @@
 layout: document
 title: "Tanh"
 grand_upper_section: index
-upper_section: apitoc
-previous_section: softmax
-next_section: meansquarederror
+upper_section: api/apitoc
+previous_section: api/softmax
+next_section: api/meansquarederror
 ---
 
 - **namespace**: Rindow\NeuralNetworks\Activation

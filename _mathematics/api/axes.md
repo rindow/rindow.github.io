@@ -2,9 +2,9 @@
 layout: document
 title: "Axes"
 grand_upper_section: index
-upper_section: apitoc
-previous_section: figure
-next_section: miscplot
+upper_section: api/apitoc
+previous_section: api/figure
+next_section: api/miscplot
 ---
 - **namespace**: Rindow\Math\Plot\System
 - **classname**: Axes

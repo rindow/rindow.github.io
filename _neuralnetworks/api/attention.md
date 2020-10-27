@@ -2,9 +2,9 @@
 layout: document
 title: "Attention"
 grand_upper_section: index
-upper_section: apitoc
-previous_section: gru
-next_section: relu
+upper_section: api/apitoc
+previous_section: api/gru
+next_section: api/relu
 ---
 
 - **namespace**: Rindow\NeuralNetworks\Layer

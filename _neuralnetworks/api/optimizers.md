@@ -2,9 +2,9 @@
 layout: document
 title: "Optimizers"
 grand_upper_section: index
-upper_section: apitoc
-previous_section: losses
-next_section: datasets
+upper_section: api/apitoc
+previous_section: api/losses
+next_section: api/datasets
 ---
 Overview
 -------

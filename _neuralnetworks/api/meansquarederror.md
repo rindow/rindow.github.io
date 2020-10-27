@@ -2,9 +2,9 @@
 layout: document
 title: "MeanSquaredError"
 grand_upper_section: index
-upper_section: apitoc
-previous_section: softmax
-next_section: binarycrossentropy
+upper_section: api/apitoc
+previous_section: api/softmax
+next_section: api/binarycrossentropy
 ---
 
 - **namespace**: Rindow\NeuralNetworks\Losses

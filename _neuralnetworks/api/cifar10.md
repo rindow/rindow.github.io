@@ -2,9 +2,9 @@
 layout: document
 title: "Cifar10"
 grand_upper_section: index
-upper_section: apitoc
-previous_section: fashionmnist
-next_section: preprocessor
+upper_section: api/apitoc
+previous_section: api/fashionmnist
+next_section: api/preprocessor
 ---
 
 - **namespace**: Rindow\NeuralNetworks\Dataset

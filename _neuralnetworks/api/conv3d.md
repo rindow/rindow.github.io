@@ -2,9 +2,9 @@
 layout: document
 title: "Conv3D"
 grand_upper_section: index
-upper_section: apitoc
-previous_section: conv2d
-next_section: maxpooling1d
+upper_section: api/apitoc
+previous_section: api/conv2d
+next_section: api/maxpooling1d
 ---
 
 
@@ -15,7 +15,7 @@ next_section: maxpooling1d
 This layer performs a 3D convolution of the input data with kernel parameters.
  It can be used for convolving 3D data of more than 1 channel.
  Input data can be a 5D array of batch size, depth, height, width, and number of channels.
- 
+
 
 Conv3D implements the operation:
 
@@ -46,8 +46,8 @@ You can create a Conv3D layer instances with the Layer Builder.
 
 Arguments
 
-- **filters**: Positive integer. Number of output filters in the convolution. Reflected in the number of dimensions in the output space. 
-- **kernel_size**: Positive integer or array of integer. For a single integer, use a kernel size that has the same depth, height and width. Specify the window size when performing convolution.  This size is reflected in the size of the kernel parameter. 
+- **filters**: Positive integer. Number of output filters in the convolution. Reflected in the number of dimensions in the output space.
+- **kernel_size**: Positive integer or array of integer. For a single integer, use a kernel size that has the same depth, height and width. Specify the window size when performing convolution.  This size is reflected in the size of the kernel parameter.
 
 
 Options

@@ -1,1 +1,7 @@
-{% include services/google-cse.html %}
+{% if site.google_custom_search_engine_id %}
+{% include get-widget-data-and-options widget="google-cse" include=include %}
+<div class="widgetwrapper widget-google-cse">
+  <h4>{% if widget_options.caption %}{{ widget_options.caption }}{% else %}Search{% endif %}</h4>
+  {% include services/google-cse.html button=widget_data.button.caption buttonclass=widget_data.button.class fieldsize=widget_data.field.size placeholder=widget_data.field.placeholder inline=widget_data.form.inline %}
+</div>
+{% endif %}

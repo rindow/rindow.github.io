@@ -1,0 +1,72 @@
+{% include get-widget-data-and-options widget="nav" include=include %}
+<div class="widgetwrapper widget-navv widget-navv-{{widget_options.name}}">
+  {% if widget_options.anchor %}<a name="{{ widget_options.anchor }}"></a>{% endif %}
+  {% if widget_options.caption %}<h4>{{ widget_options.caption }}</h4>{% endif %}
+  <ul class="nav flex-column">
+  {% for nav in widget_data[widget_options.item] %}
+    {% if nav.anchor %}<a name="{{ nav.anchor }}"></a>{% endif %}
+    {% if nav.separator %}
+      <li class="nav-item {{ nav.separator }}">{{ nav.caption }}</li>
+    {% elsif nav.caption %}
+      <li class="nav-item"><a {% if nav.link %}class="nav-link pl-0 pr-0" href="{{ nav.link }}"{% else %}class="nav-link pl-0 pr-0 disabled" href="#" aria-disabled="true"{% endif %}>{{ nav.caption }}</a></li>
+    {% endif %}
+    {% if nav.menu %}
+      <li>
+        <ul class="nav flex-column ml-2">
+        {% for menu_item in nav.menu %}
+          {% if menu_item.anchor %}<a name="{{ menu_item.anchor }}"></a>{% endif %}
+          {% if menu_item.separator %}
+            <li class="nav-item {{ menu_item.separator }}">{{ menu_item.caption }}</li>
+          {% elsif menu_item.caption %}
+            <li class="nav-item"><a {% if menu_item.link %}class="nav-link pl-0 pr-0" href="{{ menu_item.link }}"{% else %}class="nav-link pl-0 pr-0 disabled" href="#" aria-disabled="true"{% endif %}>{{ menu_item.caption }}</a></li>
+          {% endif %}
+          {% if menu_item.menu %}
+            <li>
+              <ul class="nav flex-column ml-2">
+              {% for menu2_item in menu_item.menu %}
+                {% if menu2_item.anchor %}<a name="{{ menu2_item.anchor }}"></a>{% endif %}
+                {% if menu2_item.separator %}
+                  <li class="nav-item {{ menu2_item.separator }}">{{ menu2_item.caption }}</li>
+                {% elsif menu2_item.caption %}
+                  <li class="nav-item"><a {% if menu2_item.link %}class="nav-link pl-0 pr-0" href="{{ menu2_item.link }}"{% else %}class="nav-link pl-0 pr-0 disabled" href="#" aria-disabled="true"{% endif %}>{{ menu2_item.caption }}</a></li>
+                {% endif %}
+                {% if menu2_item.menu %}
+                  <li>
+                    <ul class="nav flex-column ml-2">
+                      {% for menu3_item in menu2_item.menu %}
+                        {% if menu3_item.anchor %}<a name="{{ menu3_item.anchor }}"></a>{% endif %}
+                        {% if menu3_item.separator %}
+                          <li class="nav-item {{ menu3_item.separator }}">{{ menu3_item.caption }}</li>
+                        {% elsif menu3_item.caption %}
+                          <li class="nav-item"><a {% if menu3_item.link %}class="nav-link pl-0 pr-0" href="{{ menu3_item.link }}"{% else %}class="nav-link pl-0 pr-0 disabled" href="#" aria-disabled="true"{% endif %}>{{ menu3_item.caption }}</a></li>
+                        {% endif %}
+                        {% if menu3_item.menu %}
+                        <li>
+                          <ul class="nav flex-column ml-2">
+                            {% for menu4_item in menu3_item.menu %}
+                              {% if menu4_item.anchor %}<a name="{{ menu4_item.anchor }}"></a>{% endif %}
+                              {% if menu4_item.separator %}
+                                <li class="nav-item {{ menu4_item.separator }}">{{ menu4_item.caption }}</li>
+                              {% elsif menu4_item.caption %}
+                                <li class="nav-item"><a {% if menu4_item.link %}class="nav-link pl-0 pr-0" href="{{ menu4_item.link }}"{% else %}class="nav-link pl-0 pr-0 disabled" href="#" aria-disabled="true"{% endif %}>{{ menu4_item.caption }}</a></li>
+                              {% endif %}
+                            {% endfor %}
+                          </ul>
+                        </li>
+                        {% endif %}
+                      {% endfor %}
+                    </ul>
+                  </li>
+                {% endif %}
+              {% endfor %}
+              </ul>
+            </li>
+          {% endif %}
+        {% endfor %}
+        </ul>
+      </li>
+    {% else %}
+    {% endif %}
+  {% endfor %}
+  </ul>
+</div>

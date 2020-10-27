@@ -2,9 +2,9 @@
 layout: document
 title: "MaxPooling3D"
 grand_upper_section: index
-upper_section: apitoc
-previous_section: maxpooling2d
-next_section: averagepooling1d
+upper_section: api/apitoc
+previous_section: api/maxpooling2d
+next_section: api/averagepooling1d
 ---
 
 - **namespace**: Rindow\NeuralNetworks\Layer
@@ -14,7 +14,7 @@ next_section: averagepooling1d
 This layer reduces the size of three-dimensional input data by using the maximum value in the window as a representative value. The number of channels is preserved.
  It can be used for 3D data of more than one channel.
  Input data can be a 5D array of batch size, depth, height, width and number of channels.
- 
+
 MaxPooling3D implements the operation:
 
 - output := maxpooling(input)
@@ -49,7 +49,7 @@ Input shape
 
 [Batch size, input data depth, input data height, input data width, number of channels] when **data_format** is "channels_last", [Batch size, number of input channels, input data depth, input data height, input data width] when "channels_first".
  five-dimensional NDArray.
- 
+
 Output shape
 
 [Batch size, output data depth, output data height, output data width, number of filters] regardless of input shape and **data_format**.

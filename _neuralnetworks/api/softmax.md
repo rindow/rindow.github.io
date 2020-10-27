@@ -2,9 +2,9 @@
 layout: document
 title: "Softmax"
 grand_upper_section: index
-upper_section: apitoc
-previous_section: sigmoid
-next_section: tanh
+upper_section: api/apitoc
+previous_section: api/sigmoid
+next_section: api/tanh
 ---
 
 - **namespace**: Rindow\NeuralNetworks\Activation

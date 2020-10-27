@@ -1,4 +1,4 @@
-{% include get-widget-data-and-options name="search" include=include %}
+{% include get-widget-data-and-options widget="search" include=include %}
 <div class="widgetwrapper widget-search">
   <h4>{% if widget_options.caption %}{{ widget_options.caption }}{% else %}Search{% endif %}</h4>
   <form action="https://www.google.com/search" method="get" role="form" onSubmit="return sitesearchauxi(this.elements[0].elements[0]);">

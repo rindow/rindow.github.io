@@ -2,9 +2,9 @@
 layout: document
 title: "Models"
 grand_upper_section: index
-upper_section: apitoc
-previous_section: neuralnetworks
-next_section: layers
+upper_section: api/apitoc
+previous_section: api/neuralnetworks
+next_section: api/layers
 ---
 Overview
 -------

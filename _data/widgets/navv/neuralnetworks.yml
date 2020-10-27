@@ -1,0 +1,39 @@
+### Free Area
+menu:
+- caption: Home
+  link: /neuralnetworks/index.html
+  menu:
+  - caption: Overview
+    link: /neuralnetworks/index.html#hello-there
+  - caption: Why do deep learning with PHP?
+    link: /neuralnetworks/index.html#why-do-deep-learning-with-php
+  - caption: Requirements
+    link: /neuralnetworks/index.html#requirements
+  - caption: Installation
+    link: /neuralnetworks/index.html#installation
+  - caption: Note
+    link: /neuralnetworks/index.html#note
+- caption: Getting started
+  link: /neuralnetworks/gettingstarted.html
+  menu:
+  - caption: Sequential model
+    link: /neuralnetworks/gettingstarted.html#getting-started-with-the-sequential-model
+  - caption: Specifying the input shape
+    link: /neuralnetworks/gettingstarted.html#specifying-the-input-shape
+  - caption: Compilation
+    link: /neuralnetworks/gettingstarted.html#compilation
+  - caption: Training
+    link: /neuralnetworks/gettingstarted.html#training
+  - caption: Survey
+    link: /neuralnetworks/gettingstarted.html#survey
+  - caption: Prediction
+    link: /neuralnetworks/gettingstarted.html#prediction
+- caption: Builders
+  link: /neuralnetworks/builders.html
+  menu:
+  - caption: Root Builder
+    link: /neuralnetworks/gettingstarted.html#root-builder
+  - caption: Subclass Builders
+    link: /neuralnetworks/gettingstarted.html#subclass-builders
+- caption: APIs
+  link: /neuralnetworks/api/apitoc.html

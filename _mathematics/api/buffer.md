@@ -2,8 +2,8 @@
 layout: document
 title: "Buffer"
 grand_upper_section: index
-upper_section: apitoc
-next_section: blas
+upper_section: api/apitoc
+next_section: api/blas
 ---
 - **namespace**: Rindow\\OpenBLAS
 - **classname**: Buffer

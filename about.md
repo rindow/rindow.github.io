@@ -15,7 +15,7 @@ Our Story
 - 2013 Started development of Aneris Framework
 - 2014 Migrate development to Rindow Framework
 - 2019 Started development of Rindow Neural Network and Math libraries
-- 2020 Publish web pages
+- 2020,Apl Publish web pages
 
 Our Goal
 --------

@@ -2,9 +2,9 @@
 layout: document
 title: "Random"
 grand_upper_section: index
-upper_section: apitoc
-previous_section: matrixoperator
-next_section: linearalgebra
+upper_section: api/apitoc
+previous_section: api/matrixoperator
+next_section: api/linearalgebra
 ---
 - **namespace**: Rindow\Math\Matrix
 - **classname**: Random

@@ -2,9 +2,9 @@
 layout: document
 title: "MatrixOperator"
 grand_upper_section: index
-upper_section: apitoc
-previous_section: ndarrayphp
-next_section: random
+upper_section: api/apitoc
+previous_section: api/ndarrayphp
+next_section: api/random
 ---
 - **namespace**: Rindow\Math\Matrix
 - **classname**: MatrixOperator

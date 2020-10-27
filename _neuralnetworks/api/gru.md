@@ -2,9 +2,9 @@
 layout: document
 title: "GRU"
 grand_upper_section: index
-upper_section: apitoc
-previous_section: lstm
-next_section: attention
+upper_section: api/apitoc
+previous_section: api/lstm
+next_section: api/attention
 ---
 
 - **namespace**: Rindow\NeuralNetworks\Layer

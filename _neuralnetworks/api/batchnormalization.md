@@ -2,9 +2,9 @@
 layout: document
 title: "BatchNormalization"
 grand_upper_section: index
-upper_section: apitoc
-previous_section: dropout
-next_section: conv1d
+upper_section: api/apitoc
+previous_section: api/dropout
+next_section: api/conv1d
 ---
 
 - **namespace**: Rindow\NeuralNetworks\Layer

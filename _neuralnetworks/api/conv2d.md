@@ -2,9 +2,9 @@
 layout: document
 title: "Conv2D"
 grand_upper_section: index
-upper_section: apitoc
-previous_section: conv1d
-next_section: conv3d
+upper_section: api/apitoc
+previous_section: api/conv1d
+next_section: api/conv3d
 ---
 
 - **namespace**: Rindow\NeuralNetworks\Layer
@@ -44,8 +44,8 @@ You can create a Conv2D layer instances with the Layer Builder.
 
 Arguments
 
-- **filters**: Positive integer. Number of output filters in the convolution. Reflected in the number of dimensions in the output space. 
-- **kernel_size**: Positive integer or array of integer. For a single integer, use a kernel size that has the same height and width. Specify the window size when performing convolution.  This size is reflected in the size of the kernel parameter. 
+- **filters**: Positive integer. Number of output filters in the convolution. Reflected in the number of dimensions in the output space.
+- **kernel_size**: Positive integer or array of integer. For a single integer, use a kernel size that has the same height and width. Specify the window size when performing convolution.  This size is reflected in the size of the kernel parameter.
 
 
 Options
@@ -63,7 +63,7 @@ Input shape
 
 [Batch size, input data height, input data width, number of channels] when **data_format** is "channels_last", [Batch size, number of input channels, input data height, input data width] when "channels_first".
  Four-dimensional NDArray.
- 
+
 
 Output shape
 

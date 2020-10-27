@@ -2,9 +2,9 @@
 layout: document
 title: "Sequential"
 grand_upper_section: index
-upper_section: apitoc
-previous_section: datasets
-next_section: modelloader
+upper_section: api/apitoc
+previous_section: api/datasets
+next_section: api/modelloader
 ---
 
 - **namespace**: Rindow\NeuralNetworks\Model

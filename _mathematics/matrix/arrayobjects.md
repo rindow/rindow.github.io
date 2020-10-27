@@ -2,8 +2,8 @@
 layout: document
 title: "Array objects"
 upper_section: index
-previous_section: matrix
-next_section: dimensionoperations
+previous_section: matrix/matrix
+next_section: matrix/dimensionoperations
 ---
 NDArray Interface
 -----------------

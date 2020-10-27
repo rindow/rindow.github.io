@@ -2,8 +2,8 @@
 layout: document
 title: "Miscellaneous"
 grand_upper_section: index
-upper_section: apitoc
-previous_section: axes
+upper_section: api/apitoc
+previous_section: api/axes
 ---
 
 {:.no_toc}

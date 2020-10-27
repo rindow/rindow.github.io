@@ -2,7 +2,7 @@
 layout: document
 title: "Getting start Rindow Math Plot"
 upper_section: index
-previous_section: overviewplot
+previous_section: plot/overviewplot
 ---
 Components
 ----------

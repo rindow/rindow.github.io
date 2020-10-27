@@ -2,9 +2,9 @@
 layout: document
 title: "Flatten"
 grand_upper_section: index
-upper_section: apitoc
-previous_section: activation
-next_section: concatenate
+upper_section: api/apitoc
+previous_section: api/activation
+next_section: api/concatenate
 ---
 
 - **namespace**: Rindow\NeuralNetworks\Layer

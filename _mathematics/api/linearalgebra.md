@@ -3,8 +3,8 @@ layout: document
 math: enable
 title: "LinearAlgebra"
 grand_upper_section: index
-upper_section: apitoc
-previous_section: random
+upper_section: api/apitoc
+previous_section: api/random
 ---
 - **namespace**: Rindow\Math\Matrix
 - **classname**: LinearAlgebra

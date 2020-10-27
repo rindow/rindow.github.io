@@ -2,9 +2,9 @@
 layout: document
 title: "ModelLoader"
 grand_upper_section: index
-upper_section: apitoc
-previous_section: sequential
-next_section: dense
+upper_section: api/apitoc
+previous_section: api/sequential
+next_section: api/dense
 ---
 
 - **namespace**: Rindow\NeuralNetworks\Model

@@ -2,9 +2,9 @@
 layout: document
 title: "MaxPooling2D"
 grand_upper_section: index
-upper_section: apitoc
-previous_section: maxpooling1d
-next_section: maxpooling3d
+upper_section: api/apitoc
+previous_section: api/maxpooling1d
+next_section: api/maxpooling3d
 ---
 
 - **namespace**: Rindow\NeuralNetworks\Layer
@@ -14,7 +14,7 @@ next_section: maxpooling3d
 This layer reduces the size of two-dimensional input data by using the maximum value in the window as a representative value. The number of channels is preserved.
  It can be used for 2D image data of more than one channel.
  Input data can be a 4D array of batch size, height, width and number of channels.
- 
+
 MaxPooling2D implements the operation:
 
 - output := maxpooling(input)

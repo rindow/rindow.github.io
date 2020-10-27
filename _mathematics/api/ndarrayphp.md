@@ -2,9 +2,9 @@
 layout: document
 title: "NDArrayPhp"
 grand_upper_section: index
-upper_section: apitoc
-previous_section: apitoc
-next_section: matrixoperator
+upper_section: api/apitoc
+previous_section: api/apitoc
+next_section: api/matrixoperator
 ---
 - **namespace**: Rindow\Math\Matrix
 - **classname**: NDArrayPhp

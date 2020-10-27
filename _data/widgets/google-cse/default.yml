@@ -1,0 +1,7 @@
+button:
+  caption: Search
+  class: btn btn-secondary
+field:
+  size: 20
+form:
+  inline: true

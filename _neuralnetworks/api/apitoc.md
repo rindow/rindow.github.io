@@ -2,7 +2,7 @@
 layout: document
 title: "APIs"
 upper_section: index
-next_section: neuralnetworks
+next_section: api/neuralnetworks
 ---
 
 - Builders

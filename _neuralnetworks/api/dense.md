@@ -2,9 +2,9 @@
 layout: document
 title: "Dense"
 grand_upper_section: index
-upper_section: apitoc
-previous_section: modelloader
-next_section: activation
+upper_section: api/apitoc
+previous_section: api/modelloader
+next_section: api/activation
 ---
 
 - **namespace**: Rindow\NeuralNetworks\Layer

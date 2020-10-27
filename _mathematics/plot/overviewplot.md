@@ -2,7 +2,7 @@
 layout: document
 title: "Rindow Math Plot"
 upper_section: index
-next_section: gettingstartplot
+next_section: plot/gettingstartplot
 ---
 
 Overview

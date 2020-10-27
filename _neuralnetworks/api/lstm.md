@@ -2,9 +2,9 @@
 layout: document
 title: "LSTM"
 grand_upper_section: index
-upper_section: apitoc
-previous_section: simplernn
-next_section: gru
+upper_section: api/apitoc
+previous_section: api/simplernn
+next_section: api/gru
 ---
 
 - **namespace**: Rindow\NeuralNetworks\Layer

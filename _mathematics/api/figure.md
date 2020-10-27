@@ -2,9 +2,9 @@
 layout: document
 title: "Figure"
 grand_upper_section: index
-upper_section: apitoc
-previous_section: plot
-next_section: axes
+upper_section: api/apitoc
+previous_section: api/plot
+next_section: api/axes
 ---
 - **namespace**: Rindow\Math\Plot\System
 - **classname**: Figure

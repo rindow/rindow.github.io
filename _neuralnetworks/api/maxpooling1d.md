@@ -2,9 +2,9 @@
 layout: document
 title: "MaxPooling1D"
 grand_upper_section: index
-upper_section: apitoc
-previous_section: conv3d
-next_section: maxpooling2d
+upper_section: api/apitoc
+previous_section: api/conv3d
+next_section: api/maxpooling2d
 ---
 
 - **namespace**: Rindow\NeuralNetworks\Layer
@@ -14,7 +14,7 @@ next_section: maxpooling2d
 This layer reduces the size of one-dimensional input data by using the maximum value in the window as a representative value. The number of channels is preserved.
  It can be used for signal data of more than one channel or vector sequence of N-dimensional vector.
  Input data can be a 3D array of batch size, data length and number of channels.
- 
+
 
 MaxPooling1D implements the operation:
 

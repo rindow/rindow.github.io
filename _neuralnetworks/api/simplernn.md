@@ -2,9 +2,9 @@
 layout: document
 title: "SimpleRNN"
 grand_upper_section: index
-upper_section: apitoc
-previous_section: averagepooling3d
-next_section: lstm
+upper_section: api/apitoc
+previous_section: api/averagepooling3d
+next_section: api/lstm
 ---
 
 - **namespace**: Rindow\NeuralNetworks\Layer

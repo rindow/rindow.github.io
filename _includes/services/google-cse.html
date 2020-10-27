@@ -1,18 +1,6 @@
-{% if site.google_custom_search_engine_id %}
-<div class="widgetwrapper widget-google-cse reset-box-sizing">
-{% if include.caption %}<h4>{{ include.caption }}</h4>{% endif %}
-<script>
-  (function() {
-    var cx = '{{ site.google_custom_search_engine_id }}';
-    var gcse = document.createElement('script');
-    gcse.type = 'text/javascript';
-    gcse.async = true;
-    gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
-        '//www.google.com/cse/cse.js?cx=' + cx;
-    var s = document.getElementsByTagName('script')[0];
-    s.parentNode.insertBefore(gcse, s);
-  })();
-</script>
-<gcse:search></gcse:search>
-</div>
-{% endif %}
+<form class="{% if include.inline %}form-inline{% endif %}" id="cse-search-box" action="/search" target="_top">
+<input type="hidden" name="cx" value="{{ site.google_custom_search_engine_id }}" />
+<input type="hidden" name="ie" value="UTF-8" />
+{% if include.inline %}{% else %}<fieldset role="search">{% endif %}<input class="form-control" type="search" name="q"{% if include.fieldsize %} size="{{ include.fieldsize }}"{% endif %}{% if include.placeholder %} placeholder="{{ include.placeholder }}"{% endif %}/>
+{% if include.button and include.button!="disable" %}<input{% if include.buttonclass %} class="{{ include.buttonclass }}"{% endif %} type="submit" name="sa" value="{{ include.button }}" />{% endif %}{% if include.inline %}{% else %}</fieldset>{% endif %}
+</form>

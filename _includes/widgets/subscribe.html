@@ -1,4 +1,4 @@
-{% include get-widget-data-and-options name="subscribe" include=include %}
+{% include get-widget-data-and-options widget="subscribe" include=include %}
 <div class="widgetwrapper widget-subscribe">
   <h4>{% if widget_options.caption %}{{ widget_options.caption }}{% else %}Subscribe{% endif %}</h4>
   <p class="rss-subscribe">subscribe <a href="{{ "/feed.xml" | relative_url }}">via RSS</a></p>

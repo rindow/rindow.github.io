@@ -2,9 +2,9 @@
 layout: document
 title: "Mnist"
 grand_upper_section: index
-upper_section: apitoc
-previous_section: adam
-next_section: fashionmnist
+upper_section: api/apitoc
+previous_section: api/adam
+next_section: api/fashionmnist
 ---
 
 

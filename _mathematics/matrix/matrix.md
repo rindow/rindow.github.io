@@ -2,7 +2,7 @@
 layout: document
 title: "Rindow Math Matrix"
 upper_section: index
-next_section: arrayobjects
+next_section: matrix/arrayobjects
 ---
 
 Overview

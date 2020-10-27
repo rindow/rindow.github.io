@@ -2,9 +2,9 @@
 layout: document
 title: "Losses"
 grand_upper_section: index
-upper_section: apitoc
-previous_section: layers
-next_section: optimizers
+upper_section: api/apitoc
+previous_section: api/layers
+next_section: api/optimizers
 ---
 Overview
 -------

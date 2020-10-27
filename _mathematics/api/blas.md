@@ -2,9 +2,9 @@
 layout: document
 title: "Blas"
 grand_upper_section: index
-upper_section: apitoc
-previous_section: buffer
-next_section: math
+upper_section: api/apitoc
+previous_section: api/buffer
+next_section: api/math
 ---
 - **namespace**: Rindow\\OpenBLAS
 - **classname**: Blas

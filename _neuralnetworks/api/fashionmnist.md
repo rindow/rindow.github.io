@@ -2,9 +2,9 @@
 layout: document
 title: "FashionMnist"
 grand_upper_section: index
-upper_section: apitoc
-previous_section: mnist
-next_section: cifar10
+upper_section: api/apitoc
+previous_section: api/mnist
+next_section: api/cifar10
 ---
 
 

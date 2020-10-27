@@ -1,0 +1,8 @@
+#button:
+#  caption: Search
+#  class: btn btn-light
+field:
+  placeholder: Search
+  #size: 20
+#form:
+#  inline: true

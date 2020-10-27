@@ -2,9 +2,9 @@
 layout: document
 title: "SGD"
 grand_upper_section: index
-upper_section: apitoc
-previous_section: sparsecategoricalcrossentropy
-next_section: adam
+upper_section: api/apitoc
+previous_section: api/sparsecategoricalcrossentropy
+next_section: api/adam
 ---
 
 - **namespace**: Rindow\NeuralNetworks\Optimizer

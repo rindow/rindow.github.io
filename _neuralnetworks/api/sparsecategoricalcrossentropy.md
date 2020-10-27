@@ -2,9 +2,9 @@
 layout: document
 title: "SparseCategoricalCrossEntropy"
 grand_upper_section: index
-upper_section: apitoc
-previous_section: categoricalcrossentropy
-next_section: sgd
+upper_section: api/apitoc
+previous_section: api/categoricalcrossentropy
+next_section: api/sgd
 ---
 
 - **namespace**: Rindow\NeuralNetworks\Losses

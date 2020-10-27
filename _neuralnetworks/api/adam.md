@@ -2,9 +2,9 @@
 layout: document
 title: "Adam"
 grand_upper_section: index
-upper_section: apitoc
-previous_section: adam
-next_section: mnist
+upper_section: api/apitoc
+previous_section: api/adam
+next_section: api/mnist
 ---
 
 - **namespace**: Rindow\NeuralNetworks\Optimizer

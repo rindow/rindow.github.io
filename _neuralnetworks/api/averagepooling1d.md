@@ -2,9 +2,9 @@
 layout: document
 title: "AveragePooling1D"
 grand_upper_section: index
-upper_section: apitoc
-previous_section: maxpooling3d
-next_section: averagepooling2d
+upper_section: api/apitoc
+previous_section: api/maxpooling3d
+next_section: api/averagepooling2d
 ---
 
 
@@ -12,11 +12,11 @@ next_section: averagepooling2d
 - **classname**: AveragePooling1D
 
  1D pooling layer.
- 
+
  This layer reduces the size of one-dimensional input data by using the average value within the window as a representative value.  The number of channels is preserved.
  It can be used for signal data of more than one channel or vector sequence of N-dimensional vector.
  Input data can be a 3D array of batch size, data length and number of channels.
- 
+
 AveragePooling1D implements the operation:
 
 - output := averagepooling(input)
@@ -57,7 +57,7 @@ Output shape
 
 [Batch size, output data size, number of filters] regardless of input shape and **data_format**.
  three-dimensional NDArray.
- 
+
 Examples
 
 ```php

@@ -1,6 +1,7 @@
 {% capture doc_navigator %}{% include get-theme-value name="doc_navigator" %}{% endcapture %}
 {% capture doc_breadcrumb %}{% include get-theme-value name="doc_breadcrumb" %}{% endcapture %}
 {% include set-current-collection %}{% assign collection = globalcurrentcollection %}
+{% assign section_prefix = "/" | append: page.collection | append: "/" %}
 {% if collection == null or collection.navigator != "disable" %}
 {% assign previous_title = "" %}
 {% assign previous_id = "" %}
@@ -12,7 +13,7 @@
 {% assign grand_upper_id = "" %}
 {% if include.enable_title %}
   {% for doc in collection.docs %}
-    {% assign section = doc.id | split:"/" | last %}
+    {% assign section = doc.id | remove_first: section_prefix %}
     {% if page.previous_section == section %}
       {% assign previous_title = doc.title %}
       {% assign previous_id = doc.id %}

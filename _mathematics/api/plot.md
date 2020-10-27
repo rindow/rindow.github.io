@@ -2,8 +2,8 @@
 layout: document
 title: "Plot"
 grand_upper_section: index
-upper_section: apitoc
-next_section: figure
+upper_section: api/apitoc
+next_section: api/figure
 ---
 - **namespace**: Rindow\Math\Plot
 - **classname**: Plot
