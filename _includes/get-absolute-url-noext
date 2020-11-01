@@ -1,0 +1,1 @@
+{{ include.url |  append: "$$$$$$$$" | remove_first: ".html$$$$$$$$" | remove_first: "$$$$$$$$" |  append: "$$$$$$$$" | remove_first: "index$$$$$$$$" | remove_first: "$$$$$$$$" | absolute_url }}

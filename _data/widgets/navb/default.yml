@@ -1,0 +1,10 @@
+menu:
+- caption: top
+  link: /
+- caption: Menu
+  link: "#menu"
+search:
+  #formclass: "my-2 my-lg-0"
+  #inputclass: "mr-sm-2"
+  placeholder: "Search"
+  aria_label: "Search"

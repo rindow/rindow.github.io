@@ -4,17 +4,19 @@ layout: frame
 {% capture header_style %}{% include get-theme-value name="header_style" %}{% endcapture %}
 {% capture navbar_layout %}{% include get-theme-value name="navbar_layout" %}{% endcapture %}
 {% capture sidearea_layout %}{% include get-theme-value name="sidearea_layout" %}{% endcapture %}
+{% capture r_b %}{% include get-theme-value name="responsive_breakpoint" %}{% endcapture %}
 <header>
 {% if header_style != "fluid" %}<div class="container">{% endif %}
 {% if navbar_layout == "top" %}{% include navbar.html %}{% endif %}
 {% include header.html %}
 {% if navbar_layout == "middle" %}{% include navbar.html %}{% endif %}
 {% if header_style != "fluid" %}</div>{% endif %}
+{% if r_b == "" %}{% assign r_b = "sm" %}{% endif %}
 </header>
-<div class="container">
+<div class="container-{{ r_b }}">
   <div class="main-container">
     <div class="row">
-      <div class="col-sm-12">
+      <div class="col-{{ r_b }}-12">
         <section id="top">
         {% include sidearea.html name="top" %}
         </section>
@@ -23,45 +25,45 @@ layout: frame
     <div class="row">
     {% case sidearea_layout %}
     {% when "right" %}
-      <div class="col-sm-9">
+      <div class="col-{{ r_b }}-9">
         <section id="main">
         {{ content }}
         </section>
       </div>
-      <div class="col-sm-3">
+      <div class="col-{{ r_b }}-3">
         <section id="side">
         {% include sidearea.html name="primary" %}
         </section>
       </div>
     {% when "left" %}
-      <div class="col-sm-9 order-sm-last">
+      <div class="col-{{ r_b }}-9 order-{{ r_b }}-last">
         <section id="main">
         {{ content }}
         </section>
       </div>
-      <div class="col-sm-3 order-sm-first">
+      <div class="col-{{ r_b }}-3 order-{{ r_b }}-first">
         <section id="side">
         {% include sidearea.html name="primary" %}
         </section>
       </div>
     {% when "both" %}
-      <div class="col-sm-6">
+      <div class="col-{{ r_b }}-6">
         <section id="main">
         {{ content }}
         </section>
       </div>
-      <div class="col-sm-3 order-sm-first">
+      <div class="col-{{ r_b }}-3 order-{{ r_b }}-first">
         <section id="side">
         {% include sidearea.html name="primary" %}
         </section>
       </div>
-      <div class="col-sm-3 order-sm-last">
+      <div class="col-{{ r_b }}-3 order-{{ r_b }}-last">
         <section id="side2">
         {% include sidearea.html name="secondary" %}
         </section>
       </div>
     {% else %}
-      <div class="col-sm-12">
+      <div class="col-{{ r_b }}-12">
         <section id="main">
         {{ content }}
         </section>

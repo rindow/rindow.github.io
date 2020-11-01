@@ -1,0 +1,6 @@
+menu:
+- caption: Top page
+  link: /docs/
+- caption: Return to root
+  link: /
+search: true

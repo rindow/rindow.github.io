@@ -1,1 +1,4 @@
-{% assign globalcurrentcollection = null %}{% if page.collection %}{% for c in site.collections %}{% if c.label == page.collection %}{% assign globalcurrentcollection = c %}{% endif %}{% endfor %}{% endif %}
+{%- assign globalcurrentcollection = null -%}
+{%- if page.collection -%}
+  {%- assign globalcurrentcollection = site.collections | where: "label", page.collection | first -%}
+{%- endif -%}

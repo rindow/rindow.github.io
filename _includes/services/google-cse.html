@@ -1,6 +1,6 @@
-<form class="{% if include.inline %}form-inline{% endif %}" id="cse-search-box" action="/search" target="_top">
-<input type="hidden" name="cx" value="{{ site.google_custom_search_engine_id }}" />
+<form class="{% if include.inline %}form-inline{% endif %}{% if include.formclass %} {{ include.formclass }}{% endif %}" method="get" role="form" id="{% if include.formid %}{{ include.formid }}{% else %}cse-search-box{% endif %}" action="{% if include.action %}{{ include.action }}{% else %}/search{% endif %}" target="_top">
+<input type="hidden" name="cx" value="{% if include.search_engine_id %}{{ include.search_engine_id }}{% else %}{{ site.google_custom_search_engine_id }}{% endif %}" />
 <input type="hidden" name="ie" value="UTF-8" />
-{% if include.inline %}{% else %}<fieldset role="search">{% endif %}<input class="form-control" type="search" name="q"{% if include.fieldsize %} size="{{ include.fieldsize }}"{% endif %}{% if include.placeholder %} placeholder="{{ include.placeholder }}"{% endif %}/>
+{% if include.inline %}{% else %}<fieldset role="search">{% endif %}<input class="form-control{% if include.inputclass %} {{ include.inputclass }}{% endif %}" type="search" name="q"{% if include.fieldsize %} size="{{ include.fieldsize }}"{% endif %}{% if include.placeholder %} placeholder="{{ include.placeholder }}"{% endif %} {% if include.aria_label %} aria-label="{{ include.aria_label }}"{% endif %}/>
 {% if include.button and include.button!="disable" %}<input{% if include.buttonclass %} class="{{ include.buttonclass }}"{% endif %} type="submit" name="sa" value="{{ include.button }}" />{% endif %}{% if include.inline %}{% else %}</fieldset>{% endif %}
 </form>

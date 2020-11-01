@@ -29,12 +29,12 @@
         {% endif %}
       {% endfor %}
       </ul>
-      {% if navbar_search_box != "" %}{% if site.google_custom_search_engine_id %}<form class="form-inline my-2 my-lg-0" action="/search" method="get" role="form">
-        <input type="hidden" name="cx" value="{{ site.google_custom_search_engine_id }}" />
-        <input type="hidden" name="ie" value="UTF-8" />
-        <input class="form-control mr-sm-2" type="search" name="q" placeholder="Search" aria-label="Search">
-      </form>{% else %}<form class="form-inline my-2 my-lg-0" action="https://www.google.com/search" method="get" role="form" onSubmit="return sitesearchauxi(this.elements[0]);">
+      {%- if navbar_search_box != "" -%}
+        {%- if site.google_custom_search_engine_id -%}
+          {%- include services/google-cse.html inline="true" formclass="my-2 my-lg-0" inputclass="mr-sm-2" placeholder="Search" aria_label="Search" -%}
+        {%- else -%}<form class="form-inline my-2 my-lg-0" action="https://www.google.com/search" method="get" role="form" onSubmit="return sitesearchauxi(this.elements[0]);">
           <input class="form-control mr-sm-2" type="search" name="q" results="0" placeholder="Search"/>
-      </form>{% endif %}{% endif %}
+      </form>{%- endif -%}
+      {%- endif -%}
     </div><!--/.nav-collapse -->
 </nav>

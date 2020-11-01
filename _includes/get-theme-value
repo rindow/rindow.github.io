@@ -1,1 +1,20 @@
-{% if site.appearance[include.name] %}{% if site.appearance[include.name] != "none" %}{{ site.appearance[include.name] }}{% endif %}{% elsif page.type == "blog" and site.blog.theme %}{{ site.data.themes[site.blog.theme][include.name] }}{% elsif page.collection %}{% assign cc = null %}{% for c in site.collections %}{% if c.label == page.collection %}{% assign cc = c %}{% endif %}{% endfor %}{% if cc and cc.theme %}{{ site.data.themes[cc.theme][include.name] }}{% elsif site.data.themes[site.appearance.theme][include.name] %}{{ site.data.themes[site.appearance.theme][include.name] }}{% endif %}{% elsif site.data.themes[site.appearance.theme][include.name] %}{{ site.data.themes[site.appearance.theme][include.name] }}{% endif %}
+{%- if site.appearance[include.name] -%}
+  {%- if site.appearance[include.name] != "none" -%}
+    {{ site.appearance[include.name] }}
+  {%- endif -%}
+{%- elsif include.theme -%}
+  {%- if site.data.themes[include.theme][include.name] -%}
+    {{ site.data.themes[include.theme][include.name] }}
+  {%- endif -%}
+{%- elsif page.type == "blog" and site.blog.theme -%}
+  {{ site.data.themes[site.blog.theme][include.name] }}
+{%- elsif page.collection -%}
+  {%- assign cc = site.collections | where: "label", page.collection | first -%}
+  {%- if cc and cc.theme -%}
+    {{ site.data.themes[cc.theme][include.name] }}
+  {%- elsif site.data.themes[site.appearance.theme][include.name] -%}
+    {{ site.data.themes[site.appearance.theme][include.name] }}
+  {%- endif -%}
+{%- elsif site.data.themes[site.appearance.theme][include.name] -%}
+  {{ site.data.themes[site.appearance.theme][include.name] }}
+{%- endif -%}

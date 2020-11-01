@@ -32,6 +32,7 @@ sidearea_layout: none # right or left or both or none
 table_style: table-striped
 doc_navigator: bottom # top or bottom or both or none
 doc_breadcrumb: enable
+responsive_breakpoint: md #sm md lg xl
 #script_top: ! '
 #'
 #script_bottom: ! '

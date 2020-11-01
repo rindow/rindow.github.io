@@ -6,7 +6,8 @@
 {% capture font3 %}{% include get-theme-value name="font3" %}{% endcapture %}
 {% capture favicon %}{% include get-theme-value name="favicon" %}{% endcapture %}
 {% capture touch_icon %}{% include get-theme-value name="touch_icon" %}{% endcapture %}
-{% if page.collection %}{% include set-current-collection %}{% assign header = globalcurrentcollection %}
+{% include set-current-collection %}
+{% if page.collection %}{% assign header = globalcurrentcollection %}
 {% elsif page.type == "blog" %}{% assign header = site.blog %}
 {% else %}{% assign header = "" %}
 {% endif %}
@@ -31,7 +32,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, minimum-scale=1, user-scalable=no" />
   {% if description %}<meta name="description" content="{{ description }}">{% endif %}
   {% if keywords %}<meta name="keywords" content="{{ keywords }}">{% endif %}
-  <link rel="canonical" href="{% include get-absolute-url url=page.url %}">
+  <link rel="canonical" href="{% include get-absolute-url-ex url=page.url no_ext=globalcurrentcollection.no_ext %}">
   {% if frameworkcss !="" %}<link rel="stylesheet" href="{{ frameworkcss }}">{% endif %}
   {% if frameworkcsstheme !="" %}<link rel="stylesheet" href="{{ frameworkcsstheme }}">{% endif %}
   <link rel="stylesheet" href="{{ '/assets/css/core.css' | relative_url }}">

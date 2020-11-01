@@ -1,7 +1,32 @@
-{% if site.google_custom_search_engine_id %}
-{% include get-widget-data-and-options widget="google-cse" include=include %}
-<div class="widgetwrapper widget-google-cse">
-  <h4>{% if widget_options.caption %}{{ widget_options.caption }}{% else %}Search{% endif %}</h4>
-  {% include services/google-cse.html button=widget_data.button.caption buttonclass=widget_data.button.class fieldsize=widget_data.field.size placeholder=widget_data.field.placeholder inline=widget_data.form.inline %}
-</div>
-{% endif %}
+{%- include set-current-collection -%}
+{%- assign search_engine_id = globalcurrentcollection.search_engine_id -%}
+{%- if search_engine_id -%}{%- else -%}
+  {%- assign search_engine_id = site.google_custom_search_engine_id -%}
+{%- endif -%}
+{%- if search_engine_id -%}
+  {%- if globalcurrentcollection -%}
+    {%- assign search_action = '/' | append: globalcurrentcollection.label | append: "/search "-%}
+  {%- else -%}
+    {%- assign search_action = "/search" -%}
+  {%- endif -%}
+  {%- include get-widget-data-and-options widget="google-cse" include=include -%}
+  {%- if widget_options.mode != "results" -%}
+    {%- if widget_options.inline -%}{%- else -%}
+      <div class="widgetwrapper widget-google-cse">
+    {%- endif -%}
+    {%- if widget_options.inline -%}{%- else -%}
+      {% if widget_options.caption %}<h4>{{ widget_options.caption }}</h4>{% endif %}
+    {%- endif -%}
+    {%- include services/google-cse.html search_engine_id=search_engine_id action=search_action button=widget_data.button.caption buttonclass=widget_data.button.class fieldsize=widget_data.field.size placeholder=widget_data.field.placeholder inline=widget_data.form.inline -%}
+    {%- if widget_options.inline -%}{%- else -%}
+      </div>
+    {%- endif -%}
+  {%- endif -%}
+  {%- if widget_options.mode == "results" or widget_options.mode == "both" -%}
+    <div>
+      <script async src="https://cse.google.com/cse.js?cx={{ search_engine_id }}"></script>
+      <div class="gcse-searchresults-only"></div>
+    </div>
+    <!--img src="https://www.google.com/cse/images/google_custom_search_smwide.gif"-->
+  {%- endif -%}
+{%- endif -%}

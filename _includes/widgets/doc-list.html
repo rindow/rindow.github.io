@@ -3,7 +3,10 @@
 {% if widget_options.caption %}<h2>{{ widget_options.caption }}</h2>{% endif %}
   <ul>
   {% for doc in widget_options.collection %}
-    {% if doc != page %}<li><a href="{% include get-relative-url url=doc.url %}">{{ doc.title }}</a></li>{% endif %}
+    {%- if forloop.first -%}
+      {%- assign c = site.collections | where: "label", doc.collection | first -%}
+    {%- endif -%}
+    {% if doc != page %}<li><a href="{% include get-relative-url-ex url=doc.url no_ext=c.no_ext %}">{{ doc.title }}</a></li>{% endif %}
   {% endfor %}
   </ul>
 </div>
