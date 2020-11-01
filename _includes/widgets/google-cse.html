@@ -4,7 +4,7 @@
   {%- assign search_engine_id = site.google_custom_search_engine_id -%}
 {%- endif -%}
 {%- if search_engine_id -%}
-  {%- if globalcurrentcollection -%}
+  {%- if globalcurrentcollection.search_engine_id -%}
     {%- assign search_action = '/' | append: globalcurrentcollection.label | append: "/search "-%}
   {%- else -%}
     {%- assign search_action = "/search" -%}
