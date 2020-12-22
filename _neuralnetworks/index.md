@@ -20,6 +20,8 @@ you get can calculate at speed close to CPU version of tensorflow.
 The trained model trained on your laptop is available on general web hosting.
 You can also benefit from deep learning on popular PHP web hosting services.
 
+It supports GPU acceleration using OpenCL with rindow_clblas. This is an experimental attempt. The speed is not very fast yet. Only compatible with the Windows version.
+
 It has the following features.
 
 - A high-level neural networks description
@@ -108,9 +110,26 @@ $ php mnist-basic-clasification.php
 
 If done correctly, a graph of the learning process will be displayed.
 
+GPU/OpenCL support
+==================
+
+Download binaries and setup PHP extension and libraries.
+
+- [Rindow OpenCL extension](https://github.com/rindow/rindow-opencl/releases)
+- [Rindow CLBlast extension](https://github.com/rindow/rindow-clblast/releases)
+- [CLBlast library](https://github.com/CNugteren/CLBlast/releases)
+
+Set environment variable.
+
+```shell
+$ RINDOW_NEURALNETWORKS_BACKEND=clblast
+$ export RINDOW_NEURALNETWORKS_BACKEND
+$ cd samples
+$ php mnist-basic-clasification.php
+```
 
 Note
-----
+==================
 This neural network library has just begun. I understand that it is still lacking. Please have mercy.
 
 Currently, Rindow Neural Networks does not support the Rindow framework. Manage the life cycle of an object in a stand-alone manner as in normal PHP programming. It will be available on the Rindow framework in the future.
