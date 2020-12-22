@@ -111,7 +111,7 @@ $ php mnist-basic-clasification.php
 If done correctly, a graph of the learning process will be displayed.
 
 GPU/OpenCL support
-==================
+------------------
 
 Download binaries and setup PHP extension and libraries.
 
@@ -129,7 +129,7 @@ $ php mnist-basic-clasification.php
 ```
 
 Note
-==================
+----
 This neural network library has just begun. I understand that it is still lacking. Please have mercy.
 
 Currently, Rindow Neural Networks does not support the Rindow framework. Manage the life cycle of an object in a stand-alone manner as in normal PHP programming. It will be available on the Rindow framework in the future.
