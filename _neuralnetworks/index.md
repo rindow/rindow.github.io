@@ -2,7 +2,7 @@
 layout: document
 title: "Rindow Neural Networks"
 meta_description: "Rindow Neural Networks is a high-level neural networks library for PHP. The goal is to be able to describe a machine learning model on PHP as well as Python using a description method similar to Keras."
-next_section: gettingstarted
+next_section: install
 ---
 The Rindow Neural Networks is a high-level neural networks library for PHP.
 You can achieve powerful machine learning on PHP.
@@ -12,6 +12,7 @@ You can achieve powerful machine learning on PHP.
 - Samples of popular Computer Vision and natural language processing are available.
 - The PHP extension can process data twice as fast as the tensorflow CPU version.
 - You don't need a dedicated machine learning environment. It can be done on an inexpensive laptop.
+- Comes with interesting sample programs.
 
 The goal is to make it easy to write machine learning models on PHP, just like Keras on Python.
 
@@ -34,6 +35,15 @@ Rindow Neural Networks usually work with:
 - Rindow Math Matrix: scientific matrix operation library
 - Rindow OpenBLAS extension: PHP extension of OpenBLAS
 - Rindow Math Plot: Visualize machine learning results
+- Rindow CLBlast extension: PHP extension of BLAS on GPU (OpenCL)
+
+Sample programs
+---------------
+
+- Images basic classification with Full-connected Neural Networks(FNN)
+- Images classification with Convolution Neural Networks(CNN)
+- Numeric addition text generation with Recurrent Neural Networks(RNN)
+- Neural machine language translation with Attention(RNN with Attention)
 
 
 Why do deep learning with PHP?
@@ -61,72 +71,6 @@ Requirements
 
 - PHP 7.2 or later.
 - Windows10 or Linux environment is required to use rindow_openblas extension.
-
-Installation
-------------
-
-### Install the Rindow Neural Networks and Graphing tool
-
-Please set up with composer.
-
-```shell
-$ composer require rindow/rindow-neuralnetworks
-$ composer require rindow/rindow-math-plot
-```
-
-### Download and setup the rindow_openblas extension
-
-Training will take a lot of time if left untouched. It is **strongly recommended** that you set up the **rindow_openblas extension** in php for speed.
-
-- [Rindow OpenBLAS extension Pre-build binaries(Windows)](https://github.com/rindow/rindow-openblas-binaries)
-- [Rindow OpenBLAS extension for Build from source](https://github.com/rindow/rindow-openblas)
-
-### Expansion of memory used
-
-You need to increase the maximum amount of memory used by PHP depending on the amount of data used.
-
-When training image data, do not be surprised that the amount of sample data is so large that it will be the maximum memory capacity that you cannot usually imagine.
-
-For example, change the memory_limit item of php.ini as follows.
-
-```shell
-memory_limit = 8G
-```
-
-### Try the sample program
-
-Source code for simple image learning is provided in the sample directory.
-When using "Rindow\Math\Plot" on Linux, you need to specify the image viewer.
-
-Execute as follows.
-```shell
-$ RINDOW_MATH_PLOT_VIEWER=/some/bin/dir/png-file-viewer
-$ export RINDOW_MATH_PLOT_VIEWER
-$ mkdir samples
-$ cd samples
-$ cp ../vendor/rindow/rindow-neuralnetworks/samples/mnist-basic-clasification.php .
-$ php mnist-basic-clasification.php
-```
-
-If done correctly, a graph of the learning process will be displayed.
-
-GPU/OpenCL support
-------------------
-
-Download binaries and setup PHP extension and libraries.
-
-- [Rindow OpenCL extension](https://github.com/rindow/rindow-opencl/releases)
-- [Rindow CLBlast extension](https://github.com/rindow/rindow-clblast/releases)
-- [CLBlast library](https://github.com/CNugteren/CLBlast/releases)
-
-Set environment variable.
-
-```shell
-$ RINDOW_NEURALNETWORKS_BACKEND=clblast
-$ export RINDOW_NEURALNETWORKS_BACKEND
-$ cd samples
-$ php mnist-basic-clasification.php
-```
 
 Note
 ----

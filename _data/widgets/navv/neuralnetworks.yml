@@ -9,10 +9,10 @@ menu:
     link: /neuralnetworks/index.html#why-do-deep-learning-with-php
   - caption: Requirements
     link: /neuralnetworks/index.html#requirements
-  - caption: Installation
-    link: /neuralnetworks/index.html#installation
   - caption: Note
     link: /neuralnetworks/index.html#note
+- caption: Installation
+  link: /neuralnetworks/install.html
 - caption: Getting started
   link: /neuralnetworks/gettingstarted.html
   menu:

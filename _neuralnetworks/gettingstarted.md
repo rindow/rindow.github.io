@@ -1,7 +1,7 @@
 ---
 layout: document
 title: "Getting started"
-upper_section: index
+upper_section: install
 previous_section: index
 next_section: builders
 ---
