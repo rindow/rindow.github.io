@@ -9,7 +9,7 @@ next_section: gettingstarted
 - [Operating environment](#operating-environment)
 - [Installation procedure for Windows](#installation-procedure-for-windows)
 - [Installation procedure for Ubuntu](#installation-procedure-for-ubuntu)
-- [GPU/OpenCL support](#gpu-opencl-support)
+- [GPU/OpenCL support](#gpuopencl-support)
 
 Operating environment
 ---------------------
