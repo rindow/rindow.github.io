@@ -147,7 +147,7 @@ $ cat > composer
 #!/usr/bin/env sh
 dir=$(cd "${HOME}/.local/bin" && pwd)
 php "${dir}/composer.phar" "$@"
-^Z
+^D
 $ chmod +x composer
 $ composer -V
 Composer version 2.0.8 2020-12-03 17:20:38
