@@ -6,10 +6,10 @@ previous_section: index
 next_section: gettingstarted
 ---
 
-[Operating environment](#operating-environment)
-[Installation procedure for Windows](#installation-procedure-for-windows)
-[Installation procedure for Ubuntu](#installation-procedure-for-ubuntu)
-[GPU/OpenCL support](#gpu-opencl-support)
+- [Operating environment](#operating-environment)
+- [Installation procedure for Windows](#installation-procedure-for-windows)
+- [Installation procedure for Ubuntu](#installation-procedure-for-ubuntu)
+- [GPU/OpenCL support](#gpu-opencl-support)
 
 Operating environment
 ---------------------
