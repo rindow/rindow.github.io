@@ -1,14 +1,14 @@
 {% include get-widget-data-and-options widget="navb" include=include %}
 <div class="widgetwrapper widget-navb widget-navb-{{widget_options.name}}">
   <nav class="navbar navbar-expand-sm navbar-light" role="navigation">
-    <ul class="navbar-nav mr-auto">
+    <ul class="navbar-nav{% if widget_data.search.right %} mr-auto{% endif %}">
       {%- for nav in widget_data.menu -%}
         <li class="nav-item">
           <a class="nav-link" href="{{ nav.link }}">{{ nav.caption }}</a>
         </li>
       {%- endfor -%}
     </ul>
-    {%- if widget_data.search -%}
+    {%- if widget_data.search.box -%}
       {%- include set-current-collection -%}
       {%- assign search_engine_id = globalcurrentcollection.search_engine_id -%}
       {%- if search_engine_id -%}{%- else -%}{%- assign search_engine_id = site.google_custom_search_engine_id -%}{%- endif -%}

@@ -15,7 +15,7 @@ Operating environment
 ---------------------
 Rindow Neural Networks has been tested in the following operating environment.
 
-- PHP 7.2, 7.3, 7.4
+- PHP 7.2, 7.3, 7.4, 8.0
 - Windows 10 20H2
 - Ubuntu 18.04, 20.04
 - AMD CPU/APU 64bit(SSE2)
@@ -29,7 +29,7 @@ PHP installation
 
 For Windows 10, install PHP for Windows.
 
-+ Download the PHP7.4 (or 7.2,7.3) x64 Thread Safe version from https://windows.php.net/download/.
++ Download the PHP7.4 (or 7.2,7.3,8.0) x64 Thread Safe version from https://windows.php.net/download/.
 + Unzip to the location of your choice.
 + Copy php.ini-development to create php.ini.
 + Set the execution PATH for PHP.EXE.
@@ -128,10 +128,10 @@ Install php.
 ```shell
 $ sudo apt install php-cli7.4 php7.4-mbstring php7.4-sqlite3 php7.4-gd unzip
 $ php -v
-PHP 7.4.3 (cli) (built: Oct  6 2020 15:47:56) ( NTS )
+PHP 7.4.13 (cli) (built: Nov 28 2020 06:24:59) ( NTS )
 Copyright (c) The PHP Group
 Zend Engine v3.4.0, Copyright (c) Zend Technologies
-    with Zend OPcache v7.4.3, Copyright (c), by Zend Technologies
+    with Zend OPcache v7.4.13, Copyright (c), by Zend Technologies
 ```
 
 Install composer.
@@ -211,7 +211,11 @@ Download binaries and setup PHP extension and libraries.
 Set environment variable.
 
 ```shell
-C:tutorials>RINDOW_NEURALNETWORKS_BACKEND=clblast
+C:TEMP>PATH %PATH%;C:\CLBlast\CLBlast-1.5.1-Windows-x64\lib
+C:TEMP>COPY rindow_opencl-php74-0.1.1-win-ts-vc15-x64\php_rindow_opencl.dll C:\php\php-7.4.13-Win32-vc15-x64\ext
+C:TEMP>COPY rindow_clblast-php74-0.1.2-clblast1.5.1-win-ts-vc15-x64\php_rindow_clblast.dll C:\php\php-7.4.13-Win32-vc15-x64\ext
+
+C:tutorials>RINDOW_NEURALNETWORKS_BACKEND=rindowclblast
 C:tutorials>export RINDOW_NEURALNETWORKS_BACKEND
 C:tutorials>cd samples
 C:samples>php mnist-basic-clasification.php

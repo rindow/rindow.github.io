@@ -4,6 +4,8 @@ menu:
 - caption: Menu
   link: "#menu"
 search:
+  box: true
+  right: true
   #formclass: "my-2 my-lg-0"
   #inputclass: "mr-sm-2"
   placeholder: "Search"

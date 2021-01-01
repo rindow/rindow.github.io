@@ -3,4 +3,6 @@ menu:
   link: /docs/
 - caption: Return to root
   link: /
-search: true
+search:
+    box: true
+    right: true

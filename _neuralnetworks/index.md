@@ -35,6 +35,7 @@ Rindow Neural Networks usually work with:
 - Rindow Math Matrix: scientific matrix operation library
 - Rindow OpenBLAS extension: PHP extension of OpenBLAS
 - Rindow Math Plot: Visualize machine learning results
+- Rindow OpenCL extension: PHP extension of OpenCL operating
 - Rindow CLBlast extension: PHP extension of BLAS on GPU (OpenCL)
 
 Sample programs
@@ -69,7 +70,7 @@ It is more unnatural to not be able to use PHP.
 Requirements
 ------------
 
-- PHP 7.2 or later.
+- PHP 7.2, 7.3, 7.4, 8.0.
 - Windows10 or Linux environment is required to use rindow_openblas extension.
 
 Note

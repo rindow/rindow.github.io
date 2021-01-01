@@ -26,6 +26,7 @@
 {% endif %}
 <head>
   <meta charset="utf-8">
+  {%- if page.redirect -%}<meta http-equiv="Refresh" content="0; URL={{ page.redirect }}">{%- endif -%}
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>{{ title | truncate: 64, "..." }}</title>
   {% if site.google_site_verification %}<meta name="google-site-verification" content="{{ site.google_site_verification }}" />{% endif %}
@@ -49,4 +50,5 @@
   {% if touch_icon !="" %}<link rel="apple-touch-icon-precomposed" href="{{ touch_icon | relative_url }}">{% endif %}
   {% if favicon !="" %}<link rel="icon" href="{{ favicon | relative_url }}">{% endif %}
   {% include services/google-analytics.html %}
+  {% include services/google-adsense.html %}
 </head>
