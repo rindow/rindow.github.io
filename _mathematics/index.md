@@ -31,5 +31,5 @@ Divided into five libraries
 - [**Rindow Math Matrix**](matrix/matrix.html): NDArray and array operations
 - [**Rindow Math Plot**](plot/overviewplot.html): Visualization mathematical data
 - [**Rindow OpenBLAS extension**](openblas/overviewopenblas.html): C language interface and High-speed operation
-- [**Rindow OpenCL extension**](https://github.com/rindow/rindow-opencl/releases): GPU Support
-- [**Rindow CLBlast extension**](https://github.com/rindow/rindow-clblast/releases): GPU Support
+- [**Rindow OpenCL extension**](acceleration/opencl.html#rindow-opencl-extension): Supports GPU acceleration
+- [**Rindow CLBlast extension**](acceleration/opencl.html#rindow-clblast-extension): Supports GPU acceleration

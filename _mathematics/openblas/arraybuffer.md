@@ -2,8 +2,8 @@
 layout: document
 title: "Array buffer"
 upper_section: index
-previous_section: overviewopenblas
-next_section: blaslibrary
+previous_section: openblas/overviewopenblas
+next_section: openblas/blaslibrary
 ---
 
 Concepts

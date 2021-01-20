@@ -35,5 +35,5 @@ menu:
     link: /neuralnetworks/gettingstarted.html#root-builder
   - caption: Subclass Builders
     link: /neuralnetworks/gettingstarted.html#subclass-builders
-- caption: APIs
+- caption: API reference
   link: /neuralnetworks/api/apitoc.html

@@ -145,5 +145,19 @@ menu:
       link: /mathematics/openblas/mathlibrary.html#how-it-is-implemented
     - caption: Usage on PHP
       link: /mathematics/openblas/mathlibrary.html#usage-on-php
-- caption: APIs
+- caption: Supports GPU acceleration on PHP
+  menu:
+  - caption: Overview
+    link: /mathematics/acceleration/opencl.html
+  - caption: Rindow OpenCL extension
+    link: /mathematics/acceleration/opencl.html#rindow-opencl-extension
+  - caption: Rindow CLBlast extension
+    link: /mathematics/acceleration/opencl.html#rindow-clblast-extension
+  - caption: OpenCLMath liblary
+    link: /mathematics/acceleration/opencl.html#openclmath-liblary-in-rindow-math-matrix
+  - caption: Requirements
+    link: /mathematics/acceleration/opencl.html#requirements
+  - caption: How to setup pre-build binaries
+    link: /mathematics/acceleration/opencl.html#how-to-setup-pre-build-binaries
+- caption: API reference
   link: /mathematics/api/apitoc.html

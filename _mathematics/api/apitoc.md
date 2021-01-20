@@ -1,6 +1,6 @@
 ---
 layout: document
-title: "APIs"
+title: "API reference"
 upper_section: index
 ---
 - Rindow\\Math\\Matrix

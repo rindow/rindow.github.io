@@ -1,6 +1,6 @@
 ---
 layout: document
-title: "APIs"
+title: "API reference"
 upper_section: index
 next_section: api/neuralnetworks
 ---

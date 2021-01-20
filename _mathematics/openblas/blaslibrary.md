@@ -2,8 +2,8 @@
 layout: document
 title: "BLAS libray"
 upper_section: index
-previous_section: arrayobjects
-next_section: mathlibrary
+previous_section: openblas/arrayobjects
+next_section: openblas/mathlibrary
 ---
 The Rindow\\OpenBLAS\\Blas class makes OpenBLAS available in php.
 

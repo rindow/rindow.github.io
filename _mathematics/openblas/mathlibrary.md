@@ -2,7 +2,7 @@
 layout: document
 title: "Math libray"
 upper_section: index
-previous_section: blaslibrary
+previous_section: openblas/blaslibrary
 ---
 
 Overview

@@ -2,7 +2,7 @@
 layout: document
 title: "Rindow OpenBLAS extension"
 upper_section: index
-next_section: arraybuffer
+next_section: openblas/arraybuffer
 ---
 
 Overview
