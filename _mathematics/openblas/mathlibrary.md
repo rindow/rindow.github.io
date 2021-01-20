@@ -36,14 +36,28 @@ Currently the following functions are supported:
 - pow
 - exp
 - log
+- tanh
 - zeros
 - selectAxis0
 - selectAxis1
+- scatterAxis0
+- scatterAxis1
+- slice
 - updateAddOnehot
 - softmax
 - equal
-- reduceSum
 - astype
+- matrixcopy
+- fill
+- reduceSum
+- reduceMax
+- reduceArgMax
+- im2col1d
+- im2col2d
+- im2col3d
+- randomUniform
+- randomNormal
+- randomSequence
 
 
 Usage on PHP

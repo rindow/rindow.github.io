@@ -26,8 +26,10 @@ It has the following features.
 
 Libraries
 ---------
-Divided into three libraries
+Divided into five libraries
 
 - [**Rindow Math Matrix**](matrix/matrix.html): NDArray and array operations
 - [**Rindow Math Plot**](plot/overviewplot.html): Visualization mathematical data
 - [**Rindow OpenBLAS extension**](openblas/overviewopenblas.html): C language interface and High-speed operation
+- [**Rindow OpenCL extension**](https://github.com/rindow/rindow-opencl/releases): GPU Support
+- [**Rindow CLBlast extension**](https://github.com/rindow/rindow-clblast/releases): GPU Support

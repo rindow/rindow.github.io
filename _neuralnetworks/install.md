@@ -19,9 +19,10 @@ Rindow Neural Networks has been tested in the following operating environment.
 - Windows 10 20H2
 - Ubuntu 18.04, 20.04
 - AMD CPU/APU 64bit(SSE2)
-- OpenBLAS (0.3.13 Windows-x64, 0.3.8 Ubuntu2004, 0.2.20 Ubuntu1804)
+- OpenBLAS (0.3.13 Windows-x64, 0.3.8 Ubuntu-2004, 0.2.20 Ubuntu-1804)
+- CLBlast  (1.5.1 Windows-x64)
 
-It will also work on Intel CPUs.
+It will also work on Intel CPUs and Integrated Graphics with OpenCL Drivers.
 
 Installation procedure for Windows
 ----------------------------------

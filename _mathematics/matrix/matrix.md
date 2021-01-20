@@ -20,7 +20,7 @@ It has the following features.
 
 Requirements
 ------------
-- PHP 7.2 or later.
+- PHP 7.2, 7.3, 7.4, 8.0.
 - Window10 or linux when using Rindow OpenBLAS extension
 
 Installation

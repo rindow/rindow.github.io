@@ -72,6 +72,16 @@ Requirements
 
 - PHP 7.2, 7.3, 7.4, 8.0.
 - Windows10 or Linux environment is required to use rindow_openblas extension.
+- Rindow Math Matrix
+
+Recommends
+----------
+
+- Rindow Math Plot ( Display the result on a graph )
+- GD / GD2  extension ( Used for graph display )
+- pdo_sqlite extension ( Used to save the trained model )
+- Rindow OpenBLAS extension ( Used for high-speed calculation )
+- Rindow OpenCL extension  / Rindow CLBlast extension  ( Use GPU experimentally )
 
 Note
 ----

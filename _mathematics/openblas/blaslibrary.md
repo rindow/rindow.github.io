@@ -35,8 +35,17 @@ Currently the following functions are supported:
 - iamax
 - iamin
 - copy
+- nrm2
+- rotg
+- rot
+- swap
 - gemv
 - gemm
+- symm
+- syrk
+- syr2k
+- trmm
+- trsm
 
 
 Usage on PHP
