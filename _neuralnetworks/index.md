@@ -51,7 +51,7 @@ Why do deep learning with PHP?
 ------------------------------
 
 > - "If you do deep learning, you should use Python."
-> - "You can't study Python anyway."
+> - "You should study Python anyway!"
 > - "Isn't Python an excellent Deep learning framework?"
 
 What you say is right.
