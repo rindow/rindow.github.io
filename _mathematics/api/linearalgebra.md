@@ -72,6 +72,36 @@ Example
 $x = $mo->la()->zeros($mo->la()->alloc([2,2]));
 ```
 
+### zeros
+$$
+\begin{align*}
+X := n
+\end{align*}
+$$
+```php
+public function fill(
+    $value,
+    NDArray $X
+    )
+```
+Initialize the array with zeros.
+
+Arguments
+- **value**: fill value
+- **X**: Destination array
+
+Result
+- The same instance as X.
+
+Example
+```php
+$x = $mo->la()->alloc([2,2]);
+$mo->la()->fill(1.0, $x);
+## x =>
+## [[1,1]
+##  [1,1]]
+```
+
 ### astype
 $$
 \begin{align*}
@@ -296,7 +326,7 @@ f = \max \begin{vmatrix}x_k\end{vmatrix}
 \end{align*}
 $$
 ```php
-public function amax(NDArray $X) : int
+public function amax(NDArray $X) : float
 ```
 Get the maximum absolute value in array element
 
@@ -320,7 +350,7 @@ f = \min \begin{vmatrix}x_k\end{vmatrix}
 \end{align*}
 $$
 ```php
-public function amin(NDArray $X) : int
+public function amin(NDArray $X) : float
 ```
 Get the minimum absolute value in array element
 
@@ -335,6 +365,149 @@ Example
 $x = $mo->array([1,-2,-3]);
 $z = $mo->la()->amin($x);
 ## z => 1.0
+```
+
+### nrm2
+$$
+\begin{align*}
+f = \sqrt{\sum_{k=0}^n (x_k)^2}
+\end{align*}
+$$
+```php
+public function nrm2(NDArray $X) : float
+```
+Get the norm value in array element
+
+Arguments
+- **X**: the vector X.
+
+Result
+- value of result.
+
+Example
+```php
+$x = $mo->array([1,2,3]);
+$z = $mo->la()->nrm2($x);
+## z => 3.7416574954987
+```
+
+### rotg
+$$
+\begin{align*}
+r,z,c,s = rotg (x, y)
+\end{align*}
+$$
+```php
+public function rotg(
+    NDArray $X,
+    NDArray $Y,
+    NDArray $R=null,
+    NDArray $Z=null,
+    NDArray $C=null,
+    NDArray $S=null) : array
+```
+Get the Givens rotation.
+
+You need the openblas extension to use this function.
+
+Arguments
+- **X**: the value of axis X.
+- **Y**: the value of axis Y.
+
+Result
+- array of result.
+
+Example
+```php
+$x = $mo->array(3.0);
+$y = $mo->array(4.0);
+[$r,$z,$c,$s] = $mo->la()->rotg($x,$y);
+echo $r->toArray()."\n";
+echo $z->toArray()."\n";
+echo $c->toArray()."\n";
+echo $s->toArray()."\n";
+## r => 5
+## z => 1.6666666269302
+## c => 0.60000002384186
+## s => 0.80000001192093
+
+$x = $mo->array([3.0]);
+$y = $mo->array([4.0]);
+[$r,$z,$c,$s] = $mo->la()->rotg($x,$y);
+echo $r[0]."\n";
+echo $z[0]."\n";
+echo $c[0]."\n";
+echo $s[0]."\n";
+## r => 5
+## z => 1.6666666269302
+## c => 0.60000002384186
+## s => 0.80000001192093
+```
+
+### rot
+$$
+\begin{align*}
+X,Y := rot (X,Y,c,s)
+\end{align*}
+$$
+```php
+public function rot(
+    NDArray $X,
+    NDArray $Y,
+    NDArray $C,
+    NDArray $S) : void
+```
+Get Coordinate rotation
+
+You need the openblas extension to use this function.
+
+Arguments
+- **X**: the value of axis X.
+- **Y**: the value of axis Y.
+- **c**: the value of cos.
+- **s**: the value of sin.
+
+Result
+- array of result.
+
+Example
+```php
+$x = $mo->array([1,2,3]);
+$y = $mo->array([1,2,3]);
+$c = $mo->array([cos(pi()/4)]);
+$s = $mo->array([sin(pi()/4)]);
+$mo->la()->rot($x,$y,$c,$s);
+echo $mo->toString($x)."\n";
+echo $mo->toString($y)."\n";
+## x => [1.4142135381699,2.8284270763397,4.2426404953003]
+## y => [0,0,0]
+```
+
+### swap
+$$
+\begin{align*}
+x,y := y,x
+\end{align*}
+$$
+```php
+public function swap(NDArray $X, NDArray $Y) : void
+```
+Swap the value in array element
+
+Arguments
+- **X**: the vector X.
+- **Y**: the vector Y.
+
+Result
+- value of result.
+
+Example
+```php
+$x = $mo->array([1, 2, 3]);
+$y = $mo->array([4, 5, 6]);
+$mo->la()->swap($x,$y);
+## x => [4, 5, 6]
+## y => [1, 2, 3]
 ```
 
 ### gemv
@@ -422,6 +595,301 @@ $b = $mo->array([[1,2],[3,4],[5,6]]);
 $c = $mo->array([[1,2],[3,4]]);
 $mo->la()->gemm($a,$b,2,3,$c);
 ## c => [[47,62],[107,140]]
+```
+
+### symm
+$$
+\begin{align*}
+C :=  \left \{ \begin{array}{l} A = Symmetric matrix \\ \alpha \times A B + \beta C \hspace{5mm} ( right = false ) \\ \alpha \times B A + \beta C \hspace{5mm} ( right = true ) \end{array} \right.
+\end{align*}
+$$
+```php
+public function symm(
+    NDArray $A,
+    NDArray $B,
+    float $alpha=null,
+    float $beta=null,
+    NDArray $C=null,
+    bool $right=null,
+    bool $lower=null
+    ) : NDArray
+```
+Cross product of matrix and matrix
+
+Arguments
+- **A**: A matrix.
+- **B**: B matrix.
+- **alpha**: constant value.
+    - If omitted, default is 0.1
+- **beta**: constant value.
+    - If omitted, default is 0.0
+- **C**: C matrix.
+    - If omitted, it will be allocated automatically.
+    - Input and output are shared.
+- **right**: multiply from right side.
+    - If omitted, it is false.
+- **lower**: use lower side.
+    - If omitted, it is false.
+
+Result
+- Same instance as vector C.
+
+Example
+```php
+$a = $mo->array([
+    [1,2,3],
+    [0,5,6],
+    [0,0,9],
+]);
+$b = $mo->array([[1,2],[3,4],[5,6]]);
+$c = $mo->la()->symm($a,$b);
+## c =>
+##  [[22.0,28.0],
+##   [47.0,60.0],
+##   [66.0,84.0]]
+```
+
+### syrk
+$$
+\begin{align*}
+C :=  \left \{ \begin{array}{l} \alpha \times A A^T + \beta C \hspace{5mm} ( trans = false ) \\ \alpha \times A^T A + \beta C \hspace{5mm} ( trans = true ) \end{array} \right.
+\end{align*}
+$$
+```php
+public function syrk(
+    NDArray $A,
+    float $alpha=null,
+    float $beta=null,
+    NDArray $C=null,
+    bool $lower=null,
+    bool $trans=null) : NDArray
+```
+Cross product of a matrix and transposed
+
+Arguments
+- **A**: A matrix.
+- **alpha**: constant value.
+    - If omitted, default is 0.1
+- **beta**: constant value.
+    - If omitted, default is 0.0
+- **C**: C matrix.
+    - If omitted, it will be allocated automatically.
+    - Input and output are shared.
+- **lower**: use lower side result.
+    - If omitted, it is false.
+- **trans**: transpose A matrix.
+    - If omitted, it is false.
+
+Result
+- Same instance as vector C.
+
+Example
+```php
+$a = $mo->array([
+    [1,2],
+    [3,4],
+    [5,6],
+]);
+$c = $mo->la()->syrk($a);
+## c =>
+## [[5.0,11.0,17.0],
+##  [0.0,25.0,39.0],
+##  [0.0,0.0,61.0]]
+```
+
+### syr2k
+$$
+\begin{align*}
+C :=  \left \{ \begin{array}{l} \alpha \times A B^T + \alpha \times B A^T + \beta C \hspace{5mm} ( trans = false ) \\ \alpha \times B A^T + \alpha \times A B^T + \beta C \hspace{5mm} ( trans = true ) \end{array} \right.
+\end{align*}
+$$
+```php
+public function syr2k(
+    NDArray $A,
+    NDArray $B,
+    float $alpha=null,
+    float $beta=null,
+    NDArray $C=null,
+    bool $lower=null,
+    bool $trans=null) : NDArray
+```
+Cross product of a matrix and transposed
+
+Arguments
+- **A**: A matrix.
+- **B**: B matrix.
+- **alpha**: constant value.
+    - If omitted, default is 0.1
+- **beta**: constant value.
+    - If omitted, default is 0.0
+- **C**: C matrix.
+    - If omitted, it will be allocated automatically.
+    - Input and output are shared.
+- **lower**: use lower side result.
+    - If omitted, it is false.
+- **trans**: transpose A matrix.
+    - If omitted, it is false.
+
+Result
+- Same instance as vector C.
+
+Example
+```php
+$a = $mo->array([
+    [1,2,3],
+    [4,5,6],
+    [7,8,9],
+    [10,11,12],
+]);
+$b = $mo->array([
+    [1,3,5],
+    [2,4,6],
+    [7,9,11],
+    [8,10,12],
+]);
+$c = $mo->la()->syr2k($a,$b);
+## c =>
+## [[10.0, 22.0,  34.0],
+##  [ 0.0, 50.0,  78.0],
+##  [ 0.0,  0.0, 122.0]]
+```
+
+### trmm
+$$
+\begin{align*}
+B :=  \left \{ \begin{array}{l} \alpha \times A B \hspace{5mm} ( trans = false ) \\ \alpha \times B A \hspace{5mm} ( trans = true ) \end{array} \right.
+\end{align*}
+$$
+```php
+public function trmm(
+    NDArray $A,
+    NDArray $B,
+    float $alpha=null,
+    bool $right=null,
+    bool $lower=null,
+    bool $trans=null,
+    bool $unit=null) : NDArray
+```
+Cross product of a triangular matrix
+
+You need the openblas or clblast extension to use this function.
+
+Arguments
+- **A**: A matrix.
+- **B**: B matrix.
+- **alpha**: constant value.
+    - If omitted, default is 0.1
+- **lower**: use lower side.
+    - If omitted, it is false.
+- **right**: multiply from right side.
+    - If omitted, it is false.
+- **trans**: transpose A matrix.
+    - If omitted, it is false.
+- **uni­t**: uni­triangular.
+    - If omitted, it is false.
+
+Result
+- Same instance as vector C.
+
+Example
+```php
+$a = $mo->array([
+    [1,2,3],
+    [0,4,5],
+    [0,0,6],
+]);
+$b = $mo->array([
+    [1,2,3,4],
+    [5,6,7,8],
+    [9,10,11,12],
+]);
+$mo->la()->trmm($a,$b);
+## b =>
+##  [[38.0, 44.0, 50.0, 56.0],
+##   [65.0, 74.0, 83.0, 92.0],
+##   [54.0, 60.0, 66.0, 72.0]]
+```
+
+### trsm
+$$
+\begin{align*}
+B :=  \left \{ \begin{array}{l} \alpha \times A^{-1} B \hspace{5mm} ( trans = false ) \\ \alpha \times B A^{-1} \hspace{5mm} ( trans = true ) \end{array} \right.
+\end{align*}
+$$
+```php
+public function trsm(
+    NDArray $A,
+    NDArray $B,
+    float $alpha=null,
+    bool $right=null,
+    bool $lower=null,
+    bool $trans=null,
+    bool $unit=null) : NDArray
+```
+Cross product of a triangular matrix
+
+You need the openblas or clblast extension to use this function.
+
+Arguments
+- **A**: A matrix.
+- **B**: B matrix.
+- **alpha**: constant value.
+    - If omitted, default is 0.1
+- **right**: multiply from right side.
+    - If omitted, it is false.
+- **lower**: use lower side.
+    - If omitted, it is false.
+- **trans**: transpose A matrix.
+    - If omitted, it is false.
+- **uni­t**: uni­triangular.
+    - If omitted, it is false.
+
+Result
+- Same instance as vector C.
+
+Example
+```php
+$a = $mo->array([
+    [1,2,3],
+    [0,4,5],
+    [0,0,6],
+]);
+$b = $mo->array([
+    [1,2,3,4],
+    [5,6,7,8],
+    [9,10,11,12],
+]);
+$mo->la()->trsm($a,$b);
+## b =>
+## [[-2.250,-1.833,-1.417,-1.000],
+##  [-0.625,-0.583,-0.542,-0.500],
+##  [ 1.500, 1.667, 1.833, 2.000]]
+```
+
+### svd
+$$
+\begin{align*}
+U Σ V^T =  M
+\end{align*}
+$$
+```php
+public function svd(NDArray $matrix,$fullMatrices=null)
+```
+Cross product of a triangular matrix
+
+Arguments
+- **matrix**: Input matrix.
+
+Result
+- List of result value.
+    - **U**: left matrix.
+    - **S**: Sigma matrix.
+    - **VT**: right matrix.
+
+Example
+```php
+$x = $mo->la()->randomUniform([6,5],-10,10);
+[$u,$s,$vt] = $mo->la()->svd($x);
 ```
 
 ### sum
@@ -1005,6 +1473,31 @@ $mo->la()->log($x);
 ## x => [[0.0, 0.6931471824646,1.0986123085022],[1.3862943649292,1.6094379425049,1.7917594909668]]
 ```
 
+### tanh
+$$
+\begin{align*}
+x_k := \tanh x_k
+\end{align*}
+$$
+```php
+public function tanh(NDArray $X) : NDArray
+```
+Calculate the hyperbolic tangent
+
+Arguments
+- **X**: the vector X.
+    - Input and output are shared.
+
+Result
+- Same instance as vector X.
+
+Examples
+
+```php
+$x = $mo->array([[1,2,3],[4,5,6]]);
+$mo->la()->tanh($x);
+```
+
 ### equal
 $$
 \begin{align*}
@@ -1076,6 +1569,39 @@ $a = $mo->la()->duplicate($x,3,true);
 ## a => [[1.0,1.0,1.0],[2.0,2.0,2.0]]
 ```
 
+### transpose
+$$
+\begin{align*}
+B =  \alpha \times A^T
+\end{align*}
+$$
+```php
+public function transpose(
+    NDArray $A,
+    NDArray $B=null,
+    float $alpha=null
+    )
+```
+Transpose a matrix
+
+Arguments
+- **A**: input matrix.
+- **B**: output matrix
+- **alpha**: multiply value.
+    - default is 1.0
+
+Result
+- Same instance as Matrix B.
+
+Examples
+
+```php
+$a = $mo->array([[1,2][3,4]]);
+$b = $mo->la()->transpose($a);
+## b => [[1,3],[2,4]]
+```
+
+
 ### select
 $$
 \begin{align*}
@@ -1116,6 +1642,311 @@ $a = $mo->array([[1,2,3],[4,5,6],[7,8,9]]);
 $x = $mo->array([0,2,1]);
 $y = $mo->la()->select($a,$x,$axis=1);
 ## y => [1,6,8]
+```
+
+### scatter
+$$
+\begin{align*}
+A_{xi} := Y_i
+\end{align*}
+$$
+```php
+public function scatter(
+    NDArray $X,
+    NDArray $Y,
+    int $numClass,
+    int $axis=null,
+    NDArray $A=null) : NDArray
+```
+Set values to array by indexes.
+
+Arguments
+- **X**: selection index vector.
+    - Must be one-dimensional integer array.
+- **Y**: source data vector.
+    - Must be one-dimensional integer array.
+- **numClass**: The size of the destination array.
+    - Must be integer
+- **A**: Destination array.
+- **axis**: selection dimension
+    - default is 0.
+
+Result
+- Same instance as Matrix A.
+
+Examples
+
+```php
+$x = $mo->array([0,2],NDArray::int32);
+$y = $mo->array([[1,2,3],[7,8,9]]);
+$a = $mo->la()->scatter($x,$y,3);
+## a => [[1,2,3],[0,0,0],[7,8,9]]);
+```
+
+### scatter
+$$
+\begin{align*}
+A_{xi} := A_{xi} + Y_i
+\end{align*}
+$$
+```php
+public function scatterAdd(
+    NDArray $X,
+    NDArray $Y,
+    NDArray $A,
+    int $axis=null) : NDArray
+```
+Set values to array by indexes.
+
+Arguments
+- **X**: selection index vector.
+    - Must be one-dimensional integer array.
+- **Y**: source data vector.
+    - Must be one-dimensional integer array.
+- **A**: Destination array.
+- **axis**: selection dimension
+    - default is 0.
+
+Result
+- Same instance as Matrix A.
+
+Examples
+
+```php
+$x = $mo->array([0,2],NDArray::int32);
+$y = $mo->array([[1,2,3],[7,8,9]]);
+$a = $mo->array($mo->ones([4,3]));
+$mo->la()->scatterAdd($x,$y,$a,$axis=0);
+## a =>
+## [[2,3,4],
+##  [1,1,1],
+##  [8,9,10],
+##  [1,1,1]],
+```
+
+### slice
+
+```php
+public function slice(
+    NDArray $input,
+    array $begin,
+    array $size,
+    NDArray $output=null
+    ) : NDArray
+```
+Slice a array with indicator.
+
+Arguments
+- **input**: source data.
+- **begin**: begin of slice.
+    - Must be integer array.
+- **size**: size of slice.
+    - Must be integer array.
+- **output**: Destination array.
+
+Result
+- Same instance as Matrix output.
+
+Examples
+
+```php
+$x = $mo->array($mo->arange(24,null,null,NDArray::float32)->reshape([2,4,3]));
+$y = $la->slice(
+    $x,
+    $start=[0,1],
+    $size=[-1,2]
+    );
+## y =>
+##   [[[3,4,5],
+##     [6,7,8],],
+##    [[15,16,17],
+##     [18,19,20],],
+##   ]
+```
+
+### stick
+
+```php
+public function stick(
+    NDArray $input,
+    NDArray $output,
+    array $begin,
+    array $size
+    ) : NDArray
+```
+Stick values to array with indicator.
+
+Arguments
+- **input**: values.
+- **output**: Destination array.
+- **begin**: begin of value index.
+    - Must be integer array.
+- **size**: size of values.
+    - Must be integer array.
+- **output**: Destination array.
+
+Result
+- Same instance as Matrix output.
+
+Examples
+
+```php
+$x = $mo->array($mo->arange(12,null,null,NDArray::float32)->reshape([2,2,3]));
+$y = $mo->array($mo->zeros([2,4,3]));
+$mo->la()->stick(
+    $x,
+    $y,
+    $start=[0,1],
+    $size=[-1,2]
+    );
+## y =>
+##   [[[0,0,0],
+##     [0,1,2],
+##     [3,4,5],
+##     [0,0,0]],
+##    [[0,0,0],
+##     [6,7,8],
+##     [9,10,11],
+##     [0,0,0]],]
+```
+
+### stack
+
+```php
+public function stack(
+    array $values,
+    int $axis=null
+)
+```
+Concat arrays with a axis.
+
+Arguments
+- **values**: list of input array.
+    - Must be list of NDArray that are same the shapes.
+- **axis**: Coordinate axes to combine.
+
+Result
+- NDArray as Matrix output.
+
+Examples
+
+```php
+$a = $mo->array($mo->arange(6,0,null,NDArray::float32)->reshape([2,3]));
+$b = $mo->array($mo->arange(6,6,null,NDArray::float32)->reshape([2,3]));
+$y = $mo->la()->stack(
+    [$a,$b],
+    $axis=0
+    );
+## y =>
+##  [[[0,1,2],
+##    [3,4,5]],
+##   [[6,7,8],
+##    [9,10,11]],]
+```
+
+### concat
+
+```php
+public function concat(
+    array $values,
+    int $axis=null
+) : NDArray
+```
+Concat arrays with a axis.
+
+Arguments
+- **values**: list of input array.
+    - Must be list of NDArray that are same the shapes.
+- **axis**: Coordinate axes to combine.
+
+Result
+- NDArray as Matrix output.
+
+Examples
+
+```php
+$a = $mo->array($mo->arange(6,$start=0,null,NDArray::float32)->reshape([3,2]));
+$b = $mo->array($mo->arange(4,$start=6,null,NDArray::float32)->reshape([2,2]));
+$y = $mo->la()->concat(
+    [$a,$b],
+    $axis=0
+    );
+## y =>
+##  [[0,1],
+##   [2,3],
+##   [4,5],
+##   [6,7],
+##   [8,9],]
+```
+
+### split
+
+```php
+public function split(
+    NDArray $input, array $sizeSplits, $axis=null
+    ) : array
+```
+Split a array with a axis.
+
+Arguments
+- **input**: input array.
+- **sizeSplits**: list of size.
+    - Must be integer list
+- **axis**: Coordinate axes to split.
+
+Result
+- List of NDArray as Matrix output.
+
+Examples
+
+```php
+$x = $mo->array([
+    [0,1],
+    [2,3],
+    [4,5],
+    [6,7],
+    [8,9],
+]);
+$y = $mo->la()->split(
+    $x,
+    [3,2],
+    $axis=0
+);
+## $y[0] =>
+##  [[0,1],
+##   [2,3],
+##   [4,5]]
+## $y[1] =>
+##  [[6,7],
+##   [8,9]]
+
+```
+
+### repeat
+
+```php
+public function repeat(NDArray $A, int $repeats) : NDArray
+```
+Repeat array.
+
+Arguments
+- **A**: values.
+- **repeats**: number of repeat.
+
+Result
+- Repeaded Matrix output.
+
+Examples
+
+```php
+$X = $la->array([
+    [1,2,3],
+    [4,5,6]
+]);
+$Y = $la->repeat($X,2);
+## y =>
+##  [[[1,2,3],[1,2,3]],
+##   [[4,5,6],[4,5,6]],]
 ```
 
 ### onehot
@@ -1211,32 +2042,38 @@ $$
 public function reduceArgMax(
     NDArray $A,
     int $axis,
-    NDArray $X=null,
-    $dtypeX=null) : NDArray
+    NDArray $B=null,
+    $dtypeB=null) : NDArray
 ```
 Aggregate the index of the array element with the maximum value for the specified dimension.
 
 Arguments
 - **A**: source data array.
-    - Must be a two-dimensional array.
 - **axis**: Aggregate dimension
-    - Must be 0 or 1.
-- **X**: Array to store the result.
+    - Must be integer. If you give a negative number, it will be specified from the right.
+- **B**: Array to store the result.
     - If omitted, it will be allocated automatically.
-- **dtypeX**: Data type when creating array X.
-    - If omitted, it will be int64.
+- **dtypeB**: Data type when creating array B.
+    - If omitted, it will be int64 or int32.
 
 Result
-- Same instance as vector X.
+- Same instance as matrix B.
 
 Examples
 
 ```php
 $a = $mo->array([[1,2,3],[6,5,4]]);
-$x = $mo->la()->reduceArgMax($a,1);
-## x => [2,0]
-$x = $mo->la()->reduceArgMax($a,0);
-## x => [1,1,1]
+$b = $mo->la()->reduceArgMax($a,1);
+## b => [2,0]
+$b = $mo->la()->reduceArgMax($a,0);
+## b => [1,1,1]
+$a = $mo->array([
+    [[1,2],[5,6]],
+    [[7,8],[3,4]]]);
+$b = $mo->la()->reduceArgMax($a,1);
+echo $mo->toString($b)."\n";
+## b => [[1,1],[0,0]]
+
 ```
 
 ### reduceMax
@@ -1249,32 +2086,37 @@ $$
 public function reduceMax(
     NDArray $A,
     int $axis,
-    NDArray $X=null,
-    $dtypeX=null) : NDArray
+    NDArray $B=null,
+    $dtypeB=null) : NDArray
 ```
 Aggregate the array element with the maximum value for the specified dimension.
 
 Arguments
 - **A**: source data array.
-    - Must be a two-dimensional array.
 - **axis**: Aggregate dimension
-    - Must be 0 or 1.
-- **X**: Array to store the result.
+    - Must be integer. If you give a negative number, it will be specified from the right.
+- **B**: Array to store the result.
     - If omitted, it will be allocated automatically.
-- **dtypeX**: Data type when creating array X.
+- **dtypeB**: Data type when creating array B.
     - If omitted, same as original data
 
 Result
-- Same instance as vector X.
+- Same instance as matrix B.
 
 Examples
 
 ```php
 $a = $mo->array([[1,2,3],[6,5,4]]);
-$x = $mo->la()->reduceMax($a,1);
-## x => [3,6]
-$x = $mo->la()->reduceMax($a,0);
-## x => [6,5,4]
+$b = $mo->la()->reduceMax($a,1);
+## b => [3,6]
+$b = $mo->la()->reduceMax($a,0);
+## b => [6,5,4]
+$a = $mo->array([
+    [[1,2],[5,6]],
+    [[7,8],[3,4]]]);
+$b = $mo->la()->reduceMax($a,1);
+echo $mo->toString($b)."\n";
+## b => [[5,6],[7,8]]
 ```
 
 ### reduceSum
@@ -1287,33 +2129,38 @@ $$
 public function reduceSum(
    NDArray $A,
    int $axis=null,
-   NDArray $X=null
-   $dtypeX=null) : NDArray
+   NDArray $B=null
+   $dtypeB=null) : NDArray
 ```
 Aggregate the sum of array elements in the specified dimension
 
 Arguments
 - **A**: source data array.
-    - Must be a two-dimensional array.
 - **axis**: Aggregate dimension
-    - Must be 0 or 1.
+    - Must be integer. If you give a negative number, it will be specified from the right.
     - Default is 0.
-- **X**: Array to store the result.
+- **B**: Array to store the result.
     - If omitted, it will be allocated automatically.
-- **dtypeX**: Data type when creating array X.
+- **dtypeB**: Data type when creating array B.
     - If omitted, same as original data
 
 Result
-- Same instance as vector X.
+- Same instance as matrix B.
 
 Examples
 
 ```php
 $a = $mo->array([[1,2,3],[6,5,4]]);
-$x = $mo->la()->reduceSum($a,1);
-## x => [6, 15]
-$x = $mo->la()->reduceSum($a,0);
-## x => [7, 7, 7]
+$b = $mo->la()->reduceSum($a,1);
+## b => [6, 15]
+$b = $mo->la()->reduceSum($a,0);
+## b => [7, 7, 7]
+$a = $mo->array([
+    [[1,2],[5,6]],
+    [[7,8],[3,4]]]);
+$b = $mo->la()->reduceSum($a,1);
+echo $mo->toString($b)."\n";
+## b => [[6,8],[10,12]]
 ```
 
 ### reduceMean
@@ -1326,30 +2173,251 @@ $$
 public function reduceMean(
     NDArray $A,
     int $axis,
-    NDArray $X=null,
-    $dtypeX=null) : NDArray
+    NDArray $B=null,
+    $dtypeB=null) : NDArray
 ```
 Aggregate the average value of array elements in the specified dimension
 
 Arguments
 - **A**: source data array.
-    - Must be a two-dimensional array.
 - **axis**: Aggregate dimension
     - Must be 0 or 1.
-- **X**: Array to store the result.
+- **B**: Array to store the result.
     - If omitted, it will be allocated automatically.
-- **dtypeX**: Data type when creating array X.
+- **dtypeB**: Data type when creating array B.
     - If omitted, same as original data
 
 Result
-- Same instance as vector X.
+- Same instance as Matrix B.
 
 Examples
 
 ```php
 $a = $mo->array([[1,2,3],[6,5,4]]);
-$x = $mo->la()->reduceMean($a,1);
-## x => [2,5]
-$x = $mo->la()->reduceMean($a,0);
-## x => [3.5, 3.5, 3.5]
+$b = $mo->la()->reduceMean($a,1);
+## b => [2,5]
+$b = $mo->la()->reduceMean($a,0);
+## b => [3.5, 3.5, 3.5]
+$a = $mo->array([
+    [[1,2],[5,6]],
+    [[7,8],[3,4]]]);
+$b = $mo->la()->reduceSum($a,1);
+echo $mo->toString($b)."\n";
+## b => [[3,4],[5,6]]
+```
+
+### im2col
+```php
+public function im2col(
+    NDArray $images,
+    array $filterSize=null,
+    array $strides=null,
+    bool $padding=null,
+    bool $channels_first=null,
+    array $dilation_rate=null,
+    bool $cols_channels_first=null,
+    NDArray $cols=null
+    ) : NDArray
+```
+Convert image data to cols format.
+
+Arguments
+- **images**: Batch set of 1D or 2D or 3D data with channels.
+    - The 1D data must be 3D NDArray. The 2D data must be 4D NDArray. The 3D data must be 5D NDArray.
+- **filterSize**: convolution filter size.
+    - Integer list that matches the input data.
+- **strides**: strides size.
+    - Integer list that matches the input data.
+- **padding**: Whether to padding.
+    - When padded, the output image will be the same size as the input image.
+- **channels_first**: Input image data format.
+    - The input image NDArray is whether the channel is the first axes.
+    - If false : images shape [batchs,image_width,channels]
+    - If true : images shape [batchs,channels,image_width]
+- **dilation_rate**: dilation rate size.
+    - Integer list that matches the input data.
+- **cols_channels_first**: Output image data format.
+    - The output cols NDArray is whether the channel is before the filters.
+    - If false : cols shape [batches,image_width,filter_size,channels]. Used in convolution.
+    - If true : cols shape [batches,image_width,channels,filter_size]. Used in pooling.
+- **cols**: Output cols data.
+    - Converted output.
+
+
+Result
+- Same instance as Matrix Cols.
+
+Examples
+
+```php
+$batches = 8;
+$channels = 3;
+$images = $mo->ones([$batches,28,28,$channels]);
+$cols = $la->im2col(
+    $images,
+    $filterSize=[4,4],
+    $strides=[1,1],
+    $padding=false,
+    $channels_first=false,
+    $dilation_rate=[1,1],
+    $cols_channels_first=false
+);
+## cols->shape() => [8,25,25,4,4,3]
+```
+
+### col2im
+```php
+public function col2im(
+    NDArray $cols,
+    NDArray $images,
+    array $filterSize=null,
+    array $strides=null,
+    bool $padding=null,
+    bool $channels_first=null,
+    array $dilation_rate=null,
+    bool $cols_channels_first=null
+    ) : NDArray
+```
+Convert cols format to image data.
+
+Arguments
+- **cols**: Input cols data.
+    - Converted output.
+- **images**: Ouput batch set of 1D or 2D or 3D data with channels.
+    - The 1D data must be 3D NDArray. The 2D data must be 4D NDArray. The 3D data must be 5D NDArray.
+- **filterSize**: convolution filter size.
+    - Integer list that matches the input data.
+- **strides**: strides size.
+    - Integer list that matches the input data.
+- **padding**: Whether to padding.
+    - When padded, the output image will be the same size as the input image.
+- **channels_first**: Input image data format.
+    - The output image NDArray is whether the channel is the first axes.
+- **dilation_rate**: dilation rate size.
+    - Integer list that matches the input data.
+- **cols_channels_first**: Output image data format.
+    - The input cols NDArray is whether the channel is the first axes.
+
+
+Result
+- Same instance as Matrix Cols.
+
+Examples
+
+```php
+$batches = 8;
+$channels = 3;
+$cols = $mo->ones([$batches,25,25,4,4,$channels]);
+$images = $mo->ones([$batches,28,28,$channels]);
+$la->col2im(
+    $cols,
+    $images,
+    $filterSize=[4,4],
+    $strides=[1,1],
+    $padding=false,
+    $channels_first=false,
+    $dilation_rate=[1,1],
+    $cols_channels_first=false
+);
+```
+
+### randomUniform
+```php
+public function randomUniform(
+    array $shape,
+    $low,
+    $high,
+    $dtype=null,
+    int $seed=null,
+    NDArray $X=null) : NDArray
+```
+Generate random numbers.
+
+Arguments
+- **shape**: Output shape.
+    - Integer list.
+- **low**: lower value.
+    - float value.
+- **high**: higher value.
+    - float value.
+- **dtype**: NDArray data type.
+    - Constant of NDArray data type.
+- **seed**: seed for randomize.
+- **output**: output.
+    - The output image NDArray is whether the channel is the first axes.
+
+Result
+- Same instance as Matrix Cols.
+
+Examples
+
+```php
+$x = $mo->la()->randomUniform(
+    [2,2],
+    0.0, 1.0
+);
+```
+
+### randomNormal
+```php
+public function randomNormal(
+    array $shape,
+    $mean,
+    $scale,
+    $dtype=null,
+    int $seed=null,
+    NDArray $X=null) : NDArray
+```
+Generate dormal distribution random numbers.
+
+Arguments
+- **shape**: Output shape.
+    - Integer list.
+- **mean**: mean of values.
+    - float value.
+- **scale**: scale of values.
+    - float value.
+- **dtype**: NDArray data type.
+    - Constant of NDArray data type.
+- **seed**: seed for randomize.
+- **output**: output.
+    - The output image NDArray is whether the channel is the first axes.
+
+Result
+- Same instance as Matrix output.
+
+Examples
+
+```php
+$x = $mo->la()->randomNormal(
+    [2,2],
+    0.0, 1.0
+);
+```
+
+### randomSequence
+```php
+public function randomSequence(
+    int $base,
+    int $size=null,
+    int $seed=null
+    ) : NDArray
+```
+Randomly selected from the population.
+Returns a uniquely selected value from a population of sequential integers.
+
+Arguments
+- **base**: Population size.
+    - Integer.
+- **size**: Data size to generate.
+    - If omitted, it is the same size as the population.
+- **seed**: seed for randomize.
+
+Result
+- output Matrix.
+
+Examples
+
+```php
+$x = $mo->la()->randomSequence(10);
 ```
