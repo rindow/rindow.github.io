@@ -77,7 +77,7 @@ The models are trained on the NDArray of input data and labels. For training a m
 # classification model with 3 classes
 $model = $nn->models()->Sequential([
     $nn->layers()->Dense(128,
-        ['input_shape'=>[3],'kernel_initializer'=>'relu_normal']),
+        ['input_shape'=>[3],'kernel_initializer'=>'he_normal']),
     $nn->layers()->ReLU(),
     $nn->layers()->Dense(3),
     $nn->layers()->Softmax(),
