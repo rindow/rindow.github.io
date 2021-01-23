@@ -1,8 +1,9 @@
 ---
 layout: document
-title: "Builders"
+title: "How to use Builders"
 upper_section: index
-previous_section: gettingstarted
+previous_section: install
+next_section: sequentialmodel
 ---
 The instance of each PHP class is created using builder. This is to allow replacement as a module.
 When you use it on the Rindow framework in the future, you can incorporate it into "Inversion of Control".
@@ -47,3 +48,6 @@ $adam    = $nn->optimizers()->Adam(['lr'=>0.001,'beta1'=> 0.9,'beta2'=>0.999]);
 $model   = $nn->models()->Sequential([$dense,$softmax]);
 $mnist   = $nn->datasets()->mnist();
 ```
+
+
+[Read how to use the sequential model =>](sequentialmodel.html)

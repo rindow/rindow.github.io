@@ -2,8 +2,8 @@
 layout: document
 title: "Rindow Neural Networks installation"
 upper_section: index
-previous_section: index
-next_section: gettingstarted
+previous_section: gettingstarted
+next_section: builders
 ---
 
 - [Operating environment](#operating-environment)
@@ -222,3 +222,6 @@ C:tutorials>export RINDOW_NEURALNETWORKS_BACKEND
 C:tutorials>cd samples
 C:samples>php mnist-basic-clasification.php
 ```
+
+
+[Read how to use the builders =>](builders.html)

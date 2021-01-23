@@ -11,29 +11,37 @@ menu:
     link: /neuralnetworks/index.html#requirements
   - caption: Note
     link: /neuralnetworks/index.html#note
-- caption: Installation
-  link: /neuralnetworks/install.html
 - caption: Getting started
   link: /neuralnetworks/gettingstarted.html
+- caption: Installation
+  link: /neuralnetworks/install.html
+- caption: Tutorials
   menu:
-  - caption: Sequential model
-    link: /neuralnetworks/gettingstarted.html#getting-started-with-the-sequential-model
-  - caption: Specifying the input shape
-    link: /neuralnetworks/gettingstarted.html#specifying-the-input-shape
-  - caption: Compilation
-    link: /neuralnetworks/gettingstarted.html#compilation
-  - caption: Training
-    link: /neuralnetworks/gettingstarted.html#training
-  - caption: Survey
-    link: /neuralnetworks/gettingstarted.html#survey
-  - caption: Prediction
-    link: /neuralnetworks/gettingstarted.html#prediction
-- caption: Builders
-  link: /neuralnetworks/builders.html
+  - caption: Basic image clasification on PHP
+    link: /neuralnetworks/tutorials/basic-image-classification.html
+- caption: How to guide
   menu:
-  - caption: Root Builder
-    link: /neuralnetworks/gettingstarted.html#root-builder
-  - caption: Subclass Builders
-    link: /neuralnetworks/gettingstarted.html#subclass-builders
+  - caption: Builders
+    link: /neuralnetworks/builders.html
+    menu:
+    - caption: Root Builder
+      link: /neuralnetworks/builders.html#root-builder
+    - caption: Subclass Builders
+      link: /neuralnetworks/builders.html#subclass-builders
+  - caption: How to use Sequential model
+    link: /neuralnetworks/sequentialmodel.html
+    menu:
+    - caption: Sequential model
+      link: /neuralnetworks/sequentialmodel.html#getting-started-with-the-sequential-model
+    - caption: Specifying the input shape
+      link: /neuralnetworks/sequentialmodel.html#specifying-the-input-shape
+    - caption: Compilation
+      link: /neuralnetworks/sequentialmodel.html#compilation
+    - caption: Training
+      link: /neuralnetworks/sequentialmodel.html#training
+    - caption: Survey
+      link: /neuralnetworks/sequentialmodel.html#survey
+    - caption: Prediction
+      link: /neuralnetworks/sequentialmodel.html#prediction
 - caption: API reference
   link: /neuralnetworks/api/apitoc.html
