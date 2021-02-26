@@ -110,7 +110,7 @@ Furthermore, it converts 1x28x28 image data into 784 flat 1D data.
 use Interop\Polite\Math\Matrix\NDArray;
 $train_img = $mo->scale(1.0/255.0,$mo->astype($train_img,NDArray::float32))
     ->reshape([60000,784]);
-$test_img  = $mo->scale(1.0/255.0,$mo->astype($test_img,NDArray::float32));
+$test_img  = $mo->scale(1.0/255.0,$mo->astype($test_img,NDArray::float32))
     ->reshape([10000,784]);
 ```
 

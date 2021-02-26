@@ -188,7 +188,7 @@ $ composer require rindow/rindow-math-plot
 $ mkdir samples
 $ cd samples
 $ cp ../vendor/rindow/rindow-neuralnetworks/samples/* .
-$ php mnist-basic-clasification.php
+$ php basic-image-clasification.php
 Downloading train-images-idx3-ubyte.gz ...Done
 ....
 Epoch 4/5 ........................ - 10 sec.
@@ -220,7 +220,7 @@ C:TEMP>COPY rindow_clblast-php74-0.1.2-clblast1.5.1-win-ts-vc15-x64\php_rindow_c
 C:tutorials>RINDOW_NEURALNETWORKS_BACKEND=rindowclblast
 C:tutorials>export RINDOW_NEURALNETWORKS_BACKEND
 C:tutorials>cd samples
-C:samples>php mnist-basic-clasification.php
+C:samples>php basic-image-clasification.php
 ```
 
 
