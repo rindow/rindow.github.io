@@ -1602,126 +1602,149 @@ $b = $mo->la()->transpose($a);
 ```
 
 
-### select
+### gather
 $$
 \begin{align*}
-y_{ij} :=  \left \{ \begin{array}{l} a_{xj} \hspace{5mm} ( axis = 0 ) \\ a_{ix} \hspace{5mm} ( axis = 1 ) \end{array} \right.
+y :=  \left \{ \begin{array}{l} a_{x,k} \hspace{5mm} ( axis = null ) \\ a_{m,x,k} \hspace{5mm} ( axis \neq null ) \end{array} \right.
 \end{align*}
 $$
 ```php
-public function select(
+public function gather(
     NDArray $A,
     NDArray $X,
     int $axis=null,
-    NDArray $Y=null) : NDArray
+    NDArray $B=null,
+    $dtype=null) : NDArray
 ```
 Select values from source array by indexes.
 
 Arguments
 - **A**: source data.
 - **X**: selection index vector.
-    - Must be one-dimensional integer array.
+    - N-dimensional integer array.
 - **axis**: selection dimension
-    - default is 0.
-- **Y**: Destination matrix.
+    - default is null.
+    - If null, Match from the beginning of the selector.
+    - If not null, Reduce on the specified axis.
+- **B**: Destination matrix.
     - If omitted, it will be allocated automatically.
 
 Result
-- Same instance as vector Y.
+- Same instance as vector B.
 
 Examples
 
 ```php
 $a = $mo->array([[1,2,3],[4,5,6],[7,8,9]]);
-$x = $mo->array([0,2]);
-$y = $mo->la()->select($a,$x);
-## y => [[1,2,3],[7,8,9]]
-```
-```php
+$x = $mo->array([0,2],NDArray::int32);
+$b = $mo->la()->gather($a,$x);
+## b => [[1,2,3],[7,8,9]]
 $a = $mo->array([[1,2,3],[4,5,6],[7,8,9]]);
-$x = $mo->array([0,2,1]);
-$y = $mo->la()->select($a,$x,$axis=1);
-## y => [1,6,8]
+$x = $mo->array([2,1,0],NDArray::int32);
+$b = $mo->la()->gather($a,$x,$axis=0);
+## b => [7,5,3]
+$a = $mo->array([[1,2,3],[4,5,6],[7,8,9]]);
+$x = $mo->array([2,1,0],NDArray::int32);
+$b = $mo->la()->gather($a,$x,$axis=1);
+## b => [3,5,7]
 ```
 
 ### scatter
 $$
 \begin{align*}
-A_{xi} := Y_i
+y :=  \left \{ \begin{array}{l} a_{x,k} \hspace{5mm} ( axis = null ) \\ a_{m,x,k} \hspace{5mm} ( axis \neq null ) \end{array} \right.
 \end{align*}
 $$
 ```php
 public function scatter(
     NDArray $X,
-    NDArray $Y,
+    NDArray $A,
     int $numClass,
     int $axis=null,
-    NDArray $A=null) : NDArray
+    NDArray $B=null,
+    $dtype=null) : NDArray
 ```
-Set values to array by indexes.
+Set values to array by indexes. Reverse operation of gather.
 
 Arguments
 - **X**: selection index vector.
-    - Must be one-dimensional integer array.
-- **Y**: source data vector.
-    - Must be one-dimensional integer array.
+- **A**: source data vector.
+    - N-dimensional integer array.
 - **numClass**: The size of the destination array.
     - Must be integer
-- **A**: Destination array.
 - **axis**: selection dimension
-    - default is 0.
+    - default is null.
+    - If null, Match from the beginning of the selector.
+    - If not null, Expand on the specified axis.
+- **B**: Destination array.
 
 Result
-- Same instance as Matrix A.
+- Same instance as Matrix B.
 
 Examples
 
 ```php
 $x = $mo->array([0,2],NDArray::int32);
-$y = $mo->array([[1,2,3],[7,8,9]]);
-$a = $mo->la()->scatter($x,$y,3);
-## a => [[1,2,3],[0,0,0],[7,8,9]]);
+$a = $mo->array([[1,2,3],[4,5,6]]);
+$b = $mo->la()->scatter($x,$a,$n=3);
+## b => [[1,2,3],[0,0,0],[4,5,6]]
+$x = $mo->array([2,1,0],NDArray::int32);
+$a = $mo->array([1,2,3]);
+$b = $mo->la()->scatter($x,$a,$n=3,$axis=0);
+## b => [[0,0,3],[0,2,0],[1,0,0]]
+$x = $mo->array([2,1,0],NDArray::int32);
+$a = $mo->array([1,2,3]);
+$b = $mo->la()->scatter($x,$a,$n=3,$axis=1);
+## b => [[0,0,1],[0,2,0],[3,0,0]]
 ```
 
-### scatter
+### scatterAdd
 $$
 \begin{align*}
-A_{xi} := A_{xi} + Y_i
+B_{x} := B_{x} + A_{x}
 \end{align*}
 $$
 ```php
 public function scatterAdd(
     NDArray $X,
-    NDArray $Y,
     NDArray $A,
-    int $axis=null) : NDArray
+    NDArray $B,
+    int $axis=null,
+    $dtype=null) : NDArray
 ```
-Set values to array by indexes.
+Add values to array by indexes.
 
 Arguments
 - **X**: selection index vector.
-    - Must be one-dimensional integer array.
-- **Y**: source data vector.
-    - Must be one-dimensional integer array.
-- **A**: Destination array.
+- **A**: source data.
+    - N-dimensional integer array.
+- **B**: Destination data.
 - **axis**: selection dimension
-    - default is 0.
+    - default is null.
+    - If null, Match from the beginning of the selector.
+    - If not null, Expand on the specified axis.
 
 Result
-- Same instance as Matrix A.
+- Same instance as Matrix B.
 
 Examples
 
 ```php
 $x = $mo->array([0,2],NDArray::int32);
-$y = $mo->array([[1,2,3],[7,8,9]]);
-$a = $mo->array($mo->ones([4,3]));
-$mo->la()->scatterAdd($x,$y,$a,$axis=0);
-## a =>
-## [[2,3,4],
-##  [1,1,1],
-##  [8,9,10],
-##  [1,1,1]],
+$a = $mo->array([[1,2,3],[4,5,6]]);
+$b = $mo->array([[1,1,1],[1,1,1],[1,1,1]]);
+$mo->la()->scatterAdd($x,$a,$b);
+## b => [[2,3,4],[1,1,1],[5,6,7]]
+$x = $mo->array([2,1,0],NDArray::int32);
+$a = $mo->array([1,2,3]);
+$b = $mo->array([[1,1,1],[1,1,1],[1,1,1]]);
+$mo->la()->scatterAdd($x,$a,$b,$axis=0);
+## b => [[1,1,4],[1,3,1],[2,1,1]]
+$x = $mo->array([2,1,0],NDArray::int32);
+$a = $mo->array([1,2,3]);
+$b = $mo->array([[1,1,1],[1,1,1],[1,1,1]]);
+$mo->la()->scatterAdd($x,$a,$b,$axis=1);
+## b => [[1,1,2],[1,3,1],[4,1,1]]
 ```
 
 ### slice
@@ -1925,28 +1948,32 @@ $y = $mo->la()->split(
 ### repeat
 
 ```php
-public function repeat(NDArray $A, int $repeats) : NDArray
+public function repeat(
+    NDArray $A,
+    int $repeats,
+    int $axis=null) : NDArray
 ```
 Repeat array.
 
 Arguments
 - **A**: values.
 - **repeats**: number of repeat.
-
+- **axis**: repeat axis.
+    - If null, flat array output
+    - If not null, repeat with specified axis.
 Result
 - Repeaded Matrix output.
 
 Examples
 
 ```php
-$X = $la->array([
-    [1,2,3],
-    [4,5,6]
-]);
-$Y = $la->repeat($X,2);
-## y =>
-##  [[[1,2,3],[1,2,3]],
-##   [[4,5,6],[4,5,6]],]
+$A = $mo->array([[1,2,3],[4,5,6]]);
+$B = $la->repeat($X,2);
+## b => [1,2,3,4,5,6,1,2,3,4,5,6]
+$B = $la->repeat($X,2,$axis=0);
+## b => [[[1,2,3],[4,5,6]],[[1,2,3],[4,5,6]]]
+$B = $la->repeat($X,2,$axis=1);
+## b => [[[1,2,3],[1,2,3]],[[4,5,6],[4,5,6]]]
 ```
 
 ### onehot
@@ -2420,4 +2447,51 @@ Examples
 
 ```php
 $x = $mo->la()->randomSequence(10);
+```
+
+### imagecopy
+```php
+public function imagecopy(
+    NDArray $A,
+    NDArray $B=null,
+    bool $channels_first=null,
+    int $heightShift=null,
+    int $widthShift=null,
+    bool $verticalFlip=null,
+    bool $horizontalFlip=null
+    ) : NDArray
+```
+Copy 2D image data with various conversions
+
+Arguments
+- **A**: Source 2D image data.
+    - 3D NDArray. [h,w,c] or [c,h,w]
+- **B**: Destination.
+    - Default is allocated output.
+    - Same shape as A.
+- **channels_first**: data format.
+    - Default false,
+    - If false, the format is channels_last [h,w,c].
+    - If true, the format is channels_first [c,h,w].
+- **heightShift**: Up and down shift range.
+- **widthShift**: Left and right shift range.
+- **verticalFlip**: Upside down.
+- **horizontalFlip**: Left-right reversal.
+
+Result
+- same B object.
+
+Examples
+
+```php
+$A = $mo->array([
+    [1,2,3],
+    [4,5,6],
+    [7,8,9]
+])->reshape([3,3,1]);
+$B = $mo->la()->imagecopy($A,null,null,null,
+    $heightShift=null,$widthShift=null,$verticalFlip=true)->reshape([3,3]);
+## B = [[3,2,1],
+##      [6,5,4],
+##      [9,8,7]]
 ```

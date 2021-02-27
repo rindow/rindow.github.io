@@ -11,6 +11,8 @@ next_section: api/matrixoperator
 - **implements**:
     - Interop\Polite\Math\Matrix\NDArray
     - Serializable
+    - Countable
+    - IteratorAggregate
 
 A N-dimensional array
 
@@ -223,3 +225,39 @@ public function unserialize($serialized)
 One of the methods of Serializable Interface.
 
 Converts a savable binary string to an NDArray.
+
+### count
+```php
+public function count()
+```
+Returns the number on the 0th axis. Not the size.
+
+Examples
+```php
+$array = $matrixOperator->array([[1,2,3],[4,5,6]]);
+
+## Set a array to array.
+var_dump(count($array));
+## int(2)
+```
+
+### getIterator
+```php
+public function getIterator()
+```
+Returns the iterator on the 0th axis.
+
+Examples
+```php
+$array = $matrixOperator->array([[1,2,3],[4,5,6]]);
+
+## Set a array to array.
+foreach ($array as $key => $value) {
+    var_dump($key);
+    echo get_class($value).$matrixOperator->toString($value)."\n";
+}
+## int(0)
+## Rindow\Math\Matrix\NDArrayPhp[1,2,3]
+## int(1)
+## Rindow\Math\Matrix\NDArrayPhp[4,5,6]
+```
