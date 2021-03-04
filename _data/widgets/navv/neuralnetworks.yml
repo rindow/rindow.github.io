@@ -16,9 +16,12 @@ menu:
 - caption: Installation
   link: /neuralnetworks/install.html
 - caption: Tutorials
+  link: /neuralnetworks/tutorials/tutorials.html
   menu:
   - caption: Basic image clasification on PHP
     link: /neuralnetworks/tutorials/basic-image-classification.html
+  - caption: Convolutional Neural Network(CNN) on PHP
+    link: /neuralnetworks/tutorials/convolution-neural-network.html
 - caption: How to guide
   menu:
   - caption: Builders

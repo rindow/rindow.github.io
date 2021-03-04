@@ -47,11 +47,14 @@ Sample programs
 - Neural machine language translation with Attention(RNN with Attention)
 
 
-tutorials
+Tutorials
 ---------
 We plan to create step-by-step tutorials.
 
-- [Basic image clasification on PHP](tutorials/basic-image-classification.html)
+See the [Machine learning tutorials on PHP](tutorials/tutorials.html) page.
+
+- [Basic image clasification](tutorials/basic-image-classification.html)
+- [Convolutional Neural Network(CNN)](tutorials/convolution-neural-network.html)
 
 
 Why do deep learning with PHP?

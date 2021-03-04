@@ -4,7 +4,7 @@ title: "AveragePooling3D"
 grand_upper_section: index
 upper_section: api/apitoc
 previous_section: api/averagepooling2d
-next_section: api/simplernn
+next_section: api/globalmaxpooling1d
 ---
 
 - **namespace**: Rindow\NeuralNetworks\Layer

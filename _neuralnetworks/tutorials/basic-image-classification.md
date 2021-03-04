@@ -1,7 +1,8 @@
 ---
 layout: document
 title: "Basic image clasification on PHP"
-upper_section: index
+upper_section: tutorials/tutorials
+next_section: tutorials/convolution-neural-network
 ---
 In this tutorial, we will explain the procedure for performing image classification problems by machine learning on PHP.
 

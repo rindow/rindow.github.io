@@ -12,6 +12,7 @@ next_section: api/neuralnetworks
     - [Losses](losses.html)
     - [Optimizers](optimizers.html)
     - [Datasets](datasets.html)
+    - [Data](data.html)
 - Models
     - [Sequential](sequential.html)
     - [ModelLoader](modelloader.html)
@@ -32,6 +33,12 @@ next_section: api/neuralnetworks
     - [AveragePooling1D](averagepooling1d.html)
     - [AveragePooling2D](averagepooling2d.html)
     - [AveragePooling3D](averagepooling3d.html)
+    - [GlobalMaxPooling1D](globalmaxpooling1d.html)
+    - [GlobalMaxPooling2D](globalmaxpooling2d.html)
+    - [GlobalMaxPooling3D](globalmaxpooling3d.html)
+    - [GlobalAveragePooling1D](globalaveragepooling1d.html)
+    - [GlobalAveragePooling2D](globalaveragepooling2d.html)
+    - [GlobalAveragePooling3D](globalaveragepooling3d.html)
     - [SimpleRNN](simplernn.html)
     - [LSTM](lstm.html)
     - [GRU](gru.html)
@@ -53,6 +60,15 @@ next_section: api/neuralnetworks
     - [MNIST](mnist.html)
     - [Fashion-MNIST](fashionmnist.html)
     - [CIFAR-10](cifar10.html)
+- Data\\Dataset
+    - [NDArrayDataset](ndarraydataset.html)
+    - [CSVDataset](csvdataset.html)
+    - [ClassifiedDirectoryDataset](classifieddirectorydataset.html)
 - Data\\Sequence
     - [Preprocessor](preprocessor.html)
     - [Tokenizer](tokenizer.html)
+    - [TextClassifiedDataset](textclassifieddataset.html)
+    - [TextFilter](textfilter.html)
+- Data\\Image
+    - [ImageFilter](imagefilter.html)
+    - [ImageDataGenerator](imagedatagenerator.html)

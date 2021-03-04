@@ -4,7 +4,7 @@ title: "Cifar10"
 grand_upper_section: index
 upper_section: api/apitoc
 previous_section: api/fashionmnist
-next_section: api/preprocessor
+next_section: api/csvdataset
 ---
 
 - **namespace**: Rindow\NeuralNetworks\Dataset
