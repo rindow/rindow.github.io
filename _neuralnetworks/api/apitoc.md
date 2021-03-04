@@ -68,7 +68,6 @@ next_section: api/neuralnetworks
     - [Preprocessor](preprocessor.html)
     - [Tokenizer](tokenizer.html)
     - [TextClassifiedDataset](textclassifieddataset.html)
-    - [TextFilter](textfilter.html)
 - Data\\Image
     - [ImageFilter](imagefilter.html)
     - [ImageDataGenerator](imagedatagenerator.html)

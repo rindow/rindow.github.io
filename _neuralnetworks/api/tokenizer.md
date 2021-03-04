@@ -4,7 +4,7 @@ title: "Tokenizer"
 grand_upper_section: index
 upper_section: api/apitoc
 previous_section: api/preprocessor
-
+next_section: api/textclassifieddataset
 ---
 
 - **namespace**: Rindow\NeuralNetworks\Data\Sequence
