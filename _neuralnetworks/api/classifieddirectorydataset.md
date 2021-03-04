@@ -35,9 +35,24 @@ public function __construct(
         'crawler'=>null,
         'filter'=>null,
         'unclassified'=>false,
+        'shuffle'=>false,
+        'limit'=>null,
+        'restricted_by_class'=>null,
     ]
 )
 ```
+
+Arguments
+
+- **path**: Top directory of classified directories.
+- **pattern**: File name pattern. Specifies the regular expression for preg_match.
+- **batch_size**: Batch size
+- **crawler**: Specifies an instance of the service that crawls the directory tree. By default it uses its own Dir class.
+- **filter**: Specifies the filter for the dataset. Filter will be described later.
+- **unclassified**: It works in unclassified mode. If set to true, the returned value will not include classname.
+- **shuffle**: Shuffles the order of the returned values.
+- **limit**: Sets the maximum number of values to return.
+- **restricted_by_class**: Restricts returning only the values contained in the specified class.
 
 Examples
 

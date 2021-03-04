@@ -37,6 +37,12 @@ $builer->NDArrayDataset(
 ```
 You can create a NDArrayDataset instances with the Data Builder.
 
+Arguments
+
+- **tests**: Specify inputs and the corresponding tests data.
+- **batch_size**: batch size.
+- **shuffle**: Randomize the order of the returned values.
+- **filter**: Instance of dataset filter.
 
 Examples
 

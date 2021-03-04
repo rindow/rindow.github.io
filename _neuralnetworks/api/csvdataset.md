@@ -37,6 +37,18 @@ $builer->CSVDataset(
 ```
 You can create a CSVDataset instances with the Data Builder.
 
+Arguments
+
+- **path**: Top directory of csv files.
+- **pattern**: File name pattern. Specifies the regular expression for preg_match.
+- **batch_size**: Batch size
+- **filter**: Specifies the filter for the dataset. Filter will be described later.
+- **crawler**: Specifies an instance of the service that crawls the directory tree. By default it uses its own Dir class.
+- **shuffle**: Whether to randomize the order of the data in the batch. (Note that it is not random for the entire data)
+- **length**: Limit maximum line length
+- **delimiter**: The optional delimiter parameter sets the field delimiter (one character only).
+- **enclosure**: The optional enclosure parameter sets the field enclosure character (one character only).
+- **escape**: The optional escape parameter sets the escape character (at most one character). An empty string ("") disables the proprietary escape mechanism.
 
 Examples
 

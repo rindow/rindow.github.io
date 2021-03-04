@@ -39,10 +39,11 @@ $builer->TextClassifiedDataset(
         'batch_size'=>32,
         'crawler'=>null,
         'unclassified'=>false,
-        'padding'=>'post',
+        'shuffle'=>false,
+        'limit'=>null,
+        'restricted_by_class'=>null,
         'tokenizer'=>null,
         'classnames'=>[],
-        'analyzer'=>null,
         'num_words'=>null,
         'tokenizer_filters'=>"!\"\'#$%&()*+,-./:;<=>?@[\\]^_`{|}~\t\n\r",
         'specials'=>null,
@@ -50,7 +51,6 @@ $builer->TextClassifiedDataset(
         'split'=>" ",
         'char_level'=>false,
         'oov_token'=>null,
-        'document_count'=>0,
         'preprocessor'=>null,
         'maxlen'=>null,
         'dtype'=>NDArray::int32,
@@ -63,6 +63,32 @@ $builer->TextClassifiedDataset(
 ```
 You can create a TextClassifiedDataset instances with the Data Builder.
 
+Arguments
+
+- **path**: Top directory of classified directories.
+- **pattern**: File name pattern. Specifies the regular expression for preg_match.
+- **batch_size**: Batch size
+- **crawler**: Specifies an instance of the service that crawls the directory tree. By default it uses its own Dir class.
+- **filter**: Specifies the filter for the dataset. Filter will be described later.
+- **unclassified**: It works in unclassified mode. If set to true, the returned value will not include classname.
+- **shuffle**: Shuffles the order of the returned values.
+- **limit**: Sets the maximum number of values to return.
+- **restricted_by_class**: Restricts returning only the values contained in the specified class.
+- **tokenizer**: instance of tokenizer.
+- **classnames**: list of classname.
+- **num_words**: maximum number of words to use in corpus. Words with a large number of occurrences are prioritized, and words with a low priority are skipped when corpus is generated.
+- **tokenizer_filters**: Characters removed from input text.
+- **specials**: A special character that is treated as a single word, independent of the word delimiter.
+- **lower**: Whether to convert the texts to lowercase.
+- **split**: Word delimiter.
+- **oov_token**: An alternative character to replace and include in corpus instead of skipping low priority.
+- **preprocessor**: instance of preprocessor.
+- **maxlen**: sequence max length. If the sequence is short, it will be padded. If the sequence is long, it will be truncated. If Null, the maximum length of the sequence will be applied.
+- **dtype**: Output NDArray data type.
+- **padding**: If "pre", it will be padded before. If it is "post", it will be padded later.
+- **truncating**: If "pre", the front is truncated. If it is "post", the rest will be truncated.
+- **value**: Value to be padded.
+- **verbose**: Show progress bar when using loadData method.
 
 Examples
 

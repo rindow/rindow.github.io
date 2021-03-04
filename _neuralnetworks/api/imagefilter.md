@@ -31,6 +31,14 @@ $builer->ImageFilter(
 ```
 You can create a ImageFilter instances with the Data Builder.
 
+Arguments
+
+- **data_format**: Either "channels_last" or "channels_first". Specify which of the input shapes is the channel.
+- **height_shift**: Maximum number of pixels to randomly slide the image up and down.
+- **width_shift**: Maximum number of pixels to randomly slide the image left and right.
+- **vertical_flip**: Randomly flip it upside down.
+- **horizontal_flip**: Randomly flip left and right.
+
 Examples
 
 ```php
