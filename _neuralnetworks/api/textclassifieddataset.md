@@ -7,7 +7,7 @@ previous_section: api/tokenizer
 next_section: api/imagefilter
 ---
 
-- **namespace**: Rindow\NeuralNetworks\Data\Dataset
+- **namespace**: Rindow\NeuralNetworks\Data\Sequence
 - **classname**: TextClassifiedDataset
 - **parentclass**: Rindow\NeuralNetworks\Data\Dataset\ClassifiedDirectoryDataset
 

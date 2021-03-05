@@ -4,6 +4,7 @@ title: "ImageDataGenerator"
 grand_upper_section: index
 upper_section: api/apitoc
 previous_section: api/imagefilter
+next_section: api/imageclassifieddataset
 ---
 
 - **namespace**: (Rindow\NeuralNetworks\Data\Image)

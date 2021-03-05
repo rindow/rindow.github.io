@@ -71,3 +71,4 @@ next_section: api/neuralnetworks
 - Data\\Image
     - [ImageFilter](imagefilter.html)
     - [ImageDataGenerator](imagedatagenerator.html)
+    - [ImageClassifiedDataset](imageclassifieddataset.html)
