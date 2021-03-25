@@ -55,6 +55,7 @@ See the [Machine learning tutorials on PHP](tutorials/tutorials.html) page.
 
 - [Basic image clasification](tutorials/basic-image-classification.html)
 - [Convolutional Neural Network(CNN)](tutorials/convolution-neural-network.html)
+- [Learning to add numbers with seq2seq on PHP](tutorials/learn-add-numbers-with-rnn.html)
 
 
 Why do deep learning with PHP?

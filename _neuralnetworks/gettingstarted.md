@@ -14,7 +14,7 @@ Rindow Neural Networks is designed to be easy for beginners in machine learning 
 Please see the guide below.
 
 - [Installation guide](install.html)
-- [Tutorial](tutorials/basic-image-classification.html)
+- [Tutorials](tutorials/tutorials.html)
 - [How to use guide](builders.html)
 
 

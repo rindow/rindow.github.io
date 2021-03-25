@@ -3,6 +3,7 @@ layout: document
 title: "Convolutional Neural Network(CNN) on PHP"
 upper_section: tutorials/tutorials
 previous_section: tutorials/basic-image-classification
+next_section: tutorials/learn-add-numbers-with-rnn
 ---
 In this tutorial, you will build a simple Convolutional Neural Network(CNN) on PHP using CIFAR10 Image Classification.
 Experience how CNN uses images.

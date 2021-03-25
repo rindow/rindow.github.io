@@ -22,6 +22,8 @@ menu:
     link: /neuralnetworks/tutorials/basic-image-classification.html
   - caption: Convolutional Neural Network(CNN) on PHP
     link: /neuralnetworks/tutorials/convolution-neural-network.html
+  - caption: Learning to add numbers with seq2seq on PHP
+    link: /neuralnetworks/tutorials/learn-add-numbers-with-rnn.html
 - caption: How to guide
   menu:
   - caption: Builders
