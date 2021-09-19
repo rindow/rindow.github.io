@@ -16,6 +16,7 @@ Please see the guide below.
 - [Installation guide](install.html)
 - [Tutorials](tutorials/tutorials.html)
 - [How to use guide](builders.html)
+- [API reference](api/apitoc.html)
 
 
 [Read Rindow Neural Networks installation =>](install.html)

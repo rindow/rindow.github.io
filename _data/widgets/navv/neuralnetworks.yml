@@ -48,5 +48,19 @@ menu:
       link: /neuralnetworks/sequentialmodel.html#survey
     - caption: Prediction
       link: /neuralnetworks/sequentialmodel.html#prediction
+  - caption: How to create a custom model
+    link: /neuralnetworks/custommodel.html
+    menu:
+    - caption: Custom model
+      link: /neuralnetworks/custommodel.html#getting-started-with-the-custom-model
+    - caption: Compilation
+      link: /neuralnetworks/custommodel.html#compilation
+    - caption: Training
+      link: /neuralnetworks/custommodel.html#training
+    - caption: Survey
+      link: /neuralnetworks/custommodel.html#survey
+    - caption: Prediction
+      link: /neuralnetworks/custommodel.html#prediction
+
 - caption: API reference
   link: /neuralnetworks/api/apitoc.html

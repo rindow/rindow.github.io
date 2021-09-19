@@ -3,6 +3,7 @@ layout: document
 title: "How to use Sequential model"
 upper_section: index
 previous_section: builders
+next_section: custommodel
 ---
 
 Getting started with the Sequential model
