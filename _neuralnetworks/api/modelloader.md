@@ -4,7 +4,7 @@ title: "ModelLoader"
 grand_upper_section: index
 upper_section: api/apitoc
 previous_section: api/sequential
-next_section: api/dense
+next_section: api/abstractmodel
 ---
 
 - **namespace**: Rindow\NeuralNetworks\Model

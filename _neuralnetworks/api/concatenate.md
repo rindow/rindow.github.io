@@ -4,7 +4,7 @@ title: "Concatenate"
 grand_upper_section: index
 upper_section: api/apitoc
 previous_section: api/flatten
-next_section: api/repeatvector
+next_section: api/embedding
 ---
 
 - **namespace**: Rindow\NeuralNetworks\Layer

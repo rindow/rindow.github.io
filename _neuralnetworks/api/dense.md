@@ -3,7 +3,7 @@ layout: document
 title: "Dense"
 grand_upper_section: index
 upper_section: api/apitoc
-previous_section: api/modelloader
+previous_section: api/dynamicmodel
 next_section: api/activation
 ---
 

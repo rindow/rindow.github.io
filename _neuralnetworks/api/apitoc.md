@@ -16,11 +16,14 @@ next_section: api/neuralnetworks
 - Models
     - [Sequential](sequential.html)
     - [ModelLoader](modelloader.html)
+    - [AbstractModel](abstractmodel.html)
+    - [DynamicModel](dynamicmodel.html)
 - Layers
     - [Dense](dense.html)
     - [Activation](activation.html)
     - [Flatten](flatten.html)
     - [Concatenate](concatenate.html)
+    - [Embedding](embedding.html)
     - [RepeatVector](repeatvector.html)
     - [Dropout](dropout.html)
     - [BatchNormalization](batchnormalization.html)

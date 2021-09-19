@@ -3,7 +3,7 @@ layout: document
 title: "RepeatVector"
 grand_upper_section: index
 upper_section: api/apitoc
-previous_section: api/concatenate
+previous_section: api/embedding
 next_section: api/dropout
 ---
 
