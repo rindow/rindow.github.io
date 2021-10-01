@@ -40,3 +40,17 @@ Learn the addition of two numbers using Recurrent Neural Network (RNN) on PHP.
 # 418+789=1207 : * 1207
 # 52+889 =941  : * 941
 ```
+
+Neural machine translation with attention
+----------------------------------------
+Machine translation of natural language using Recurrent Neural Network (RNN) and Attention
+
+[Neural machine translation with attention on PHP](neural-machine-translation-with-attention.html)
+
+```php
+# Input:   <start> fermez la porte ! <end>
+# Predict: close the door . <end>
+# Target:  <start> close the door . <end>
+```
+
+![Encoder and Decoder](images/neural-machine-translation-attention.png)

@@ -3,6 +3,7 @@ layout: document
 title: "Learning to add numbers with seq2seq on PHP"
 upper_section: tutorials/tutorials
 previous_section: tutorials/convolution-neural-network
+next_section: tutorials/neural-machine-translation-with-attention
 ---
 In this tutorial, we will build a model to learn the addition of two numbers using Recurrent Neural Network (RNN) on PHP.
 

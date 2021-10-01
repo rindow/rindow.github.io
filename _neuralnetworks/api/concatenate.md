@@ -3,7 +3,7 @@ layout: document
 title: "Concatenate"
 grand_upper_section: index
 upper_section: api/apitoc
-previous_section: api/flatten
+previous_section: api/expanddims
 next_section: api/embedding
 ---
 

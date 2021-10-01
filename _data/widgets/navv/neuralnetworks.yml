@@ -24,6 +24,8 @@ menu:
     link: /neuralnetworks/tutorials/convolution-neural-network.html
   - caption: Learning to add numbers with seq2seq on PHP
     link: /neuralnetworks/tutorials/learn-add-numbers-with-rnn.html
+  - caption: Neural machine translation with attention on PHP
+    link: /neuralnetworks/tutorials/neural-machine-translation-with-attention.html
 - caption: How to guide
   menu:
   - caption: Builders

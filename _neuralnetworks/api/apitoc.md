@@ -22,6 +22,7 @@ next_section: api/neuralnetworks
     - [Dense](dense.html)
     - [Activation](activation.html)
     - [Flatten](flatten.html)
+    - [ExpandDims](expanddims.html)
     - [Concatenate](concatenate.html)
     - [Embedding](embedding.html)
     - [RepeatVector](repeatvector.html)

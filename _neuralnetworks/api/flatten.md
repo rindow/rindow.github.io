@@ -4,7 +4,7 @@ title: "Flatten"
 grand_upper_section: index
 upper_section: api/apitoc
 previous_section: api/activation
-next_section: api/concatenate
+next_section: api/expanddims
 ---
 
 - **namespace**: Rindow\NeuralNetworks\Layer
