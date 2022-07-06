@@ -28,20 +28,20 @@ Installation procedure for Windows
 ----------------------------------
 PHP installation
 
-For Windows 10, install PHP for Windows.
+For Windows 10/11, install PHP for Windows.
 
-+ Download the PHP7.4 (or 7.2,7.3,8.0) x64 Thread Safe version from https://windows.php.net/download/.
++ Download the PHP8.0 (or 8.1) x64 Thread Safe version from https://windows.php.net/download/.
 + Unzip to the location of your choice.
 + Copy php.ini-development to create php.ini.
 + Set the execution PATH for PHP.EXE.
 + Make sure PHP works with PHP -v.
 
 ```shell
-C:TEMP>COPY C:\php\php74\php.ini-development C:\php\php74\php.ini
+C:TEMP>COPY C:\php\php81\php.ini-development C:\php\php81\php.ini
 
 Edit php.ini to your liking.
 
-C:TEMP>PATH %PATH%;C:\php\php74
+C:TEMP>PATH %PATH%;C:\php\php81
 C:TEMP>php -v
 PHP 8.1.7 (cli) (built: Jun  7 2022 21:45:53) (ZTS Visual C++ 2019 x64)
 Copyright (c) The PHP Group
@@ -127,7 +127,7 @@ Install php.
 + Install php-cli, php-mbstring, gd and unzip with the apt command.
 
 ```shell
-$ sudo apt install php-cli7.4 php7.4-mbstring php7.4-sqlite3 php7.4-gd unzip
+$ sudo apt install php-cli8.1 php8.1-mbstring php8.1-sqlite3 php8.1-gd unzip
 $ php -v
 PHP 8.1.7 (cli) (built: Jun 10 2022 12:23:36) (NTS)
 Copyright (c) The PHP Group

@@ -31,11 +31,11 @@ class MyModel extends AbstractModel
     public function __construct($backend,$builder)
     {
         parent::__construct($backend,$builder);
-        $this->dense1 = $builder->layers->Dense($units=128,[
-            'input_shape'=>[(int)array_product([28,28,1])],
-            'kernel_initializer'=>'he_normal',
-            'activation'=>'relu',
-        ]);
+        $this->dense1 = $builder->layers->Dense($units=128,
+            input_shape:[(int)array_product([28,28,1])],
+            kernel_initializer:'he_normal',
+            activation:'relu',
+        );
         $this->dense2 = $builder->layers->Dense($units=10);
     }
 
@@ -82,10 +82,10 @@ It receives three options:
 - A list of metrics. Specify a list of strings of items to be written to the history of training. Currently, only "accuracy" and "loss" can be specified.
 
 ```php
-$model->compile([
-    'loss'=>$nn->losses()->SparseCategoricalCrossentropy(['from_logits'=>true]),
-    'optimizer'=>'adam',
-]);
+$model->compile(
+    loss:$nn->losses()->SparseCategoricalCrossentropy(from_logits:true),
+    optimizer:'adam',
+);
 $model->summary();
 ```
 
@@ -95,7 +95,7 @@ The models are trained on the NDArray of input data and labels. For training a m
 
 ```php
 $history = $model->fit($train_img,$train_label,
-    ['epochs'=>5,'batch_size'=>256,'validation_data'=>[$test_img,$test_label]]);
+    epochs:5,batch_size:256,validation_data:[$test_img,$test_label]);
 ```
 
 Survey

@@ -41,10 +41,10 @@ so no matter how many times you call it, only one instance is created.
 Each builder can specify constructors arguments when instantiating the target.
 
 ```php
-$dense   = $nn->layers()->Dense(128,['input_shape'=>[10]]);
+$dense   = $nn->layers()->Dense(128,input_shape:[10]);
 $softmax = $nn->layers()->Softmax();
 $bce     = $nn->losses()->BinaryCrossEntropy();
-$adam    = $nn->optimizers()->Adam(['lr'=>0.001,'beta1'=> 0.9,'beta2'=>0.999]);
+$adam    = $nn->optimizers()->Adam(lr:0.001,beta1:0.9,beta2:0.999);
 $model   = $nn->models()->Sequential([$dense,$softmax]);
 $mnist   = $nn->datasets()->mnist();
 ```

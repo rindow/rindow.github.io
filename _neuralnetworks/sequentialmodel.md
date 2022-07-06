@@ -17,19 +17,19 @@ You can create a Sequential model by passing a list of layer instances with the 
 $mo = new Rindow\Math\Matrix\MatrixOperator();
 $nn = new Rindow\NeuralNetworks\Builder\NeuralNetworks($mo);
 
-$model = $nn->models()->Sequential([
-    $nn->layers()->Dense(128,['input_shape'=>[784]]),
+$model = $nn->models()->Sequential(
+    $nn->layers()->Dense(128,input_shape:[784]),
     $nn->layers()->Sigmoid(),
     $nn->layers()->Dense(10),
     $nn->layers()->Softmax(),
-]);
+);
 ```
 
 You can also simply add layers via the add() method:
 
 ```php
 $model = $nn->models()->Sequential();
-$model->add($nn->layers()->Dense(128,['input_shape'=>[784]]));
+$model->add($nn->layers()->Dense(128,input_shape:[784]));
 $model->add($nn->layers()->Sigmoid());
 ```
 
@@ -45,7 +45,7 @@ As such, the following snippets are strictly equivalent:
 
 ```php
 $model = $nn->models()->Sequential();
-$model->add($nn->layers()->Dense(128,['input_shape'=>[784]]));
+$model->add($nn->layers()->Dense(128,input_shape:[784]));
 ```
 
 Compilation
@@ -58,11 +58,11 @@ Before training a model, you need to configure the learning process, which is do
 
 ```php
 # For Adam,MeanSquaredError
-$model->compile([
-    'optimizer'=>$nn->optimizers()->Adam(),
-    'loss'=>$nn->losses()->MeanSquaredError(),
-    'metrics'=>['accuracy','loss'],
-]);
+$model->compile(
+    optimizer:$nn->optimizers()->Adam(),
+    loss:$nn->losses()->MeanSquaredError(),
+    metrics:['accuracy','loss'],
+);
 ```
 ```php
 # For Defaults: SparseCategoricalCrossEntropy, SGD
@@ -77,24 +77,24 @@ The models are trained on the NDArray of input data and labels. For training a m
 # classification model with 3 classes
 $model = $nn->models()->Sequential([
     $nn->layers()->Dense(128,
-        ['input_shape'=>[3],'kernel_initializer'=>'he_normal']),
+        input_shape:[3],kernel_initializer:'he_normal'),
     $nn->layers()->ReLU(),
     $nn->layers()->Dense(3),
     $nn->layers()->Softmax(),
 ]);
-$model->compile([
-    'optimizer'=>$nn->optimizers()->Adam(),
-    #'loss'=>$nn->losses()->SparseCategoricalCrossEntropy(), <<== default
-    'metrics'=>['accuracy','loss'],
-]);
+$model->compile(
+    optimizer:$nn->optimizers()->Adam(),
+    #loss:$nn->losses()->SparseCategoricalCrossEntropy(), <<== default
+    metrics:['accuracy','loss'],
+);
 # Classification sample data
 use Interop\Polite\Math\Matrix\NDArray;
 $data = $mo->asType($mo->random()->choice(10,300)->reshape([100,3]),NDArray::float32);
 $labels = $mo->argMax($data,$axis=1);
 # Train the model
-$history = $model->fit($data,$labels,[
-        'epochs'=>10,'batch_size'=>8,'verbose'=>1,
-]);
+$history = $model->fit($data,$labels,
+        epochs:10,batch_size:8,verbose:1,
+);
 ```
 
 Survey

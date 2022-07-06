@@ -4,6 +4,38 @@ title: "Rindow Neural Networks"
 meta_description: "Rindow Neural Networks is a high-level neural networks library for PHP. The goal is to be able to describe a machine learning model on PHP as well as Python using a description method similar to Keras."
 next_section: gettingstarted
 ---
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-4">
+      <!--svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 140x140"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"/><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg -->
+      <img class="bd-placeholder-img rounded" width="200" height="200" alt="Easy to build" src="images/easy-to-build.png">
+      <h3>Easy to build</h3>
+      <p>This is a high-dimensional neural network library that allows you to easily build a model by combining abundant DNN, CNN, RNN, Attention and other components.</p>
+    </div><!-- /.col-lg-4 -->
+    <div class="col-lg-4">
+      <!--svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 140x140"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"/><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg-->
+      <img class="bd-placeholder-img rounded" width="200" height="200" alt="Easy to check" src="images/easy-to-check.png">
+      <h3>Easy to check</h3>
+      <p>Models are easy to train, and peripheral tools are available to graph the learning process of the model.</p>
+    </div><!-- /.col-lg-4 -->
+    <div class="col-lg-4">
+      <!--svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 140x140"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"/><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg-->
+      <img class="bd-placeholder-img rounded" width="200" height="200" alt="Easy Acceleration" src="/assets/themes/rindow/img/gears.svg">
+      <h3>Easy Acceleration</h3>
+      <p>PHP extensions that can be as fast as the CPU version of Tensorflow and GPU extensions that work on laptops without NVidia are available.</p>
+    </div><!-- /.col-lg-4 -->
+  </div><!-- /.row -->
+  <div class="row">
+    <div class="col-lg-4">
+        <p>.</p>
+    </div><!-- /.col-lg-4 -->
+  </div><!-- /.row -->
+</div><!-- /.container -->
+
+
+What is the Rindow Neural Networks
+----------------------------------
 The Rindow Neural Networks is a high-level neural networks library for PHP.
 You can achieve powerful machine learning on PHP.
 
@@ -14,6 +46,7 @@ You can achieve powerful machine learning on PHP.
 - You don't need a dedicated machine learning environment. It can be done on an inexpensive laptop.
 - Comes with interesting sample programs.
 
+
 The goal is to make it easy to write machine learning models on PHP, just like Keras on Python.
 
 If you use the rindow_openblas php extension,
@@ -21,7 +54,7 @@ you get can calculate at speed close to CPU version of tensorflow.
 The trained model trained on your laptop is available on general web hosting.
 You can also benefit from deep learning on popular PHP web hosting services.
 
-It supports GPU acceleration using OpenCL with rindow_clblas. This is an experimental attempt. The speed is not very fast yet. Only compatible with the Windows version.
+It supports GPU acceleration using OpenCL with rindow_clblas. Only compatible with the Windows version.
 
 It has the following features.
 
@@ -38,8 +71,26 @@ Rindow Neural Networks usually work with:
 - Rindow OpenCL extension: PHP extension of OpenCL operating
 - Rindow CLBlast extension: PHP extension of BLAS on GPU (OpenCL)
 
+
 Sample programs
 ---------------
+<div class="container">
+  <div class="row">
+    <div class="col-lg-4">
+      <!--svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 140x140"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"/><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg -->
+      <img class="bd-placeholder-img rounded" width="200" height="200" alt="sample1" src="images/basic-classification.png">
+    </div><!-- /.col-lg-4 -->
+    <div class="col-lg-4">
+      <!--svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 140x140"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"/><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg-->
+      <img class="bd-placeholder-img rounded" width="200" height="200" alt="sample2" src="images/easy-to-check.png">
+    </div><!-- /.col-lg-4 -->
+    <div class="col-lg-4">
+      <!--svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 140x140"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"/><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg-->
+      <img class="bd-placeholder-img rounded" width="200" height="200" alt="sample3" src="images/neural-machine-translation.png">
+    </div><!-- /.col-lg-4 -->
+  </div><!-- /.row -->
+</div><!-- /.container -->
+
 - Images basic classification with Full-connected Neural Networks(FNN)
 - Images classification with Convolution Neural Networks(CNN)
 - Numeric addition text generation with Recurrent Neural Networks(RNN)
@@ -92,7 +143,7 @@ Recommends
 - GD / GD2  extension ( Used for graph display )
 - pdo_sqlite extension ( Used to save the trained model )
 - Rindow OpenBLAS extension ( Used for high-speed calculation )
-- Rindow OpenCL extension  / Rindow CLBlast extension  ( Use GPU experimentally )
+- Rindow OpenCL extension  / Rindow CLBlast extension  ( Windows only )
 
 Release Notes
 -------------
