@@ -26,13 +26,13 @@ Methods
 ### constructor
 ```php
 $builer->AveragePooling2D(
-    array $options=[
-        'pool_size'=>2,
-        'strides'=>null,
-        'padding'=>"valid",
-        'data_format'=>'channels_last',
-        'input_shape'=>array $shape=null,
-    ]
+    int|array $pool_size=2,
+    int|array $strides=null,
+    string $padding='valid',
+    string $data_format='channels_last',
+    int|array $dilation_rate=1,
+    array $input_shape=null,
+    string $name=null,
 )
 ```
 You can create a AveragePooling2D layer instances with the Laqyer Builder.
@@ -58,7 +58,5 @@ Output shape
 Examples
 
 ```php
-$model->add($nn->layers()->AveragePooling2D([
-    'pool_size'=>2,
-]));
+$model->add($nn->layers()->AveragePooling2D(pool_size:2));
 ```

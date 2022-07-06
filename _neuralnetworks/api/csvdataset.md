@@ -21,18 +21,16 @@ Methods
 ```php
 $builer->CSVDataset(
     string $path,
-    array $options=[
-        'pattern'=>null,
-        'batch_size'=>32,
-        'skip_header'=>false,
-        'filter'=>null,
-        'crawler'=>null,
-        'shuffle'=>false,
-        'length'=>0,
-        'delimiter'=>',',
-        'enclosure'=>'"',
-        'escape'=>'\\',
-    ]
+    string $pattern=null,
+    int $batch_size=32,
+    bool $skip_header=false,
+    DatasetFilter $filter=null,
+    object $crawler=null,
+    bool $shuffle=false,
+    int $length=0,
+    string $delimiter=',',
+    string $enclosure='"',
+    string $escape='\\',
 )
 ```
 You can create a CSVDataset instances with the Data Builder.

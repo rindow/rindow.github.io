@@ -27,5 +27,5 @@ Examples
 ```php
 $model->add($nn->layers()->Activation('sigmoid'));
 ...
-$model->add($nn->layers()->Dense(10,['activation'=>'sigmoid']));
+$model->add($nn->layers()->Dense(10,activation:'sigmoid'));
 ```

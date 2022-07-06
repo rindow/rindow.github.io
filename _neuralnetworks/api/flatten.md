@@ -24,9 +24,8 @@ Methods
 ### constructor
 ```php
 $builer->Flatten(
-    array $options=[
-        'input_shape'=>array $shape=null,
-    ]
+    array $input_shape=null,
+    string $name=null,
 )
 ```
 You can create a Flatten layer instances with the Layer Builder.
@@ -39,7 +38,7 @@ Options
 Examples
 
 ```php
-$model->add($nn->layers()->Flatten([
-    'input_shape'=>[28,28,3],
-]));
+$model->add($nn->layers()->Flatten(
+    input_shape:[28,28,3],
+));
 ```

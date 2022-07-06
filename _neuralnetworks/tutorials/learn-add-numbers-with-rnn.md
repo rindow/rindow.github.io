@@ -250,27 +250,27 @@ $output_length = $DIGITS + 1;
 
 $model = $nn->models()->Sequential([
     $nn->layers()->Embedding(count($input_dic), $WORD_VECTOR,
-        ['input_length'=>$input_length]
+        input_length:$input_length
     ),
     # Encoder
-    $nn->layers()->GRU($UNITS,['go_backwards'=>$REVERSE]),
+    $nn->layers()->GRU($UNITS,go_backwards:$REVERSE),
     # Expand to answer length and peeking hidden states
     $nn->layers()->RepeatVector($output_length),
     # Decoder
-    $nn->layers()->GRU($UNITS, [
-        'return_sequences'=>true,
-        'go_backwards'=>$REVERSE,
-    ]),
+    $nn->layers()->GRU($UNITS,
+        return_sequences:true,
+        go_backwards:$REVERSE,
+    ),
     # Output
     $nn->layers()->Dense(
         count($target_dic),
-        ['activation'=>'softmax']
+        activation:'softmax'
     ),
 ]);
-$model->compile([
-    'loss'=>'sparse_categorical_crossentropy',
-    'optimizer'=>'adam',
-]);
+$model->compile(
+    loss:'sparse_categorical_crossentropy',
+    optimizer:'adam',
+);
 $model->summary();
 # Layer(type)                  Output Shape               Param #
 # ==================================================================
@@ -310,11 +310,9 @@ $BATCH_SIZE = 8;
 $history = $model->fit(
     $x_train,
     $y_train,
-    [
-        'epochs'=>$EPOCHS,
-        'batch_size'=>$BATCH_SIZE,
-        'validation_data'=>[$x_val, $y_val],
-    ]
+    epochs:$EPOCHS,
+    batch_size:$BATCH_SIZE,
+    validation_data:[$x_val, $y_val],
 );
 # Train on 18000 samples, validation on 2000 samples
 # Epoch 1/10 [.........................] 152 sec. remaining:00:00  - 159 sec.

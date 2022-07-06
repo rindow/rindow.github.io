@@ -3,7 +3,7 @@ layout: document
 title: "Rindow Neural Networks installation"
 upper_section: index
 previous_section: gettingstarted
-next_section: builders
+next_section: tutorials/tutorials
 ---
 
 - [Operating environment](#operating-environment)
@@ -15,12 +15,12 @@ Operating environment
 ---------------------
 Rindow Neural Networks has been tested in the following operating environment.
 
-- PHP 7.2, 7.3, 7.4, 8.0
-- Windows 10 20H2
-- Ubuntu 18.04, 20.04
+- PHP 8.0, 8.1 (If you want to use it on PHP 7.x environment, please use Release 1.x.)
+- Windows 10 20H2 or later.
+- Ubuntu 18.04, 20.04, 22.04
 - AMD CPU/APU 64bit(SSE2)
-- OpenBLAS (0.3.13 Windows-x64, 0.3.8 Ubuntu-2004, 0.2.20 Ubuntu-1804)
-- CLBlast  (1.5.1 Windows-x64)
+- OpenBLAS (0.3.20 Windows-x64, 0.3.20 Ubuntu-2204, 0.3.8 Ubuntu-2004, 0.2.20 Ubuntu-1804)
+- CLBlast  (1.5.2 Windows-x64)
 
 It will also work on Intel CPUs and Integrated Graphics with OpenCL Drivers.
 
@@ -43,10 +43,10 @@ Edit php.ini to your liking.
 
 C:TEMP>PATH %PATH%;C:\php\php74
 C:TEMP>php -v
-PHP 7.4.13 (cli) (built: Nov 24 2020 12:43:32) ( ZTS Visual C++ 2017 x64 )
+PHP 8.1.7 (cli) (built: Jun  7 2022 21:45:53) (ZTS Visual C++ 2019 x64)
 Copyright (c) The PHP Group
-Zend Engine v3.4.0, Copyright (c) Zend Technologies
-    with Zend OPcache v7.4.13, Copyright (c), by Zend Technologies
+Zend Engine v4.1.7, Copyright (c) Zend Technologies
+    with Zend OPcache v8.1.7, Copyright (c), by Zend Technologies
 C:TEMP>
 ```
 
@@ -72,14 +72,14 @@ Install the required PHP extensions for Rindow Neural Networks.
      - memory_limit = 8G
      - extension = rindow_openblas
      - extension = pdo_sqlite
-     - extension = gd2
+     - extension = gd
      - extension = mbstring
      - extension = openssl
 + Make sure rindow_openblas is loaded with PHP -m.
 
 ```shell
-C:TEMP>PATH %PATH%;C:\OpenBLAS\OpenBLAS-0.3.13-x64\bin
-C:TEMP>COPY php_rindow_openblas-0.1.6-7.4-ts-vc15-x64\php_rindow_openblas.dll C:\php\php-7.4.13-Win32-vc15-x64\ext
+C:TEMP>PATH %PATH%;C:\OpenBLAS\OpenBLAS-0.3.20-x64\bin
+C:TEMP>COPY rindow-openblas-php8.1-0.3.0-openblas0.3.20-win-ts-vs16-x64\php_rindow_openblas.dll C:\php\php-8.1.7-Win32-vs16-x64\ext
 
 Edit php.ini
 
@@ -129,10 +129,10 @@ Install php.
 ```shell
 $ sudo apt install php-cli7.4 php7.4-mbstring php7.4-sqlite3 php7.4-gd unzip
 $ php -v
-PHP 7.4.13 (cli) (built: Nov 28 2020 06:24:59) ( NTS )
+PHP 8.1.7 (cli) (built: Jun 10 2022 12:23:36) (NTS)
 Copyright (c) The PHP Group
-Zend Engine v3.4.0, Copyright (c) Zend Technologies
-    with Zend OPcache v7.4.13, Copyright (c), by Zend Technologies
+Zend Engine v4.1.7, Copyright (c) Zend Technologies
+    with Zend OPcache v8.1.7, Copyright (c), by Zend Technologies
 ```
 
 Install composer.
@@ -151,7 +151,7 @@ php "${dir}/composer.phar" "$@"
 ^D
 $ chmod +x composer
 $ composer -V
-Composer version 2.0.8 2020-12-03 17:20:38
+Composer version 2.3.7 2022-06-06 16:43:28
 ```
 
 Install the required PHP extensions for Rindow Neural Networks.
@@ -161,7 +161,7 @@ Install the required PHP extensions for Rindow Neural Networks.
 + Make sure rindow_openblas is loaded with PHP -m.
 
 ```shell
-$ sudo apt install ./rindow-openblas-php7.4_0.2.0-1+ubuntu20.04_amd64.deb
+$ sudo apt install ./rindow-openblas-php8.1_0.3.0-1+ubuntu22.04_amd64.deb
 $ php -m
 [PHP Modules]
 ...
@@ -213,9 +213,9 @@ Download binaries and setup PHP extension and libraries.
 Set environment variable.
 
 ```shell
-C:TEMP>PATH %PATH%;C:\CLBlast\CLBlast-1.5.1-Windows-x64\lib
-C:TEMP>COPY rindow_opencl-php74-0.1.1-win-ts-vc15-x64\php_rindow_opencl.dll C:\php\php-7.4.13-Win32-vc15-x64\ext
-C:TEMP>COPY rindow_clblast-php74-0.1.2-clblast1.5.1-win-ts-vc15-x64\php_rindow_clblast.dll C:\php\php-7.4.13-Win32-vc15-x64\ext
+C:TEMP>PATH %PATH%;C:\CLBlast\CLBlast-1.5.2-Windows-x64\lib
+C:TEMP>COPY rindow_opencl-php81-0.1.4-win-ts-vs16-x64\php_rindow_opencl.dll C:\php\php-8.1.7-Win32-vs16-x64\ext
+C:TEMP>COPY rindow_clblast-php81-0.1.2-clblast1.5.2-win-ts-vs16-x64\php_rindow_clblast.dll C:\php\php-8.1.7-Win32-vs16-x64\ext
 
 C:tutorials>RINDOW_NEURALNETWORKS_BACKEND=rindowclblast
 C:tutorials>export RINDOW_NEURALNETWORKS_BACKEND

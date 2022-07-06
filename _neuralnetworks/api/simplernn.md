@@ -19,18 +19,17 @@ Methods
 ```php
 $builer->SimpleRNN(
     int $units,
-    array $options=[
-        'input_shape'=>null,
-        'activation'=>'tanh',
-        'use_bias'=>true,
-        'kernel_initializer'=>'glorot_uniform',
-        'recurrent_initializer'=>'orthogonal',
-        'bias_initializer'=>'zeros',
-        'return_sequences'=>false,
-        'return_state'=>false,
-        'go_backwards'=>false,
-        'stateful'=>false,
-    ]
+    array $input_shape=null,
+    string|object $activation='tanh',
+    bool $use_bias=true,
+    string|callable $kernel_initializer='glorot_uniform',
+    string|callable $recurrent_initializer='orthogonal',
+    string|callable $bias_initializer='zeros',
+    bool $return_sequences=false,
+    bool $return_state=false,
+    bool $go_backwards=false,
+    bool $stateful=false,
+    string $name=null,
 )
 ```
 You can create a SimpleRNN layer instances with the Layer Builder.
@@ -55,9 +54,10 @@ Options
 ```php
 public function forward(
     NDArray $inputs,
-    bool $training,
+    Variable|bool $training,
     array $initialStates=null,
-    array $options=null)
+    array $options=null
+)
 ```
 Arguments
 - **inputs**: A 3D NDArray with shape [batch, timesteps, feature].
@@ -85,7 +85,7 @@ The states is list of state. Shape of it is 2D [batchsize, units].
 
 ```php
 $rnn = $builder->layers()->SimpleRNN($units=256,
-    ['return_sequences'=>true,'return_state'=>true]);
+    return_sequences:true,return_state:true);
 ....
 $inputs = $mo->ones([64,32,128]);
 $initialStates = [$mo->ones([64,256])];
@@ -106,28 +106,14 @@ class Foo extends AbstractModel
     {
         ...
         $this->rnn = $builder->layers()->SimpleRNN($units=256,
-            ['return_sequences'=>true,'return_state'=>true]);
+            return_sequences:xtrue,return_state:true);
         ....
     }
 
-    protected function buildLayers(.....) : void
-    {
-        ...
-        [$outputShape,$statesShapes] = $this->registerLayer($this->rnn,$inputShape);
-        ...
-    }
-
-    protected function forwardStep(.....) : NDArray
+    protected function call(.....) 
     {
         ...
         [$outputs,$states] = $this->rnn->forward($inputs,$training,$initialStates);
-        ...
-    }
-
-    protected function backwardStep(.....) : NDArray
-    {
-        ...
-        [$dInputs,$dInitialStates] = $this->rnn->backward($dOutputs,$dStates);
         ...
     }
 }

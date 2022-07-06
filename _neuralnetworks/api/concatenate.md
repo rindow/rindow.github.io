@@ -26,10 +26,9 @@ Methods
 ### constructor
 ```php
 $builer->Concatenate(
-    array $options=[
-        'axis'=>int $axis=-1,
-        'input_shape'=>array $shape=null,
-    ]
+    int $axis=-1,
+    array $input_shapes=null,
+    string $name=null,
 )
 ```
 You can create a Concatenate layer instances with the Layer Builder.
@@ -74,24 +73,10 @@ class Foo extends AbstractModel
         ....
     }
 
-    protected function buildLayers(.....) : void
-    {
-        ...
-        $outputShape = $this->registerLayer($this->concat,[$shape1,$shape2]);
-        ...
-    }
-
-    protected function forwardStep(.....) : NDArray
+    protected function call(.....) : NDArray
     {
         ...
         $outputs = $this->concat->forward([$input1, $input2],$training);
-        ...
-    }
-
-    protected function backwardStep(.....) : NDArray
-    {
-        ...
-        [$dInput1,$dInput2] = $this->concat->backward($dOutputs);
         ...
     }
 }

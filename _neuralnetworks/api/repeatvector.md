@@ -4,7 +4,7 @@ title: "RepeatVector"
 grand_upper_section: index
 upper_section: api/apitoc
 previous_section: api/embedding
-next_section: api/dropout
+next_section: api/gather
 ---
 
 - **namespace**: Rindow\NeuralNetworks\Layer
@@ -27,9 +27,8 @@ Methods
 ```php
 $builer->RepeatVector(
     int $repeats,
-    array $options=[
-        'input_shape'=>array $shape=null,
-    ]
+    array $input_shape=null,
+    string $name=null,
 )
 ```
 You can create a Concatenate layer instances with the Layer Builder.

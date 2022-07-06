@@ -18,17 +18,16 @@ Methods
 ### constructor
 ```php
 $builer->Activation(
-    $activation,
-    array $options=[
-        'input_shape'=>array $shape=null,
-    ]
+    string|object $activation,
+    array $input_shape=null,
+    string $name=null,
 )
 ```
 You can create a Activation layer instances with the Layer Builder.
 
 Argument
 
-- **activation**: Strings and activation function object instances are allowed as arguments. 'sigmoid','softmax', etc.
+- **activation**: Strings and activation function object instances are allowed as arguments. 'sigmoid','softmax', 'relu', 'tanh', 'linear'.
 
 Options
 

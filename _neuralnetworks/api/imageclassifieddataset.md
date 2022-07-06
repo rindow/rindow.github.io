@@ -31,24 +31,22 @@ Methods
 ```php
 $builer->ImageClassifiedDataset(
     string $path,
-    array $options=[
-        'pattern'=>null,
-        'batch_size'=>32,
-        'crawler'=>null,
-        'filter'=>null,
-        'unclassified'=>false,
-        'shuffle'=>false,
-        'limit'=>null,
-        'restricted_by_class'=>null,
-        'height'=>32,
-        'width'=>32,
-        'channels'=>3,
-        'fit'=>true,
-        'dtype'=>NDArray::uint8,
-        'dtype_class_id'=>NDArray::int32,
-        'classnames'=>[],
-        'verbose'=>false,
-    ]
+    int $height=32,
+    int $width=32,
+    int $channels=3,
+    bool $fit=true,
+    int $dtype=NDArray::uint8,
+    int $dtype_class_id=NDArray::int32,
+    array $classnames=[],
+    int $verbose=null,
+    string $pattern=null,
+    int $batch_size=32,
+    object $crawler=null,
+    DatasetFilter $filter=null,
+    bool $unclassified=false,
+    bool $shuffle=false,
+    int $limit=null,
+    array $restricted_by_class=null,
 )
 ```
 You can create a ImageClassifiedDataset instances with the Data Builder.
@@ -80,7 +78,7 @@ use Rindow\NeuralNetworks\Builder\NeuralNetworks;
 $nn = new NeuralNetworks($mo);
 $dataset = $nn->data()->ImageClassifiedDataset(
     '/data/path/image',
-    ['pattern'=>'@.*\\.png@',]);
+    pattern:'@.*\\.png@');
 
 foreach ($dataset as $batchdataset) {
     [$train,$label] = $batchdataset;
@@ -148,9 +146,7 @@ use Rindow\NeuralNetworks\Builder\NeuralNetworks;
 $nn = new NeuralNetworks($mo);
 $dataset = $nn->data()->ImageClassifiedDataset(
     '/dataset/text',
-    [
-        'pattern'=>'@.*\\.png@',
-    ]
+    pattern:'@.*\\.png@',
 );
 [$inputs,$tests] = $dataset->loadData();
 $classnames = $dataset->classnames();

@@ -128,12 +128,12 @@ A simple model with a straight line of data flow can be built with a sequential 
 ```php
 $model = $nn->models()->Sequential([
     $nn->layers()->Dense($units=128,
-        ['input_shape'=>[784],
-            'kernel_initializer'=>'he_normal',
-        'activation'=>'relu',
-        ]),
+        input_shape:[784],
+        kernel_initializer:'he_normal',
+        activation:'relu',
+        ),
     $nn->layers()->Dense($units=10,
-        ['activation'=>'softmax']),
+        activation:'softmax'),
 ]);
 ```
 
@@ -161,10 +161,10 @@ Backpropagation is performed from the numerical value of this error, and the par
 It is the optimizer that updates it. adam is one of the best optimizers and is often used on modern models.
 
 ```php
-$model->compile([
-    'loss'=>'sparse_categorical_crossentropy',
-    'optimizer'=>'adam',
-]);
+$model->compile(
+    loss:'sparse_categorical_crossentropy',
+    optimizer:'adam',
+);
 $model->summary();
 # Layer(type)                  Output Shape               Param #
 # ==================================================================
@@ -184,7 +184,7 @@ Give the model data and train.
 
 ```php
 $history = $model->fit($train_img,$train_label,
-    ['epochs'=>5,'batch_size'=>256,'validation_data'=>[$test_img,$test_label]]);
+    epochs:5, batch_size:256, validation_data:[$test_img,$test_label]);
 # Train on 60000 samples, validation on 10000 samples
 # Epoch 1/5 ........................ - 13 sec.
 #  loss:0.4703 accuracy:0.8711 val_loss:0.2444 val_accuracy:0.9332

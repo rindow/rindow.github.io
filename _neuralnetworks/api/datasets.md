@@ -3,8 +3,8 @@ layout: document
 title: "Datasets"
 grand_upper_section: index
 upper_section: api/apitoc
-previous_section: api/optimizers
-next_section: api/sequential
+previous_section: api/gradient
+next_section: api/data
 ---
 Overview
 -------

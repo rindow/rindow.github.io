@@ -4,7 +4,7 @@ title: "AbstractModel"
 grand_upper_section: index
 upper_section: api/apitoc
 previous_section: api/modelloader
-next_section: api/dynamicmodel
+next_section: api/dense
 ---
 
 - **namespace**: Rindow\NeuralNetworks\Model

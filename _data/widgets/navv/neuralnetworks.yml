@@ -63,6 +63,13 @@ menu:
       link: /neuralnetworks/custommodel.html#survey
     - caption: Prediction
       link: /neuralnetworks/custommodel.html#prediction
+  - caption: Automatic Differentiation
+    link: /neuralnetworks/autodiff.html
+    menu:
+    - caption: Automatic Differentiation and Gradients
+      link: /neuralnetworks/autodiff.html#automatic-differentiation-and-gradients
+    - caption: Calculation graphs
+      link: /neuralnetworks/autodiff.html#calculation-graphs
 
 - caption: API reference
   link: /neuralnetworks/api/apitoc.html

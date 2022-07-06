@@ -34,31 +34,32 @@ Methods
 ```php
 $builer->TextClassifiedDataset(
     string $path,
-    array $options=[
-        'pattern'=>null,
-        'batch_size'=>32,
-        'crawler'=>null,
-        'unclassified'=>false,
-        'shuffle'=>false,
-        'limit'=>null,
-        'restricted_by_class'=>null,
-        'tokenizer'=>null,
-        'classnames'=>[],
-        'num_words'=>null,
-        'tokenizer_filters'=>"!\"\'#$%&()*+,-./:;<=>?@[\\]^_`{|}~\t\n\r",
-        'specials'=>null,
-        'lower'=>true,
-        'split'=>" ",
-        'char_level'=>false,
-        'oov_token'=>null,
-        'preprocessor'=>null,
-        'maxlen'=>null,
-        'dtype'=>NDArray::int32,
-        'padding'=>"post",
-        'truncating'=>"post",
-        'value'=>0,
-        'verbose'=>false,
-    ]
+    int $verbose=null,
+    string $pattern=null,
+    int $batch_size=32,
+    object $crawler=null,
+    DatasetFilter $filter=null,
+    bool $unclassified=false,
+    bool $shuffle=false,
+    int $limit=null,
+    array $restricted_by_class=null,
+    object $tokenizer=null,
+    array $classnames=[],
+    callable $analyzer=null,
+    int $num_words=null,
+    string $tokenizer_filters="!\"\'#$%&()*+,-./:;<=>?@[\\]^_`{|}~\t\n\r",
+    string $specials=null,
+    bool $lower=true,
+    string $split=" ",
+    bool $char_level=false,
+    string $oov_token=null,
+    int $document_count=0,
+    object $preprocessor=null,
+    int $maxlen=null,
+    int $dtype=NDArray::int32,
+    string $padding="post",
+    string $truncating="post",
+    float|int|bool $value=0,
 )
 ```
 You can create a TextClassifiedDataset instances with the Data Builder.
@@ -97,7 +98,7 @@ use Rindow\NeuralNetworks\Builder\NeuralNetworks;
 $nn = new NeuralNetworks($mo);
 $dataset = $nn->data()->TextClassifiedDataset(
     '/data/path/text',
-    ['pattern'=>'@.*\\.txt@',]);
+    pattern:'@.*\\.txt@');
 
 foreach ($dataset as $batchdataset) {
     [$train,$label] = $batchdataset;
@@ -168,10 +169,8 @@ use Rindow\NeuralNetworks\Builder\NeuralNetworks;
 $nn = new NeuralNetworks($mo);
 $dataset = $nn->data()->TextClassifiedDataset(
     '/dataset/text',
-    [
-        'pattern'=>'@.*\\.txt@',
-        'batch_size'=>8,
-    ]
+    pattern:'@.*\\.txt@',
+    batch_size:8,
 );
 
 $dataset->fitOnTexts();
@@ -199,10 +198,8 @@ use Rindow\NeuralNetworks\Builder\NeuralNetworks;
 $nn = new NeuralNetworks($mo);
 $dataset = $nn->data()->TextClassifiedDataset(
     '/dataset/text',
-    [
-        'pattern'=>'@.*\\.txt@',
-        'batch_size'=>8,
-    ]
+    pattern:'@.*\\.txt@',
+    batch_size:8,
 );
 [$inputs,$tests] = $dataset->loadData();
 $classnames = $dataset->classnames();

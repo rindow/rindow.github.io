@@ -2,7 +2,7 @@
 layout: document
 title: "How to use Builders"
 upper_section: index
-previous_section: install
+previous_section: tutorials/tutorials
 next_section: sequentialmodel
 ---
 The instance of each PHP class is created using builder. This is to allow replacement as a module.

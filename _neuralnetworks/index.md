@@ -40,7 +40,6 @@ Rindow Neural Networks usually work with:
 
 Sample programs
 ---------------
-
 - Images basic classification with Full-connected Neural Networks(FNN)
 - Images classification with Convolution Neural Networks(CNN)
 - Numeric addition text generation with Recurrent Neural Networks(RNN)
@@ -82,8 +81,8 @@ It is more unnatural to not be able to use PHP.
 Requirements
 ------------
 
-- PHP 7.2, 7.3, 7.4, 8.0.
-- Windows10 or Linux environment is required to use rindow_openblas extension.
+- PHP 8.0. 8,1 (If you want to use it on PHP 7.x, please use Version 1.x.)
+- Windows or Linux environment is required to use rindow_openblas extension.
 - Rindow Math Matrix
 
 Recommends
@@ -94,6 +93,14 @@ Recommends
 - pdo_sqlite extension ( Used to save the trained model )
 - Rindow OpenBLAS extension ( Used for high-speed calculation )
 - Rindow OpenCL extension  / Rindow CLBlast extension  ( Use GPU experimentally )
+
+Release Notes
+-------------
+The release notes are below
+
+- [Rindow Neuralnetworks](https://github.com/rindow/rindow-neuralnetworks/releases)
+- [Rindow Math Matrix](https://github.com/rindow/rindow-math-matrix/releases)
+- [Rindow OpenBLAS](https://github.com/rindow/rindow-openblas/releases)
 
 Note
 ----

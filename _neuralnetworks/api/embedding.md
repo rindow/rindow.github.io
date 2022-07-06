@@ -24,9 +24,9 @@ Methods
 $builer->Embedding(
     int $inputDim,
     int $outputDim,
-    array $options=[
-        'input_length'=>null,
-    ]
+    int $input_length=null,
+    string|callable $kernel_initializer='random_uniform',
+    string $name=null,
 )
 ```
 You can create a Attention layer instances with the Layer Builder.
@@ -54,7 +54,7 @@ Example of usage
 $embedding = $builder->layers()->Embedding(
     $inputDim=5
     $outputDim=4,
-    ['input_length'=>3]
+    input_length:3
 );
 ....
 $sequences = $mo->array([[4,3,1],[2,1,0]],NDArray::int32);

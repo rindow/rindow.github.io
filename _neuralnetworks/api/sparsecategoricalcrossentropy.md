@@ -29,7 +29,7 @@ You can create a SparseCategoricalCrossEntropy loss function instances with the 
 Examples
 
 ```php
-$model->compile([
-    'loss'=>$nn->losses()->SparseCategoricalCrossEntropy(),
-]);
+$model->compile(
+    loss:$nn->losses()->SparseCategoricalCrossEntropy(),
+);
 ```

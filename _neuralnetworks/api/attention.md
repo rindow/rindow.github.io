@@ -26,10 +26,8 @@ Methods
 ### constructor
 ```php
 $builer->Attention(
-    array $options=[
-        'input_shapes'=>null,
-        'return_attention_scores'=>false,
-    ]
+    array $input_shapes=>null,
+    string $name=null,
 )
 ```
 You can create a Attention layer instances with the Layer Builder.
@@ -55,14 +53,13 @@ the outputs shape is [batch_size, Tq, dim].
 the scores shape is [batch_size, Tq, Tv]
 
 ```php
-$attention = $builder->layers()->Attention([
-    'return_attention_scores'=>true,
-]);
+$attention = $builder->layers()->Attention();
 ....
 $query = $mo->ones([4,3,5]);
 $value = $mo->ones([4,2,5]);
 ....
-[$outputs,$scores] = $attention->forward([$query,$value],true);
+[$outputs,$scores] = $attention->forward([$query,$value],true,
+                                    ['return_attention_scores'=>true]);
 # $outputs->shape() : [4,3,5]
 # $scores->shape() : [4,3,2]
 ```
@@ -80,24 +77,10 @@ class Foo extends AbstractModel
         ....
     }
 
-    protected function buildLayers(.....) : void
-    {
-        ...
-        $outputShape = $this->registerLayer($this->attention,[$keyshape,$valueshape]);
-        ...
-    }
-
-    protected function forwardStep(.....) : NDArray
+    protected function call(.....) : NDArray
     {
         ...
         $outputs = $this->attention->forward([$key, $value],$training);
-        ...
-    }
-
-    protected function backwardStep(.....) : NDArray
-    {
-        ...
-        [$dKey,$dValue] = $this->attention->backward($dOutputs);
         ...
     }
 }

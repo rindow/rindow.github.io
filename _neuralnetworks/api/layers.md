@@ -22,9 +22,12 @@ Layers
 
 - [**Dense**](dense.html): Regular densely-connected Neural Networks layer.
 - [**Flatten**](flatten.html): Flattens the input.
-- [**ReLU**](relu.html): Rectified Linear Unit activation function.
-- [**Sigmoid**](sigmoid.html): Sigmoid activation function.
-- [**Softmax**](softmax.html): Softmax activation function.
+- [**ExpandDims**](expanddims.html): ExpandDims the input.
+- [**Concatenate**](concatenate.html): Concatenate the input.
+- [**Embedding**](embedding.html): Embedding the input.
+- [**RepeatVector**](repeatvector.html): RepeatVector the input.
+- [**Gather**](gather.html): Gather the input.
+- [**Max**](max.html): Max the input.
 - [**Dropout**](dropout.html): Applies Dropout to the input.
 - [**BatchNormalization**](batchnormalization.html): Normalize the previous activation function layer at each batch.
 - [**Conv1D**](conv1d.html): 1D convolution layer.
@@ -36,7 +39,25 @@ Layers
 - [**AveragePooling1D**](averagepooling1d.html): Average pooling operation for 1D temporal data.
 - [**AveragePooling2D**](averagepooling2d.html): Average pooling operation for 2D temporal data.
 - [**AveragePooling3D**](averagepooling3d.html): Average pooling operation for 3D temporal data.
+- [**GlobalMaxPooling1D**](globalmaxpooling1d.html)
+- [**GlobalMaxPooling2D**](globalmaxpooling2d.html)
+- [**GlobalMaxPooling3D**](globalmaxpooling3d.html)
+- [**GlobalAveragePooling1D**](globalaveragepooling1d.html)
+- [**GlobalAveragePooling2D**](globalaveragepooling2d.html)
+- [**GlobalAveragePooling3D**](globalaveragepooling3d.html)
+- [**SimpleRNN**](simplernn.html)
+- [**LSTM**](lstm.html)
+- [**GRU**](gru.html)
+- [**Attention**](attention.html)
 
+Activations
+-----------
+
+- [**relu**](relu.html): Rectified Linear Unit activation function.
+- [**sigmoid**](sigmoid.html): Sigmoid activation function.
+- [**softmax**](softmax.html): Softmax activation function.
+- [**tanh**](tanh.html): Tanh activation function.
+- **linear**: Pass through
 
 Examples
 --------
@@ -48,9 +69,8 @@ use Rindow\NeuralNetworks\Builder\NeuralNetworks;
 $mo = new MatrixOperator();
 $nn = new NeuralNetworks($mo);
 $model = $nn->models()->Sequential([
-    $nn->layers()->Dense(128,['input_shape'=>[10]]);
-    $nn->layers()->Sigmoid();
+    $nn->layers()->Dense(128,input_shape:[10],activation='sigmoid');
     $nn->layers()->Dense(1);
-    $nn->layers()->Sigmoid();
+    $nn->layers()->Activation('sigmoid');
 ]);
 ```

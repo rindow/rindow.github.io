@@ -24,6 +24,7 @@ Loss functions
 - [**BinaryCrossEntropy**](binarycrossentropy.html): Binary Cross Entropy.
 - [**CategoricalCrossEntropy**](categoricalcrossentropy.html): Multi Categorical Cross Entropy.
 - [**SparseCategoricalCrossEntropy**](sparsecategoricalcrossentropy.html): Sparse Multi Categorical Cross Entropy.
+- [**Huber**](huber.html) : Huber Loss Function
 
 Examples
 --------
@@ -31,7 +32,7 @@ Examples
 ```php
 use Rindow\NeuralNetworks\Builder\NeuralNetworks;
 $nn = new NeuralNetworks($mo);
-$model->compile([
-    'loss'=>$nn->losses()->MeanSquaredError(),
-]);
+$model->compile(
+    loss:$nn->losses()->MeanSquaredError(),
+);
 ```

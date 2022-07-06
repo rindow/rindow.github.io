@@ -21,6 +21,9 @@ Data preparation utilities
 - [**NDArrayDataset**](ndarraydataset.html): NDArray data preparation.
 - [**ImageFilter**](imagefilter.html): Image data filter.
 - [**ImageDataGenerator**](imagedatagenerator.html): Image data generator.
+- [**ClassifiedDirectoryDataset**](classifieddirectorydataset.html) : classified directory handler
+- [**TextClassifiedDataset**](textclassifieddataset.html) : Text data in classified directory
+- [**ImageClassifiedDataset**](imageclassifieddataset.html) : Image data in classified directory
 
 Examples
 --------
@@ -29,5 +32,5 @@ Examples
 use Rindow\NeuralNetworks\Builder\NeuralNetworks;
 $nn = new NeuralNetworks($mo);
 $filter = new MyFilter();
-$csv = $nn->data()->CSVDataset('/datapath/csvdatadir',['filter'=>$filter]);
+$csv = $nn->data()->CSVDataset('/datapath/csvdatadir',filter:$filter);
 ```

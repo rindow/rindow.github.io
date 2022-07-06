@@ -28,7 +28,7 @@ You can create a CategoricalCrossEntropy loss function instances with the Losses
 Examples
 
 ```php
-$model->compile([
-    'loss'=>$nn->losses()->CategoricalCrossEntropy(),
-]);
+$model->compile(
+    loss:$nn->losses()->CategoricalCrossEntropy(),
+);
 ```

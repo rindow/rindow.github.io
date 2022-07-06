@@ -17,15 +17,18 @@ Methods
 
 ### constructor
 ```php
-public function __construct($matrixOperator,array $options=[
-    'num_words'=>null,
-    'filters'=>"!\"\'#$%&()*+,-./:;<=>?@[\\]^_`{|}~\t\n",
-    'specials'=>null,
-    'lower'=>true,
-    'split'=>" ",
-    'char_level'=>false,
-    'oov_token'=>null,
-])
+public function __construct(
+    object $mo,
+    callable $analyzer=null,
+    int $num_words=null,
+    string $filters="!\"\'#$%&()*+,-./:;<=>?@[\\]^_`{|}~\t\n",
+    string $specials=null,
+    bool $lower=true,
+    string $split=" ",
+    bool $char_level=false,
+    string $oov_token=null,
+    int $document_count=0,
+)
 ```
 
 Options

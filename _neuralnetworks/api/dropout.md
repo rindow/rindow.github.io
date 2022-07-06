@@ -3,7 +3,7 @@ layout: document
 title: "Dropout"
 grand_upper_section: index
 upper_section: api/apitoc
-previous_section: api/repeatvector
+previous_section: api/max
 next_section: api/batchnormalization
 ---
 
@@ -19,7 +19,10 @@ Methods
 
 ### constructor
 ```php
-$builer->Dropout(float $rate)
+$builer->Dropout(
+    float $rate,
+    string $name=null,
+)
 ```
 You can create a Dropout layer instances with the Layer Builder.
 

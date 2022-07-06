@@ -20,13 +20,11 @@ Methods
 ### constructor
 ```php
 $builer->ImageFilter(
-    array $options=[
-        'data_format'=>'channels_last',
-        'height_shift'=>0,
-        'width_shift'=>0,
-        'vertical_flip'=>false,
-        'horizontal_flip'=>false
-    ]
+    string $data_format='channels_last',
+    float $height_shift=0,
+    float $width_shift=0,
+    bool $vertical_flip=false,
+    bool $horizontal_flip=false,
 )
 ```
 You can create a ImageFilter instances with the Data Builder.
@@ -45,13 +43,13 @@ Examples
 use Rindow\NeuralNetworks\Builder\NeuralNetworks;
 $nn = new NeuralNetworks($mo);
 $filter = $nn->data()->ImageFilter(
-    ['height_shift'=>2,
-    'width_shift'=>2,
-    'vertical_flip'=>true,
-    'horizontal_flip'=>true]);
-$dataset = $nn->data()->NDArrayDataset($inputs,[
-    'tests'=>$tests,
-    'filter'=>$filter]);
+    height_shift:2,
+    width_shift:2,
+    vertical_flip:true,
+    horizontal_flip:true);
+$dataset = $nn->data()->NDArrayDataset($inputs,
+    tests:$tests,
+    filter:$filter);
 foreach ($dataset as $batchdataset) {
     [$train,$label] = $batchdataset;
     foreach ($train as $key => $value) {

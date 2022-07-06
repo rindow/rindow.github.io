@@ -26,7 +26,7 @@ You can create a BinaryCrossEntropy loss function instances with the Losses Buil
 Examples
 
 ```php
-$model->compile([
-    'loss'=>$nn->losses()->BinaryCrossEntropy(),
-]);
+$model->compile(
+    loss:$nn->losses()->BinaryCrossEntropy(),
+);
 ```

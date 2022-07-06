@@ -65,6 +65,14 @@ return $optimizers
 Get optimizers subclass builder Rindow\NeuralNetworks\Builder\Optimizers.
 The builder is a singleton.
 
+### gradient
+```php
+public function gradient()
+return $gradient
+```
+Get gradient subclass builder Rindow\NeuralNetworks\Builder\Gradient.
+The builder is a singleton.
+
 ### datasets
 ```php
 public function datasets()

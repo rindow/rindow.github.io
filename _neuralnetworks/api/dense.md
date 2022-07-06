@@ -3,7 +3,7 @@ layout: document
 title: "Dense"
 grand_upper_section: index
 upper_section: api/apitoc
-previous_section: api/dynamicmodel
+previous_section: api/abstractmodel
 next_section: api/activation
 ---
 
@@ -23,14 +23,13 @@ Methods
 ### constructor
 ```php
 $builer->Dense(
-    int $units,
-    array $options=[
-        'input_shape'=>array $shape=null,
-        'activation'=>null,
-        'use_bias'=>true,
-        'kernel_initializer'=>'glorot_uniform',
-        'bias_initializer'=>'zeros',
-    ]
+        int $units,
+        array $input_shape=null,
+        string|object $activation='linear',
+        bool $use_bias=true,
+        string|callable $kernel_initializer='glorot_uniform',
+        string|callable $bias_initializer='zeros',
+        string $name=null,
 )
 ```
 You can create a Dense layer instances with the Layer Builder.
@@ -50,9 +49,9 @@ Options
 Examples
 
 ```php
-$model->add($nn->layers()->Dense(128,[
-    'input_shape'=>[10],
-    'kernel_initializer'=>'relu_normal',
-    'bias_initializer'=>'zeros',
-]));
+$model->add($nn->layers()->Dense(128,
+    input_shape:[10],
+    kernel_initializer:'he_normal',
+    bias_initializer:'zeros',
+));
 ```

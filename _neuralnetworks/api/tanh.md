@@ -27,5 +27,5 @@ Examples
 ```php
 $model->add($nn->layers()->Activation('tanh'));
 ...
-$model->add($nn->layers()->SimpleRNN(10,['activation'=>'tanh']));
+$model->add($nn->layers()->SimpleRNN(10,activation:'tanh'));
 ```

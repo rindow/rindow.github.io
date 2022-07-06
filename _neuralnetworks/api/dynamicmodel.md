@@ -6,6 +6,7 @@ upper_section: api/apitoc
 previous_section: api/abstractmodel
 next_section: api/dense
 ---
+## This is Discontinued
 
 - **namespace**: Rindow\NeuralNetworks\Model
 - **classname**: DynamicModel

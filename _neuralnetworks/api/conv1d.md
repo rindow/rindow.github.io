@@ -28,18 +28,23 @@ Methods
 ```php
 $builer->Conv1D(
     int $filters,
-    $kernel_size,
-    array $options=[
-        'strides'=>1,
-        'padding'=>"valid",
-        'data_format'=>'channels_last',
-        'dilation_rate'=>1,
-        'input_shape'=>array $shape=null,
-        'activation'=>null,
-        'use_bias'=>true,
-        'kernel_initializer'=>'sigmoid_normal',
-        'bias_initializer'=>'zeros',
-    ]
+    int|array $kernel_size,
+    int|array $strides=1,
+    string $padding='valid',
+    string $data_format='channels_last',
+    int|array $dilation_rate=1,
+    int $groups=1,
+    string|object $activation='linear',
+    bool $use_bias=true,
+    string|callable $kernel_initializer='glorot_uniform',
+    string|callable $bias_initializer='zeros',
+    string $kernel_regularizer=null,
+    string $bias_regularizer=null,
+    string $activity_regularizer=null,
+    string $kernel_constraint=null,
+    string $bias_constraint=null,
+    array $input_shape=null,
+    string $name=null,
 )
 ```
 You can create a Conv1D layer instances with the Layer Builder.
@@ -76,10 +81,10 @@ Output shape
 Examples
 
 ```php
-$model->add($nn->layers()->Conv1D(30,3,[
-    'stride'=>1,
-    'input_shape'=>[64,1],
-    'kernel_initializer'=>'relu_normal',
-    'bias_initializer'=>'zeros',
-]));
+$model->add($nn->layers()->Conv1D(30,3,
+    stride:1,
+    input_shape:[64,1],
+    kernel_initializer:'he_normal',
+    bias_initializer:'zeros',
+));
 ```

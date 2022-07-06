@@ -27,5 +27,5 @@ Examples
 ```php
 $model->add($nn->layers()->Activation('softmax'));
 ...
-$model->add($nn->layers()->Dense(10,['activation'=>'softmax']));
+$model->add($nn->layers()->Dense(10,activation:'softmax'));
 ```

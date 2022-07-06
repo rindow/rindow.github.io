@@ -26,7 +26,7 @@ You can create a MeanSquaredError loss function instances with the Losses Builde
 Examples
 
 ```php
-$model->compile([
-    'loss'=>$nn->losses()->MeanSquaredError(),
-]);
+$model->compile(
+    loss:$nn->losses()->MeanSquaredError(),
+);
 ```

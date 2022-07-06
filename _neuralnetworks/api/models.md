@@ -65,7 +65,7 @@ use Rindow\NeuralNetworks\Builder\NeuralNetworks;
 $mo = new MatrixOperator();
 $nn = new NeuralNetworks($mo);
 $model = $nn->models()->Sequential([
-    $dense   = $nn->layers()->Dense(128,['input_shape'=>[10]]);
+    $dense   = $nn->layers()->Dense(128,input_shape:[10]);
     $softmax = $nn->layers()->Sigmoid();
     $dense   = $nn->layers()->Dense(1);
     $softmax = $nn->layers()->Sigmoid();

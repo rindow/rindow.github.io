@@ -3,6 +3,7 @@ layout: document
 title: "How to create a custom model"
 upper_section: index
 previous_section: sequentialmodel
+next_section: autodiff
 ---
 
 Getting started with the Custom model

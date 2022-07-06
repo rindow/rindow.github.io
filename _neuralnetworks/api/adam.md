@@ -3,8 +3,8 @@ layout: document
 title: "Adam"
 grand_upper_section: index
 upper_section: api/apitoc
-previous_section: api/adam
-next_section: api/mnist
+previous_section: api/sgd
+next_section: api/rmsprop
 ---
 
 - **namespace**: Rindow\NeuralNetworks\Optimizer
@@ -18,12 +18,10 @@ Methods
 ### constructor
 ```php
 $builer->Adam(
-    array $options=[
-        'lr'      => 0.001,
-        'beta1'   => 0.9,
-        'beta2'   => 0.999,
-        'epsilon' => null,
-    ]
+    float $lr=0.001,
+    float $beta1=0.9,
+    float $beta2=0.999,
+    float $epsilon=null,
 )
 ```
 You can create a Adam optimizer instances with the Optimizer Builder.
@@ -47,12 +45,12 @@ Options
 Examples
 
 ```php
-$model->compile([
-    $nn->optimizers()->Adam([
-        'lr'      => 0.001,
-        'beta1'   => 0.9,
-        'beta2'   => 0.999,
-        'epsilon' => 1e-7,
-    ]),
-]);
+$model->compile(
+    optimizer:$nn->optimizers()->Adam(
+        lr:      0.001,
+        beta1:   0.9,
+        beta2:   0.999,
+        epsilon: 1e-7,
+    )
+);
 ```

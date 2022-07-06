@@ -3,7 +3,7 @@ layout: document
 title: "SGD"
 grand_upper_section: index
 upper_section: api/apitoc
-previous_section: api/sparsecategoricalcrossentropy
+previous_section: api/huber
 next_section: api/adam
 ---
 
@@ -18,9 +18,7 @@ Methods
 ### constructor
 ```php
 $builer->SGD(
-    array $options=[
-        'lr'=>0.01,
-    ]
+    float $lr=0.01,
 )
 ```
 You can create a SGD optimizer instances with the Optimizer Builder.
@@ -34,7 +32,7 @@ Options
 Examples
 
 ```php
-$model->compile([
-    $nn->optimizers()->SGD(['lr'=>0.01]),
-]);
+$model->compile(
+    optimizer:$nn->optimizers()->SGD(lr:0.01),
+);
 ```

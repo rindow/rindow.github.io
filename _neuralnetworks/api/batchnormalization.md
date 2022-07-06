@@ -20,14 +20,16 @@ Methods
 ### constructor
 ```php
 $builer->BatchNormalization(
-    array $options=[
-        'momentum'=>0.99,
-        'epsilon'=>0.001,
-        'beta_initializer'=>'zeros',
-        'gamma_initializer'=>'ones',
-        'moving_mean_initializer'=>'zeros',
-        'moving_variance_initializer'=>'ones',
-    ]
+    int $axis=-1,
+    float $momentum=0.99,,
+    float $epsilon=0.001,
+    bool $center=true,
+    bool $scale=true,
+    string|callable $beta_initializer='zeros',
+    string|callable $gamma_initializer='ones',
+    string|callable $moving_mean_initializer='zeros',
+    string|callable $moving_variance_initializer='ones',
+    string $name=null,
 )
 ```
 You can create a BatchNormalization layer instances with the Layer Builder.
@@ -50,12 +52,12 @@ Options
 Examples
 
 ```php
-$model->add($nn->layers()->BatchNormalization([
-    'momentum'=>0.99,
-    'epsilon'=>0.001,
-    'beta_initializer'=>'zeros',
-    'gamma_initializer'=>'ones',
-    'moving_mean_initializer'=>'zeros',
-    'moving_variance_initializer'=>'ones',
-]));
+$model->add($nn->layers()->BatchNormalization(
+    momentum:0.99,
+    epsilon:0.001,
+    beta_initializer:'zeros',
+    gamma_initializer:'ones',
+    moving_mean_initializer:'zeros',
+    moving_variance_initializer:'ones',
+));
 ```

@@ -24,13 +24,14 @@ public function __construct($matrixOperator)
 
 ### padSequences
 ```php
-public function padSequences(iterable $sequences, array $options=[
-    'maxlen'=>null,
-    'dtype'=>NDArray::int32,
-    'padding'=>"pre",
-    'truncating'=>"pre",
-    'value'=>0.0,
-    ]) : NDArray
+public function padSequences(
+    iterable $sequences,
+    int $maxlen=null,
+    int $dtype=NDArray::int32,
+    string $padding='pre',
+    string $truncating='pre',
+    float|int|bool $value=0,
+) : NDArray
 ```
 Padding sequences and make instance of NDArray.
 
@@ -53,7 +54,7 @@ $sequences = [
     [1,2,3],
     [1,2,3,4],
 ];
-$tensor = $preprocessor->padSequences($sequences,['maxlen'=>3]);
+$tensor = $preprocessor->padSequences($sequences,maxlen:3);
 # $tensor->toArray() :
 #    [[0,1,2],[1,2,3],[1,2,3]]
 ```

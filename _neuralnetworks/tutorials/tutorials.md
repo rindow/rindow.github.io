@@ -2,7 +2,8 @@
 layout: document
 title: "Machine learning tutorials on PHP"
 upper_section: index
-next_section: tutorials/basic-image-classification
+previous_section: install
+next_section: builders
 ---
 Experience various machine learning on PHP with Rindow Neural Networks.
 

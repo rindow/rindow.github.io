@@ -31,12 +31,12 @@ Let's download and view CIFAR-10 on the Rindow Neural Networks dataset.
 include __DIR__.'/../vendor/autoload.php';
 $mo = new Rindow\Math\Matrix\MatrixOperator();
 $nn = new Rindow\NeuralNetworks\Builder\NeuralNetworks($mo);
-[[$train_img,$train_label],[$test_img,$test_label]] =
+[[$train_img,$train_label],[$val_img,$val_label]] =
     $nn->datasets()->cifar10()->loadData();
 echo 'images: '.implode(',',$train_img->shape())."\n";
 echo 'labels: '.implode(',',$train_label->shape())."\n";
-echo 'test images: '.implode(',',$test_img->shape())."\n";
-echo 'test labels: '.implode(',',$test_label->shape())."\n";
+echo 'test images: '.implode(',',$val_img->shape())."\n";
+echo 'test labels: '.implode(',',$val_label->shape())."\n";
 # images: 50000,32,32,3
 # labels: 50000
 # test images: 10000,32,32,3
@@ -76,26 +76,29 @@ It would be difficult to train them using a simple, flat, fully connected neural
 
 Convert the data type so that the model can be trained.
 ```php
+use Interop\Polite\Math\Matrix\NDArray;
 $f_train_img = $mo->scale(1.0/255.0,$mo->la()->astype($train_img,NDArray::float32));
 $f_val_img   = $mo->scale(1.0/255.0,$mo->la()->astype($val_img,NDArray::float32));
 $i_train_label = $mo->la()->astype($train_label,NDArray::int32);
 $i_val_label   = $mo->la()->astype($val_label,NDArray::int32);
+$inputShape = $train_img->shape();
+array_shift($inputShape);
 ```
 
 The graph below shows the result of training this with the same simple neural network model as the tutorial [Basic image clasification on PHP](basic-image-classification).
 ```php
 $model = $nn->models()->Sequential([
-    $nn->layers()->Flatten(['input_shape'=>[32,32,3]]),
+    $nn->layers()->Flatten(input_shape:[32,32,3]),
     $nn->layers()->Dense($units=128,
-        ['kernel_initializer'=>'he_normal',
-        'activation'=>'relu']),
+        kernel_initializer:'he_normal',
+        activation:'relu'),
     $nn->layers()->Dense($units=10,
-        ['activation'=>'softmax']),
+        activation:'softmax'),
 ]);
-$model->compile([
-    'loss'=>'sparse_categorical_crossentropy',
-    'optimizer'=>'adam',
-]);
+$model->compile(
+    loss:'sparse_categorical_crossentropy',
+    optimizer:'adam',
+);
 $model->summary();
 # Layer(type)                  Output Shape               Param #
 # ==================================================================
@@ -108,7 +111,7 @@ $model->summary();
 $f_train_img = $mo->la()->astype($train_img,NDArray::float32);
 $f_val_img = $mo->la()->astype($val_img,NDArray::float32);
 $history = $model->fit($f_train_img,$train_label,
-    ['epochs'=>10,'batch_size'=>256,'validation_data'=>[$f_val_img,$val_label]]);
+    epochs:10,batch_size:256,validation_data:[$f_val_img,$val_label]);
 # Train on 50000 samples, validation on 10000 samples
 # Epoch 1/10 [.........................] 58 sec. remaining:00:00  - 61 sec.
 #  loss:1.9929 accuracy:0.2946 val_loss:1.8269 val_accuracy:0.3504
@@ -165,27 +168,27 @@ $model = $nn->models()->Sequential([
     $nn->layers()->Conv2D(
         $filters=32,
         $kernel_size=3,
-        ['input_shape'=>[32,32,3],
-        'kernel_initializer'=>'he_normal',
-        'activation'=>'relu']),
+        input_shape:[32,32,3],
+        kernel_initializer:'he_normal',
+        activation:'relu'),
     $nn->layers()->MaxPooling2D(),
     $nn->layers()->Conv2D(
         $filters=64,
         $kernel_size=3,
-        ['kernel_initializer'=>'he_normal',
-        'activation'=>'relu']),
+        kernel_initializer:'he_normal',
+        activation:'relu'),
     $nn->layers()->MaxPooling2D(),
     $nn->layers()->Flatten(),
     $nn->layers()->Dense($units=64,
-        ['kernel_initializer'=>'he_normal',
-        'activation'=>'relu']),
+        kernel_initializer:'he_normal',
+        activation:'relu'),
     $nn->layers()->Dense($units=10,
-        ['activation'=>'softmax']),
+        activation:'softmax'),
 ]);
-$model->compile([
-    'loss'=>'sparse_categorical_crossentropy',
-    'optimizer'=>'adam',
-]);
+$model->compile(
+    loss:'sparse_categorical_crossentropy',
+    optimizer:'adam',
+);
 $model->summary();
 # Layer(type)                  Output Shape               Param #
 # ==================================================================
@@ -200,7 +203,7 @@ $model->summary();
 # Total params: 167562
 
 $history = $model->fit($f_train_img,$train_label,
-    ['epochs'=>10,'batch_size'=>256,'validation_data'=>[$f_val_img,$val_label]]);
+    epochs:10,batch_size:256,validation_data:[$f_val_img,$val_label]);
 # Train on 50000 samples, validation on 10000 samples
 # Epoch 1/10 [.........................] 492 sec. remaining:00:00  - 522 sec.
 #  loss:1.7411 accuracy:0.3743 val_loss:1.4203 val_accuracy:0.4833
@@ -255,44 +258,44 @@ $model = $nn->models()->Sequential([
     $nn->layers()->Conv2D(
         $filters=64,
         $kernel_size=3,
-        ['input_shape'=>$inputShape,
-        'kernel_initializer'=>'he_normal',]),
+        input_shape:$inputShape,
+        kernel_initializer:'he_normal',),
     $nn->layers()->BatchNormalization(),
     $nn->layers()->Activation('relu'),
     $nn->layers()->Conv2D(
         $filters=64,
         $kernel_size=3,
-        ['kernel_initializer'=>'he_normal',]),
+        kernel_initializer:'he_normal',),
     $nn->layers()->MaxPooling2D(),
     $nn->layers()->Conv2D(
         $filters=128,
         $kernel_size=3,
-        ['kernel_initializer'=>'he_normal',]),
+        kernel_initializer:'he_normal',),
     $nn->layers()->BatchNormalization(),
     $nn->layers()->Activation('relu'),
     $nn->layers()->Conv2D(
         $filters=128,
         $kernel_size=3,
-        ['kernel_initializer'=>'he_normal',]),
+        kernel_initializer:'he_normal',),
     $nn->layers()->MaxPooling2D(),
     $nn->layers()->Conv2D(
         $filters=256,
         $kernel_size=3,
-        ['kernel_initializer'=>'he_normal',
-        'activation'=>'relu']),
+        kernel_initializer:'he_normal',
+        activation:'relu'),
     $nn->layers()->GlobalAveragePooling2D(),
     $nn->layers()->Dense($units=512,
-        ['kernel_initializer'=>'he_normal',]),
+        kernel_initializer:'he_normal',),
     $nn->layers()->BatchNormalization(),
     $nn->layers()->Activation('relu'),
     $nn->layers()->Dense($units=10,
-        ['activation'=>'softmax']),
+        activation:'softmax'),
 ]);
 
-$model->compile([
-    'loss'=>'sparse_categorical_crossentropy',
-    'optimizer'=>'adam',
-]);
+$model->compile(
+    loss:'sparse_categorical_crossentropy',
+    optimizer:'adam',
+);
 $model->summary();
 # Layer(type)                  Output Shape               Param #
 # ==================================================================
@@ -330,18 +333,18 @@ Since it changes randomly each time, you can increase the variation of the image
 Now let's train the model by giving it data.
 ```php
 echo "training model ...\n";
-$train_dataset = $nn->data->ImageDataGenerator($f_train_img,[
-    'tests'=>$train_label,
-    'batch_size'=>64,
-    'shuffle'=>true,
-    'height_shift'=>2,
-    'width_shift'=>2,
-    'vertical_flip'=>true,
-    'horizontal_flip'=>true
-]);
+$train_dataset = $nn->data->ImageDataGenerator($f_train_img,
+    tests:$train_label,
+    batch_size:64,
+    shuffle:true,
+    height_shift:2,
+    width_shift:2,
+    vertical_flip:true,
+    horizontal_flip:true
+);
 $history = $model->fit($train_dataset,null,
-    ['epochs'=>10,
-        'validation_data'=>[$f_val_img,$val_label]]);
+    epochs:10,
+    validation_data:[$f_val_img,$val_label]);
 $model->save(__DIR__.'/image-classification-with-cnn.model');
 # Train on 50000 samples, validation on 10000 samples
 # Epoch 1/10 [.........................] 4568 sec. remain:01:23  - 4944 sec.

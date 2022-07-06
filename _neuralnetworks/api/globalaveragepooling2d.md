@@ -23,10 +23,9 @@ Methods
 ### constructor
 ```php
 $builer->GlobalAveragePooling2D(
-    array $options=[
-        'data_format'=>'channels_last',
-        'input_shape'=>array $shape=null,
-    ]
+    string $data_format='channels_last',
+    array $input_shape=null,
+    string $name=null,
 )
 ```
 You can create a GlobalAveragePooling2D layer instances with the Layer Builder.

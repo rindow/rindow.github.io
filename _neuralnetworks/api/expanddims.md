@@ -30,9 +30,8 @@ Methods
 ```php
 $builer->ExpandDims(
     int $axis,
-    array $options=[
-        'input_shape'=>array $shape=null,
-    ]
+    array $input_shape=null,
+    string $name=null,
 )
 ```
 You can create a ExpandDims layer instances with the Layer Builder.
@@ -45,8 +44,8 @@ Options
 Examples
 
 ```php
-$model->add($nn->layers()->ExpandDims([
+$model->add($nn->layers()->ExpandDims(
     -1,
-    'input_shape'=>[28,28,3],
-]));
+    input_shape:[28,28,3],
+));
 ```

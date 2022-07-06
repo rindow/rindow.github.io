@@ -22,16 +22,14 @@ Methods
 ```php
 $builer->ImageDataGenerator(
     NDArray $inputs,
-    array $options=[
-        'tests'=>null,
-        'batch_size'=>32,
-        'shuffle'=>true,
-        'data_format'=>'channels_last',
-        'height_shift'=>0,
-        'width_shift'=>0,
-        'vertical_flip'=>false,
-        'horizontal_flip'=>false
-    ]
+    NDArray $tests=null,
+    int $batch_size=null,
+    bool $shuffle=null,
+    string $data_format='channels_last',
+    float $height_shift=0,
+    float $width_shift=0,
+    bool $vertical_flip=false,
+    bool $horizontal_flip=false,
 )
 ```
 You can create a ImageFilter instances with the Data Builder.
@@ -52,12 +50,13 @@ Examples
 ```php
 use Rindow\NeuralNetworks\Builder\NeuralNetworks;
 $nn = new NeuralNetworks($mo);
-$dataset = $nn->data()->ImageDataGenerator($inputs,[
-    'tests'=>$tests,
-    'height_shift'=>2,
-    'width_shift'=>2,
-    'vertical_flip'=>true,
-    'horizontal_flip'=>true]);
+$dataset = $nn->data()->ImageDataGenerator(
+    $inputs,
+    tests:$tests,
+    height_shift:2,
+    width_shift:2,
+    vertical_flip:true,
+    horizontal_flip:true);
 foreach ($dataset as $batchdataset) {
     [$train,$label] = $batchdataset;
     foreach ($train as $key => $value) {

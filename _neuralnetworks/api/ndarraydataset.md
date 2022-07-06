@@ -26,13 +26,11 @@ Methods
 ### constructor
 ```php
 $builer->NDArrayDataset(
-    NDArray $inputs,
-    array $options=[
-        'tests'=>null,
-        'batch_size'=>32,
-        'shuffle'=>true,
-        'filter'=>null,
-    ]
+        NDArray|array $inputs,
+        NDArray $tests=null,
+        int $batch_size=32,
+        $shuffle=true,
+        DatasetFilter $filter=null,
 )
 ```
 You can create a NDArrayDataset instances with the Data Builder.
@@ -50,9 +48,9 @@ Examples
 use Rindow\NeuralNetworks\Builder\NeuralNetworks;
 $nn = new NeuralNetworks($mo);
 $filter = new MyFilter();
-$dataset = $nn->data()->NDArrayDataset($inputs,[
-    'tests'=>$tests,
-    'filter'=>$filter]);
+$dataset = $nn->data()->NDArrayDataset($inputs,
+    tests:$tests,
+    filter:$filter);
 foreach ($dataset as $batchdataset) {
     [$train,$label] = $batchdataset;
     foreach ($train as $key => $value) {

@@ -27,18 +27,16 @@ Methods
 ### constructor
 ```php
 public function __construct(
-    $mo,
+    object $mo,
     string $path,
-    array $options=[
-        'pattern'=>null,
-        'batch_size'=>32,
-        'crawler'=>null,
-        'filter'=>null,
-        'unclassified'=>false,
-        'shuffle'=>false,
-        'limit'=>null,
-        'restricted_by_class'=>null,
-    ]
+    string $pattern=null,
+    int $batch_size=32,
+    object $crawler=null,
+    DatasetFilter $filter=null,
+    bool $unclassified=false,
+    bool $shuffle=false,
+    int $limit=null,
+    array $restricted_by_class=null,
 )
 ```
 
@@ -58,7 +56,7 @@ Examples
 
 ```php
 use Rindow\NeuralNetworks\Data\Dataset\ClassifiedDirectoryDataset;
-$dataset = new ClassifiedDirectoryDataset($mo,'/text',['pattern'=>'@.*\\.txt@']);
+$dataset = new ClassifiedDirectoryDataset($mo,'/text',pattern:'@.*\\.txt@');
 foreach ($dataset as $batchdataset) {
     [$contents,$labels] = $batchdataset;
     foreach ($contents as $key => $value) {

@@ -4,7 +4,7 @@ title: "Optimizers"
 grand_upper_section: index
 upper_section: api/apitoc
 previous_section: api/losses
-next_section: api/datasets
+next_section: api/gradient
 ---
 Overview
 -------
@@ -22,6 +22,7 @@ Optimizers
 
 - [**Adam**](adam.html): Adam optimization.
 - [**SGD**](sgd.html): Stochastic gradient descent and momentum optimizer.
+- [**RMSprop**](rmsprop.html) : RMSprop optimization.
 
 Examples
 --------
@@ -29,7 +30,7 @@ Examples
 ```php
 use Rindow\NeuralNetworks\Builder\NeuralNetworks;
 $nn = new NeuralNetworks($mo);
-$model->compile([
-    'optimizer'=>$nn->optimizers()->SGD(['lr'=>0.01]),
-]);
+$model->compile(
+    optimizer:$nn->optimizers()->SGD(lr:0.01),
+);
 ```

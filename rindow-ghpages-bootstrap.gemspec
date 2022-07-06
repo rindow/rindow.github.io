@@ -2,7 +2,7 @@
 
 Gem::Specification.new do |spec|
   spec.name          = "rindow-ghpages-bootstrap"
-  spec.version       = "0.2.0"
+  spec.version       = "0.3.0"
   spec.authors       = ["Yuichi Ishikawa"]
   spec.email         = ["yuichiis.pub@gmail.com"]
 
