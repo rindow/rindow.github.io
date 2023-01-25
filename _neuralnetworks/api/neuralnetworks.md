@@ -106,3 +106,57 @@ $model = $nn->models()->Sequential([
     $softmax = $nn->layers()->Sigmoid();
 ]);
 ```
+
+Environment variable for backend engine
+-------
+You can specify a backend engine by setting a string name and options in an environment variable.
+
+- **name**: RINDOW_NEURALNETWORKS_BACKEND
+
+You can specify a backend computation engine written for rindow-neuralnetworks.
+The built-in engine is as follows.
+
+- rindowblas:    OpenBLAS and rindow-openblas
+- rindowclblast: CLBlast(One of BLAS implementation by OpenCL)
+
+If no environment variable is specified, rindowblas will be used by default.
+
+If you want to use the original backend engine created by the developer, please specify it in the constructor argument of the class.
+
+### OpenBLAS backend engine
+Calculation engine based on OpenBLAS and Rindow-OpenBLAS original functions. 
+
+If the rindow-openblas PHP extension is not installed, a compatible PHP implementation will automatically be used. A compatible PHP implementation is very slow but works without PHP extensions.
+
+
+### CLBlast backend engine
+CLBlast is an OpenCL BLAS compatible calculation engine.
+
+To run this engine you need:
+
+- OpenBLAS library
+- Rindow-OpenBLAS PHP extension
+- CLBlast library
+- Rindow-clblast PHP extension
+- OpenCL device driver
+- Rindow - OpenCL PHP extension
+
+You can specify options to identify OpenCL devices in environment variables.
+
+Below is an example;
+
+- rindowclblast       => platform #0, device #0
+- rindowclblast::GPU  => GPU type device: Integrated GPU, etc.
+- rindowclblast::CPU  => CPU type device: pocl-opencl-icd, etc.
+- rindowclblast::0,0  => platform #0, device #0
+- rindowclblast::0,1  => platform #0, device #1
+- rindowclblast::1,0  => platform #1, device #0
+
+
+### Example of setting environment variables
+
+```shell
+$ RINDOW_NEURALNETWORKS_BACKEND=rindowclblast
+$ export RINDOW_NEURALNETWORKS_BACKEND
+$ php sample.php
+```
