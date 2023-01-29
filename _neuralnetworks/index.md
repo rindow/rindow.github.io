@@ -54,7 +54,7 @@ you get can calculate at speed close to CPU version of tensorflow.
 The trained model trained on your laptop is available on general web hosting.
 You can also benefit from deep learning on popular PHP web hosting services.
 
-It supports GPU acceleration using OpenCL with rindow_clblas. Only compatible with the Windows version.
+It supports GPU acceleration using OpenCL with rindow_clblas and rindow_opencl. You can take advantage of the integrated GPUs in cheap laptops.
 
 It has the following features.
 
@@ -132,7 +132,7 @@ It is more unnatural to not be able to use PHP.
 Requirements
 ------------
 
-- PHP 8.0. 8,1 (If you want to use it on PHP 7.x, please use Version 1.x.)
+- PHP 8.0. 8.1 8.2(If you want to use it on PHP 7.x, please use Version 1.x.)
 - Windows or Linux environment is required to use rindow_openblas extension.
 - Rindow Math Matrix
 

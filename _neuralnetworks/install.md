@@ -15,7 +15,7 @@ Operating environment
 ---------------------
 Rindow Neural Networks has been tested in the following operating environment.
 
-- PHP 8.0, 8.1 (If you want to use it on PHP 7.x environment, please use Release 1.x.)
+- PHP 8.0, 8.1, 8.2(If you want to use it on PHP 7.x environment, please use Release 1.x.)
 - Windows 10 20H2 or later.
 - Ubuntu 18.04, 20.04, 22.04
 - AMD/Intel CPU/APU 64bit(SSE2 or later)
@@ -30,7 +30,7 @@ PHP installation
 
 For Windows 10/11, install PHP for Windows.
 
-+ Download the PHP8.0 (or 8.1) x64 Thread Safe version from https://windows.php.net/download/.
++ Download the PHP8.0 (or 8.1 or 8.2) x64 Thread Safe version from https://windows.php.net/download/.
 + Unzip to the location of your choice.
 + Copy php.ini-development to create php.ini.
 + Set the execution PATH for PHP.EXE.
