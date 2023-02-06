@@ -20,8 +20,8 @@ Very useful when you want to do deep learning with PHP!
 Requirements
 ------------
 
-- PHP7.2 or PHP7.3 or PHP7.4 or PHP8.0
-- Linux or Windows 10
+- PHP7.2 or PHP7.3 or PHP7.4 or PHP8.0 or PHP8.1 or PHP8.2
+- Linux or Windows 10,11
 - OpenBLAS library
 
 How to download and setup pre-build binaries
@@ -37,6 +37,11 @@ If you are using Windows, you must download and setup OpenBLAS binary from OpenB
 Please Download the version of OpenBLAS binaries that correspond to the rindow_openblas binaries.
 
 - https://github.com/xianyi/OpenBLAS/releases
+
+> If you are using Windows, you must Download the version of OpenBLAS binaries that correspond to the
+> rindow_openblas binaries. The compatible OpenBLAS Library release number is included in the filename
+> of the rindow-openblas pre-built archive file. If you use the wrong OpenBLAS release number DLL,
+> it will not work properly.
 
 Unzip it to a suitable location and set the execution path in the bin directory.
 

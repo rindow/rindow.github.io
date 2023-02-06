@@ -21,7 +21,7 @@ It has the following features.
 
 Requirements
 ------------
-- PHP 7.2, 7.3, 7.4, 8.0.
+- PHP 7.2, 7.3, 7.4, 8.0, 8.1, 8.2.
 - GD2 extension
 
 Installation
@@ -38,6 +38,8 @@ $ composer require rindow/rindow-math-plot
 Add extension configuration to php.ini
 ```shell
 extension=gd2
+or
+extension=gd
 ```
 
 In the case of Linux, explicitly set the viewer that displays png in the environment variable.

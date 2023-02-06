@@ -36,11 +36,11 @@ It provides useful functions on OpenCL that are not included in the BLAS library
 Requirements
 ------------
 
-- PHP7.2 or PHP7.3 or PHP7.4 or PHP8.0
+- PHP7.2 or PHP7.3 or PHP7.4 or PHP8.0 or PHP8.1 or PHP8.2
 - interop-phpobjects/polite-math 1.0.4 or later
 - LinearBuffer implements for interop-phpobjects (Rindow OpenBLAS extension etc.)
 - OpenCL 1.2 drivers/libraries.
-- Windows 10
+- Windows 10,11 or Linux(Ubuntu)
 - Rindow Math Matrix
 - Rindow OpenCL extension
 - Rindow CLBlast extension
@@ -66,6 +66,12 @@ Please download the following two binaries and extract.
 - The PHP extension of rindow-clblast that matches the php version.
 - DLL of OpenBLAS library.
 - DLL of CLBlast library.
+
+> If you are using Windows, you must Download the version of OpenBLAS binaries that correspond to the
+> rindow_openblas binaries. The compatible OpenBLAS Library release number is included in the filename
+> of the rindow-openblas pre-built archive file. If you use the wrong OpenBLAS release number DLL,
+> it will not work properly.
+> All so rindow_clblast and Clblast Library release number.
 
 Copy the shared library to the PHP extension directory and set it in php.ini.
 And OpenBLAS DLL's path to Windows PATH environment variable.
