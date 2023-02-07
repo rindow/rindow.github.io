@@ -2,7 +2,7 @@ frameworkcss: https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.m
 #frameworkcsstheme:
 frameworkscript: https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js
 jqueryscript: https://code.jquery.com/jquery-3.4.1.slim.min.js
-mathscript: http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML
+mathscript: https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML
 css: /assets/themes/rindow/css/style.css
 favicon: /assets/themes/rindow/img/favicon.ico
 touch_icon: /assets/themes/rindow/img/apple-touch-icon-precomposed.png
