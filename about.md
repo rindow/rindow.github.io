@@ -22,3 +22,9 @@ Our Goal
 - Let's have fun together!
 
 2020 &copy;rindow&trade;
+
+竜
+
+胆
+
+![rindow flowers](/assets/img/rindow-flowers.png)
