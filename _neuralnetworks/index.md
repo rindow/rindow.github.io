@@ -36,41 +36,39 @@ next_section: gettingstarted
 
 What is the Rindow Neural Networks
 ----------------------------------
-The Rindow Neural Networks is a high-level neural networks library for PHP.
-You can achieve powerful machine learning on PHP.
+Rindow Neural Networks is a high-level neural network library for PHP.
+Powerful machine learning can be achieved with PHP.
 
-- You can build machine learning models for DNNs, CNNs, RNNs, and Attentions.
-- You can use your knowledge of Python and Keras as it is.
-- Samples of popular Computer Vision and natural language processing are available.
-- The PHP extension can process data twice as fast as the tensorflow CPU version.
-- You don't need a dedicated machine learning environment. It can be done on an inexpensive laptop.
+- Build DNN, CNN, RNN, and attention machine learning models.
+- You can use your knowledge of Python and Keras as is.
+- Popular computer vision and natural language processing samples available.
+- By calling high-speed calculation libraries, it can process data as fast as the TensorFlow CPU version.
+- No dedicated machine learning environment required. It can be done with an inexpensive laptop.
 - Comes with interesting sample programs.
 
+The goal is to make it easy to create machine learning models in PHP, similar to Keras in Python.
 
-The goal is to make it easy to write machine learning models on PHP, just like Keras on Python.
-
-If you use the rindow_openblas php extension,
-you get can calculate at speed close to CPU version of tensorflow.
-The trained model trained on your laptop is available on general web hosting.
+When using OpenBLAS and Rindow-Matlib,
+It can calculate at speeds close to the CPU version of tensorflow.
+Pre-trained models trained on laptops are available on popular web hosting.
 You can also benefit from deep learning on popular PHP web hosting services.
 
-It supports GPU acceleration using OpenCL with rindow_clblas and rindow_opencl. You can take advantage of the integrated GPUs in cheap laptops.
+Supports GPU acceleration using OpenCL and CLblast. You can take advantage of GPUs integrated into inexpensive laptops. No n-vidia graphics card required.
 
 It has the following features.
 
-- A high-level neural networks description
-- Cooperation with high-speed operation library
-- Designing for scalability of operation library
-- To save developers the time to learn how to use this library, we adopt an interface similar to Keras.
+- Writing high-level neural networks
+- Cooperation with high-speed calculation library
+- Designed with consideration to the extensibility of the calculation library
+- Adopts a Keras-like interface to save developers time learning how to use this library.
 
-Rindow Neural Networks usually work with:
+Rindow Neural Networks typically work in conjunction with:
 
-- Rindow Math Matrix: scientific matrix operation library
-- Rindow OpenBLAS extension: PHP extension of OpenBLAS
-- Rindow Math Plot: Visualize machine learning results
-- Rindow OpenCL extension: PHP extension of OpenCL operating
-- Rindow CLBlast extension: PHP extension of BLAS on GPU (OpenCL)
-
+- Rindow-Matlib: Scientific matrix calculation library suitable for machine learning
+- OpenBLAS: The most popular high-speed matrix calculation library
+- Rindow Math Plot: Visualize machine learning results.
+- OpenCL: Framework for GPU programming
+- CLBlast: BLAS on GPU (OpenCL)
 
 Sample programs
 ---------------
@@ -112,28 +110,28 @@ See the [Machine learning tutorials on PHP](tutorials/tutorials.html) page.
 Why do deep learning with PHP?
 ------------------------------
 
-> - "If you do deep learning, you should use Python."
-> - "You should study Python anyway!"
-> - "Isn't Python an excellent Deep learning framework?"
+> - "If you want to do deep learning, you should use Python."
+> - “You should just learn Python!”
+> - "Isn't Python a great deep learning framework?"
 
-What you say is right.
+You are right.
 
-So why do we have to use Python?
+So why should you use Python?
 
 Do you need to be platform constrained for deep learning?
-Never need!
+Absolutely not necessary!
 
-Deep learning / ML is only a small part of the whole system. It's just a small group of functions in the library.
-Everyone should be able to use it anywhere, as much as print "Hello!".
+Deep learning/ML is just one part of the whole system. This is just a small group of functions in the library.
+Anyone can use it anywhere as long as it prints out "Hello!".
 
-It is more unnatural to not be able to use PHP.
+It would be unnatural not to be able to use PHP.
 
 
 Requirements
 ------------
 
-- PHP 8.0. 8.1 8.2(If you want to use it on PHP 7.x, please use Version 1.x.)
-- Windows or Linux environment is required to use rindow_openblas extension.
+- PHP 8.1 8.2 8.3 (If you want to use it on PHP 7.x and 8.0, please use Version 1.x.)
+- Windows 10 or Ubuntu 20.04 or later is required to use OpenBLAS and Rindow-Matlib.
 - Rindow Math Matrix
 
 Recommends
@@ -142,8 +140,8 @@ Recommends
 - Rindow Math Plot ( Display the result on a graph )
 - GD / GD2  extension ( Used for graph display )
 - pdo_sqlite extension ( Used to save the trained model )
-- Rindow OpenBLAS extension ( Used for high-speed calculation )
-- Rindow OpenCL extension  / Rindow CLBlast extension  ( Windows only )
+- OpenBLAS/Rindow-Matlib ( Used for high-speed calculation )
+- OpenCL/CLBlast ( GPU Acceleration )
 
 Release Notes
 -------------
@@ -151,7 +149,7 @@ The release notes are below
 
 - [Rindow Neuralnetworks](https://github.com/rindow/rindow-neuralnetworks/releases)
 - [Rindow Math Matrix](https://github.com/rindow/rindow-math-matrix/releases)
-- [Rindow OpenBLAS](https://github.com/rindow/rindow-openblas/releases)
+- [Rindow Matlib](https://github.com/rindow/rindow-matlib/releases)
 
 Note
 ----
