@@ -7,9 +7,11 @@ next_section: tutorials/tutorials
 ---
 
 - [Operating environment](#operating-environment)
-- [Installation procedure for Windows](#installation-procedure-for-windows)
-- [Installation procedure for Ubuntu](#installation-procedure-for-ubuntu)
-- [GPU/OpenCL support](#gpuopencl-support)
+- [Installation instructions for Windows](#installation-instructions-for-windows)
+- [Installation instructions for Ubuntu](#installation-instructions-for-ubuntu)
+- [GPU/OpenCL support for Windows](#gpuopencl-support-for-windows)
+- [GPU/OpenCL support for Ubuntu](#gpuopencl-support-for-ubuntu)
+
 
 Operating environment
 ---------------------
