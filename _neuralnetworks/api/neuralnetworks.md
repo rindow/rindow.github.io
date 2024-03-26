@@ -126,7 +126,7 @@ If you want to use the original backend engine created by the developer, please 
 ### OpenBLAS backend engine
 Calculation engine based on OpenBLAS and Rindow-OpenBLAS original functions. 
 
-If the rindow-openblas PHP extension is not installed, a compatible PHP implementation will automatically be used. A compatible PHP implementation is very slow but works without PHP extensions.
+If the OpenBLAS is not installed, a compatible PHP implementation will automatically be used. A compatible PHP implementation is very slow but works without OpenBLAS.
 
 
 ### CLBlast backend engine
@@ -135,11 +135,11 @@ CLBlast is an OpenCL BLAS compatible calculation engine.
 To run this engine you need:
 
 - OpenBLAS library
-- Rindow-OpenBLAS PHP extension
+- Rindow-OpenBLAS FFI
 - CLBlast library
-- Rindow-clblast PHP extension
+- Rindow-clblast FFI
 - OpenCL device driver
-- Rindow - OpenCL PHP extension
+- Rindow - OpenCL FFI
 
 You can specify options to identify OpenCL devices in environment variables.
 

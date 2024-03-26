@@ -16,7 +16,7 @@ The input data area and output data area are shared by many functions.
 So note that the contents of the input array will be destroyed.
 
 The BLAS library and the MATH library specified by "MatrixOperator" are used internally.
-When the rindow_openblas extension is specified, high-speed operations are possible.
+When the OpenBLAS FFI is specified, high-speed operations are possible.
 
 Methods
 -------
@@ -408,8 +408,6 @@ public function rotg(
 ```
 Get the Givens rotation.
 
-You need the openblas extension to use this function.
-
 Arguments
 - **X**: the value of axis X.
 - **Y**: the value of axis Y.
@@ -458,8 +456,6 @@ public function rot(
     NDArray $S) : void
 ```
 Get Coordinate rotation
-
-You need the openblas extension to use this function.
 
 Arguments
 - **X**: the value of axis X.
@@ -772,8 +768,6 @@ public function trmm(
 ```
 Cross product of a triangular matrix
 
-You need the openblas or clblast extension to use this function.
-
 Arguments
 - **A**: A matrix.
 - **B**: B matrix.
@@ -827,8 +821,6 @@ public function trsm(
     bool $unit=null) : NDArray
 ```
 Cross product of a triangular matrix
-
-You need the openblas or clblast extension to use this function.
 
 Arguments
 - **A**: A matrix.

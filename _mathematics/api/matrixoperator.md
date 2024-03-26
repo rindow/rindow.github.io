@@ -10,7 +10,7 @@ next_section: api/random
 - **classname**: MatrixOperator
 
 General operations on N-dimensional arrays.
-If you have loaded the “rindow_openblas” extension, enable it.
+If you have loaded the “OpenBLAS”, enable it.
 
 Methods
 -------

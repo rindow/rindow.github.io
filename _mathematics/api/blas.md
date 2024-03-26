@@ -6,7 +6,7 @@ upper_section: api/apitoc
 previous_section: api/buffer
 next_section: api/math
 ---
-- **namespace**: Rindow\\OpenBLAS
+- **namespace**: Rindow\\OpenBLAS\\FFI
 - **classname**: Blas
 
 Call OpenBLAS functions.

@@ -44,8 +44,8 @@ menu: |
         - [Scatter plot](/mathematics/plot/gettingstartplot.html#scatter-plot)
         - [Pie chart](/mathematics/plot/gettingstartplot.html#pie-chart)
         - [Heat map](/mathematics/plot/gettingstartplot.html#heat-map)
-  - **Rindow OpenBLAS extension**
-    - [Rindow OpenBLAS extension](/mathematics/openblas/overviewopenblas.html)
+  - **Rindow OpenBLAS FFI**
+    - [Rindow OpenBLAS FFI](/mathematics/openblas/overviewopenblas.html)
       - [Overview](/mathematics/openblas/overviewopenblas.html#overview)
       - [Requirements](/mathematics/openblas/overviewopenblas.html#requirements)
       - [Download binaries](/mathematics/openblas/overviewopenblas.html#download-binaries)

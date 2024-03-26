@@ -5,7 +5,7 @@ grand_upper_section: index
 upper_section: api/apitoc
 next_section: api/blas
 ---
-- **namespace**: Rindow\\OpenBLAS
+- **namespace**: Rindow\\Math\\Buffer\\FFI
 - **classname**: Buffer
 
 Buffer object for array. Allocate contiguous memory area.

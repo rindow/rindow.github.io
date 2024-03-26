@@ -151,9 +151,10 @@ Buffer object
 ### Overview
 The buffer object is the area that stores the actual data of the NDArray. Implements a one-dimensional array.
 It must implement the standard ArrayAccess interface of PHP and the Countable interface.
-(Because it is assumed to be implemented with php extension, Buffer specific interface is not defined)
+Since it is assumed that various implementations will be used, a basic Buffer interface is defined.
 
-One-dimensional arrays can be implemented in any way, but contiguous areas of memory generally make it easier for the CPU to perform high-speed operations. It is easy to refer to the memory area at the C language level, and it is easy to exchange data between extensions.
+One-dimensional arrays can be implemented in any way, but contiguous areas of memory generally make it easier for the CPU to perform fast operations. It is easy to refer to memory areas at the C language level, and it is also easy to exchange data between high-speed calculation libraries.
+
 
 For these reasons, NDArray uses a one-dimensional array buffer object rather than a PHP array.
 

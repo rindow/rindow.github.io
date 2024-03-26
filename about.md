@@ -23,8 +23,6 @@ Our Goal
 
 2020 &copy;rindow&trade;
 
-竜
-
-胆
+竜胆 ( りんどう )
 
 ![rindow flowers](/assets/img/rindow-flowers.jpg)

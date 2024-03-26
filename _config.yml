@@ -95,7 +95,7 @@ collections:
   mathematics:
     title: "Rindow Mathematics"
     description: "Mathematics libraries for PHP"
-    #meta_description: "An environment for vector operations suitable for scientific calculation and machine learning is provided on PHP. It also provides a PHP array extension that is optimal for vector operations."
+    #meta_description: "An environment for vector operations suitable for scientific calculation and machine learning is provided on PHP. It also provides a C library that is optimal for vector operations."
     output: true
     theme: document
     #comment: true

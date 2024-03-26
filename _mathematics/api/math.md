@@ -6,7 +6,7 @@ grand_upper_section: index
 upper_section: api/apitoc
 previous_section: api/blas
 ---
-- **namespace**: Rindow\\OpenBLAS
+- **namespace**: Rindow\\Matlib\\FFI
 - **classname**: Math
 
 Mathematics functions library.
@@ -500,72 +500,6 @@ Arguments
 - **X**: Buffer X.
 - **offsetX**: Offset buffer.
 - **incX**: Incremental X
-
-### selectAxis0
-$$
-\begin{align*}
-y_{ij} := a_{xj}
-\end{align*}
-$$
-```php
-public function selectAxis0(
-    int $m,
-    int $n,
-    int $k,
-    Buffer $A, int $offsetA, int $ldA,
-    Buffer $X, int $offsetX, int $incX,
-    Buffer $Y, int $offsetY, int $ldY ) : void
-```
-Select the element indexed by axis 0.
-
-Supported deta types
-- float32, float64, bool, int8, int16, int32, int64, uint8, uint16, uint32, uint64
-
-Arguments
-- **m**: Number of array elements.
-- **n**: Number of array elements.
-- **k**: Number of array elements.
-- **A**: Buffer A.
-- **offsetA**: Offset buffer.
-- **ldA**: leading dimension
-- **X**: Buffer X.
-- **offsetX**: Offset buffer.
-- **incX**: Incremental X
-- **Y**: Buffer Y.
-- **offsetY**: Offset buffer.
-- **ldY**: leading dimension
-
-### selectAxis1
-$$
-\begin{align*}
-y_{ij} := a_{ix}
-\end{align*}
-$$
-```php
-public function selectAxis1(
-    int $m,
-    int $n,
-    Buffer $A, int $offsetA, int $ldA,
-    Buffer $X, int $offsetX, int $incX,
-    Buffer $Y, int $offsetY, int $incY ) : void
-```
-Select the element indexed by axis 1.
-
-Supported deta types
-- float32, float64, bool, int8, int16, int32, int64, uint8, uint16, uint32, uint64
-
-Arguments
-- **m**: Number of array elements.
-- **n**: Number of array elements.
-- **A**: Buffer A.
-- **offsetA**: Offset buffer.
-- **ldA**: leading dimension
-- **X**: Buffer X.
-- **offsetX**: Offset buffer.
-- **incX**: Incremental X
-- **Y**: Buffer Y.
-- **offsetY**: Offset buffer.
-- **incY**: Incremental X
 
 ### updateAddOnehot
 $$

@@ -66,7 +66,7 @@ C:bin>echo @php "%~dp0composer.phar" %*>composer.bat
 
 Install the PHP extensions required by Rindow Neural Networks.
 
-+ Download and unzip the corresponding pre-built binary file from https://github.com/xianyi/OpenBLAS/releases.
++ Download and unzip the corresponding pre-built binary file from https://github.com/OpenMathLib/OpenBLAS/releases.
 + Download and unzip the corresponding pre-built binary file from https://github.com/rindow/rindow-matlib/releases.
 + Set the OpenBLAS and Rindow-Matlib DLL paths to the execution path.
 + Make the necessary settings in php.ini.

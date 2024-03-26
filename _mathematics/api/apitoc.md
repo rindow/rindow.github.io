@@ -13,7 +13,7 @@ upper_section: index
     - [Figure](figure.html)
     - [Axes](axes.html)
     - [misc.](miscplot.html)
-- Rindow\\OpenBLAS
+- Low-layer Matrix Libraries
     - [Buffer](buffer.html)
     - [Blas](blas.html)
     - [Math](math.html)

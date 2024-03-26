@@ -15,59 +15,31 @@ It has the following features.
 
 - Implement a common Array object interface "NDArray".
 - Provides a flexible N-dimensional array operation library.
-- Compatible with Rindow OpenBLAS extension
+- Compatible with OpenBLAS
 
 
-Requirements
+requirements
 ------------
-- PHP 8.0, 8.1, 8.2
-  - (If you want to use it on PHP 7.(2,3,4) environment, please use Release 1.1.x.) 
-- Window 10,11 or Linux when using Rindow OpenBLAS extension
+- PHP 8.1, 8.2, 8.3
+    - (If using in PHP 7.2 to 8.0 environment, please use release 1.1.)
+- Window 10, 11, or Linux (if using OpenBLAS)
+
 
 Recommends
 ----------
 - [**Rindow Math Plot**](/mathematics/plot/overviewplot.html): Visualization mathematical data
-- [**Rindow OpenBLAS extension**](/mathematics/openblas/overviewopenblas.html): C language interface and High-speed operation
-- [**Rindow OpenCL extension**](https://github.com/rindow/rindow-opencl/releases): Supports GPU acceleration
-- [**Rindow CLBlast extension**](https://github.com/rindow/rindow-clblast/releases): Supports GPU acceleration
+- [**Rindow Matlib and OpenBLAS**](/mathematics/openblas/overviewopenblas.html): C language interface and High-speed operation
+- [**OpenCL and CLBlast**](/mathematics/acceleration/openblas.html): Supports GPU acceleration
 
 
 Installation
 ------------
-
 ### Install the Rindow Math Matrix
-
-If you want to use extensions, download and setup pre-build binaries.
-See the README for each extension.
-
-- https://github.com/rindow/rindow-openblas
-- https://github.com/rindow/rindow-opencl
-- https://github.com/rindow/rindow-clblast
-
-> If you are using Windows, you must Download the version of OpenBLAS binaries that correspond to the
-> rindow_openblas binaries. The compatible OpenBLAS Library release number is included in the filename
-> of the rindow-openblas pre-built archive file. If you use the wrong OpenBLAS release number DLL,
-> it will not work properly.
-> All so rindow_clblast and Clblast Library release number.
-
-Make sure the php extension is loaded.
-
-```shell
-$ php -m
-[PHP Modules]
-...
-rindow_openblas
-rindow_opencl
-rindow_clblast
-...
-```
-
 Please set up with composer.
 
 ```shell
 $ composer require rindow/rindow-math-matrix
 ```
-
 
 If you want a graphical display, set up rindow-math-plot.
 
@@ -83,9 +55,16 @@ $ export RINDOW_MATH_PLOT_VIEWER
 ```
 Note: Specify "viewnior" etc. for RINDOW_MATH_PLOT_VIEWER
 
+### Install accelarators
+
+To use OpenBLAS and Rindow-Matlib, read and install them [here](/mathematics/openblas/overviewopenblas.html).
+
+
+To use GPU, please read [here](/mathematics/acceleration/openblas.html) and install it.
+
+
 ### How to use the Rindow Math Matrix
 ```php
-<?php
 include 'vendor/autoload.php';
 
 $mo = new Rindow\Math\Matrix\MatrixOperator();
@@ -96,7 +75,6 @@ $b = $mo->array([3.0, 4.0]);
 $c = $mo->add($a,$b);
 
 echo $mo->toString($c)."\n";
-print_r($c->toArray());
 
 ### If you want to create a graph like this:
 
@@ -108,7 +86,6 @@ $plt->show();
 
 If you want to use the linear algebra library:
 ```php
-<?php
 include 'vendor/autoload.php';
 
 $mo = new Rindow\Math\Matrix\MatrixOperator();
@@ -120,7 +97,6 @@ $b = $mo->array([[3.0, 4.0],[5.0, 6.0]]);
 $c = $la->gemm($a,$b);
 
 echo $mo->toString($c)."\n";
-print_r($c->toArray());
 
 ### If you want to create a graph like this:
 
@@ -132,7 +108,6 @@ $plt->show();
 
 If you want to use the GPU version of the linear algebra library:
 ```php
-<?php
 include 'vendor/autoload.php';
 
 use Interop\Polite\Math\Matrix\OpenCL;
@@ -150,7 +125,6 @@ $c = $la->gemm($a,$b);
 $c = $la->toNDArray($c);
 
 echo $mo->toString($c)."\n";
-print_r($c->toArray());
 
 ### If you want to create a graph like this:
 

@@ -23,7 +23,7 @@ next_section: gettingstarted
       <!--svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 140x140"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"/><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg-->
       <img class="bd-placeholder-img rounded" width="200" height="200" alt="Easy Acceleration" src="/assets/themes/rindow/img/gears.svg">
       <h3>Easy Acceleration</h3>
-      <p>PHP extensions that can be as fast as the CPU version of Tensorflow and GPU extensions that work on laptops without NVidia are available.</p>
+      <p>PHP FFI that can be as fast as the CPU version of Tensorflow and GPU acceleration that work on laptops without NVidia are available.</p>
     </div><!-- /.col-lg-4 -->
   </div><!-- /.row -->
   <div class="row">
@@ -140,6 +140,7 @@ Recommends
 - Rindow Math Plot ( Display the result on a graph )
 - GD / GD2  extension ( Used for graph display )
 - pdo_sqlite extension ( Used to save the trained model )
+- FFI extension ( Used for high-speed calculation )
 - OpenBLAS/Rindow-Matlib ( Used for high-speed calculation )
 - OpenCL/CLBlast ( GPU Acceleration )
 

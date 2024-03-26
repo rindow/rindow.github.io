@@ -4,16 +4,17 @@ title: "Dimension Operations"
 upper_section: index
 previous_section: matrix/arrayobjects
 ---
-Overview
+overview
 --------
-MatrixOperator performs general operations on N-dimensional arrays. Broadcasting can also give the same change to all elements.
-Also provides random number arithmetic.
-These are designed to resemble Python's Numpy.
+MatrixOperator performs common operations on N-dimensional arrays. Broadcasting also allows you to apply the same changes to all elements.
+It also provides random number operations.
+These are designed to be similar to Python's Numpy.
 
-We also provide functions that prioritize faster operations than flexibility.
-These are implemented by excerpts from Basic Linear Algebra Subprograms (BLAS). Other scientific calculations are implemented as needed.
+It also offers features that prioritize speed over flexibility.
+These are implemented by excerpts from Basic Linear Algebra Subprograms (BLAS). Other scientific calculations will also be implemented as needed.
 
-Automatically recognizes that the Rindow OpenBLAS extension is loaded and performs high-speed calculations.
+It also works with pure PHP. You can also call OpenBLAS or Rindow-Matlib to make it work.
+
 
 Create MatrixOperator
 ---------------------
@@ -21,7 +22,7 @@ First, create an instance of MatrixOperator. (Currently, it does not support the
 
 ```php
 use Rindow\Math\Matrix\MatrixOperator;
-$mo = new MatrixOperator;
+$mo = new MatrixOperator();
 ```
 
 Create NDArray
@@ -310,7 +311,7 @@ Most functions are algorithms that assume two-dimensional or one-dimensional arr
 The input data is destroyed and used as the output data area.
 This minimizes data copying in the process of performing continuous operations.
 
-If you have the Rindow OpenBLAS extension loaded, it will call the extension and run faster.
+If you have the OpenBLAS loaded, it will call it and run faster.
 
 - BLAS library
 - Mathematics library

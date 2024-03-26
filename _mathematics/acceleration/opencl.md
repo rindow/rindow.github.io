@@ -5,85 +5,179 @@ upper_section: index
 ---
 Overview
 --------
-We chose OpenCL first because it supports various arithmetic accelerations including GPU.
-This allows you to expect GPU acceleration even in an inexpensive laptop environment.
+We initially chose OpenCL because it supports a variety of arithmetic accelerations, including GPUs.
+As a result, you can expect faster GPU speeds even in an inexpensive notebook PC environment.
 
-Not only OpenCL support but also an operation library using OpenCL is required to speed up numerical operations. CLBlast is an OpenCL-compatible library that is currently under active development.
-In addition to this, various necessary operations provide OpenCL programs on PHP in Rindow Math Matrix.
+To speed up numerical operations, you need not only support for OpenCL, but also a calculation library that uses OpenCL. CLBlast is a BLAS compatible library currently under development.
+In addition to this, Rindow Math Matrix allows you to perform other MATH functions and various necessary operations on OpenCL.
 
 
-Rindow OpenCL extension
+Rindow OpenCL FFI
 -----------------------
-OpenCL can be used from PHP through [Rindow OpenCL extension](https://github.com/rindow/rindow-opencl).
-The version of OpenCL is limited to version 1.2, and we are considering porting to a wide range of environments.
+OpenCL is available from PHP through [Rindow OpenCL FFI](https://github.com/rindow/rindow-opencl-ffi).
+OpenCL version is limited to 1.2 and is compatible with a wide range of environments.
 
-Since our goal is to use it with the Rindow Neural Network Library, we currently only have the minimum required functionality. It will be expanded in the future.
+Our goal is to use it with the Rindow neural network library, so it currently only has the bare minimum of functionality. It will be expanded in the future.
 
 
-Rindow CLBlast extension
+Rindow CLBlast FFI
 -----------------------
-CLBlast is BLAS library on OpenCL. [Click here for details](https://github.com/CNugteren/CLBlast).
+CLBlast is a BLAS library on top of OpenCL. [Click here for details](https://github.com/CNugteren/CLBlast).
 
-[Rindow CLBlast extension](https://github.com/rindow/rindow-clblast) is a PHP binding for the above library.
+[Rindow CLBlast FFI](https://github.com/rindow/rindow-clblast) is a PHP binding for the above library.
 
 
-OpenCLMath liblary in Rindow Math Matrix
-----------------------------------------
-It provides useful functions on OpenCL that are not included in the BLAS library.
-
+OpenCLMath library for Rindow Math Matrix
+--------------------------------------
+Provides useful functions on OpenCL that are not included in the BLAS library.
 
 
 Requirements
 ------------
 
-- PHP7.2 or PHP7.3 or PHP7.4 or PHP8.0 or PHP8.1 or PHP8.2
-- interop-phpobjects/polite-math 1.0.4 or later
-- LinearBuffer implements for interop-phpobjects (Rindow OpenBLAS extension etc.)
-- OpenCL 1.2 drivers/libraries.
-- Windows 10,11 or Linux(Ubuntu)
+- PHP8.1 or PHP8.2 or PHP8.3
+- interop-phpobjects/polite-math 1.0.6 or later
+- OpenCL 1.1 or later drivers/libraries.
+- Windows 10, 11 or Linux (Ubuntu 20.04 or later)
 - Rindow Math Matrix
-- Rindow OpenCL extension
-- Rindow CLBlast extension
+- Rindow OpenCL FFI
+- Rindow CLBlast FFI
 
-Currently it does not support Linux environment.
+GPU/OpenCL support for Windows
+------------------------------
+OpenCL can be used by default on Windows.
 
+Please download the pre-build binaries and set the execution path.
 
-How to setup pre-build binaries
--------------------------------
-You can download and use pre-built Windows binaries.
-Download the binary for your version of PHP.
-
-- https://github.com/rindow/rindow-openblas/releases
-- https://github.com/xianyi/OpenBLAS/releases
-- https://github.com/rindow/rindow-opencl/releases
-- https://github.com/rindow/rindow-clblast/releases
-- https://github.com/CNugteren/CLBlast/releases
-
-Please download the following two binaries and extract.
-
-- The PHP extension of rindow-opencl that matches the php version.
-- The PHP extension of rindow-openblas that matches the php version.
-- The PHP extension of rindow-clblast that matches the php version.
-- DLL of OpenBLAS library.
-- DLL of CLBlast library.
-
-> If you are using Windows, you must Download the version of OpenBLAS binaries that correspond to the
-> rindow_openblas binaries. The compatible OpenBLAS Library release number is included in the filename
-> of the rindow-openblas pre-built archive file. If you use the wrong OpenBLAS release number DLL,
-> it will not work properly.
-> All so rindow_clblast and Clblast Library release number.
-
-Copy the shared library to the PHP extension directory and set it in php.ini.
-And OpenBLAS DLL's path to Windows PATH environment variable.
+- [OpenBLAS](https://github.com/OpenMathLib/OpenBLAS/releases)
+- [Rindow Matlib](https://github.com/rindow/matlib/releases)
+- [CLBlast](https://github.com/CNugteren/CLBlast/releases)
 
 ```shell
-C:\tmp>copy rindow_openblas.dll /path/to/php-installation-path/ext
-C:\tmp>copy rindow_opencl.dll /path/to/php-installation-path/ext
-C:\tmp>copy rindow_clblast.dll /path/to/php-installation-path/ext
-C:\tmp>echo extension=rindow_openblas.dll >> /path/to/php-installation-path/php.ini
-C:\tmp>echo extension=rindow_opencl.dll >> /path/to/php-installation-path/php.ini
-C:\tmp>echo extension=rindow_clblast.dll >> /path/to/php-installation-path/php.ini
-C:\tmp>PATH %PATH%;/path/to/OpenBLAS/bin;/path/to/CLBlast-Library/lib
-C:\tmp>cd /some/app/directory
-C:\app\dir>composer require rindow/rindow-math-matrix
+C:TEMP>PATH %PATH%;C:\CLBlast\bin;C:\OpenBLAS\bin;C:\Matlib\bin
+```
+
+Configure the PHP. Edit php.ini to use FFI extension
+
+```shell
+extension = ffi
+```
+
+Set up rindow-math-matrix to use OpenCL using composer. And make sure you are in Advanced mode.
+
+```shell
+C:yourproject> composer require rindow/rindow-math-matrix
+C:yourproject> composer require rindow/rindow-math-matrix-matlibffi
+C:yourproject> vendor\bin\rindow-math-matrix
+Service Level   : Accelerated
+Buffer Factory  : Rindow\Math\Buffer\FFI\BufferFactory
+BLAS Driver     : Rindow\OpenBLAS\FFI\Blas
+LAPACK Driver   : Rindow\OpenBLAS\FFI\Lapack
+Math Driver     : Rindow\Matlib\FFI\Matlib
+OpenCL Factory  : Rindow\OpenCL\FFI\OpenCLFactory
+CLBlast Factory : Rindow\CLBlast\FFI\CLBlastFactory
+
+```
+If you are unable to successfully set the target GPU, please check the OpenCL device status using the clinfo command.
+
+```shell
+C:tutorials>vendor\bin\clinfo
+Number of platforms(1)
+Platform(0)
+    CL_PLATFORM_NAME=Intel(R) OpenCL
+    CL_PLATFORM_PROFILE=FULL_PROFILE
+....
+...
+..
+```
+
+
+GPU/OpenCL support for Ubuntu
+------------------------------
+Install the libraries required.
+
++ Install OpenBLAS with apt command
++ Download the latest version of Rindow-Matlib's pre-built binary files from https://github.com/rindow/rindow-matlib/releases.
++ Install the downloaded deb file using the apt command.
++ Set Rindow-Matlib to serial mode for use with PHP.
+
+```shell
+$ sudo apt install libopenblas-base liblapacke
+$ wget https://github.com/rindow/rindow-matlib/releases/download/X.X.X/rindow-matlib_X.X.X_amd64.deb
+$ sudo apt install ./rindow-matlib_X.X.X_amd64.deb
+$ sudo update-alternatives --config librindowmatlib.so
+There are 2 choices for the alternative librindowmatlib.so (providing /usr/lib/librindowmatlib.so).
+
+  Selection    Path                                             Priority   Status
+------------------------------------------------------------
+* 0            /usr/lib/rindowmatlib-openmp/librindowmatlib.so   95        auto mode
+  1            /usr/lib/rindowmatlib-openmp/librindowmatlib.so   95        manual mode
+  2            /usr/lib/rindowmatlib-serial/librindowmatlib.so   90        manual mode
+
+Press <enter> to keep the current choice[*], or type selection number: 2
+```
+
+It is essential that OpenCL works properly in the Linux environment.
+(That's quite difficult)
+
+Install the OpenCL environment.
+
+```shell
+$ sudo apt install clinfo
+$ sudo apt install intel-opencl-icd
+```
+Ubuntu standard OpenCL drivers include:
+- mesa-opencl-icd
+- beignet-opencl-icd
+- intel-opencl-icd
+- nvidia-opencl-icd-xxx
+- pocl-opencl-icd
+
+The standard Linux OpenCL driver does not work properly, so we deal with it on a case-by-case basis to make it work somehow for each driver and version.
+
+Check that OpenCL is running using the clinfo command.
+
+```shell
+$ clinfo
+Number of platforms                               1
+  Platform Name                                   Intel Gen OCL Driver
+  Platform Vendor                                 Intel
+....
+...
+..
+```
+
+Download and install the CLBlast library.
+Scripts are available for easy download and installation.
+
++ Check the latest version: [CLBlast library](https://github.com/CNugteren/CLBlast/releases)
++ Copy script
++ Change the version at the beginning of the script
++ Run script and create deb file
++ Install deb file
+
+```shell
+$ cp vendor/rindow/rindow-clblast-ffi/clblast-packdeb.sh .
+$ vi clblast-packdeb.sh
+CLBLASTVERSION=1.6.2   <===== change
+$ sh clblast-packdeb.sh
+$ sudo apt install ./clblast_X.X.X-1+ubuntuXX.XX_amd64.deb
+```
+
+Configure the rindow-math-matrix.
+
++ Verify that rindow-math-matrix is Accelerated and the OpenCL driver is recognized.
+
+```shell
+$ composer rindow/rindow-math-matrix
+$ composer rindow/rindow-math-matrix-ffi
+$ vendor\bin\rindow-math-matrix
+Service Level   : Accelerated
+Buffer Factory  : Rindow\Math\Buffer\FFI\BufferFactory
+BLAS Driver     : Rindow\OpenBLAS\FFI\Blas
+LAPACK Driver   : Rindow\OpenBLAS\FFI\Lapack
+Math Driver     : Rindow\Matlib\FFI\Matlib
+OpenCL Factory  : Rindow\OpenCL\FFI\OpenCLFactory
+CLBlast Factory : Rindow\CLBlast\FFI\CLBlastFactory
+
 ```

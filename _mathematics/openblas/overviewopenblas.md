@@ -1,154 +1,113 @@
 ---
 layout: document
-title: "Rindow OpenBLAS extension"
+title: "Rindow Matlib and OpenBLAS"
 upper_section: index
 next_section: openblas/arraybuffer
 ---
 
 Overview
 --------
-The Rindow OpenBLAS PHP extension is universal Buffer for N-dimension and OpenBLAS and Mathematical library.
+Rindow-math-matrix can call external libraries written in C language etc. to speed up matrix operations.
+You can call OpenBLAS, the most famous linear algebra library, and Rindow-Matlib, which is useful for machine learning.
 
-- Provides Universal Buffer for 1-dimension for data exchange between C,C+ language and PHP.
-- The OpenBLAS library available to PHP. Only the commonly used functions in OpenBLAS are provided.
-- Provides commonly used Mathematical libraries not included in OpenBLAS.
+From the latest version 2, we use PHP's FFI function to call the C language interface library. (Version 1 used PHP extensions)
 
-You can do very fast N-dimensional array operations in conjunction with the [Rindow Math Matrix](/mathematics/matrix/matrix.html).
+The following low-layer interfaces are mainly provided.
+
+- Provides a one-dimensional universal buffer for data exchange between C and PHP.
+- You can use almost the same low-layer interface as the OpenBLAS library in PHP. This allows for flexible usage that does not depend on the array shape.
+- Rindow-matlib can also be used in PHP with almost the same low-layer interface as C language.
+- Can be combined with [Rindow Math Matrix](/mathematics/matrix/matrix.html) to perform very fast and advanced N-dimensional array operations.
 
 Very useful when you want to do deep learning with PHP!
 
-Requirements
+
+requirements
 ------------
 
-- PHP7.2 or PHP7.3 or PHP7.4 or PHP8.0 or PHP8.1 or PHP8.2
-- Linux or Windows 10,11
-- OpenBLAS library
+- PHP8.1 or PHP8.2 or PHP8.3
+- Linux or Windows 10, 11
+- OpenBLAS library 0.3.20 or later
+- Rindow-Math Library 1.0 or later
 
-How to download and setup pre-build binaries
---------------------------------------------
-You can download and use pre-built binaries for Windows and Ubuntu from each releases.
-Download the binary for your version of PHP in "Asset" link.
 
-- https://github.com/rindow/rindow-openblas/releases
+Installation instructions from pre-build binaries
+-------------------------------------------------
 
-For Windows, copy rindow_openblas.dll to your PHP extension directory and set extension=rindow_openblas in php.ini.
+### Download pre-build binaries from each projects
 
-If you are using Windows, you must download and setup OpenBLAS binary from OpenBLAS releases.
-Please Download the version of OpenBLAS binaries that correspond to the rindow_openblas binaries.
+You can perform very fast N-dimensional array operations in conjunction.
+Download the pre-build binary files from each project's release page.
 
-- https://github.com/xianyi/OpenBLAS/releases
+- Pre-build binaries
+  - [Rindow Matlib](https://github.com/rindow/rindow-matlib/releases)
+  - [OpenBLAS](https://github.com/OpenMathLib/OpenBLAS/releases)
 
-> If you are using Windows, you must Download the version of OpenBLAS binaries that correspond to the
-> rindow_openblas binaries. The compatible OpenBLAS Library release number is included in the filename
-> of the rindow-openblas pre-built archive file. If you use the wrong OpenBLAS release number DLL,
-> it will not work properly.
+### Setup for Windows
 
-Unzip it to a suitable location and set the execution path in the bin directory.
+Download the binary file, unzip it, and copy it to the execution directory.
 
-```shell
-TMP>copy rindow-openblas-phpX.X-X.X.X-openblasX.X.XX-win-ts-vXXX-x64\rindow_openblas.dll \path\to\php\ext
-TMP>set PATH=%PATH%;\path\to\OpenBLAS\bin
-```
+- rindow-matlib-X.X.X-win64.zip
+- OpenBLAS-X.X.X-x64.zip
 
-For Ubuntu, use the apt command to install the deb file.
+Add FFI extension to php.ini
 
 ```shell
-$ sudo apt install ./rindow-openblas-phpX.X_X.X.X-X+ubuntuXX.XX_amd64.deb
+C:\TMP> cd \path\to\php\directory
+C:\PHP> notepad php.ini
+
+extension=ffi
+C:\PHP> php -m
+
+C:\TMP> PATH %PATH%;\path\to\binary\directories\bin
+C:\TMP> cd \your\progject\directory
+C:\PRJ> composer require rindow/rindow-math-matrix
+C:\PRJ> composer require rindow/rindow-math-matrix-matlibffi
+C:\PRJ> vendor/bin/rindow-math-matrix
+Service Level   : Advanced
+Buffer Factory  : Rindow\Math\Buffer\FFI\BufferFactory
+BLAS Driver     : Rindow\OpenBLAS\FFI\Blas
+LAPACK Driver   : Rindow\OpenBLAS\FFI\Lapack
+Math Driver     : Rindow\Matlib\FFI\Matlib
 ```
 
+### Setup for Ubuntu
 
-How to build from source code on Windows
-----------------------------------------------
-You can also build and use from source code.
+Install each library using the apt command.
 
-
-Download or Build OpenBLAS for MSVC on Windows
-----------------------------------------------
-### Download binaries for the OpenBLAS libray
-You need to build OpenBLAS libray for MSVC or download built binaries of libray for MSVC.
-
-If you want to use the pre-built OpenBLAS libray, you need OpenBLAS release 0.3.10 or later.
-
-- https://github.com/xianyi/OpenBLAS/releases
-
-### Install VC15 or VC16
-Developing PHP extensions for php7.2,php7.3 and php7.4 requires VC15 instead of the latest VC.
-
-- Install Microsoft Visual Studio 2019 or later installer
-- Run Installer with vs2017 build tools option.
-
-Developing PHP extensions from php8.0 requires VS16. You can use Visual Studio 2019.
-
-### Build OpenBLAS for pure MSVC from sources
-If you want to build the OpenBLAS on MSVC with static library instead you use pre-build binary on our site, you can build it yourself.
-
-https://github.com/xianyi/OpenBLAS/wiki/How-to-use-OpenBLAS-in-Microsoft-Visual-Studio
-> 1. Native (MSVC) ABI
-> Install Miniconda3 for 64 bits. And then follow the procedure described on the above page.
-
-You want to build a DLL of OpenBLAS, you can run cmake with shared libray option -DBUILD_SHARED_LIBS=ON
-
+Make sure FFI extension is enabled.
 ```shell
-Anaconda3>vcvars64 -vcvars_ver=14.16
-
-...... omission
-
-Anaconda3>cmake .. -G "Ninja" -DCMAKE_CXX_COMPILER=clang-cl -DCMAKE_C_COMPILER=clang-cl -DCMAKE_Fortran_COMPILER=flang -DBUILD_WITHOUT_LAPACK=no -DNOFORTRAN=0 -DDYNAMIC_ARCH=ON -DCMAKE_BUILD_TYPE=Release
-Anaconda3>cmake --build . --config Release
+$ php -m | grep FFI
+FFI
 ```
 
-Build the extension for Windows
--------------------------------
-
-Please refer to the following URL for details.
-
-https://wiki.php.net/internals/windows/stepbystepbuild_sdk_2
-
-### php sdk and devel-pack binaries for windows
-
-- You must know that PHP 7.2,7.3 and 7.4 needs environment for the MSVC version vc15 (that means Visual Studio 2017). php-sdk releases 2.1.9 supports vc15.
-- For PHP 7.x, Download the php-sdk from https://github.com/microsoft/php-sdk-binary-tools/releases/tag/php-sdk-2.1.9
-- If you want to build extensions for PHP 8.0, You have to use php-sdk release 2.2.0. It supports vs16.
-- For PHP 8.0, Download the php-sdk from https://github.com/microsoft/php-sdk-binary-tools/releases/tag/php-sdk-2.2.0
-- Extract to c:\php-sdk
-- Download target dev-pack from https://windows.php.net/downloads/releases/
-- Extract to /path/to/php-devel-pack-x.x.x-Win32-Vxxx-x64/
-
-### start php-sdk for target PHP version
-
-Open Visual Studio Command Prompt for VS for the target PHP version(see stepbystepbuild.)
-Note that you must explicitly specify the version of vc15 for which php.exe was built.
-The -vcvars_ver=14.16 means vc15.
-
-If you want to build for PHP 8.0, No options required.
-
+Install the fast matrix calculation library.
+And then set the rindow-matlib to serial mode for use with PHP.
 ```shell
-C:\visual\studio\path>vcvars64 -vcvars_ver=14.16
-or
-C:\visual\studio\path>vcvars64
+$ mkdir -p /your/project/directory
+$ cd /your/project/directory
+$ sudo apt install libopenblas-base libpapacke
+$ wget https://github.com/rindow/rindow-matlib/releases/download/X.X.X/rindow-matlib_X.X.X_amd64.deb
+$ sudo apt install ./rindow-matlib_X.X.X_amd64.deb
+$ sudo update-alternatives --config librindowmatlib.so
+There are 2 choices for the alternative librindowmatlib.so (providing /usr/lib/librindowmatlib.so).
 
-C:\tmp>cd c:\php-sdk-x.x.x
+  Selection    Path                                             Priority   Status
+------------------------------------------------------------
+* 0            /usr/lib/rindowmatlib-openmp/librindowmatlib.so   95        auto mode
+  1            /usr/lib/rindowmatlib-openmp/librindowmatlib.so   95        manual mode
+  2            /usr/lib/rindowmatlib-serial/librindowmatlib.so   90        manual mode
 
-C:\php-sdk-2.1.9>phpsdk-vc15-x64.bat
-or
-C:\php-sdk-2.2.0>phpsdk-vs16-x64.bat
+Press <enter> to keep the current choice[*], or type selection number: 2
 
+$ cd \your\progject\directory
+$ composer require rindow/rindow-math-matrix
+$ composer require rindow/rindow-math-matrix-matlibffi
+$ vendor/bin/rindow-math-matrix
+Service Level   : Advanced
+Buffer Factory  : Rindow\Math\Buffer\FFI\BufferFactory
+BLAS Driver     : Rindow\OpenBLAS\FFI\Blas
+LAPACK Driver   : Rindow\OpenBLAS\FFI\Lapack
+Math Driver     : Rindow\Matlib\FFI\Matlib
 ```
 
-### Build
-
-```shell
-$ PATH %PATH%;/path/to/OpenBLAS/bin
-$ cd /path/to/here
-$ composer update
-$ /path/to/php-devel-pack-x.x.x-Win32-VXXX-x64/phpize.bat
-$ configure --enable-rindow_openblas --with-prefix=/path/to/php-installation-path --with-openblas=/path/to/OpenBLAS-libray-built-directory
-$ nmake clean
-$ nmake
-$ nmake test
-```
-
-### Install from built directory
-
-- Copy the php extension binary(.dll) to the php/ext directory from here/arch/Releases_TS/php_rindow_openblas.dll
-- Add the "extension=php_rindow_openblas" entry to php.ini

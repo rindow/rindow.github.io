@@ -95,9 +95,9 @@ menu:
         link: /mathematics/plot/gettingstartplot.html#pie-chart
       - caption: Heat map
         link: /mathematics/plot/gettingstartplot.html#heat-map
-- caption: Rindow OpenBLAS extension
+- caption: Rindow OpenBLAS FFI
   menu:
-  - caption: Rindow OpenBLAS extension
+  - caption: Rindow OpenBLAS FFI
     link: /mathematics/openblas/overviewopenblas.html
     menu:
     - caption: Overview
@@ -149,10 +149,10 @@ menu:
   menu:
   - caption: Overview
     link: /mathematics/acceleration/opencl.html
-  - caption: Rindow OpenCL extension
-    link: /mathematics/acceleration/opencl.html#rindow-opencl-extension
-  - caption: Rindow CLBlast extension
-    link: /mathematics/acceleration/opencl.html#rindow-clblast-extension
+  - caption: Rindow OpenCL FFI
+    link: /mathematics/acceleration/opencl.html#rindow-opencl-ffi
+  - caption: Rindow CLBlast FFI
+    link: /mathematics/acceleration/opencl.html#rindow-clblast-ffi
   - caption: OpenCLMath liblary
     link: /mathematics/acceleration/opencl.html#openclmath-liblary-in-rindow-math-matrix
   - caption: Requirements
