@@ -7,6 +7,12 @@ next_section: builders
 ---
 Experience various machine learning on PHP with Rindow Neural Networks.
 
+- [Basic image classification on PHP](#basic-image-clasification-on-php)
+- [Convolutional Neural Network(CNN) on PHP](#convolutional-neural-networkcnn-on-php)
+- [Learning to add numbers with seq2seq on PHP](#learning-to-add-numbers-with-seq2seq-on-php)
+- [Neural machine translation with attention](#neural-machine-translation-with-attention) 
+
+
 Basic image clasification on PHP
 --------------------------------
 This is a tutorial for beginners. Experience a machine learning model with very simple image recognition.

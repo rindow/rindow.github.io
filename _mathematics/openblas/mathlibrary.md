@@ -3,6 +3,7 @@ layout: document
 title: "Math libray"
 upper_section: index
 previous_section: openblas/blaslibrary
+next_section: acceleration/opencl
 ---
 
 Overview

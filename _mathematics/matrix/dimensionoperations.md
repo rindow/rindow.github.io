@@ -3,6 +3,7 @@ layout: document
 title: "Dimension Operations"
 upper_section: index
 previous_section: matrix/arrayobjects
+next_section: plot/overviewplot
 ---
 overview
 --------
