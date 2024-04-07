@@ -29,7 +29,7 @@ Recommends
 ----------
 - [**Rindow Math Plot**](/mathematics/plot/overviewplot.html): Visualization mathematical data
 - [**Rindow Matlib and OpenBLAS**](/mathematics/openblas/overviewopenblas.html): C language interface and High-speed operation
-- [**OpenCL and CLBlast**](/mathematics/acceleration/openblas.html): Supports GPU acceleration
+- [**OpenCL and CLBlast**](/mathematics/acceleration/opencl.html): Supports GPU acceleration
 
 
 Installation
