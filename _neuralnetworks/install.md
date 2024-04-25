@@ -184,7 +184,7 @@ $ wget https://github.com/rindow/rindow-matlib/releases/download/X.X.X/rindow-ma
 $ sudo apt install ./rindow-matlib_X.X.X_amd64.deb
 ```
 But if you are not allowed to use the openmp version of openblas, there is another way.
-Click [here](/mathematics/openblas/overviewopenblas.html#troubleshooting-for-Linux) for more information.
+Click [here](/mathematics/openblas/overviewopenblas.html#troubleshooting-for-linux) for more information.
 
 Install Rindow Neural Networks.
 
