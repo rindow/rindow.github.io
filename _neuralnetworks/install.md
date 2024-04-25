@@ -8,21 +8,21 @@ next_section: tutorials/tutorials
 
 - [Operating environment](#operating-environment)
 - [Installation instructions for Windows](#installation-instructions-for-windows)
-- [Installation instructions for Ubuntu](#installation-instructions-for-ubuntu)
+- [Installation instructions for Linux](#installation-instructions-for-linux)
 - [GPU/OpenCL support for Windows](#gpuopencl-support-for-windows)
-- [GPU/OpenCL support for Ubuntu](#gpuopencl-support-for-ubuntu)
+- [GPU/OpenCL support for Linux](#gpuopencl-support-for-linux)
 
 
 Operating environment
 ---------------------
 Rindow Neural Networks has been tested in the following operating environments:
 
-・PHP 8.1, 8.2, 8.3 (When using in PHP 7.x, 8.0 environment, please use Release 1.x.)
+- PHP 8.1, 8.2, 8.3 (When using in PHP 7.x, 8.0 environment, please use Release 1.x.)
 - Windows 10 20H2 or later.
-- Ubuntu 20.04, 22.04
+- Ubuntu 20.04, 22.04 or Debian 12 or later
 - AMD/Intel CPU/APU 64bit (SSE2 or later)
-- OpenBLAS (0.3.20 Windows-x64, 0.3.20 Ubuntu-2204, 0.3.8 Ubuntu-2004)
-- CLBlast (1.5.2 or later, Windows-x64, Ubuntu-2204, Ubuntu-2004)
+- OpenBLAS (>=0.3.20:Windows-x64, 0.3.20:Ubuntu-2204, 0.3.8:Ubuntu-2004, 0.3.21:Debian12)
+- CLBlast (>=1.5.2:Windows-x64, 1.5.2:Ubuntu-2204, >=1.5.2:Ubuntu-2004, 1.5.3:Debian12)
 
 It also works with Intel/AMD CPU/APU and integrated graphics with OpenCL drivers.
 
@@ -137,7 +137,7 @@ Epoch 5/5 [.........................] 1 sec. remaining:00:00  - 2 sec.
 The graph is displayed
 ```
 
-Installation instructions for Ubuntu
+Installation instructions for Linux
 -----------------------------------------
 Install php.
 
@@ -179,20 +179,12 @@ Install the libraries required by Rindow NeuralNetworks.
 + Set Rindow-Matlib to serial mode for use with PHP.
 
 ```shell
-$ sudo apt install libopenblas-base liblapacke
+$ sudo apt install libopenblas0-openmp liblapacke
 $ wget https://github.com/rindow/rindow-matlib/releases/download/X.X.X/rindow-matlib_X.X.X_amd64.deb
 $ sudo apt install ./rindow-matlib_X.X.X_amd64.deb
-$ sudo update-alternatives --config librindowmatlib.so
-There are 2 choices for the alternative librindowmatlib.so (providing /usr/lib/librindowmatlib.so).
-
-  Selection    Path                                             Priority   Status
-------------------------------------------------------------
-* 0            /usr/lib/rindowmatlib-openmp/librindowmatlib.so   95        auto mode
-  1            /usr/lib/rindowmatlib-openmp/librindowmatlib.so   95        manual mode
-  2            /usr/lib/rindowmatlib-serial/librindowmatlib.so   90        manual mode
-
-Press <enter> to keep the current choice[*], or type selection number: 2
 ```
+But if you are not allowed to use the openmp version of openblas, there is another way.
+Click [here](/mathematics/openblas/overviewopenblas.html#troubleshooting-for-Linux) for more information.
 
 Install Rindow Neural Networks.
 
@@ -298,7 +290,7 @@ Platform(0)
 ```
 
 
-GPU/OpenCL support for Ubuntu
+GPU/OpenCL support for Linux
 ------------------------------
 It is essential that OpenCL works properly in the Linux environment.
 (That's quite difficult)
@@ -309,7 +301,7 @@ Install the OpenCL environment.
 $ sudo apt install clinfo
 $ sudo apt install intel-opencl-icd
 ```
-Ubuntu standard OpenCL drivers include:
+Linux standard OpenCL drivers include:
 - mesa-opencl-icd
 - beignet-opencl-icd
 - intel-opencl-icd
@@ -330,21 +322,20 @@ Number of platforms                               1
 ..
 ```
 
-Download and install the CLBlast library.
-Scripts are available for easy download and installation.
+Install the CLBlast library.
 
-+ Check the latest version: [CLBlast library](https://github.com/CNugteren/CLBlast/releases)
-+ Copy script
-+ Change the version at the beginning of the script
-+ Run script and create deb file
-+ Install deb file
+```shell
+$ sudo apt install libclblast1
+```
 
+If you are using Ubuntu 20.04, your distribution does not include clblast.
+Download and install the clblast pre-built binaries.
 ```shell
 $ cp vendor/rindow/rindow-clblast-ffi/clblast-packdeb.sh .
 $ vi clblast-packdeb.sh
 CLBLASTVERSION=1.6.2   <===== change
 $ sh clblast-packdeb.sh
-$ sudo apt install ./clblast_X.X.X-1+ubuntuXX.XX_amd64.deb
+$ sudo apt install ./clblast_X.X.X-1_amd64.deb
 ```
 
 Configure the rindow-neuralnetworks backend to use OpenCL.

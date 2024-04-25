@@ -38,7 +38,7 @@ Requirements
 - PHP8.1 or PHP8.2 or PHP8.3
 - interop-phpobjects/polite-math 1.0.6 or later
 - OpenCL 1.1 or later drivers/libraries.
-- Windows 10, 11 or Linux (Ubuntu 20.04 or later)
+- Windows 10, 11 or Linux (Ubuntu 20.04 or Debian 12 or later)
 - Rindow Math Matrix
 - Rindow OpenCL FFI
 - Rindow CLBlast FFI
@@ -92,7 +92,7 @@ Platform(0)
 ```
 
 
-GPU/OpenCL support for Ubuntu
+GPU/OpenCL support for Linux
 ------------------------------
 Install the libraries required.
 
@@ -102,20 +102,14 @@ Install the libraries required.
 + Set Rindow-Matlib to serial mode for use with PHP.
 
 ```shell
-$ sudo apt install libopenblas-base liblapacke
+$ sudo apt install libopenblas0-openmp liblapacke
 $ wget https://github.com/rindow/rindow-matlib/releases/download/X.X.X/rindow-matlib_X.X.X_amd64.deb
 $ sudo apt install ./rindow-matlib_X.X.X_amd64.deb
-$ sudo update-alternatives --config librindowmatlib.so
-There are 2 choices for the alternative librindowmatlib.so (providing /usr/lib/librindowmatlib.so).
-
-  Selection    Path                                             Priority   Status
-------------------------------------------------------------
-* 0            /usr/lib/rindowmatlib-openmp/librindowmatlib.so   95        auto mode
-  1            /usr/lib/rindowmatlib-openmp/librindowmatlib.so   95        manual mode
-  2            /usr/lib/rindowmatlib-serial/librindowmatlib.so   90        manual mode
-
-Press <enter> to keep the current choice[*], or type selection number: 2
 ```
+
+But if you are not allowed to use the openmp version of openblas, there is another way.
+Click [here](/mathematics/openblas/overviewopenblas.html#setup-for-linux) for more information.
+
 
 It is essential that OpenCL works properly in the Linux environment.
 (That's quite difficult)
@@ -126,7 +120,7 @@ Install the OpenCL environment.
 $ sudo apt install clinfo
 $ sudo apt install intel-opencl-icd
 ```
-Ubuntu standard OpenCL drivers include:
+Linux standard OpenCL drivers include:
 - mesa-opencl-icd
 - beignet-opencl-icd
 - intel-opencl-icd
@@ -157,11 +151,17 @@ Scripts are available for easy download and installation.
 + Install deb file
 
 ```shell
+$ sudo apt install libclblast1
+```
+
+If you are using Ubuntu 20.04, your distribution does not include clblast.
+Download and install the clblast pre-built binaries.
+```shell
 $ cp vendor/rindow/rindow-clblast-ffi/clblast-packdeb.sh .
 $ vi clblast-packdeb.sh
 CLBLASTVERSION=1.6.2   <===== change
 $ sh clblast-packdeb.sh
-$ sudo apt install ./clblast_X.X.X-1+ubuntuXX.XX_amd64.deb
+$ sudo apt install ./clblast_X.X.X-1_amd64.deb
 ```
 
 Configure the rindow-math-matrix.

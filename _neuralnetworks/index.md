@@ -131,7 +131,7 @@ Requirements
 ------------
 
 - PHP 8.1 8.2 8.3 (If you want to use it on PHP 7.x and 8.0, please use Version 1.x.)
-- Windows 10 or Ubuntu 20.04 or later is required to use OpenBLAS and Rindow-Matlib.
+- Windows 10 or Ubuntu 20.04 or Debian 12 or later is required to use OpenBLAS and Rindow-Matlib.
 - Rindow Math Matrix
 
 Recommends

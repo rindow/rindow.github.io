@@ -26,7 +26,7 @@ requirements
 ------------
 
 - PHP8.1 or PHP8.2 or PHP8.3
-- Linux or Windows 10, 11
+- Windows 10, 11 or Linux (Ubuntu 20.04 or Debian 12 or later)
 - OpenBLAS library 0.3.20 or later
 - Rindow-Math Library 1.0 or later
 
@@ -71,7 +71,7 @@ LAPACK Driver   : Rindow\OpenBLAS\FFI\Lapack
 Math Driver     : Rindow\Matlib\FFI\Matlib
 ```
 
-### Setup for Ubuntu
+### Setup for Linux
 
 Install each library using the apt command.
 
@@ -81,25 +81,34 @@ $ php -m | grep FFI
 FFI
 ```
 
-Install the fast matrix calculation library.
-And then set the rindow-matlib to serial mode for use with PHP.
+**Install OpenBLAS:**
+
+Since rindow-matlib currently uses OpenMP, choose the OpenMP version for OpenBLAS as well.
+
+Using the pthread version of OpenBLAS can cause conflicts and become unstable and slow.
+This issue does not occur on Windows.
+
 ```shell
-$ mkdir -p /your/project/directory
-$ cd /your/project/directory
-$ sudo apt install libopenblas-base liblapacke
-$ wget https://github.com/rindow/rindow-matlib/releases/download/X.X.X/rindow-matlib_X.X.X_amd64.deb
+$ sudo apt install libopenblas0-openmp liblapacke
+```
+
+**Install Rindow-Matlib:**
+
+Download the pre-build binary file.
+
+- https://github.com/rindow/rindow-matlib/releases
+
+Please install using the apt command. 
+```shell
 $ sudo apt install ./rindow-matlib_X.X.X_amd64.deb
-$ sudo update-alternatives --config librindowmatlib.so
-There are 2 choices for the alternative librindowmatlib.so (providing /usr/lib/librindowmatlib.so).
+```
+Just it.
 
-  Selection    Path                                             Priority   Status
-------------------------------------------------------------
-* 0            /usr/lib/rindowmatlib-openmp/librindowmatlib.so   95        auto mode
-  1            /usr/lib/rindowmatlib-openmp/librindowmatlib.so   95        manual mode
-  2            /usr/lib/rindowmatlib-serial/librindowmatlib.so   90        manual mode
+**Install Rindow-Matlib-FFI:**
 
-Press <enter> to keep the current choice[*], or type selection number: 2
+Set it up using composer.
 
+```shell
 $ cd \your\progject\directory
 $ composer require rindow/rindow-math-matrix
 $ composer require rindow/rindow-math-matrix-matlibffi
@@ -110,4 +119,39 @@ BLAS Driver     : Rindow\OpenBLAS\FFI\Blas
 LAPACK Driver   : Rindow\OpenBLAS\FFI\Lapack
 Math Driver     : Rindow\Matlib\FFI\Matlib
 ```
+
+
+### Troubleshooting for Linux
+
+If you have already installed the pthread version of OpenBLAS,
+```shell
+$ sudo apt remove libopenblas0-pthread
+```
+
+But if you can't remove it, you can switch to it using the update-alternatives command.
+
+```shell
+$ sudo update-alternatives --config libopenblas.so.0-x86_64-linux-gnu
+$ sudo update-alternatives --config liblapack.so.3-x86_64-linux-gnu
+```
+
+If you really want to use the pthread version of OpenBLAS, please switch to the serial version of rindow-matlib.
+
+There are no operational mode conflicts with OpenBLAS on Windows.
+
+But, If you really want to use the pthread version of OpenBLAS, please switch to the serial version of rindow-matlib.
+
+```shell
+$ sudo update-alternatives --config librindowmatlib.so
+There are 2 choices for the alternative librindowmatlib.so (providing /usr/lib/librindowmatlib.so).
+
+  Selection    Path                                             Priority   Status
+------------------------------------------------------------
+* 0            /usr/lib/rindowmatlib-openmp/librindowmatlib.so   95        auto mode
+  1            /usr/lib/rindowmatlib-openmp/librindowmatlib.so   95        manual mode
+  2            /usr/lib/rindowmatlib-serial/librindowmatlib.so   90        manual mode
+
+Press <enter> to keep the current choice[*], or type selection number: 2
+```
+Choose the "rindowmatlib-serial".
 
