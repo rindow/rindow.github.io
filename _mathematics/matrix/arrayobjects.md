@@ -54,9 +54,12 @@ Returns the specified range as an NDArray. Buffer is also shared at this time.
 
 ```php
 # $a is 2-D array of float32 on NDArray
-$b = $a[[1,3]];
+$b = $a[[1,4]];
 # $b is 2-D array of float32 NDArray referring 1 to 3
 ```
+
+> In Version 1 it was [1,3], but from Version 2 it is now written as [1,4]. 
+> The reason for this is to align with other systems and in many cases to simplify writing.
 
 
 #### offsetSet
