@@ -144,7 +144,7 @@ Install php.
 + Install php-cli, php-mbstring, and unzip using the apt command.
 
 ```shell
-$ sudo apt install php-cli8.3 php8.3-mbstring php8.3-curl php8.3-sqlite3 php8.3-gd php8.3-xml php8.3-opcache unzip
+$ sudo apt install php8.3-cli php8.3-mbstring php8.3-curl php8.3-sqlite3 php8.3-gd php8.3-xml php8.3-opcache unzip
 $ php -v
 PHP 8.3.4 (cli) (built: Mar 16 2024 08:40:08) (NTS)
 Copyright (c) The PHP Group
