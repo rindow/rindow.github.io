@@ -17,12 +17,13 @@ Operating environment
 ---------------------
 Rindow Neural Networks has been tested in the following operating environments:
 
-- PHP 8.1, 8.2, 8.3 (When using in PHP 7.x, 8.0 environment, please use Release 1.x.)
+- PHP 8.1, 8.2, 8.3, 8.4 (When using in PHP 7.x, 8.0 environment, please use Release 1.x.)
 - Windows 10 20H2 or later.
-- Ubuntu 20.04, 22.04 or Debian 12 or later
+- Ubuntu 22.04 or Debian 12 or later
 - AMD/Intel CPU/APU 64bit (SSE2 or later)
-- OpenBLAS (>=0.3.20:Windows-x64, 0.3.20:Ubuntu-2204, 0.3.8:Ubuntu-2004, 0.3.21:Debian12)
-- CLBlast (>=1.5.2:Windows-x64, 1.5.2:Ubuntu-2204, >=1.5.2:Ubuntu-2004, 1.5.3:Debian12)
+- OpenBLAS (>=0.3.20:Windows-x64, 0.3.20:Ubuntu-2204, 0.3.21:Debian12)
+- CLBlast (>=1.5.2:Windows-x64, 1.5.2:Ubuntu-2204, 1.5.3:Debian12)
+- OpenCL (>=1.1)
 
 It also works with Intel/AMD CPU/APU and integrated graphics with OpenCL drivers.
 
@@ -45,10 +46,10 @@ Edit php.ini to your liking.
 
 C:TEMP>PATH %PATH%;C:\php
 C:TEMP>php -v
-PHP 8.3.4 (cli) (built: Mar 13 2024 11:42:47) (NTS Visual C++ 2019 x64)
+PHP 8.4.5 (cli) (built: Mar 12 2025 12:17:53) (NTS Visual C++ 2022 x64)
 Copyright (c) The PHP Group
-Zend Engine v4.3.4, Copyright (c) Zend Technologies
-    with Zend OPcache v8.3.4, Copyright (c), by Zend Technologies
+Zend Engine v4.4.5, Copyright (c) Zend Technologies
+    with Zend OPcache v8.4.5, Copyright (c), by Zend Technologies
 C:TEMP>
 ```
 
@@ -71,17 +72,19 @@ Install the PHP extensions required by Rindow Neural Networks.
 + Set the OpenBLAS and Rindow-Matlib DLL paths to the execution path.
 + Make the necessary settings in php.ini.
       - memory_limit = 8G
+      - extension = curl
       - extension = ffi
       - extension=gd
       - extension = mbstring
       - extension=openssl
       - extension=pdo_sqlite
       - extension=zip
+      - zend_extension=opcache
 + Make sure PHP extensions are loaded with PHP -m.
 
 ```shell
-C:TEMP>PATH %PATH%;C:\OpenBLAS\OpenBLAS-0.3.26-x64\bin
-C:TEMP>PATH %PATH%;C:\Matlib\rindow-matlib-1.0.0-win64\bin
+C:TEMP>PATH %PATH%;C:\OpenBLAS\OpenBLAS-0.X.XX-x64\bin
+C:TEMP>PATH %PATH%;C:\Matlib\rindow-matlib-1.1.0-win64\bin
 
 Edit php.ini
 
@@ -112,9 +115,15 @@ C:tutorials>composer require rindow/rindow-math-plot
 C:tutorials>vendor/bin/rindow-math-matrix
 Service Level   : Advanced
 Buffer Factory  : Rindow\Math\Buffer\FFI\BufferFactory
-BLAS Driver     : Rindow\OpenBLAS\FFI\Blas
-LAPACK Driver   : Rindow\OpenBLAS\FFI\Lapack
-Math Driver     : Rindow\Matlib\FFI\Matlib
+BLAS Driver     : Rindow\OpenBLAS\FFI\Blas(THREAD)
+LAPACK Driver   : Rindow\OpenBLAS\FFI\Lapacke
+Math Driver     : Rindow\Matlib\FFI\Matlib(THREAD)
+```
+
+If the service level is Basic mode, the additional drivers are not configured correctly.
+Run the check command with the -v option to find the cause.
+```shell
+C:tutorials>vendor/bin/rindow-math-matrix -v
 ```
 
 Run the sample program
@@ -144,12 +153,12 @@ Install php.
 + Install php-cli, php-mbstring, and unzip using the apt command.
 
 ```shell
-$ sudo apt install php8.3-cli php8.3-mbstring php8.3-curl php8.3-sqlite3 php8.3-gd php8.3-xml php8.3-opcache unzip
+$ sudo apt install php8.4-cli php8.4-mbstring php8.4-curl php8.4-sqlite3 php8.4-gd php8.4-xml php8.4-opcache unzip
 $ php -v
-PHP 8.3.4 (cli) (built: Mar 16 2024 08:40:08) (NTS)
+PHP 8.4.5 (cli) (built: Mar 13 2025 15:36:20) (NTS)
 Copyright (c) The PHP Group
-Zend Engine v4.3.4, Copyright (c) Zend Technologies
-    with Zend OPcache v8.3.4, Copyright (c), by Zend Technologies
+Zend Engine v4.4.5, Copyright (c) Zend Technologies
+    with Zend OPcache v8.4.5, Copyright (c), by Zend Technologies
 ```
 
 Install composer.
@@ -168,7 +177,8 @@ php "${dir}/composer.phar" "$@"
 ^D
 $ chmod +x composer
 $ composer -V
-Composer version 2.6.6 2023-12-08 18:32:26
+Composer version 2.8.6 2025-02-25 13:03:50
+PHP version 8.4.5 (/usr/bin/php8.4)
 ```
 
 Install the libraries required by Rindow NeuralNetworks.
@@ -179,9 +189,9 @@ Install the libraries required by Rindow NeuralNetworks.
 + Set Rindow-Matlib to serial mode for use with PHP.
 
 ```shell
-$ sudo apt install libopenblas0-openmp liblapacke
-$ wget https://github.com/rindow/rindow-matlib/releases/download/X.X.X/rindow-matlib_X.X.X_amd64.deb
-$ sudo apt install ./rindow-matlib_X.X.X_amd64.deb
+$ sudo apt install libopenblas0 liblapacke
+$ wget https://github.com/rindow/rindow-matlib/releases/download/X.X.X/rindow-matlib_X.X.X-XX.XX_amd64.deb
+$ sudo apt install ./rindow-matlib_X.X.X-XX.XX_amd64.deb
 ```
 But if you are not allowed to use the openmp version of openblas, there is another way.
 Click [here](/mathematics/openblas/overviewopenblas.html#troubleshooting-for-linux) for more information.
@@ -195,20 +205,33 @@ Install Rindow Neural Networks.
 + Install rindow/rindow-math-plot with composer for graph display.
 + Verify that the state of rindow-math-matrlix is Advanced or Accelerated.
 
-
+Configure the image viewer.
 ```shell
 $ RINDOW_MATH_PLOT_VIEWER=/some/bin/dir/png-file-viewer
 $ export RINDOW_MATH_PLOT_VIEWER
+```
+Note: Specify "viewnior" etc. for RINDOW_MATH_PLOT_VIEWER
+
+
+Install Rindow Neural Networks.
+```shell
 $ mkdir ~/tutorials
 $ cd ~/tutorials
 $ composer require rindow/rindow-neuralnetworks
+$ composer require rindow/rindow-math-matrix-matlibffi
 $ composer require rindow/rindow-math-plot
 $ vendor/bin/rindow-math-matrix
-Service Level   : Advanced
+Service Level   : Accelerated
 Buffer Factory  : Rindow\Math\Buffer\FFI\BufferFactory
-BLAS Driver     : Rindow\OpenBLAS\FFI\Blas
-LAPACK Driver   : Rindow\OpenBLAS\FFI\Lapack
-Math Driver     : Rindow\Matlib\FFI\Matlib
+BLAS Driver     : Rindow\OpenBLAS\FFI\Blas(THREAD)
+LAPACK Driver   : Rindow\OpenBLAS\FFI\Lapacke
+Math Driver     : Rindow\Matlib\FFI\Matlib(THREAD)
+```
+
+If the service level is Basic mode, the additional drivers are not configured correctly.
+Run the check command with the -v option to find the cause.
+```shell
+$ vendor/bin/rindow-math-matrix -v
 ```
 
 Run the sample program
@@ -228,7 +251,6 @@ Epoch 4/5 ........................ - 10 sec.
 Epoch 5/5 ........................ - 11 sec.
  loss:0.1063 accuracy:0.9703 val_loss:0.1059 val_accuracy:0.9688
 ```
-Note: Specify "viewnior" etc. for RINDOW_MATH_PLOT_VIEWER
 
 The result is displayed as a graph.
 
@@ -244,7 +266,7 @@ Please download the CLBlast library and set the execution path.
 - [CLBlast library](https://github.com/CNugteren/CLBlast/releases)
 
 ```shell
-C:TEMP>PATH %PATH%;C:\CLBlast\CLBlast-1.6.2-Windows-x64\bin
+C:TEMP>PATH %PATH%;C:\CLBlast\CLBlast-X.X.X-Windows-x64\bin
 ```
 
 Configure the rindow-neuralnetworks backend to use OpenCL.
@@ -257,9 +279,9 @@ Configure the rindow-neuralnetworks backend to use OpenCL.
 C:tutorials>vendor\bin\rindow-math-matrix
 Service Level   : Accelerated
 Buffer Factory  : Rindow\Math\Buffer\FFI\BufferFactory
-BLAS Driver     : Rindow\OpenBLAS\FFI\Blas
-LAPACK Driver   : Rindow\OpenBLAS\FFI\Lapack
-Math Driver     : Rindow\Matlib\FFI\Matlib
+BLAS Driver     : Rindow\OpenBLAS\FFI\Blas(THREAD)
+LAPACK Driver   : Rindow\OpenBLAS\FFI\Lapacke
+Math Driver     : Rindow\Matlib\FFI\Matlib(THREAD)
 OpenCL Factory  : Rindow\OpenCL\FFI\OpenCLFactory
 CLBlast Factory : Rindow\CLBlast\FFI\CLBlastFactory
 
@@ -348,9 +370,9 @@ Configure the rindow-neuralnetworks backend to use OpenCL.
 $ vendor\bin\rindow-math-matrix
 Service Level   : Accelerated
 Buffer Factory  : Rindow\Math\Buffer\FFI\BufferFactory
-BLAS Driver     : Rindow\OpenBLAS\FFI\Blas
-LAPACK Driver   : Rindow\OpenBLAS\FFI\Lapack
-Math Driver     : Rindow\Matlib\FFI\Matlib
+BLAS Driver     : Rindow\OpenBLAS\FFI\Blas(THREAD)
+LAPACK Driver   : Rindow\OpenBLAS\FFI\Lapacke
+Math Driver     : Rindow\Matlib\FFI\Matlib(THREAD)
 OpenCL Factory  : Rindow\OpenCL\FFI\OpenCLFactory
 CLBlast Factory : Rindow\CLBlast\FFI\CLBlastFactory
 

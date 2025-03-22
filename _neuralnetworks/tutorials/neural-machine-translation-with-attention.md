@@ -3,6 +3,7 @@ layout: document
 title: "Neural machine translation with attention on PHP"
 upper_section: tutorials/tutorials
 previous_section: tutorials/learn-add-numbers-with-rnn
+next_section: tutorials/neural-machine-translation-with-transformer
 ---
 This tutorial uses a Recurrent Neural Network (RNN) and Attention on PHP to build a model for converting from French to English.
 

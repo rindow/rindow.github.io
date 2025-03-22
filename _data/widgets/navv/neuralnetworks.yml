@@ -26,6 +26,8 @@ menu:
     link: /neuralnetworks/tutorials/learn-add-numbers-with-rnn.html
   - caption: Neural machine translation with attention on PHP
     link: /neuralnetworks/tutorials/neural-machine-translation-with-attention.html
+  - caption: Neural machine translation with transformer on PHP
+    link: /neuralnetworks/tutorials/neural-machine-translation-with-transformer.html
 - caption: How to guide
   menu:
   - caption: Builders

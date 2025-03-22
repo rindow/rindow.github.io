@@ -11,6 +11,7 @@ Experience various machine learning on PHP with Rindow Neural Networks.
 - [Convolutional Neural Network(CNN) on PHP](#convolutional-neural-networkcnn-on-php)
 - [Learning to add numbers with seq2seq on PHP](#learning-to-add-numbers-with-seq2seq-on-php)
 - [Neural machine translation with attention](#neural-machine-translation-with-attention) 
+- [Neural machine translation with transformer](#neural-machine-translation-with-transformer) 
 
 
 Basic image clasification on PHP
@@ -60,4 +61,18 @@ Machine translation of natural language using Recurrent Neural Network (RNN) and
 # Target:  <start> close the door . <end>
 ```
 
-![Encoder and Decoder](images/neural-machine-translation-attention.png)
+![Attention scores](images/neural-machine-translation-attention.png)
+
+Neural machine translation with Transformer
+----------------------------------------
+Machine Translation with Transformer Model
+
+[Neural machine translation with Transformer on PHP](neural-machine-translation-with-transformer.html)
+
+```php
+# Input:   <start> je ferai de mon mieux . <end>
+# Predict: <start> i ll do my best . <end>
+# Target:  <start> i ll do my best . <end>
+```
+
+![Multi Head Attention scores](images/tranformer-translation-attention.png)
