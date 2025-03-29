@@ -18,7 +18,7 @@ Methods
 
 ### constructor
 ```php
-$builer->GradientTape(
+$tape = $g->GradientTape(
     bool $persistent=false
 )
 ```

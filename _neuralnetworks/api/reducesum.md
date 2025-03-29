@@ -1,21 +1,21 @@
 ---
 layout: document
-title: "reduceMean"
+title: "reduceSum"
 grand_upper_section: index
 upper_section: api/apitoc
-previous_section: api/oneslike
-next_section: api/reducesum
+previous_section: api/reducemean
+next_section: api/repeat
 ---
 
 - **namespace**: Rindow\NeuralNetworks\Gradient\Func
-- **classname**: reduceMean
+- **classname**: reduceSum
 
-Differentiable reduce mean function.
+Differentiable reduce sum function.
 
 Methods
 -------
 
-### reduceMean
+### add
 ```php
 $g->reduceMean(
     Variable|NDArray $x,
@@ -40,26 +40,26 @@ $nn = new NeuralNetworks($mo);
 $g = $nn->gradient();
 $a = $g->Variable([[1,2],[3,4]]);
 
-echo $mo->toString($g->reduceMean($a))."\n";
-echo $mo->toString($g->reduceMean($a,axis:0))."\n";
-echo $mo->toString($g->reduceMean($a,axis:1))."\n";
-echo $mo->toString($g->reduceMean($a,axis:-1))."\n";
-echo $mo->toString($g->reduceMean($a,axis:-2))."\n";
+echo $mo->toString($g->reduceSum($a))."\n";
+echo $mo->toString($g->reduceSum($a,axis:0))."\n";
+echo $mo->toString($g->reduceSum($a,axis:1))."\n";
+echo $mo->toString($g->reduceSum($a,axis:-1))."\n";
+echo $mo->toString($g->reduceSum($a,axis:-2))."\n";
 
-# 2.5
-# [2,3]
-# [1.5,3.5]
-# [1.5,3.5]
-# [2,3]
+# 10
+# [4,6]
+# [3,7]
+# [3,7]
+# [4,6]
 
 $c = $nn->with($tape=$g->GradientTape(),function() use ($g,$a) {
-    return $g->reduceMean($a,axis:0);
+    return $g->reduceSum($a,axis:0);
 });
 $da = $tape->gradient($c,$a);
 echo $mo->toString($c)."\n";
 echo $mo->toString($da)."\n";
 
-# [2,3]
-# [[0.5,0.5],[0.5,0.5]]
+# [4,6]
+# [[1,1],[1,1]]
 
 ```

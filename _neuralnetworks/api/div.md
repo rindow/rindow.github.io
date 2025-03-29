@@ -3,8 +3,8 @@ layout: document
 title: "div"
 grand_upper_section: index
 upper_section: api/apitoc
-previous_section: api/mul
-next_section: api/square
+previous_section: api/clipbyvalue
+next_section: api/equal
 ---
 
 - **namespace**: Rindow\NeuralNetworks\Gradient\Func
@@ -15,9 +15,9 @@ Differentiable Multiplication function.
 Methods
 -------
 
-### add
+### div
 ```php
-$builer->div(
+$g->div(
     Variable|NDArray $a,
     Variable|NDArray $b
 ) : Variable

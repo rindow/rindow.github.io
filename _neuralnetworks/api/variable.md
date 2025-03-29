@@ -18,7 +18,7 @@ Methods
 
 ### constructor
 ```php
-$builer->Variable(
+$g->Variable(
     $value,
     string $name=null,
     bool $reference=false,

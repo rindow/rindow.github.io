@@ -3,8 +3,8 @@ layout: document
 title: "mul"
 grand_upper_section: index
 upper_section: api/apitoc
-previous_section: api/sub
-next_section: api/div
+previous_section: api/matmul
+next_section: api/notEqual
 ---
 
 - **namespace**: Rindow\NeuralNetworks\Gradient\Func
@@ -15,9 +15,9 @@ Differentiable Multiplication function.
 Methods
 -------
 
-### add
+### mul
 ```php
-$builer->mul(
+$g->mul(
     Variable|NDArray $a,
     Variable|NDArray $b
 ) : Variable

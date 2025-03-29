@@ -3,7 +3,7 @@ layout: document
 title: "add"
 grand_upper_section: index
 upper_section: api/apitoc
-previous_section: api/graphfunction
+previous_section: api/modules
 next_section: api/sub
 ---
 
@@ -17,7 +17,7 @@ Methods
 
 ### add
 ```php
-$builer->add(
+$g->add(
     Variable|NDArray $a,
     Variable|NDArray $b
 ) : Variable

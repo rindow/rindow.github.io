@@ -1,67 +1,58 @@
 ---
 layout: document
-title: "ClassifiedDirectoryDataset"
+title: "SequentialDataset"
 grand_upper_section: index
 upper_section: api/apitoc
-previous_section: api/csvdataset
-next_section: api/sequentialDataset
+previous_section: api/classifieddirectorydataset
+next_section: api/preprocessor
 ---
 
 - **namespace**: Rindow\NeuralNetworks\Data\Dataset
-- **classname**: ClassifiedDirectoryDataset
+- **classname**: SequentialDataset
 
-Reads the files classified according to the file system directory in order and returns them with the class name.
+Combine multiple datasets and output them in batches. This is particularly useful when dealing with data that doesn't fit into memory.
 
-Specify the top directory with the following structure.
-```
--top-+-class1-+-file1
-     |        +-file2
-     |
-     +-class2-+-file3
-              +-file4
-```
 
 Methods
 -------
 
 ### constructor
 ```php
-public function __construct(
-    object $mo,
-    string $path,
-    string $pattern=null,
-    int $batch_size=32,
-    object $crawler=null,
-    DatasetFilter $filter=null,
-    bool $unclassified=false,
-    bool $shuffle=false,
-    int $limit=null,
-    array $restricted_by_class=null,
+$builer->SequentialDataset(
+        iterable $inputs,
+        ?int $batch_size=null,
+        ?int $total_size=null,
+        ?bool $shuffle=null,
+        ?DatasetFilter $filter=null,
+        ?DatasetFilter $inputs_filter=null,
 )
 ```
+You can create a NDArrayDataset instances with the Data Builder.
 
 Arguments
 
-- **path**: Top directory of classified directories.
-- **pattern**: File name pattern. Specifies the regular expression for preg_match.
-- **batch_size**: Batch size
-- **crawler**: Specifies an instance of the service that crawls the directory tree. By default it uses its own Dir class.
-- **filter**: Specifies the filter for the dataset. Filter will be described later.
-- **unclassified**: It works in unclassified mode. If set to true, the returned value will not include classname.
-- **shuffle**: Shuffles the order of the returned values.
-- **limit**: Sets the maximum number of values to return.
-- **restricted_by_class**: Restricts returning only the values contained in the specified class.
+- **inputs**: Specify inputs and the corresponding tests data. an iterator that yields arrays of type NDArray or NDrray, consisting of two arrays.
+- **batch_size**: batch size.
+- **total_size**: specify the maximum data size.
+- **shuffle**: Randomize the order of the returned values.
+- **filter**: Instance of dataset filter.
+- **inputs_filter**: N/A
 
 Examples
 
 ```php
-use Rindow\NeuralNetworks\Data\Dataset\ClassifiedDirectoryDataset;
-$dataset = new ClassifiedDirectoryDataset($mo,'/text',pattern:'@.*\\.txt@');
+use Rindow\NeuralNetworks\Builder\NeuralNetworks;
+$nn = new NeuralNetworks($mo);
+$sequential_inputs = new MyHugeDataStream($files);
+$filter = new MyFilter();
+$dataset = $nn->data()->SequentialDataset(
+    $sequential_inputs,
+    filter:$filter);
 foreach ($dataset as $batchdataset) {
-    [$contents,$labels] = $batchdataset;
-    foreach ($contents as $key => $value) {
-        $content = $value;
-        $class   = $labels[$key];
+    [$train,$label] = $batchdataset;
+    foreach ($train as $key => $value) {
+        $inputs = $value;
+        $trues  = $label[$key];
         //....... some processing
     }
 }
@@ -121,7 +112,7 @@ Arguments
 
 - **inputs**: NDArray rows of the specified batch size from the inputs.
 - **tests**: NDArray rows of the specified batch size from the tests.
-- **options**: array of file path list.
+- **options**: N/A.
 
 Output set
 
@@ -144,8 +135,8 @@ class TestFilter implements DatasetFilter
         iterable $inputs, iterable $tests=null, $options=null) : array
     {
         $la = $this->mo->la();
-        foreach($inputs as $key => $value) {
-        }
+        $inputs = $la->copy($inputs);
+        $la->scal(1/10,$inputs);
         return [$inputs,$tests];
     }
 }

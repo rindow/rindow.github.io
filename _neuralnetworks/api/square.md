@@ -3,8 +3,8 @@ layout: document
 title: "square"
 grand_upper_section: index
 upper_section: api/apitoc
-previous_section: api/div
-next_section: api/sqrt
+previous_section: api/sqrt
+next_section: api/stopgradient
 ---
 
 - **namespace**: Rindow\NeuralNetworks\Gradient\Func
@@ -15,7 +15,7 @@ Differentiable Square function.
 Methods
 -------
 
-### add
+### square
 ```php
 $builer->square(
     Variable|NDArray $a

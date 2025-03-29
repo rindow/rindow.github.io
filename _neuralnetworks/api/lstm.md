@@ -58,14 +58,14 @@ public function forward(
     NDArray $inputs,
     Variable|bool $training,
     array $initialStates=null,
-    array $options=null
-)
+    ?NDArray $mask=null,
+) : Variable|array
 ```
 Arguments
 - **inputs**: A 3D NDArray with shape [batch, timesteps, feature].
 - **training**: When training, it is true.
 - **initialStates**: List of initial state. Number of the state is two. Shape of the state is [batch, units]. When it have no state, give a null.
-- **options**: N/A
+- **mask**: A boolean tensor with shape `(batch, timesteps)` that indicates whether specific timesteps should be masked (optional). Individual `true` entries indicate that the corresponding timestep should be utilized, while `false` entries indicate that the corresponding timestep should be ignored. The default is `null`.
 
 Input shape
 -----------

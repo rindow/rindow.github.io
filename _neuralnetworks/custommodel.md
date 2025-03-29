@@ -28,9 +28,9 @@ Create the layer to be used in the constructor in advance.
 ```php
 class MyModel extends AbstractModel
 {
-    public function __construct($backend,$builder)
+    public function __construct($builder)
     {
-        parent::__construct($backend,$builder);
+        parent::__construct($builder);
         $this->dense1 = $builder->layers->Dense($units=128,
             input_shape:[(int)array_product([28,28,1])],
             kernel_initializer:'he_normal',

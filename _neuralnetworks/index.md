@@ -11,7 +11,7 @@ next_section: gettingstarted
       <!--svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 140x140"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"/><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg -->
       <img class="bd-placeholder-img rounded" width="200" height="200" alt="Easy to build" src="images/easy-to-build.png">
       <h3>Easy to build</h3>
-      <p>A high-dimensional neural network library that allows you to easily build models by combining rich components such as DNN, CNN, RNN, and (multi-head) attention.</p>
+      <p>A high-dimensional neural network library that allows you to easily build models by combining rich components such as DNN, CNN, RNN, and (multi-head) Attention.</p>
     </div><!-- /.col-lg-4 -->
     <div class="col-lg-4">
       <!--svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 140x140"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"/><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg-->

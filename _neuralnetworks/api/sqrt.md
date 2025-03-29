@@ -3,8 +3,8 @@ layout: document
 title: "sqrt"
 grand_upper_section: index
 upper_section: api/apitoc
-previous_section: api/square
-next_section: api/exp
+previous_section: api/shape
+next_section: api/square
 ---
 
 - **namespace**: Rindow\NeuralNetworks\Gradient\Func
@@ -15,7 +15,7 @@ Differentiable Square root function.
 Methods
 -------
 
-### add
+### sqrt
 ```php
 $builer->sqrt(
     Variable|NDArray $a

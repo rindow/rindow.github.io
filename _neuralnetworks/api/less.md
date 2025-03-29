@@ -1,23 +1,25 @@
 ---
 layout: document
-title: "sub"
+title: "less"
 grand_upper_section: index
 upper_section: api/apitoc
-previous_section: api/stopgradient
-next_section: api/transpose
+previous_section: api/increment
+next_section: api/log
 ---
 
 - **namespace**: Rindow\NeuralNetworks\Gradient\Func
-- **classname**: Sub
+- **classname**: Less
 
-Differentiable subtraction function.
+This function compares each element of the array and returns an array consisting of elements where 'a' is less than 'b', yielding a value of 1, or where 'a' is equal to or greater than 'b', yielding a value of 0.
+
+This is a non-backpropagable function.
 
 Methods
 -------
 
-### sub
+### less
 ```php
-$builer->sub(
+$g->less(
     Variable|NDArray $a,
     Variable|NDArray $b
 ) : Variable
@@ -26,7 +28,7 @@ Create and execute the function in the builder method
 
 Arguments
 
-- **a,b**: The arguments are Variable or NDArray. Implicitly create Variable for NDArray.
+- **a,b**: The arguments are Variable or NDArray. Implicitly create Variable for NDArray. 
 
 
 ```php
@@ -36,18 +38,9 @@ $mo = new MatrixOperator();
 $nn = new NeuralNetworks($mo);
 $g = $nn->gradient();
 $a = $g->Variable([1,2]);
-$b = $g->Variable([2,3]);
+$b = $g->Variable([3,2]);
 $c = $nn->with($tape=$g->GradientTape(),function() use ($g,$a,$b) {
-    return $g->sub($a,$b);
+    return $g->less($a,$b);
 });
-[$da,$db] = $tape->gradient($c,[$a,$b]);
 echo $mo->toString($c)."\n";
-echo $mo->toString($da)."\n";
-echo $mo->toString($db)."\n";
-
-# [-1,-1]
-# [1,1]
-# [-1,-1]
-
-
 ```

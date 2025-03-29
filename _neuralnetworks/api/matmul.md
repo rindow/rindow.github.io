@@ -4,7 +4,7 @@ title: "matmul"
 grand_upper_section: index
 upper_section: api/apitoc
 previous_section: api/log
-next_section: api/reducemean
+next_section: api/mul
 ---
 
 - **namespace**: Rindow\NeuralNetworks\Gradient\Func
@@ -15,9 +15,9 @@ Differentiable matrix product function.
 Methods
 -------
 
-### add
+### matmul
 ```php
-$builer->matmul(
+$g->matmul(
     Variable|NDArray $a,
     Variable|NDArray $b
 ) : Variable

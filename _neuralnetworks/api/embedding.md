@@ -24,9 +24,10 @@ Methods
 $builer->Embedding(
     int $inputDim,
     int $outputDim,
-    int $input_length=null,
-    string|callable $kernel_initializer='random_uniform',
-    string $name=null,
+    ?int $input_length=null,
+    string|callable $embeddings_initializer='random_uniform',
+    ?bool $mask_zero=null,
+    ?string $name=null,
 )
 ```
 You can create a Attention layer instances with the Layer Builder.
@@ -38,6 +39,7 @@ Arguments
 Options
 
 - **input_length**: Sequence length.
+- **mask_zero**: A boolean value indicating whether the input value 0 should be masked as a special "padding" value. This is useful when using recurrent layers or attention layers that handle variable-length inputs. If this is set to True, all subsequent layers in the model must support masking, otherwise the masking information will be lost. The masking information will also be lost if it passes through anything other than a layer. When mask_zero is set to True, as a result, index 0 becomes unavailable for use in the vocabulary (input_dim must be equal to vocabulary size + 1).
 
 Input shape
 -----------

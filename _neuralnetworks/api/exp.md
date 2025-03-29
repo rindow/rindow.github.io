@@ -3,8 +3,8 @@ layout: document
 title: "exp"
 grand_upper_section: index
 upper_section: api/apitoc
-previous_section: api/sqrt
-next_section: api/log
+previous_section: api/equal
+next_section: api/get
 ---
 
 - **namespace**: Rindow\NeuralNetworks\Gradient\Func
@@ -15,9 +15,9 @@ Differentiable exponential function.
 Methods
 -------
 
-### add
+### exp
 ```php
-$builer->exp(
+$g->exp(
     Variable|NDArray $a
 ) : Variable
 ```

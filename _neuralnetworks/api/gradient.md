@@ -33,6 +33,7 @@ Differentiable functions
 - [**log**](log.html)
 - [**matmul**](matmul.html)
 - [**reduceMean**](reducemean.html)
+- etc.
 
 Examples
 --------
