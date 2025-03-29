@@ -17,7 +17,7 @@ This is a non-backpropagable function.
 Methods
 -------
 
-### reshape
+### shape
 ```php
 $g->shape(
     Variable|NDArray $x,

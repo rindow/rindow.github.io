@@ -15,7 +15,7 @@ Differentiable reduce sum function.
 Methods
 -------
 
-### add
+### reduceMean
 ```php
 $g->reduceMean(
     Variable|NDArray $x,

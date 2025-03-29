@@ -4,7 +4,7 @@ title: "add"
 grand_upper_section: index
 upper_section: api/apitoc
 previous_section: api/modules
-next_section: api/sub
+next_section: api/bandpart
 ---
 
 - **namespace**: Rindow\NeuralNetworks\Gradient\Func

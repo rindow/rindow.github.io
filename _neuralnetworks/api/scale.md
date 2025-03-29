@@ -17,9 +17,9 @@ Add a constant value to an array. The following formula returns the result: alph
 Methods
 -------
 
-### increment
+### scale
 ```php
-$g->increment(
+$g->scale(
     Variable|Scalar  $alpha,
     Variable|NDArray|ArrayShape $x,
 ) : Variable

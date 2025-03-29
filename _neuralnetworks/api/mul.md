@@ -4,7 +4,7 @@ title: "mul"
 grand_upper_section: index
 upper_section: api/apitoc
 previous_section: api/matmul
-next_section: api/notEqual
+next_section: api/notequal
 ---
 
 - **namespace**: Rindow\NeuralNetworks\Gradient\Func

@@ -1,6 +1,6 @@
 ---
 layout: document
-title: "equal"
+title: "greater"
 grand_upper_section: index
 upper_section: api/apitoc
 previous_section: api/get

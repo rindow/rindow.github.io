@@ -15,7 +15,7 @@ Differentiable logarithm function.
 Methods
 -------
 
-### add
+### log
 ```php
 $builer->log(
     Variable|NDArray $a

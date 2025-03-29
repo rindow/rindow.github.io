@@ -17,7 +17,7 @@ This is a non-backpropagable function.
 Methods
 -------
 
-### ones
+### onesLike
 ```php
 $g->onesLike(
     Variable|NDArray $x,

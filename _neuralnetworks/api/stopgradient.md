@@ -7,8 +7,8 @@ previous_section: api/square
 next_section: api/sub
 ---
 
-- **namespace**: Rindow\NeuralNetworks\Gradient\Func
-- **classname**: Shape
+- **namespace**: Rindow\NeuralNetworks\Gradient\Core
+- **classname**: StopGradient
 
 This function prevents certain inputs from being taken into account when building a computation graph to calculate gradients.  A 'gradient generator' works by finding the derivative of the loss and adding the relevant parts of the graph to it. When this function is added, it stops the gradient generator from considering that particular input during the calculation.
 
