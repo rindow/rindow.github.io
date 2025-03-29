@@ -70,8 +70,16 @@ menu:
     menu:
     - caption: Automatic Differentiation and Gradients
       link: /neuralnetworks/autodiff.html#automatic-differentiation-and-gradients
-    - caption: Calculation graphs
-      link: /neuralnetworks/autodiff.html#calculation-graphs
+    - caption: Variables
+      link: /neuralnetworks/autodiff.html#variables
+    - caption: Functions
+      link: /neuralnetworks/autodiff.html#functions
+    - caption: Gradient Calculation
+      link: /neuralnetworks/autodiff.html#gradient-calculation
+    - caption: Model training
+      link: /neuralnetworks/autodiff.html#model-training
+    - caption: Compiling the computational graph
+      link: /neuralnetworks/compiling-the-computational-graph
 
 - caption: API reference
   link: /neuralnetworks/api/apitoc.html

@@ -8,7 +8,7 @@ next_section: api/mnist
 ---
 
 - **namespace**: Rindow\NeuralNetworks\Gradient\Func
-- **classname**: OnesLike
+- **classname**: ZerosLike
 
 Create an array filled with zeros, in the same format and data type as the input array.
 
@@ -17,9 +17,9 @@ This is a non-backpropagable function.
 Methods
 -------
 
-### onesLike
+### zerosLike
 ```php
-$g->onesLike(
+$g->zerosLike(
     Variable|NDArray $x,
 ) : Variable
 ```

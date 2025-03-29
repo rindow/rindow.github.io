@@ -70,7 +70,7 @@ Arguments
 query_mask: A boolean mask tensor of shape (batch_size, Tq). If given, the output will be zero at the positions where mask==False.
 value_mask: A boolean mask tensor of shape (batch_size, Tv). If given, will apply the mask such that values at positions where mask==False do not contribute to the result.
 - **attention_mask**: Reserved. always null or omited.
---**useCausalMask**: boolean. True when used to mask causal relationships.
+- **useCausalMask**: boolean. True when used to mask causal relationships.
 
 
 Input shape
