@@ -19,7 +19,7 @@ It doesn't use RNN blocks but rather uses only attention, which improves paralle
 Prerequisites
 ------------
 Before starting, please set up Rindow Neural Networks. For installation instructions, refer to
-[Installing Rindow Neural Networks](/neuralnetworks/install.md).
+[Installing Rindow Neural Networks](/neuralnetworks/install.html).
 
 Experience how Transformers can run efficiently even in PHP.
 If you're using a Windows environment, we recommend using Rindow CLBlast / OpenCL.
