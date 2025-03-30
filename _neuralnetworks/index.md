@@ -39,12 +39,12 @@ What is the Rindow Neural Networks
 Rindow Neural Networks is a high-level neural network library for PHP.
 It enables powerful machine learning in PHP.
 
-- You can build machine learning models such as DNN, CNN, RNN, and attention.
+- You can build machine learning models such as DNN, CNN, RNN, and (Multi-Head)Attention.
 - You can leverage your knowledge of Python and Keras.
 - Popular computer vision and natural language processing samples are available.
 - By calling high-speed computation libraries, you can process data at speeds comparable to TensorFlow's CPU version.
 - No dedicated machine learning environment is required. It can run on inexpensive laptops.
-- Interesting sample programs are included.
+- No NVidia GPU required, just use your laptop's GPU.
 
 The goal is to make it easy to create machine learning models in PHP using a method similar to Keras in Python.
 
