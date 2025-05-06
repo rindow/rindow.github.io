@@ -5,32 +5,33 @@ meta_description: "An environment for vector operations suitable for scientific 
 next_section: matrix/matrix
 ---
 
-Overview
---------
-A project that provides a math library for PHP.
+## Overview
+This project provides a mathematics library for PHP.
 
-Most scientific computing and machine learning use vector operations.
-However, PHP functions are just scalar operations.
-Also, PHP Arrays are not suitable for vector operations.
+Many scientific computations and machine learning tasks use vector operations.  
+However, PHP functions support only scalar operations, and PHP arrays are not well-suited for vector operations.
 
-Therefore, the basic idea is to define a suitable Array object.
-Build everything on top of that for vector operations.
+Therefore, the fundamental idea of this project is to define an appropriate array object.  
+Everything for vector operations is built on top of this.
 
-It has the following characteristics.
 
-- Defines a common Array object interface "NDArray".
-- Provides a flexible matrix calculation library.
-- Link external math libraries to speed up matrix operations.
-- Utilize GPU to speed up matrix operations.
-- Provides a mathematical data visualization library
+## Features:
+- Defines a common array object interface, **"NDArray"**.
+- Provides a flexible matrix computation library.
+- Links with external mathematical libraries to accelerate matrix operations.
+- Utilizes GPUs to speed up matrix calculations.
+- Offers a library for visualizing mathematical data.
+- Modularized from higher to lower layers for flexible combinations.
 
-Libraries
----------
-Divided into 6 libraries
 
-- [**Rindow Math Matrix**](matrix/matrix.html): NDArray and array operations
-- [**Rindow Math Plot**](plot/overviewplot.html): Visualization mathematical data
-- [**Rindow OpenBLAS FFI**](openblas/overviewopenblas.html): C language interface and High-speed operation
-- [**Rindow Matlib FFI**](openblas/overviewopenblas.html): C language interface and High-speed operation
-- [**Rindow OpenCL FFI**](acceleration/opencl.html#rindow-opencl-ffi): Supports GPU acceleration
-- [**Rindow CLBlast FFI**](acceleration/opencl.html#rindow-clblast-ffi): Supports GPU acceleration
+## Libraries
+The project is divided into seven libraries:
+
+- [**Rindow Math Matrix**](matrix/matrix.html): NDArray and array operations  
+- [**Rindow Math Plot**](plot/overviewplot.html): Visualization of mathematical data  
+- [**Rindow Math Buffer FFI**](openblas/overviewopenblas.html): Buffer enabling NDArray access via C language interface  
+- [**Rindow Matlib FFI**](openblas/overviewopenblas.html): C language interface and high-speed computation  
+- [**Rindow OpenBLAS FFI**](openblas/overviewopenblas.html): C language interface for BLAS functions and high-speed computation  
+- [**Rindow OpenCL FFI**](acceleration/opencl.html#rindow-opencl-ffi): Supports GPU acceleration  
+- [**Rindow CLBlast FFI**](acceleration/opencl.html#rindow-clblast-ffi): GPU acceleration for BLAS functions
+

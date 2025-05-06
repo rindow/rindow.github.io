@@ -35,6 +35,89 @@ $mo = new MatrixOperator();
 $la = $mo->la();
 ```
 
+### array
+```php
+public function array(mixed $array, ?int $dtype=null) : NDArray
+```
+NDArray with value specified by PHP array type.
+
+Arguments
+- **array**: PHP array or scalar, NDArray
+    - If an NDArray is provided, it will return as is.
+- **dtype**: data type.
+    - If omitted, default float type is used.
+
+Example
+```php
+$x = $mo->la()->array([[1,2],[3,4]],dtype:NDArray::float32);
+```
+
+### toNDArray
+```php
+public function toNDArray(NDArray $ndarray) : NDArray
+```
+Ensure that the data resides within the host memory. 
+
+Arguments
+- **ndarray**: NDArray
+    - If there is no data in the host memory, then we raise an exception.
+
+Example
+```php
+$x = $mo->la()->toNDArray($x);
+```
+
+### scalar
+```php
+public function scalar(mixed $array) : mixed
+```
+Convert scalar values in the NDArray to PHP scalars.
+
+Arguments
+- **array**: NDArray or PHP scalar vaulue.
+    - If an PHP scalar vaulue is provided, it will return as is.
+
+Example
+```php
+$x = $mo->la()->scalar($x);
+```
+
+### expandDims
+```php
+public function expandDims(NDArray $x, int $axis) : NDArray
+```
+Expand the NDArray dimension.
+
+Arguments
+- **x**: NDArray.
+- **axis**: Array dimension.
+
+Example
+```php
+$x = $mo->zeros([2,3]);
+$x = $mo->la()->expandDims($x,axis:1);
+// x->shape() : [2,1,3]
+```
+
+### squeeze
+```php
+public function squeeze(NDArray $x, ?int $axis=null) : NDArray
+```
+Reduces the dimensions of an array.
+
+Arguments
+- **x**: NDArray.
+- **axis**: The dimension to reduce. Must have a size of 1
+  - If omitted, all dimensions with a size of 1 will be reduced.
+
+Example
+```php
+$x = $mo->zeros([2,1,3]);
+$x = $mo->la()->squeeze($x,axis:1);
+// x->shape() : [2,3]
+```
+
+
 ### alloc
 ```php
 public function alloc(array $shape,$dtype=null)
@@ -72,7 +155,52 @@ Example
 $x = $mo->la()->zeros($mo->la()->alloc([2,2]));
 ```
 
-### zeros
+### ones
+$$
+\begin{align*}
+X := 1
+\end{align*}
+$$
+```php
+public function ones(NDArray $X) : NDArray
+```
+Initialize the array with ones.
+
+Arguments
+- **X**: The array to be initialized
+
+Result
+- An initialized array. The same instance as the input array.
+
+Example
+```php
+$x = $mo->la()->ones($mo->la()->alloc([2,2]));
+```
+
+### zerosLike
+$$
+\begin{align*}
+X := 0
+\end{align*}
+$$
+```php
+public function zerosLike(NDArray $X) : NDArray
+```
+allocate and initialize the array with zeros.
+
+Arguments
+- **X**: An array referencing the shape and data type of a new array.
+
+Result
+- An initialized array. The same instance as the input array.
+
+Example
+```php
+$origX = $mo->la()->alloc([2,2],dtype:NDArray:float32);
+$x = $mo->la()->zerosLike($origX);
+```
+
+### fill
 $$
 \begin{align*}
 X := n
@@ -408,6 +536,9 @@ public function rotg(
 ```
 Get the Givens rotation.
 
+Currently, complex numbers are supported only when the backend is OpenBLAS or PhpBLAS.
+CLBlast also does not support real or complex numbers at all.
+
 Arguments
 - **X**: the value of axis X.
 - **Y**: the value of axis Y.
@@ -455,7 +586,10 @@ public function rot(
     NDArray $C,
     NDArray $S) : void
 ```
-Get Coordinate rotation
+Get Coordinate rotation.
+
+Currently, complex numbers are supported only when the backend is PhpBLAS. OpenBLAS does not support complex numbers because it has cblas_csrot but not cblas_crot.
+CLBlast also does not support real or complex numbers at all.
 
 Arguments
 - **X**: the value of axis X.
@@ -478,6 +612,7 @@ echo $mo->toString($y)."\n";
 ## x => [1.4142135381699,2.8284270763397,4.2426404953003]
 ## y => [0,0,0]
 ```
+
 
 ### swap
 $$
@@ -519,7 +654,9 @@ public function gemv(
     float $alpha=null,
     float $beta=null,
     NDArray $Y=null,
-    bool $trans=null) : NDArray
+    bool $trans=null,
+    bool $conj=null,
+    ) : NDArray
 ```
 Cross product of matrix and vector
 
@@ -535,6 +672,8 @@ Arguments
     - Input and output are shared.
 - **trans**: transpose A matrix.
     - If omitted, default is false.
+- **conj**: conjugate A matrix.
+    - If omitted, default is the same trans.
 
 Result
 - Same instance as vector Y.
@@ -562,7 +701,10 @@ public function gemm(
     float $beta=null,
     NDArray $C=null,
     bool $transA=null,
-    bool $transB=null) : NDArray
+    bool $transB=null,
+    bool $conjA=null,
+    bool $conjB=null,
+    ) : NDArray
 ```
 Cross product of matrix and matrix
 
@@ -580,6 +722,10 @@ Arguments
     - If omitted, it is false.
 - **transB**: transpose B matrix.
     - If omitted, it is false.
+- **conjA**: conjugate A matrix.
+    - If omitted, it is the same transA.
+- **conjB**: transpose B matrix.
+    - If omitted, it is the same transB.
 
 Result
 - Same instance as vector C.
@@ -592,6 +738,60 @@ $c = $mo->array([[1,2],[3,4]]);
 $mo->la()->gemm($a,$b,2,3,$c);
 ## c => [[47,62],[107,140]]
 ```
+
+
+### matmul
+$$
+\begin{align*}
+    C :=  \alpha A \times B + \beta C
+\end{align*}
+$$
+```php
+public function matmul(
+    NDArray $A,
+    NDArray $B,
+    ?bool $transA=null,
+    ?bool $transB=null,
+    ?NDArray $C=null,
+    float|object|null $alpha=null,
+    float|object|null $beta=null,
+    ?bool $conjA=null,
+    ?bool $conjB=null,
+    ) : NDArray
+```
+Calculates the matrix multiplication of two multidimensional arrays. Batch processing is also possible depending on the number of dimensions.
+
+Arguments
+- **A**: A matrix.
+- **B**: B matrix.
+- **transA**: transpose A matrix.
+    - If omitted, it is false.
+- **transB**: transpose B matrix.
+    - If omitted, it is false.
+- **C**: C matrix.
+    - If omitted, it will be allocated automatically.
+    - Input and output are shared.
+- **alpha**: constant value.
+    - If omitted, default is 0.1
+- **beta**: constant value.
+    - If omitted, default is 0.0
+- **conjA**: conjugate A matrix.
+    - If omitted, it is the same transA.
+- **conjB**: conjugate B matrix.
+    - If omitted, it is the same transB.
+
+Result
+- Same instance as vector C.
+
+Example
+```php
+$a = $mo->array([[1,2,3],[4,5,6]]);
+$b = $mo->array([[1,2],[3,4],[5,6]]);
+$c = $mo->array([[1,2],[3,4]]);
+$mo->la()->matmul($a,$b,alpha:2,beta:3,C:$c);
+## c => [[47,62],[107,140]]
+```
+
 
 ### symm
 $$
@@ -658,7 +858,9 @@ public function syrk(
     float $beta=null,
     NDArray $C=null,
     bool $lower=null,
-    bool $trans=null) : NDArray
+    bool $trans=null,
+    bool $conj=null,
+    ) : NDArray
 ```
 Cross product of a matrix and transposed
 
@@ -675,6 +877,8 @@ Arguments
     - If omitted, it is false.
 - **trans**: transpose A matrix.
     - If omitted, it is false.
+- **conj**: conjugate A matrix.
+    - If omitted, it is the same trans.
 
 Result
 - Same instance as vector C.
@@ -707,7 +911,9 @@ public function syr2k(
     float $beta=null,
     NDArray $C=null,
     bool $lower=null,
-    bool $trans=null) : NDArray
+    bool $trans=null,
+    bool $conj=null,
+    ) : NDArray
 ```
 Cross product of a matrix and transposed
 
@@ -725,6 +931,8 @@ Arguments
     - If omitted, it is false.
 - **trans**: transpose A matrix.
     - If omitted, it is false.
+- **conj**: conjugate A matrix.
+    - If omitted, it is the same trans.
 
 Result
 - Same instance as vector C.
@@ -764,6 +972,7 @@ public function trmm(
     bool $right=null,
     bool $lower=null,
     bool $trans=null,
+    bool $conj=null,
     bool $unit=null) : NDArray
 ```
 Cross product of a triangular matrix
@@ -779,6 +988,8 @@ Arguments
     - If omitted, it is false.
 - **trans**: transpose A matrix.
     - If omitted, it is false.
+- **conj**: conjugate A matrix.
+    - If omitted, it is the same trans.
 - **uni­t**: uni­triangular.
     - If omitted, it is false.
 
@@ -818,6 +1029,7 @@ public function trsm(
     bool $right=null,
     bool $lower=null,
     bool $trans=null,
+    bool $conj=null,
     bool $unit=null) : NDArray
 ```
 Cross product of a triangular matrix
@@ -833,6 +1045,8 @@ Arguments
     - If omitted, it is false.
 - **trans**: transpose A matrix.
     - If omitted, it is false.
+- **conj**: conjugate A matrix.
+    - If omitted, it is the same trans.
 - **uni­t**: uni­triangular.
     - If omitted, it is false.
 
@@ -868,6 +1082,7 @@ $$
 public function svd(NDArray $matrix,$fullMatrices=null)
 ```
 Cross product of a triangular matrix
+Complex numbers are not currently supported.
 
 Arguments
 - **matrix**: Input matrix.
@@ -882,6 +1097,41 @@ Example
 ```php
 $x = $mo->la()->randomUniform([6,5],-10,10);
 [$u,$s,$vt] = $mo->la()->svd($x);
+```
+
+### omatcopy
+```php
+    public function omatcopy(
+        NDArray $A,
+        ?bool $trans=null,
+        ?bool $conj=null,
+        float|object|null $alpha=null,
+        ?NDArray $B=null,
+        ) : NDArray
+```
+Copy array elements with transpose and conjugate
+
+Arguments
+- **matrix A**: Input matrix.
+- **trans**: transpose A matrix.
+    - If omitted, it is false.
+- **conj**: conjugate A matrix.
+    - If omitted, it is the same trans.
+- **alpha**: multiply constant.
+    - If omitted, default is 1.0.
+- **matrix B**: Output matrix.
+
+Result
+- **matrix B**: Output matrix.
+
+Example
+```php
+$a = $mo->array([
+    [1,2,3],
+    [4,5,6],
+],dtype:NDArray::float32);
+$b = $mo->la()->omatcopy($a,trans:true);
+## b => [[1,4],[2,5],[3,6]]
 ```
 
 ### sum
@@ -1101,109 +1351,219 @@ $mo->la()->reciprocal($x,1,-1);
 ### maximum
 $$
 \begin{align*}
-x_k :=  \left \{ \begin{array}{l} x_k \hspace{5mm} (x_k > \alpha) \\ \alpha \hspace{5mm} (x_k \leqq \alpha) \end{array} \right.
+a_mn :=  \left \{ \begin{array}{l} a_mn \hspace{5mm} (a_mn > x_n) \\ x_n \hspace{5mm} (a_mn \leqq x_n) \end{array} \right.
 \end{align*}
 $$
 ```php
-public function maximum(float $alpha, NDArray $X) : NDArray
+    public function maximum(
+        NDArray $A,
+        int|float|NDArray $X,
+        ) : NDArray
 ```
-Set the larger of vector elements and constant
+Set the larger of matrix elements and constant
 
 Arguments
-- **alpha**: Constant to compare.
-- **X**: the vector X.
+- **A**: the matrix A.
     - Input and output are shared.
+- **X**: Constant to compare. scalar value or vector.
 
 Result
-- Same instance as vector X.
+- Same instance as matrix A.
 
 Examples
 
 ```php
-$x = $mo->array([2,3,4]);
-$mo->la()->maximum(3,$x);
-## x => [3.0, 3.0, 4.0]
+$a = $mo->array([
+    [2,3,4],
+    [3,4,5],
+]);
+$x = $mo->array(
+    [3,3,3]
+)
+$mo->la()->maximum($a,$x);
+## a => [[3.0, 3.0, 4.0],[3.0,4.0,5.0]]
 ```
 
 ### minimum
 $$
 \begin{align*}
-x_k :=  \left \{ \begin{array}{l} x_k \hspace{5mm} (x_k < \alpha) \\ \alpha \hspace{5mm} (x_k \geqq \alpha) \end{array} \right.
+a_mn :=  \left \{ \begin{array}{l} a_mn \hspace{5mm} (a_mn < x_n) \\ x_n \hspace{5mm} (a_mn \geqq x_n) \end{array} \right.
 \end{align*}
 $$
 ```php
-public function minimum(float $alpha, NDArray $X) : NDArray
+public function minimum(
+    NDArray $A,
+    int|float|NDArray $X,
+    ) : NDArray
 ```
-Set the smaller of the vector elements and constant
+Set the smaller of the matrix elements and constant
 
 Arguments
-- **alpha**: Constant to compare.
-- **X**: the vector X.
+- **A**: the matrix A.
     - Input and output are shared.
+- **X**: Constant to compare. scalar value or vector.
 
 Result
-- Same instance as vector X.
+- Same instance as matrix A.
 
 Examples
 
 ```php
-$x = $mo->array([2,3,4]);
-$mo->la()->minimum(3,$x);
-## x => [2.0, 3.0, 3.0]
+$a = $mo->array([
+    [2,3,4],
+    [3,4,5],
+]);
+$x = $mo->array(
+    [3,3,3]
+)
+$mo->la()->minimum($a,$x);
+## a => [[2.0, 3.0, 3.0],[3.0,3.0,3.0]]
 ```
 
 ### greater
 $$
 \begin{align*}
-x_k :=  \left \{ \begin{array}{l} 1 \hspace{5mm} (x_k > \alpha) \\ 0 \hspace{5mm} (x_k \leqq \alpha) \end{array} \right.
+a_mn :=  \left \{ \begin{array}{l} 1 \hspace{5mm} (a_mn > x_n) \\ 0 \hspace{5mm} (a_mn \leqq x_n) \end{array} \right.
 \end{align*}
 $$
 ```php
-public function greater(float $alpha, NDArray $X) : NDArray
+    public function greater(
+        NDArray $A,
+        int|float|NDArray $X,
+        ) : NDArray
 ```
-Check if vector element is greater than constant
+Check if matrix element is greater than constant
 
 Arguments
-- **alpha**: Constant to compare.
-- **X**: the vector X.
+- **A**: the matrix A.
     - Input and output are shared.
+- **X**: Constant to compare. scalar value or vector.
 
 Result
-- Same instance as vector X.
+- Same instance as matrix A.
 
 Examples
 
 ```php
-$x = $mo->array([2,3,4]);
-$mo->la()->greater(3,$x);
-## x => [0.0, 0.0, 1.0]
+$a = $mo->array([
+    [2,3,4],
+    [3,4,5],
+]);
+$x = $mo->array(
+    [3,3,3]
+)
+$mo->la()->greater($a,$x);
+## a => [[0.0, 0.0, 1.0],[0.0,1.0,1.0]]
+```
+
+### greaterEqual
+$$
+\begin{align*}
+a_mn :=  \left \{ \begin{array}{l} 1 \hspace{5mm} (a_mn \geqq x_n) \\ 0 \hspace{5mm} (a_mn < x_n) \end
+{array} \right.
+\end{align*}
+$$
+```php
+    public function greaterEqual(
+        NDArray $A,
+        int|float|NDArray $X,
+        ) : NDArray
+```
+Check if matrix element is greater than or equal constant
+
+Arguments
+- **A**: the matrix A.
+    - Input and output are shared.
+- **X**: Constant to compare. scalar value or vector.
+
+
+Result
+- Same instance as matrix A.
+
+Examples
+
+```php
+$a = $mo->array([
+    [2,3,4],
+    [3,4,5],
+]);
+$x = $mo->array(
+    [3,3,3]
+)
+$mo->la()->greaterEqual($a,$x);
+## a => [[0.0, 1.0, 1.0],[1.0,1.0,1.0]]
 ```
 
 ### less
 $$
 \begin{align*}
-x_k :=  \left \{ \begin{array}{l} 1 \hspace{5mm} (x_k < \alpha) \\ 0 \hspace{5mm} (x_k \geqq \alpha) \end{array} \right.
+a_mn :=  \left \{ \begin{array}{l} 1 \hspace{5mm} (a_mn < x_n) \\ 0 \hspace{5mm} (a_mn \geqq x_n) \end{array} \right.
 \end{align*}
 $$
 ```php
-public function less(float $alpha, NDArray $X) : NDArray
+public function less(
+    NDArray $A,
+    int|float|NDArray $X,
+    ) : NDArray
 ```
-Check if vector element is less than constant
+Check if matrix element is less than constant
 
 Arguments
-- **alpha**: Constant to compare.
-- **X**: the vector X.
+- **A**: the matrix A.
     - Input and output are shared.
+- **X**: Constant to compare. scalar value or vector.
 
 Result
-- Same instance as vector X.
+- Same instance as matrix A.
 
 Examples
 
 ```php
-$x = $mo->array([2,3,4]);
-$mo->la()->less(3,$x);
-## x => [1.0, 0.0, 0.0]
+$a = $mo->array([
+    [2,3,4],
+    [3,4,5],
+]);
+$x = $mo->array(
+    [3,3,3]
+)
+$mo->la()->less($a,$x);
+## a => [[1.0, 0.0, 0.0],[0.0,0.0,0.0]]
+```
+
+### lessEqual
+$$
+\begin{align*}
+a_mn :=  \left \{ \begin{array}{l} 1 \hspace{5mm} (a_mn \leqq x_n) \\ 0 \hspace{5mm} (a_mn > x_n) \end{array} \right.
+\end{align*}
+$$
+```php
+    public function lessEqual(
+        NDArray $A,
+        int|float|NDArray $X,
+        ) : NDArray
+```
+Check if matrix element is less than constant
+
+Arguments
+- **A**: the matrix A.
+    - Input and output are shared.
+- **X**: Constant to compare. scalar value or vector.
+
+Result
+- Same instance as matrix A.
+
+Examples
+
+```php
+$a = $mo->array([
+    [2,3,4],
+    [3,4,5],
+]);
+$x = $mo->array(
+    [3,3,3]
+)
+$mo->la()->lessEqual($a,$x);
+## a => [[1.0, 1.0, 0.0],[1.0,0.0,0.0]]
 ```
 
 ### multiply
@@ -1389,28 +1749,34 @@ $mo->la()->rsqrt($x);
 ### pow
 $$
 \begin{align*}
-x_k := (x_k)^\alpha
+a_mn := (a_mn)^\alpha
 \end{align*}
 $$
 ```php
-public function pow(NDArray $X, float $alpha) : NDArray
+public function pow(
+    NDArray $A,
+    float|NDArray $alpha,
+    ?bool $trans=null,
+    ) : NDArray
 ```
 To power array elements
 
 Arguments
-- **X**: the vector X.
+- **A**: the matrix X.
     - Input and output are shared.
-- **alpha**: the constant
+- **alpha**: the constant. scalar value or vector.
+- **trans**: transpose matrix A.
 
 Result
-- Same instance as vector X.
+- Same instance as matrix X.
 
 Examples
 
 ```php
-$x = $mo->array([[0,1,2],[3,4,5]]);
-$mo->la()->pow($x,3);
-## x => [[0.0, 1.0, 8.0],[27.0, 64.0, 125.0]]
+$a = $mo->array([[0,1,2],[3,4,5]]);
+$alpha = $mo->array([3,3,3])
+$mo->la()->pow($a,$alpha);
+## a => [[0.0, 1.0, 8.0],[27.0, 64.0, 125.0]]
 ```
 
 ### exp
@@ -1490,6 +1856,87 @@ $x = $mo->array([[1,2,3],[4,5,6]]);
 $mo->la()->tanh($x);
 ```
 
+### sin
+$$
+\begin{align*}
+x_k := \sin x_k
+\end{align*}
+$$
+```php
+public function sin(
+    NDArray $X
+    ) : NDArray
+```
+Calculate the sin
+
+Arguments
+- **X**: the vector X.
+    - Input and output are shared.
+
+Result
+- Same instance as vector X.
+
+Examples
+
+```php
+$x = $mo->array([[1,2,3],[4,5,6]]);
+$mo->la()->sin($x);
+```
+
+### cos
+$$
+\begin{align*}
+x_k := \cos x_k
+\end{align*}
+$$
+```php
+public function cos(
+    NDArray $X
+    ) : NDArray
+```
+Calculate the cos
+
+Arguments
+- **X**: the vector X.
+    - Input and output are shared.
+
+Result
+- Same instance as vector X.
+
+Examples
+
+```php
+$x = $mo->array([[1,2,3],[4,5,6]]);
+$mo->la()->cos($x);
+```
+
+### tan
+$$
+\begin{align*}
+x_k := \tan x_k
+\end{align*}
+$$
+```php
+public function tan(
+    NDArray $X
+    ) : NDArray
+```
+Calculate the tan
+
+Arguments
+- **X**: the vector X.
+    - Input and output are shared.
+
+Result
+- Same instance as vector X.
+
+Examples
+
+```php
+$x = $mo->array([[1,2,3],[4,5,6]]);
+$mo->la()->tan($x);
+```
+
 ### equal
 $$
 \begin{align*}
@@ -1501,7 +1948,7 @@ public function equal(
     NDArray $X,
     NDArray $Y) : NDArray
 ```
-Aggregate the average value of array elements in the specified dimension
+Compare the value of array elements
 
 Arguments
 - **X**: the vector X.
@@ -1520,6 +1967,62 @@ $mo->la()->equal($x,$y);
 ## y => [[1,0,1],[0,1,0]]
 ```
 
+### notEqual
+$$
+\begin{align*}
+y_i :=  \left \{ \begin{array}{l} 1 \hspace{5mm} ( x_i \neq y_i ) \\ 0 \hspace{5mm} ( x_i = y_i ) \end{array} \right.
+\end{align*}
+$$
+```php
+public function notEqual(
+    NDArray $X,
+    NDArray $Y) : NDArray
+```
+Compare the value of array elements
+
+Arguments
+- **X**: the vector X.
+- **Y**: the vector Y.
+    - Input and output are shared.
+
+Result
+- Same instance as vector Y.
+
+Examples
+
+```php
+$x = $mo->array([[1,2,3],[6,5,4]]);
+$y = $mo->array([[1,0,3],[4,5,6]]);
+$mo->la()->notEqual($x,$y);
+## y => [[0,1,0],[1,0,1]]
+```
+
+### not
+$$
+\begin{align*}
+y_i :=  \left \{ \begin{array}{l} 1 \hspace{5mm} ( x_i = 0 ) \\ 0 \hspace{5mm} ( x_i \neq 0 ) \end{array} \right.
+\end{align*}
+$$
+```php
+public function not(NDArray $X) : NDArray
+```
+Invert the value as boolean of array elements.
+
+Arguments
+- **X**: the vector X.
+    - Input and output are shared.
+
+Result
+- Same instance as vector X.
+
+Examples
+
+```php
+$x = $mo->array([[1,0,3],[-1,5,0]]);
+$mo->la()->not($x);
+## x => [[0,1,0],[0,0,1]]
+```
+
 ### duplicate
 $$
 \begin{align*}
@@ -1528,25 +2031,25 @@ a_{ij} :=  x_j
 $$
 ```php
 public function duplicate(
-    NDArray $X,
-    int $repeats=null,
-    bool $trans=null,
-    NDArray $A=null) : NDArray
+    NDArray $input,
+    ?int $repeats=null,
+    ?bool $trans=null,
+    ?NDArray $output=null) : NDArray
 ```
 Copy vector X multiple times
 
 Arguments
-- **X**: the vector X.
+- **input**: the vector X.
     - It need not be a one-dimensional array.
 - **repeats**: Number of copies
     - default is 1.
 - **trans**: transpose the matrix A.
     - default is false.
-- **A**: Destination matrix.
+- **output**: Destination matrix.
     - If omitted, it will be allocated automatically.
 
 Result
-- Same instance as vector A.
+- Same instance as matrix output.
 
 Examples
 
@@ -1570,17 +2073,17 @@ $$
 ```php
 public function transpose(
     NDArray $A,
-    NDArray $B=null,
-    float $alpha=null
-    )
+    array|NDArray|null $perm=null,
+    ?NDArray $B=null,
+    ) : NDArray
 ```
 Transpose a matrix
 
 Arguments
 - **A**: input matrix.
+- **perm**: A list of destination dimensions to swap.
+    - If omitted, range($A->ndim()-1,0,-1).
 - **B**: output matrix
-- **alpha**: multiply value.
-    - default is 1.0
 
 Result
 - Same instance as Matrix B.
@@ -1605,8 +2108,8 @@ public function gather(
     NDArray $A,
     NDArray $X,
     int $axis=null,
-    NDArray $B=null,
-    $dtype=null) : NDArray
+    NDArray $output=null,
+    int $dtype=null) : NDArray
 ```
 Select values from source array by indexes.
 
@@ -1618,11 +2121,11 @@ Arguments
     - default is null.
     - If null, Match from the beginning of the selector.
     - If not null, Reduce on the specified axis.
-- **B**: Destination matrix.
+- **output**: Destination matrix.
     - If omitted, it will be allocated automatically.
 
 Result
-- Same instance as vector B.
+- Same instance as vector output.
 
 Examples
 
@@ -1633,12 +2136,72 @@ $b = $mo->la()->gather($a,$x);
 ## b => [[1,2,3],[7,8,9]]
 $a = $mo->array([[1,2,3],[4,5,6],[7,8,9]]);
 $x = $mo->array([2,1,0],NDArray::int32);
-$b = $mo->la()->gather($a,$x,$axis=0);
+$b = $mo->la()->gather($a,$x,axis:0);
 ## b => [7,5,3]
 $a = $mo->array([[1,2,3],[4,5,6],[7,8,9]]);
 $x = $mo->array([2,1,0],NDArray::int32);
-$b = $mo->la()->gather($a,$x,$axis=1);
+$b = $mo->la()->gather($a,$x,axis:1);
 ## b => [3,5,7]
+```
+
+### gatherb
+$$
+\begin{align*}
+y :=  \left \{ \begin{array}{l} a_{x,k} \hspace{5mm} ( axis = null ) \\ a_{m,x,k} \hspace{5mm} ( axis \neq null ) \end{array} \right.
+\end{align*}
+$$
+```php
+    public function gatherb(
+        NDArray $params,
+        NDarray $indices,
+        ?int $axis=null,
+        ?int $batchDims=null,
+        ?int $detailDepth=null,
+        ?int $indexDepth=null,
+        ?NDArray $outputs=null,
+    ) : NDArray
+```
+Extended gather function.
+
+- **params**: (batches, m, numClass, k, len)
+- **indices**: (batches, n, k)
+- **outputs**: (batches, m, n, k, len)
+- outputs(batches, m, n, k, len) := A(batches, m, X(batches, n, k), k, len)
+
+
+Arguments
+
+- **params**: source data.
+- **indices**: selection index vector.
+    - N-dimensional integer array.
+- **axis**: selection dimension
+    - default is the same of batchDims.
+- **batchDims**: define batch dimensions
+    - default is 0.
+- **detailDepth**: locate detail dimension
+    - default is axis+1.
+- **indexDepth**: define batch dimensions
+    - default is ndim of indexDepth.
+- **output**: Destination matrix.
+    - If omitted, it will be allocated automatically.
+
+Result
+- Same instance as matrix output.
+
+Examples
+
+```php
+
+$shapeA = [4,3];
+$a = $la->array([
+    [0,1,2],
+    [3,4,5],
+    [6,7,8],
+    [9,10,11],
+]);
+$x = $la->array([2,2,1,0],dtype:NDArray::int32);
+$b = $la->gatherb($a,$x,axis:1,batchDims:1);
+## b => [2,5,7,9]
 ```
 
 ### scatter
@@ -1653,7 +2216,7 @@ public function scatter(
     NDArray $A,
     int $numClass,
     int $axis=null,
-    NDArray $B=null,
+    NDArray $output=null,
     $dtype=null) : NDArray
 ```
 Set values to array by indexes. Reverse operation of gather.
@@ -1668,7 +2231,7 @@ Arguments
     - default is null.
     - If null, Match from the beginning of the selector.
     - If not null, Expand on the specified axis.
-- **B**: Destination array.
+- **output**: Destination array.
 
 Result
 - Same instance as Matrix B.
@@ -1688,6 +2251,65 @@ $x = $mo->array([2,1,0],NDArray::int32);
 $a = $mo->array([1,2,3]);
 $b = $mo->la()->scatter($x,$a,$n=3,$axis=1);
 ## b => [[0,0,1],[0,2,0],[3,0,0]]
+```
+
+### scatterb
+$$
+\begin{align*}
+y :=  \left \{ \begin{array}{l} a_{x,k} \hspace{5mm} ( axis = null ) \\ a_{m,x,k} \hspace{5mm} ( axis \neq null ) \end{array} \right.
+\end{align*}
+$$
+```php
+public function scatterb(
+    NDarray $indices,
+    NDArray $updates,
+    array $shape,
+    ?int $axis=null,
+    ?int $batchDims=null,
+    ?int $detailDepth=null,
+    ?int $indexDepth=null,
+    ?NDArray $outputs=null,
+): NDArray
+```
+Extended scatter function.
+
+- **indices**: (batches, n, k)
+- **updates**: (batches, m, n, k, len)
+- **outputs**: (batches, m, numClass, k, len)
+- outputs(batches, m, n, k, len) := A(batches, m, X(batches, n, k), k, len)
+
+Arguments
+- **indices**: selection index vector.
+    - N-dimensional integer array.
+- **updates**: source data.
+- **shape**: shape of output data.
+- **axis**: selection dimension
+    - default is the same of batchDims.
+- **batchDims**: define batch dimensions
+    - default is 0.
+- **detailDepth**: locate detail dimension
+    - default is axis+1.
+- **indexDepth**: define batch dimensions
+    - default is ndim of indexDepth.
+- **output**: Destination matrix.
+    - If omitted, it will be allocated automatically.
+
+Result
+- Same instance as Matrix output.
+
+Examples
+
+```php
+$shapeA = [4];
+$a = $la->array([2,5,7,9]);
+$x = $la->array([2,2,1,0],dtype:NDArray::int32);
+$b = $la->scatterb($x,$a,$shapeB,axis:1,batchDims:1);
+## b => [
+##  [0,0,2],
+##  [0,0,5],
+##  [0,7,0],
+##  [9,0,0]
+## ]
 ```
 
 ### scatterAdd
@@ -1737,6 +2359,61 @@ $a = $mo->array([1,2,3]);
 $b = $mo->array([[1,1,1],[1,1,1],[1,1,1]]);
 $mo->la()->scatterAdd($x,$a,$b,$axis=1);
 ## b => [[1,1,2],[1,3,1],[4,1,1]]
+```
+
+### scatterbAdd
+$$
+\begin{align*}
+B_{x} := B_{x} + A_{x}
+\end{align*}
+$$
+```php
+public function scatterbAdd(
+    NDarray $indices,
+    NDArray $updates,
+    array $shape,
+    ?int $axis=null,
+    ?int $batchDims=null,
+    ?int $detailDepth=null,
+    ?int $indexDepth=null,
+    ?NDArray $outputs=null,
+): NDArray
+```
+Extended scatterAdd function.
+
+Arguments
+- **indices**: selection index vector.
+    - N-dimensional integer array.
+- **updates**: source data.
+- **shape**: shape of output data.
+- **axis**: selection dimension
+    - default is the same of batchDims.
+- **batchDims**: define batch dimensions
+    - default is 0.
+- **detailDepth**: locate detail dimension
+    - default is axis+1.
+- **indexDepth**: define batch dimensions
+    - default is ndim of indexDepth.
+- **output**: Destination matrix.
+    - If omitted, it will be allocated automatically.
+
+Result
+- Same instance as Matrix output.
+
+Examples
+
+```php
+$shapeA = [4];
+$a = $la->array([2,5,7,9]);
+$x = $la->array([2,2,1,0],dtype:NDArray::int32);
+$shapeB = [4,3];
+$b = $la->scatterbAdd($x,$a,$shapeB,axis:1,batchDims:1);
+## b => [
+##  [0,0,2],
+##  [0,0,5],
+##  [0,7,0],
+##  [9,0,0]
+## ]
 ```
 
 ### slice
@@ -1943,7 +2620,9 @@ $y = $mo->la()->split(
 public function repeat(
     NDArray $A,
     int $repeats,
-    int $axis=null) : NDArray
+    ?int $axis=null,
+    ?bool $keepdims=null
+    ) : NDArray
 ```
 Repeat array.
 
@@ -1953,6 +2632,8 @@ Arguments
 - **axis**: repeat axis.
     - If null, flat array output
     - If not null, repeat with specified axis.
+- **keepdims**: Keep dimensions.
+
 Result
 - Repeaded Matrix output.
 
@@ -1979,7 +2660,7 @@ public function onehot(
     NDArray $X,
     int $numClass,
     float $a=null,
-    NDArray $Y=null) : NDArray
+    NDArray $output=null) : NDArray
 ```
 Convert classification number to the onehot format.
 
@@ -2058,11 +2739,12 @@ x_i =  \arg {\rm maximum} (a_j)
 \end{align*}
 $$
 ```php
-public function reduceArgMax(
-    NDArray $A,
-    int $axis,
-    NDArray $B=null,
-    $dtypeB=null) : NDArray
+public function reduceArgMax( // reduceMaxArgEx
+    NDArray $input,
+    ?int $axis=null,
+    ?bool $keepdims=null,
+    ?NDArray $output=null,
+    ?int $dtype=null) : NDArray
 ```
 Aggregate the index of the array element with the maximum value for the specified dimension.
 
@@ -2070,9 +2752,10 @@ Arguments
 - **A**: source data array.
 - **axis**: Aggregate dimension
     - Must be integer. If you give a negative number, it will be specified from the right.
-- **B**: Array to store the result.
+- **keepdims**: Keep dimensions.
+- **output**: Array to store the result.
     - If omitted, it will be allocated automatically.
-- **dtypeB**: Data type when creating array B.
+- **dtype**: Data type when creating output array .
     - If omitted, it will be int64 or int32.
 
 Result
@@ -2103,10 +2786,11 @@ x_i =  {\rm maximum} (a_j)
 $$
 ```php
 public function reduceMax(
-    NDArray $A,
-    int $axis,
-    NDArray $B=null,
-    $dtypeB=null) : NDArray
+    NDArray $input,
+    ?int $axis=null,
+    ?bool $keepdims=null,
+    ?NDArray $output=null,
+    ?int $dtype=null) : NDArray
 ```
 Aggregate the array element with the maximum value for the specified dimension.
 
@@ -2114,13 +2798,14 @@ Arguments
 - **A**: source data array.
 - **axis**: Aggregate dimension
     - Must be integer. If you give a negative number, it will be specified from the right.
-- **B**: Array to store the result.
+- **keepdims**: Keep dimensions.
+- **output**: Array to store the result.
     - If omitted, it will be allocated automatically.
-- **dtypeB**: Data type when creating array B.
+- **dtype**: Data type when creating output array .
     - If omitted, same as original data
 
 Result
-- Same instance as matrix B.
+- Same instance as output matrix.
 
 Examples
 
@@ -2145,26 +2830,28 @@ x_i = \sum_{j=0}^n a_ij
 \end{align*}
 $$
 ```php
-public function reduceSum(
-   NDArray $A,
-   int $axis=null,
-   NDArray $B=null
-   $dtypeB=null) : NDArray
+public function reduceSum( // reduceSumEx
+    NDArray $input,
+    ?int $axis=null,
+    ?bool $keepdims=null,
+    ?NDArray $output=null,
+    ?int $dtype=null) : NDArray
 ```
 Aggregate the sum of array elements in the specified dimension
 
 Arguments
-- **A**: source data array.
+- **input**: source data array.
 - **axis**: Aggregate dimension
     - Must be integer. If you give a negative number, it will be specified from the right.
     - Default is 0.
-- **B**: Array to store the result.
+- **keepdims**: Keep dimensions.
+- **output**: Array to store the result.
     - If omitted, it will be allocated automatically.
-- **dtypeB**: Data type when creating array B.
+- **dtype**: Data type when creating output array.
     - If omitted, same as original data
 
 Result
-- Same instance as matrix B.
+- Same instance as matrix output.
 
 Examples
 
@@ -2190,24 +2877,26 @@ x_i = \frac{ \sum_{j=0}^n a_j }{ n }
 $$
 ```php
 public function reduceMean(
-    NDArray $A,
-    int $axis,
-    NDArray $B=null,
-    $dtypeB=null) : NDArray
+    NDArray $input,
+    ?int $axis=null,
+    ?bool $keepdims=null,
+    ?NDArray $output=null,
+    ?int $dtype=null) : NDArray
 ```
 Aggregate the average value of array elements in the specified dimension
 
 Arguments
-- **A**: source data array.
+- **input**: source data array.
 - **axis**: Aggregate dimension
     - Must be 0 or 1.
-- **B**: Array to store the result.
+- **keepdims**: Keep dimensions.
+- **output**: Array to store the result.
     - If omitted, it will be allocated automatically.
-- **dtypeB**: Data type when creating array B.
+- **dtype**: Data type when creating output array.
     - If omitted, same as original data
 
 Result
-- Same instance as Matrix B.
+- Same instance as output matrix.
 
 Examples
 
@@ -2344,11 +3033,11 @@ $la->col2im(
 ```php
 public function randomUniform(
     array $shape,
-    $low,
-    $high,
-    $dtype=null,
-    int $seed=null,
-    NDArray $X=null) : NDArray
+    int|float $low,
+    int|float $high,
+    ?int $dtype=null,
+    ?int $seed=null,
+    ?NDArray $X=null) : NDArray
 ```
 Generate random numbers.
 
@@ -2381,11 +3070,11 @@ $x = $mo->la()->randomUniform(
 ```php
 public function randomNormal(
     array $shape,
-    $mean,
-    $scale,
-    $dtype=null,
-    int $seed=null,
-    NDArray $X=null) : NDArray
+    float $mean,
+    float $scale,
+    ?int $dtype=null,
+    ?int $seed=null,
+    ?NDArray $X=null) : NDArray
 ```
 Generate dormal distribution random numbers.
 
@@ -2418,8 +3107,10 @@ $x = $mo->la()->randomNormal(
 ```php
 public function randomSequence(
     int $base,
-    int $size=null,
-    int $seed=null
+    ?int $size=null,
+    ?int $seed=null,
+    ?int $dtype=null,
+    ?NDArray $output=null,
     ) : NDArray
 ```
 Randomly selected from the population.
@@ -2431,6 +3122,8 @@ Arguments
 - **size**: Data size to generate.
     - If omitted, it is the same size as the population.
 - **seed**: seed for randomize.
+- **dtype**: NDArray data type.
+- **output**: output.
 
 Result
 - output Matrix.
@@ -2439,6 +3132,37 @@ Examples
 
 ```php
 $x = $mo->la()->randomSequence(10);
+```
+
+### bandpart
+```php
+public function bandpart(
+    NDArray $A,
+    int $lower,
+    int $upper,
+) : NDArray
+```
+Sets everything outside the center band of the matrix to zero. The input matrix is ​​not copied, it is rewritten.
+
+Arguments
+- **A**: The matrix to be reset to a banded matrix.
+    - More than 2D
+- **lower**: band of lower. If negative, keep entire lower triangle.
+- **upper**: band of upper. If negative, keep entire upper triangle.
+
+Result
+- same A object.
+
+Examples
+
+```php
+$a = $la->ones($la->alloc([5,5]));
+$la->bandpart($a,-1,0);
+## A = [[1,0,0,0,0],
+##      [1,1,0,0,0],
+##      [1,1,1,0,0],
+##      [1,1,1,1,0],
+##      [1,1,1,1,1]]
 ```
 
 ### imagecopy
@@ -2486,4 +3210,350 @@ $B = $mo->la()->imagecopy($A,null,null,null,
 ## B = [[3,2,1],
 ##      [6,5,4],
 ##      [9,8,7]]
+```
+
+
+### searchsorted
+```php
+public function searchsorted(
+    NDArray $A,
+    NDArray $X,
+    ?bool $right=null,
+    ?int $dtype=null,
+    ?NDArray $Y=null
+    ) : NDArray
+```
+Searches for where a value would go in a sorted sequence.
+
+It compares the value of argument X in the sequence of argument A, and outputs the position where X does not exceed the value of A.
+
+Arguments
+- **A**: A sorted one-dimensional array containing the sequences to be searched for, or a batch of such arrays.
+    - 1D or 2D
+- **X**: A sorted sequence of search values, or the search values ​​for each batch if A is 2D.
+- **right**: Search from the right.
+- **dtype**: The data type of the output index array. Default is int32.
+- **Y***: The index array where the value was found.
+
+Result
+- same A object.
+
+Examples
+
+```php
+$A = $mo->array([0.1, 0.3, 0.5, 0.7, 0.9]);
+$X = $mo->array([0.0, 0.5, 1.0]);
+$Y = $la->searchsorted($A,$X);
+# Y=[0,2,5],
+
+$A = $mo->array([
+    [1,   3,  5,   7,   9],
+    [1,   2,  3,   4,   5],
+    [0, 100, 20, 300, 400]
+]);
+$X = $mo->array([
+    0,
+    5,
+    10
+]);
+$Y = $la->searchsorted($A,$X);
+# Y=[
+#   0,
+#   4,
+#   1
+# ],
+
+```
+
+### cumsum
+```php
+public function cumsum(
+    NDArray $inputs,
+    ?int $axis=null,
+    ?bool $exclusive=null,
+    ?bool $reverse=null,
+    ?NDArray $outputs=null
+    ) : NDArray
+```
+Compute the cumulative sum of the tensor x along axis.
+
+Arguments
+- **inputs**: source data.
+- **axis**: Must be in the range (-rank(x), rank(x)). Default is zero.
+- **exclusive**: If true, perform exclusive cumsum.
+- **reverse**: If true, reverse output
+- **outputs***: output array
+
+Result
+- same outputs object.
+
+Examples
+
+```php
+$X = $mo->array([1,2,1,2]);
+$Y = $la->cumsum($X);
+# outputs=[1,3,4,6],
+
+$X = $mo->array([1,2,1,2]);
+$Y = $la->cumsum($X,exclusive:true);
+# outputs=[0,1,3,4],
+
+$X = $mo->array([1,2,1,2]);
+$Y = $la->cumsum($X,reverse:true);
+# outputs=[6,5,3,2],
+
+$X = $la->array([
+    [1,2,3,4],
+    [5,6,7,8],
+]);
+$Y = $la->cumsum($X,axis:1);
+# Y= [
+#  [1,3,6,10],
+#  [5,11,18,26]
+# ]
+```
+
+### nan2num
+```php
+public function nan2num(
+    NDArray $X,
+    ?float $alpha=null
+    ) : NDArray
+```
+Replace NaN with numbers.
+
+Arguments
+- **X**: Arrays containing NAN.
+- **alpha**: The replacement number. Default is zero.
+
+Result
+- same X object.
+
+Examples
+
+```php
+$X = $mo->array([NAN,2,1,NAN]);
+$la->cumsum($X);
+# X=[0,2,1,0],
+```
+
+### isnan
+```php
+public function isnan(
+    NDArray $X
+    ) : NDArray
+```
+Returns which elements are NAN.
+Replaces NAN with 1, non-NAN with 0.
+
+Arguments
+- **X**: Arrays containing NAN.
+
+Result
+- same X object.
+
+Examples
+
+```php
+$X = $mo->array([NAN,2,1,NAN, INF]);
+$la->cumsum($X);
+# X=[1,0,0,1,0],
+```
+
+### linspace
+```php
+public function linspace(
+    float $start,
+    float $stop,
+    int $num,
+    ?int $dtype=null
+    ) : NDArray
+```
+Generates uniformly spaced values ​​at regular intervals.
+
+Arguments
+- **start**:  First entry in the range.
+- **stop**: Last entry in the range.
+- **num**: Number of values to generate.
+- **dtype**: Data type. Default float32
+
+Result
+- output array.
+
+Examples
+
+```php
+$X = $la->linspace($start=10,$stop=100,$num=10);
+# X = [10,20,30,40,50,60,70,80,90,100],
+```
+
+### range
+```php
+public function range(
+    int|float $limit,
+    int|float|null $start=null,
+    int|float|null $delta=null,
+    ?int $dtype=null
+    ) : NDArray
+```
+Creates a sequence of numbers.
+
+Arguments
+- **limit**: Last entry in the range.
+- **start**: First entry in the range. Defaults to 0
+- **delta**: Number that increments start. Defaults to 1.
+- **dtype**: Data type. Default float32
+
+Result
+- output array.
+
+Examples
+
+```php
+$X = $la->range(5);
+# X = [0,1,2,3,4],
+
+$X = $la->range(start:1, limit:5);
+# X = [1,2,3,4],
+
+$X = $la->range(start:1, limit:10, delta:2);
+# X = [1,3,5,7,9],
+
+```
+
+### einsum
+```php
+public function einsum(
+    string $equation,
+    NDArray $a,
+    NDArray $b,
+) : NDArray
+```
+Multiplication of multidimensional arrays using Einstein contraction notation.
+
+Arguments
+- **equation**: a str describing the contraction,.
+- **a**: First array in equation.
+- **b**: Second array in equation.
+
+Result
+- output array.
+
+Examples
+
+```php
+// cross product
+$a = $mo->array([[1,2],[3,4]]);
+$b = $mo->array([[5,6],[7,8]]);
+$c = $la->einsum('ik,kj->ij',$a,$b);
+# c = [
+#     [19,22],
+#     [43,50]
+# ]
+```
+
+### einsum4p1
+```php
+public function einsum4p1(
+    string $equation,
+    NDArray $a,
+    NDArray $b,
+    ?NDArray $c=null,
+) : NDArray
+```
+Speeding up einsum by limiting the dimensions of the array to 4+1 equations.
+
+Arguments
+- **equation**: a str describing the contraction,.
+- **a**: First array in equation.
+- **b**: Second array in equation.
+- **c**: output
+
+Result
+- same output array object.
+
+Examples
+
+```php
+// cross product
+$a = $mo->array([[1,2],[3,4]]);
+$b = $mo->array([[5,6],[7,8]]);
+$c = $la->einsum4p1('ik,kj->ij',$a,$b);
+# c = [
+#     [19,22],
+#     [43,50]
+# ]
+```
+
+### masking
+```php
+public function masking(
+    NDArray $mask,
+    NDArray $data,
+    ?int $batchDims=null,
+    ?int $axis=null,
+    ?float $fill=null,
+    ?int $mode=null,
+    ) : NDArray
+```
+Masks an array with the specified boolean array.
+
+Arguments
+- **mask**: Boolean array. The value of true will remain unchanged, and 0 or the value specified by fill will be written to false locations.
+- **data**: Input data array.
+- **batchDims**: Interprets input array dimensions 0 through the specified dimension as the batching dimensions. default is zero.
+- **axis**: Masks the input array starting from the specified dimension. The skipped dimensions are broadcast with the mask array. default is the same to batchDims.
+- **fill**: The value to set for the masked element. default is zero.
+- **mode**: Whether to set or add the fill value. set=0, add=1. default is set.
+
+Result
+- same data array object.
+
+Examples
+
+```php
+# X:(2,3)
+# A:(2,3)
+$X = $la->array([[true,false,true],[false,true,false]], dtype:NDArray::bool);
+$A = $la->array([[1,10,100],[-1,-10,-100]]);
+$la->masking($X,$A);
+# A=[[1, 0,100],[0,-10, 0]]
+
+// broadcast to details
+// X:(2,3  )
+// A:(2,3,4)
+// outer:(2,3),bro:(4),inner:(),bro2:()
+$X = $la->array([
+    [true,false,true],
+    [false,true,false]
+], dtype:NDArray::bool);
+$A = $la->array([
+    [[1,11,111,1111],[2,12,122,1222],[-3,13,133,1333]],
+    [[1,21,121,1211],[2,22,222,2222],[-3,23,233,2333]]
+]);
+$la->masking($X,$A,batchDims:$X->ndim(),axis:$A->ndim());
+# A = [
+#     [[1,11,111,1111],[0, 0,  0,   0],[-3,13,133,1333]],
+#     [[0, 0,  0,   0],[2,22,222,2222],[0, 0,  0,   0]]
+# ]
+
+# broadcast to rows (implicit batchDims:0)
+# X:(  2,3)
+# A:(4,2,3)
+# outer:(),bro:(4),inner:(2,3),bro2:()
+$X = $la->array([[true,false,true],[false,true,false]],dtype:NDArray::bool);
+$A = $la->array([
+    [[1,11,111],[2,12,112]],
+    [[1,21,211],[2,22,222]],
+    [[1,31,311],[2,32,322]],
+    [[1,41,411],[2,42,422]],
+]);
+$la->masking($X,$A,axis:1);
+# A=[
+#     [[1, 0,111],[0,12,  0]],
+#     [[1, 0,211],[0,22,  0]],
+#     [[1, 0,311],[0,32,  0]],
+#     [[1, 0,411],[0,42,  0]],
+# ]
+
 ```

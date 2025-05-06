@@ -4,154 +4,164 @@ title: "Rindow Matlib and OpenBLAS"
 upper_section: index
 next_section: openblas/arraybuffer
 ---
+## Overview
 
-Overview
---------
-Rindow-math-matrix can call external libraries written in C language etc. to speed up matrix operations.
-You can call OpenBLAS, the most famous linear algebra library, and Rindow-Matlib, which is useful for machine learning.
+The Rindow-MatlibFFI service functions as a backend library for Rindow-math-matrix, calling external libraries to provide high-speed numerical computation capabilities implemented in the C language.
 
-From the latest version 2, we use PHP's FFI function to call the C language interface library. (Version 1 used PHP extensions)
+### Key Features
 
-The following low-layer interfaces are mainly provided.
+* Provides a one-dimensional universal buffer that enables efficient data exchange between C and PHP.
+* Offers a low-level interface to the OpenBLAS library that is almost identical to its C API, accessible from PHP. This allows for flexible numerical operations independent of array shapes.
+* The Rindow-matlib library is also accessible from PHP through a low-level interface that is almost identical to its C API.
+* By combining with [Rindow Math Matrix](https://www.google.com/search?q=/mathematics/matrix/matrix.html), high-performance N-dimensional array operations can be executed at high speed.
 
-- Provides a one-dimensional universal buffer for data exchange between C and PHP.
-- You can use almost the same low-layer interface as the OpenBLAS library in PHP. This allows for flexible usage that does not depend on the array shape.
-- Rindow-matlib can also be used in PHP with almost the same low-layer interface as C language.
-- Can be combined with [Rindow Math Matrix](/mathematics/matrix/matrix.html) to perform very fast and advanced N-dimensional array operations.
+It demonstrates high performance in deep learning development with PHP.
 
-Very useful when you want to do deep learning with PHP!
+### High-Speed Operations
 
+OpenBLAS and Rindow-Matlib are the primary backends that enable high-speed CPU-based computations written in the C language.
 
-requirements
-------------
+OpenBLAS is a widely known high-performance linear algebra library, and Rindow-Matlib provides a variety of function groups useful for machine learning. These libraries achieve high-speed processing by leveraging multi-threaded parallel computation and CPU SIMD instructions.
 
-- PHP8.1 or PHP8.2 or PHP8.3
-- Windows 10, 11 or Linux (Ubuntu 20.04 or Debian 12 or later)
-- OpenBLAS library 0.3.20 or later
-- Rindow-Math Library 1.0 or later
+### Portability
 
+From version 2 onwards, the method of calling C language interface libraries has been changed to use PHP's FFI (Foreign Function Interface) functionality (version 1 used a PHP extension).
 
-Installation instructions from pre-build binaries
--------------------------------------------------
+This eliminates the need for PHP-specific extensions, resulting in high portability. It can be used immediately by simply installing the pre-built binaries provided for each platform supported by the libraries: Windows, Linux, and macOS.
 
-### Download pre-build binaries from each projects
+Furthermore, the backend is provided through a general-purpose interface called the Buffer interface, which is independent of Rindow-Math-Matrix. This allows it to be used directly by other systems without going through Rindow-Math-Matrix, or conversely, to create custom backends that comply with the Buffer interface and use them with Rindow-Math-Matrix.
 
-You can perform very fast N-dimensional array operations in conjunction.
-Download the pre-build binary files from each project's release page.
+Each function can be used directly from PHP as a low-level interface almost identical to the C language interfaces of OpenBLAS and Rindow-Matlib, making it easy to port applications developed in C/C++.
 
-- Pre-build binaries
-  - [Rindow Matlib](https://github.com/rindow/rindow-matlib/releases)
-  - [OpenBLAS](https://github.com/OpenMathLib/OpenBLAS/releases)
+## Operating Requirements
 
-### Setup for Windows
+* PHP 8.1, PHP 8.2, PHP 8.3, or PHP 8.4
+* Windows 10/11, Linux (Ubuntu 22.04 or later, Debian 12 or later), macOS
+* OpenBLAS library version 0.3.20 or later
+* Rindow-Math library version 1.1 or later
 
-Download the binary file, unzip it, and copy it to the execution directory.
+## Installation Instructions from Pre-built Binaries
 
-- rindow-matlib-X.X.X-win64.zip
-- OpenBLAS-X.X.X-x64.zip
+### Downloading Pre-built Binaries
 
-Add FFI extension to php.ini
+Please download the pre-built binary files from the release pages of each of the following projects. By linking these libraries, high-speed N-dimensional array operations become possible.
+
+* Pre-built Binaries
+    * [Rindow Matlib](https://github.com/rindow/rindow-matlib/releases)
+    * [OpenBLAS](https://github.com/OpenMathLib/OpenBLAS/releases)
+
+### Configuration on Windows
+
+Unzip the downloaded binary files and copy them to the PHP execution directory.
+
+* `rindow-matlib-X.X.X-win64.zip`
+* `OpenBLAS-X.X.X-x64.zip`
+
+Add a setting to enable the FFI extension in the `php.ini` file.
 
 ```shell
-C:\TMP> cd \path\to\php\directory
-C:\PHP> notepad php.ini
+C:\TMP> cd C:\path\to\php\directory  # Move to the PHP installation directory
+C:\PHP> notepad php.ini               # Open php.ini in a text editor
 
+; extension=ffi                       # Remove the semicolon at the beginning of this line or add this line
 extension=ffi
-C:\PHP> php -m
-
-C:\TMP> PATH %PATH%;\path\to\binary\directories\bin
-C:\TMP> cd \your\progject\directory
-C:\PRJ> composer require rindow/rindow-math-matrix
-C:\PRJ> composer require rindow/rindow-math-matrix-matlibffi
-C:\PRJ> vendor/bin/rindow-math-matrix
-Service Level   : Advanced
-Buffer Factory  : Rindow\Math\Buffer\FFI\BufferFactory
-BLAS Driver     : Rindow\OpenBLAS\FFI\Blas
-LAPACK Driver   : Rindow\OpenBLAS\FFI\Lapack
-Math Driver     : Rindow\Matlib\FFI\Matlib
+C:\PHP> php -m                        # Verify that the FFI extension is enabled
 ```
 
-### Setup for Linux
+```shell
+C:\TMP> set PATH=%PATH%;C:\path\to\binary\directories\bin  # Add the path to the bin directory of the downloaded binaries
+C:\TMP> cd C:\your\project\directory                      # Move to the root directory of your project
+C:\PRJ> composer require rindow/rindow-math-matrix
+C:\PRJ> composer require rindow/rindow-math-matrix-matlibffi
+C:\PRJ> vendor/bin/rindow-math-matrix                      # Execute the configuration check command
+Service Level  : Advanced
+Buffer Factory : Rindow\Math\Buffer\FFI\BufferFactory
+BLAS Driver    : Rindow\OpenBLAS\FFI\Blas
+LAPACK Driver  : Rindow\OpenBLAS\FFI\Lapack
+Math Driver    : Rindow\Matlib\FFI\Matlib
+```
 
-Install each library using the apt command.
+### Configuration on Linux
 
-Make sure FFI extension is enabled.
+Use the `apt` command to install the necessary libraries.
+
+First, make sure the FFI extension is enabled.
+
 ```shell
 $ php -m | grep FFI
 FFI
 ```
 
-**Install OpenBLAS:**
+**Installing OpenBLAS:**
 
-Since rindow-matlib currently uses OpenMP, choose the OpenMP version for OpenBLAS as well.
+Since Rindow-matlib currently uses `pthreads`, please select the `pthread` version of OpenBLAS as well. Previous versions (1.0) recommended the OpenMP version, but now the pthread version is recommended.
 
-Using the pthread version of OpenBLAS can cause conflicts and become unstable and slow.
-This issue does not occur on Windows.
+Using the OpenMP version of OpenBLAS may cause conflicts, leading to system instability or performance degradation. This issue does not occur in the Windows environment.
 
 ```shell
-$ sudo apt install libopenblas0-openmp liblapacke
+$ sudo apt install libopenblas0 liblapacke
 ```
 
-**Install Rindow-Matlib:**
+**Installing Rindow-Matlib:**
 
-Download the pre-build binary file.
+Download the pre-built binary file from the following URL:
 
-- https://github.com/rindow/rindow-matlib/releases
+* [https://github.com/rindow/rindow-matlib/releases](https://github.com/rindow/rindow-matlib/releases)
 
-Please install using the apt command. 
+Install the downloaded `.deb` file using the `apt` command.
+
 ```shell
 $ sudo apt install ./rindow-matlib_X.X.X_amd64.deb
 ```
-Just it.
 
-**Install Rindow-Matlib-FFI:**
+**Installing Rindow-Matlib-FFI:**
 
-Set it up using composer.
+Install it to your project using `composer`.
 
 ```shell
-$ cd \your\progject\directory
+$ cd /your/project/directory  # Move to the root directory of your project
 $ composer require rindow/rindow-math-matrix
 $ composer require rindow/rindow-math-matrix-matlibffi
-$ vendor/bin/rindow-math-matrix
-Service Level   : Advanced
-Buffer Factory  : Rindow\Math\Buffer\FFI\BufferFactory
-BLAS Driver     : Rindow\OpenBLAS\FFI\Blas
-LAPACK Driver   : Rindow\OpenBLAS\FFI\Lapack
-Math Driver     : Rindow\Matlib\FFI\Matlib
+$ vendor/bin/rindow-math-matrix # Execute the configuration check command
+Service Level  : Advanced
+Buffer Factory : Rindow\Math\Buffer\FFI\BufferFactory
+BLAS Driver    : Rindow\OpenBLAS\FFI\Blas
+LAPACK Driver  : Rindow\OpenBLAS\FFI\Lapack
+Math Driver    : Rindow\Matlib\FFI\Matlib
 ```
 
+### Troubleshooting on Linux
 
-### Troubleshooting for Linux
+If the OpenMP version of OpenBLAS is already installed, remove it with the following command:
 
-If you have already installed the pthread version of OpenBLAS,
 ```shell
-$ sudo apt remove libopenblas0-pthread
+$ sudo apt remove libopenblas0-openmp
 ```
 
-But if you can't remove it, you can switch to it using the update-alternatives command.
+If you cannot remove it due to dependencies, you can switch to the pthread version using the `update-alternatives` command.
 
 ```shell
 $ sudo update-alternatives --config libopenblas.so.0-x86_64-linux-gnu
 $ sudo update-alternatives --config liblapack.so.3-x86_64-linux-gnu
 ```
 
-If you really want to use the pthread version of OpenBLAS, please switch to the serial version of rindow-matlib.
+(Follow the prompts and select the pthread version option.)
 
-There are no operational mode conflicts with OpenBLAS on Windows.
-
-But, If you really want to use the pthread version of OpenBLAS, please switch to the serial version of rindow-matlib.
+If you absolutely must use the OpenMP version of OpenBLAS, you need to switch Rindow-matlib to the OpenMP version.
 
 ```shell
 $ sudo update-alternatives --config librindowmatlib.so
-There are 2 choices for the alternative librindowmatlib.so (providing /usr/lib/librindowmatlib.so).
 
-  Selection    Path                                             Priority   Status
+There are 3 choices for the alternative librindowmatlib.so (providing /usr/lib/librindowmatlib.so).
+
+  Selection    Path                                              Priority   Status
 ------------------------------------------------------------
-* 0            /usr/lib/rindowmatlib-openmp/librindowmatlib.so   95        auto mode
+* 0            /usr/lib/rindowmatlib-thread/librindowmatlib.so   95        auto mode
   1            /usr/lib/rindowmatlib-openmp/librindowmatlib.so   95        manual mode
   2            /usr/lib/rindowmatlib-serial/librindowmatlib.so   90        manual mode
+  3            /usr/lib/rindowmatlib-thread/librindowmatlib.so  100        manual mode
 
-Press <enter> to keep the current choice[*], or type selection number: 2
+Press <enter> to keep the current choice[*], or type selection number: 1
 ```
-Choose the "rindowmatlib-serial".
 
+If the above is displayed, enter "1" to select `rindowmatlib-openmp`.

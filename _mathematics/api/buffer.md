@@ -105,6 +105,14 @@ Array data type.
 Return
 - Array data type.
 
+### value_size
+```php
+public function value_size() : int
+```
+Byte size of a element.
+(ex. int8: 1, int32: 4,  float32: 4)
+
+
 ### dump
 ```php
 public function dump() : string

@@ -5,134 +5,168 @@ upper_section: index
 previous_section: matrix/matrix
 next_section: matrix/dimensionoperations
 ---
-NDArray Interface
------------------
+## NDArray Interface
+
 ### Overview
-The Rindow Math Matrix provides an N-dimensional array type, the NDArray, which describes a collection of “items” of the same type. The items can be indexed using for example N float values.
+Rindow Math Matrix provides an N-dimensional array type called NDArray. This represents a collection of "items" of the same type. Items can be indexed using, for example, N floating-point values.
 
-All items contained in the NDArray have the same type value. All items are specified by "ArrayAccess", the standard PHP interface. The data type of one value is the integer type, floating point type, or boolean type defined by NDArray.
 
-N-dimensional arrays are mapped to a one-dimensional array buffer and stored as a continuous area.
+All items contained in an NDArray hold values of the same type. All items are specified by the standard PHP interface "ArrayAccess." A single value's data type is an integer type, floating-point type, or boolean type defined in NDArray.
+
+The N-dimensional array is mapped to a one-dimensional array buffer and stored as a contiguous region.
 
 ![NDArray](images/ndarray.png)
 
-Most importantly, the NDArray interface is not part of the Rindow framework. **The interfaces are defined independently** and other frameworks can be freely implemented.
+Most importantly, the NDArray interface is not part of the Rindow framework. **The interface is defined independently**, and it can be freely implemented by other frameworks.
 
 ```php
 use Interop\Polite\Math\Matrix\NDArray;
 ```
 
-Please see [interop-phpobjects/polite-math](https://github.com/interop-phpobjects/polite-math)
+For details, refer to [interop-phpobjects/polite-math](https://github.com/interop-phpobjects/polite-math).
 
 ### Methods
 
 #### offsetGet
-Items are obtained by "offsetGet" of ArrayAccess interface.
+Items are retrieved using the "offsetGet" method of the ArrayAccess interface.
 
-For NDArrays with two or more dimensions, use the "offsetGet" method to return the NDArray type. This implements an N-dimensional array.
-At this time, the buffer is not copied but shared by the two NDArrays.
+For an NDArray with two or more dimensions, the "offsetGet" method returns an NDArray type. This enables the implementation of N-dimensional arrays. In this case, the buffer is not copied but shared between the two NDArrays.
 
 ```php
-# $a is 2-D array of float32 on NDArray
+# $a is a 2D NDArray of float32
+dimensions
 $b = $a[1];
-# $b is 1-D array of float32 on NDArray
-if($b instaceof NDArray) {
-    echo "b is NDArray\n";
+# $b is a 1D NDArray of float32
+if ($b instanceof NDArray) {
+    echo "b is an NDArray\n";
 }
-if($b[2]==$a[1][2]) {
-    echo "Same item\n"
+if ($b[2] == $a[1][2]) {
+    echo "Same item\n";
 }
-# $c is
-if(spl_object_id($a->buffer())==spl_object_id($b->buffer())) {
-    echo "The buffer is Shared!!\n";
+if (spl_object_id($a->buffer()) == spl_object_id($b->buffer())) {
+    echo "Buffer is shared!!\n";
 }
 ```
 
-You can also specify a range for the subscript.The range is specified by PHP array.
+It is also possible to specify a range as an index using a PHP array.
 
-Returns the specified range as an NDArray. Buffer is also shared at this time.
+The specified range is returned as an NDArray. Again, the buffer is shared.
 
 ```php
-# $a is 2-D array of float32 on NDArray
+# $a is a 2D NDArray of float32
+dimensions
 $b = $a[[1,4]];
-# $b is 2-D array of float32 NDArray referring 1 to 3
+# $b references elements 1 to 3 in a 2D NDArray of float32
 ```
 
-> In Version 1 it was [1,3], but from Version 2 it is now written as [1,4]. 
-> The reason for this is to align with other systems and in many cases to simplify writing.
-
+> In version 1, the range was [1,3], but starting from version 2, it is written as [1,4].
+> This change was made for consistency with other systems and to simplify notation in many cases.
 
 #### offsetSet
-Set items using offsetSet of ArrayAccess interface.
+Items are set using the "offsetSet" method of the ArrayAccess interface.
 
-When using the "offsetSet" method for an NDArray with two or more dimensions, copy the array.
-The array to be copied must have the same shape.
+When using the "offsetSet" method on an NDArray with two or more dimensions, the array is copied.
+The copied array must have the same shape.
 
 ```php
-# $a is 2-D array of float32 on NDArray shape=[3,2]
-# $b is 1-D array of float32 on NDArray shape=[2]
+# $a is a 2D NDArray of float32 with shape [3,2]
+# $b is a 1D NDArray of float32 with shape [2]
 $a[1] = $b;
 ```
 
 #### offsetExists
-"offsetExists" returns the result of the range check because there is always a value within the range of the NDArray array.
+Since values always exist within the range of an NDArray, "offsetExists" returns the result of the range check.
 
 #### offsetUnset
-You cannot delete the area of an item.
+It is not possible to delete an item's region.
+
+#### count
+Returns the number of elements in the first dimension of the NDArray.
+
+```php
+# $a is a 2D NDArray of float32 with shape [3,2]
+echo $a->count() . "\n";
+# 3
+echo count($a) . "\n";
+# 3
+```
+
+#### dtype
+Returns the data type of the NDArray.
+
+```php
+# $a is a 2D NDArray of float32 with shape [3,2]
+echo $a->dtype() . "\n";
+# 12 // NDArray::float32
+```
 
 #### shape
-Gets the shape of the N-dimensional array defined by NDarray.
+Retrieves the shape of the N-dimensional array defined in NDArray.
 
 ```php
 $shape = $a->shape();
+var_dump($shape);
+# array(2) {
+#   [0] =>
+#   int(3)
+#   [1] =>
+#   int(2)
+# }
 ```
 
 #### ndim
-Get the number of dimensions of an array
+Retrieves the number of dimensions of the array.
 
 ```php
+# $a is a 2D NDArray of float32 with shape [3,2]
 $ndim = $a->ndim();
+echo $ndim;
+# 2
 ```
 
 #### buffer
-Get a buffer object.
+Retrieves the buffer object.
 
 ```php
 $buffer = $a->buffer();
 ```
 
 #### offset
-Gets the offset at which the NDArray refers to the buffer object.
+Retrieves the offset referenced by the NDArray in the buffer object.
 
 ```php
 $offset = $a->offset();
 ```
 
 #### size
-Get the total number of items in the array. It is not the size of the buffer.
+Retrieves the total number of items in the array. This is not the buffer size.
 
 ```php
+# $a is a 2D NDArray of float32 with shape [3,2]
 $size = $a->size();
+echo $size."\n";
+# 6
 ```
 
 #### reshape
-Gets the NDArray with the shape of the array changed. Must be the same size as the original array. The buffer is shared.
+Returns an NDArray with a modified shape. The size must be the same as the original array. The buffer is shared, meaning modifying the reshaped array also updates the original array.
 
 ```php
-$reshape = $a->reshape();
+# $a is a 2D NDArray of float32 with shape [3,2]
+$flatA = $a->reshape([6]);
 ```
 
 #### toArray
-Convert NDArray to PHP array type.
+Converts the NDArray to a PHP array type.
 
 ```php
 $array = $a->toArray();
 ```
 
 ### Constants
-NDArray has constants to represent its data type.
+NDArray has constants representing its data types.
 
-Various data types are defined for convenience, but not all of them need to be implemented.
+Various data types are defined for convenience, but it is not necessary to implement all of them.
 
 - bool
 - int8
@@ -147,38 +181,63 @@ Various data types are defined for convenience, but not all of them need to be i
 - float16
 - float32
 - float64
+- complex16
+- complex32
+- complex64
+- complex128
 
+## Buffer Object
 
-Buffer object
--------------
 ### Overview
-The buffer object is the area that stores the actual data of the NDArray. Implements a one-dimensional array.
-It must implement the standard ArrayAccess interface of PHP and the Countable interface.
-Since it is assumed that various implementations will be used, a basic Buffer interface is defined.
+The buffer object stores the actual data of an NDArray. It implements a one-dimensional array.
+It must implement PHP's standard ArrayAccess and Countable interfaces. Since various implementations are expected, a basic Buffer interface is defined.
 
-One-dimensional arrays can be implemented in any way, but contiguous areas of memory generally make it easier for the CPU to perform fast operations. It is easy to refer to memory areas at the C language level, and it is also easy to exchange data between high-speed calculation libraries.
+A one-dimensional array can be implemented in any manner, but contiguous memory regions generally allow the CPU to perform faster operations. Referencing memory at the C language level makes data exchange with high-speed computation libraries easier.
 
+For these reasons, NDArray uses a one-dimensional array buffer object instead of a PHP array. This interface is also **defined independently** and can be freely implemented by other frameworks.
 
-For these reasons, NDArray uses a one-dimensional array buffer object rather than a PHP array.
+```php
+use Interop\Polite\Math\Matrix\Buffer;
+```
 
 ### Methods
 
 #### offsetGet
-Index must be an integer.
-Get the value of an item
-
+The index must be an integer.
+Retrieves the item's value.
 
 #### offsetSet
-Index must be an integer.
-Set the value of an item
+The index must be an integer.
+Sets the item's value.
 
 #### offsetExists
-Index must be an integer.
-Returns whether Index is in range
+The index must be an integer.
+Returns whether the index is within range.
 
 #### offsetUnset
-Index must be an integer.
-Set the zero of an item
+The index must be an integer.
+Sets the item to zero.
 
 #### count
-Get the number of items. It is not the reserved memory size.
+Retrieves the number of items. This is not the reserved memory size.
+
+## Linear Buffer Object
+
+The basic Buffer interface does not specify internal binary representation, but the LinearBuffer guarantees a flat memory region as an internal representation. This allows data to be passed to external libraries via a C language interface.
+
+Methods inherit from the basic Buffer interface.
+
+```php
+use Interop\Polite\Math\Matrix\LinearBuffer;
+```
+
+## Device Buffer Object
+
+Unlike LinearBuffer, which ensures direct memory access, DeviceBuffer represents data stored on separate hardware, such as GPU memory.
+
+Methods inherit from the basic Buffer interface.
+
+```php
+use Interop\Polite\Math\Matrix\DeviceBuffer;
+```
+

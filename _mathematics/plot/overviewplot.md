@@ -2,6 +2,7 @@
 layout: document
 title: "Rindow Math Plot"
 upper_section: index
+previous_section: matrix/linearalgebralibs
 next_section: plot/gettingstartplot
 ---
 

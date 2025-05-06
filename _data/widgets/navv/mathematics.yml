@@ -56,6 +56,27 @@ menu:
       link: /mathematics/matrix/dimensionoperations.html#linear-algebra-library
     - caption: Other functions
       link: /mathematics/matrix/dimensionoperations.html#other-functions
+  - caption: Linear Algebra library
+    link: /mathematics/matrix/linearalgebralibs.html
+    menu:
+    - caption: Overview
+      link: /mathematics/matrix/linearalgebralibs.html#overview
+    - caption: Important Notes
+      link: /mathematics/matrix/linearalgebralibs.html#important-notes
+    - caption: Basic Usage
+      link: /mathematics/matrix/linearalgebralibs.html#basic-usage
+    - caption: Service Levels
+      link: /mathematics/matrix/linearalgebralibs.html#service-levels
+    - caption: Hardware Acceleration
+      link: /mathematics/matrix/linearalgebralibs.html#hardware-acceleration
+    - caption: Basic Usage of LinearAlgebraCL
+      link: /mathematics/matrix/linearalgebralibs.html#basic-usage-of-linearalgebracl
+    - caption: Return Values of LinearAlgebraCL
+      link: /mathematics/matrix/linearalgebralibs.html#return-values-of-linearalgebracl
+    - caption: Array Access in NDArrayCL
+      link: /mathematics/matrix/linearalgebralibs.html#array-access-in-ndarraycl
+    - caption: Asynchronous Mode
+      link: /mathematics/matrix/linearalgebralibs.html#asynchronous-mode
 - caption: Rindow Math Plot
   menu:
   - caption: Plot
