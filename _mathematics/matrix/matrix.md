@@ -26,7 +26,7 @@ Each module is replaceable, and new functionalities can be added.
 
 Structure Diagram:
 
-[Structure Diagram](/mathematics/matrix/images/structure.svg)
+![Structure Diagram](images/structure.svg)
 
 
 ## Requirements
