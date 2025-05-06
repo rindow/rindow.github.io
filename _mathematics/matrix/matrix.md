@@ -7,52 +7,58 @@ next_section: matrix/arrayobjects
 
 ## Overview
 
-"Rindow Math Matrix" is a library that provides a vector calculation environment.
+"Rindow Math Matrix" is a library that provides a vector operation environment.
 
-It is designed to resemble Python's NumPy to save learning time for many users.
+It is designed to be similar to Python's NumPy, helping many people save learning time.
 
 It has the following features:
 
-- Implements a common array object interface "NDArray".
-- Provides a flexible N-dimensional array calculation library.
-- Optional: Uses OpenBLAS as a backend external library.
-- Optional: Hardware such as GPUs can be used with OpenCL.
+- Implements a common array object interface, "NDArray".
+- Provides a flexible N-dimensional array operation library.
+- Can use OpenBLAS as an external backend library (optional).
+- Enables the use of hardware like GPUs via OpenCL (optional).
+
+
+## Module Structure
+
+"Rindow Math Matrix" is modularized to support various operating environments.
+Each module is replaceable, and new functionalities can be added.
+
+Structure Diagram:
+
+[Structure Diagram](/mathematics/matrix/images/structure.svg)
+
 
 ## Requirements
 
 - PHP 8.1, 8.2, 8.3, 8.4
-    - (For environments PHP 7.2 to 8.0, please use release 1.1.)
+   - (If using in a PHP 7.2 to 8.0 environment, please use release 1.1.)
 - Windows 10, 11, or Linux (when using OpenBLAS)
 
-## Recommendations
+
+## Recommended
 
 - [**Rindow Math Plot**](/mathematics/plot/overviewplot.html): Visualization of mathematical data
-- [**Rindow Matlib and OpenBLAS**](/mathematics/openblas/overviewopenblas.html): C language interface and high-speed operations
+- [**Rindow Matlib and OpenBLAS**](/mathematics/openblas/overviewopenblas.html): C language interface and high-speed computation
 - [**OpenCL and CLBlast**](/mathematics/acceleration/opencl.html): Supports GPU acceleration
+
 
 ## Installation
 
-### Install Rindow Math Matrix
+### Installing Rindow Math Matrix
 Please set up using composer.
 
 ```shell
 $ composer require rindow/rindow-math-matrix
 ```
 
-If you need graphical display, set up rindow-math-plot.
+If graph display is needed, set up rindow-math-plot.
 
-Enable the GD extension
-
-**For Windows**:
-
-Edit in php.ini.
+For Windows, enable the GD extension in `php.ini`.
+```ini
+extension=gd
 ```
-extension = gd
-```
-
-**For Linux**:
-
-install the gd extension.
+For Linux, install the GD extension.
 ```shell
 $ sudo apt install phpX.X-gd
 ```
@@ -62,13 +68,13 @@ Install rindow-math-plot.
 $ composer require rindow/rindow-math-plot
 ```
 
-For Linux, image viewer settings are required for rindow-math-plot.
+For Linux, image viewer configuration is required for rindow-math-plot.
 
 ```shell
 $ RINDOW_MATH_PLOT_VIEWER=/some/bin/dir/png-file-viewer
 $ export RINDOW_MATH_PLOT_VIEWER
 ```
-Note: Specify "viewnior" etc. for RINDOW_MATH_PLOT_VIEWER.
+Note: Specify something like "viewnior" for `RINDOW_MATH_PLOT_VIEWER`.
 
 ### Accelerate with CPU only
 
@@ -77,98 +83,94 @@ First, enable FFI and install external libraries.
 **For Windows**:
 
 Enable FFI.
-Enable the FFI extension in php.ini.
+Enable the FFI extension in `php.ini`.
+```ini
+extension=ffi
 ```
-extension = ffi
-```
-Confirm that ffi is enabled.
+Confirm that FFI is enabled.
 ```shell
-work> php -m | find "FFI"
+work> php -m | findstr "FFI"
 ```
 
-Download and extract the OpenBLAS Windows binaries from the following site.
-- [https://github.com/OpenMathLib/OpenBLAS/releases/](https://github.com/OpenMathLib/OpenBLAS/releases/)
-Download and extract the Rindow-Matlib Windows binaries from the following site.
-- [https://github.com/rindow/rindow-matlib/releases/](https://github.com/rindow/rindow-matlib/releases/)
+Download and extract the Windows binaries for OpenBLAS from the following site:
+- https://github.com/OpenMathLib/OpenBLAS/releases/
+Download and extract the Windows binaries for Rindow-Matlib from the following site:
+- https://github.com/rindow/rindow-matlib/releases/
 
-Set each bin directory in PATH.
+Set the respective `bin` directories in your PATH.
 ```shell
-work> SET PATH=%PATH%;C:\OpenBLAS\bin;C:\Matlib\bin
+work> SET PATH=%PATH%;C:\path\to\OpenBLAS\bin;C:\path\to\Matlib\bin
 ```
 
 **For Linux**:
 
-install the FFI extension, openblas, and lapacke with the apt command.
+Don't forget to install the FFI extension, OpenBLAS, and LAPACKe using the apt command.
 ```shell
 $ sudo apt install phpX.X-ffi libopenblas0 liblapacke
 ```
-Download and extract the Rindow-Matlib Linux binaries from the following site.
-- [https://github.com/rindow/rindow-matlib/releases/](https://github.com/rindow/rindow-matlib/releases/)
+Download and install the Linux binaries for Rindow-Matlib from the following site:
+- https://github.com/rindow/rindow-matlib/releases/
 ```shell
-$ wget https://github.com/rindow/rindow-matlib/releases/rindow-matlib_X.X.X_amd64.deb
+$ wget https://github.com/rindow/rindow-matlib/releases/download/vX.X.X/rindow-matlib_X.X.X_amd64.deb
 $ sudo apt install ./rindow-matlib_X.X.X_amd64.deb
 ```
 
 Install the service for acceleration.
+**Common for Windows and Linux**
 
-**Common to Windows and Linux**
-
-Install rindow-math-matrix-matlibffi.
+Please install rindow-math-matrix-matlibffi.
 ```shell
 $ composer require rindow/rindow-math-matrix-matlibffi
 ```
-Confirm that it is installed.
+Confirm the installation.
 ```shell
-$ vendor\bin\rindow-math-matrix
+$ vendor/bin/rindow-math-matrix
 Service Level   : Advanced
 Buffer Factory  : Rindow\Math\Buffer\FFI\BufferFactory
 BLAS Driver     : Rindow\OpenBLAS\FFI\Blas
 LAPACK Driver   : Rindow\OpenBLAS\FFI\Lapack
 Math Driver     : Rindow\Matlib\FFI\Matlib
 ```
-If the service level is Basic, the external library is not available for some reason.
-Check with the command's detailed information option.
+If the service level is Basic, external libraries are not available for some reason.
+Check with the command's verbose option.
 ```shell
-$ vendor\bin\rindow-math-matrix -v
+$ vendor/bin/rindow-math-matrix -v
 ```
 
 For detailed installation instructions, see [here](/mathematics/openblas/overviewopenblas.html).
 
 ### Accelerate with GPU
-First, set up the library with "Accelerate with CPU" in the previous section.
-Then install the GPU acceleration library.
+First, configure the libraries as described in the previous section "Accelerate with CPU only".
+Then, install the GPU acceleration library.
 
 **For Windows**:
 
-Download and extract the CLBlast Windows binaries from the following site.
-- [https://github.com/CNugteren/CLBlast/releases](https://github.com/CNugteren/CLBlast/releases)
+Download and extract the Windows binaries for CLBlast from the following site:
+- https://github.com/CNugteren/CLBlast/releases
 
-Set the bin directory in PATH.
+Set the `bin` directory in your PATH.
 ```shell
-work> SET PATH=%PATH%;C:\CLBlast\bin
+work> SET PATH=%PATH%;C:\path\to\CLBlast\bin
 ```
 
 **For Linux**:
-
 Install OpenCL and CLBlast.
-OpenCL drivers vary depending on the hardware.
-The following are standard on Ubuntu.
-- **For Intel iGPU**: intel-opencl-icd
-- **For AMD APU**: mesa-opencl-icd
-Other GPUs require drivers specific to each manufacturer.
+OpenCL drivers vary for each hardware.
+Standard Ubuntu provides the following:
+- **For Intel iGPU**: `intel-opencl-icd`
+- **For AMD APU**: `mesa-opencl-icd`
+Other GPUs require drivers specific to their manufacturers.
 
 ```shell
 $ sudo apt install clinfo
-$ sudo apt install XXX-XXX-icd
+$ sudo apt install XXX-XXX-icd  # Replace XXX-XXX-icd with your specific OpenCL ICD loader
 $ sudo apt install libclblast0
 ```
 
-Confirm that the service level is "Accelerated" with the command.
-
-**Common to Windows and Linux**
-
+Confirm that the service level becomes "Accelerated" using the command.
+**Common for Windows and Linux**
 ```shell
-$ vendor\bin\rindow-math-matrix
+$ vendor/bin/rindow-math-matrix
 Service Level   : Accelerated
 Buffer Factory  : Rindow\Math\Buffer\FFI\BufferFactory
 BLAS Driver     : Rindow\OpenBLAS\FFI\Blas
@@ -177,16 +179,17 @@ Math Driver     : Rindow\Matlib\FFI\Matlib
 OpenCL Factory  : Rindow\OpenCL\FFI\OpenCLFactory
 CLBlast Factory : Rindow\CLBlast\FFI\CLBlastFactory
 ```
-If the service level is Basic or Advanced, the external library is not available for some reason.
-Check with the command's detailed information option.
+If the service level is Basic or Advanced, external libraries are not available for some reason.
+Check with the command's verbose option.
 ```shell
-$ vendor\bin\rindow-math-matrix -v
+$ vendor/bin/rindow-math-matrix -v
 ```
 
 For detailed installation instructions, see [here](/mathematics/acceleration/opencl.html)
 
 ### How to use Rindow Math Matrix
 ```php
+<?php
 include 'vendor/autoload.php';
 
 $mo = new Rindow\Math\Matrix\MatrixOperator();
@@ -206,8 +209,9 @@ $plt->bar(['x','y'],$c);
 $plt->show();
 ```
 
-When using the linear algebra library:
+When using a linear algebra library:
 ```php
+<?php
 include 'vendor/autoload.php';
 
 $mo = new Rindow\Math\Matrix\MatrixOperator();
@@ -220,7 +224,7 @@ $c = $la->gemm($a,$b);
 
 echo $mo->toString($c)."\n";
 
-### To create a graph of this:
+### To create a graph for this:
 
 $plt = new Rindow\Math\Plot\Plot();
 
@@ -230,6 +234,7 @@ $plt->show();
 
 When using the GPU version of the linear algebra library:
 ```php
+<?php
 include 'vendor/autoload.php';
 
 use Interop\Polite\Math\Matrix\OpenCL;
@@ -241,18 +246,22 @@ $la->blocking(true);
 $a = $mo->array([[1.0, 2.0],[3.0, 4.0]]);
 $b = $mo->array([[3.0, 4.0],[5.0, 6.0]]);
 
-$a = $la->array($a);
-$b = $la->array($b);
-$c = $la->gemm($a,$b);
-$c = $la->toNDArray($c);
+// Move arrays to GPU memory
+$a_gpu = $la->array($a);
+$b_gpu = $la->array($b);
+
+// Perform operation on GPU
+$c_gpu = $la->gemm($a_gpu,$b_gpu);
+
+// Move result back to host NDArray
+$c = $la->toNDArray($c_gpu);
 
 echo $mo->toString($c)."\n";
 
-### To create a graph of this:
+### To create a graph for this:
 
 $plt = new Rindow\Math\Plot\Plot();
 
 $plt->bar(['x','y'],$c);
 $plt->show();
 ```
-
