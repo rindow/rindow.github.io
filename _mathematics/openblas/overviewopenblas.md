@@ -33,7 +33,7 @@ Furthermore, the backend is provided through a general-purpose interface called 
 
 Each function can be used directly from PHP as a low-level interface almost identical to the C language interfaces of OpenBLAS and Rindow-Matlib, making it easy to port applications developed in C/C++.
 
-## Operating Requirements
+## Requirements
 
 * PHP 8.1, PHP 8.2, PHP 8.3, or PHP 8.4
 * Windows 10/11, Linux (Ubuntu 22.04 or later, Debian 12 or later), macOS

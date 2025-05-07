@@ -36,7 +36,7 @@ Structure Diagram:
 - Windows 10, 11, or Linux (when using OpenBLAS)
 
 
-## Recommended
+## Recommends
 
 - [**Rindow Math Plot**](/mathematics/plot/overviewplot.html): Visualization of mathematical data
 - [**Rindow Matlib and OpenBLAS**](/mathematics/openblas/overviewopenblas.html): C language interface and high-speed computation
@@ -187,7 +187,7 @@ $ vendor/bin/rindow-math-matrix -v
 
 For detailed installation instructions, see [here](/mathematics/acceleration/opencl.html)
 
-### How to use Rindow Math Matrix
+## How to use Rindow Math Matrix
 ```php
 <?php
 include 'vendor/autoload.php';

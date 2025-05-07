@@ -17,7 +17,7 @@ For more details, please refer to the [OpenBLAS website](https://www.openblas.ne
 However, since BLAS has a relatively low-level programming interface, it is difficult to use directly from applications. Therefore, it is often used as a backend for higher-level, application-friendly libraries.
 Rindow Math Matrix also utilizes BLAS as a backend for its LinearAlgebra class to achieve high-speed computations.
 
-## Implementation Method
+## How it is implemented in PHP
 
 The `Blas` class in Rindow allows you to use BLAS in PHP.
 The following are backend libraries that comply with the BLAS interface:
