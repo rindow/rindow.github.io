@@ -130,7 +130,7 @@ menu:
         link: /mathematics/plot/gettingstartplot.html#pie-chart
       - caption: Heat map
         link: /mathematics/plot/gettingstartplot.html#heat-map
-- caption: Rindow Matlib and OpenBLAS
+- caption: Advanced Numerical Computation
   menu:
   - caption: Rindow Matlib and OpenBLAS
     link: /mathematics/openblas/overviewopenblas.html
