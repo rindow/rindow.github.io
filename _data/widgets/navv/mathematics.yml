@@ -172,21 +172,17 @@ menu:
       link: /mathematics/openblas/mathlibrary.html#implemented-methods
     - caption: Usage on PHP
       link: /mathematics/openblas/mathlibrary.html#usage-on-php
-- caption: Supports GPU acceleration on PHP
+- caption: Utilizing Acceleration Devices for High-Performance Computing
   menu:
   - caption: Overview
-    link: /mathematics/acceleration/opencl.html
-  - caption: Rindow OpenCL FFI
-    link: /mathematics/acceleration/opencl.html#rindow-opencl-ffi
-  - caption: Rindow CLBlast FFI
-    link: /mathematics/acceleration/opencl.html#rindow-clblast-ffi
-  - caption: OpenCLMath liblary
-    link: /mathematics/acceleration/opencl.html#openclmath-library-for-rindow-math-matrix
-  - caption: Requirements
-    link: /mathematics/acceleration/opencl.html#requirements
-  - caption: GPU/OpenCL support for Windows
-    link: /mathematics/acceleration/opencl.html#gpuopencl-support-for-windows
-  - caption: GPU/OpenCL support for Linux
-    link: /mathematics/acceleration/opencl.html#gpuopencl-support-for-linux
+    link: /mathematics/acceleration/opencl.html#overview
+  - caption: Key Components
+    link: /mathematics/acceleration/opencl.html#key-components
+  - caption: System Requirements
+    link: /mathematics/acceleration/opencl.html#system-requirements
+  - caption: Setup Instructions
+    link: /mathematics/acceleration/opencl.html#setup-instructions
+  - caption: Using Accelerated Computing
+    link: /mathematics/acceleration/opencl.html#using-accelerated-computing
 - caption: API reference
   link: /mathematics/api/apitoc.html
