@@ -82,6 +82,42 @@ Example
 $x = $mo->la()->scalar($x);
 ```
 
+### isInt
+```php
+public function isInt(NDArray $value) : bool
+```
+Check if an array element is of type int.
+
+Arguments
+- **array**: NDArray.
+
+Result
+- **isint**: true if the array element is of type int.
+
+
+Example
+```php
+$isInt = $mo->la()->isInt($x);
+```
+
+### isFloat
+```php
+public function isFloat(NDArray $value) : bool
+```
+Check if an array element is of type float.
+
+Arguments
+- **array**: NDArray.
+
+Result
+- **isFloat**: true if the array element is of type float.
+
+
+Example
+```php
+$isFloat = $mo->la()->isFloat($x);
+```
+
 ### expandDims
 ```php
 public function expandDims(NDArray $x, int $axis) : NDArray
