@@ -186,15 +186,14 @@ Install the libraries required by Rindow NeuralNetworks.
 + Install OpenBLAS with apt command
 + Download the latest version of Rindow-Matlib's pre-built binary files from https://github.com/rindow/rindow-matlib/releases.
 + Install the downloaded deb file using the apt command.
-+ Set Rindow-Matlib to serial mode for use with PHP.
 
 ```shell
 $ sudo apt install libopenblas0 liblapacke
 $ wget https://github.com/rindow/rindow-matlib/releases/download/X.X.X/rindow-matlib_X.X.X-XX.XX_amd64.deb
 $ sudo apt install ./rindow-matlib_X.X.X-XX.XX_amd64.deb
 ```
-But if you are not allowed to use the openmp version of openblas, there is another way.
-Click [here](/mathematics/openblas/overviewopenblas.html#troubleshooting-for-linux) for more information.
+But if you are not allowed to use the thread version of openblas, there is another way.
+Click [here](/mathematics/openblas/overviewopenblas.html#troubleshooting-on-linux) for more information.
 
 Install Rindow Neural Networks.
 
