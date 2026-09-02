@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.2.1",
-    "astro": "^5.0.0",
+    "astro": "^7.2.10",
     "yaml": "^2.6.1"
   }
 }
