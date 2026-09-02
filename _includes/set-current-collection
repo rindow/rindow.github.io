@@ -1,4 +1,0 @@
-{%- assign globalcurrentcollection = null -%}
-{%- if page.collection -%}
-  {%- assign globalcurrentcollection = site.collections | where: "label", page.collection | first -%}
-{%- endif -%}

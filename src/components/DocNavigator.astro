@@ -1,0 +1,88 @@
+---
+import { getCollection } from 'astro:content';
+
+interface Props {
+  entry: any;
+  position?: 'top' | 'bottom';
+}
+
+const { entry, position = 'top' } = Astro.props;
+const collection = entry.id.split('/')[0];
+
+const allDocs = await getCollection('docs');
+const docMap = new Map(allDocs.map((doc) => [doc.id, doc]));
+
+const getNavInfo = (sectionRelativePath?: string) => {
+  if (!sectionRelativePath) return null;
+  const targetId = `${collection}/${sectionRelativePath}`;
+  const targetDoc = docMap.get(targetId);
+  return {
+    url: `/${targetId}.html`,
+    title: targetDoc?.data?.title || sectionRelativePath,
+  };
+};
+
+const previous = getNavInfo(entry.data?.previous_section);
+const upper = getNavInfo(entry.data?.upper_section);
+const grandUpper = getNavInfo(entry.data?.grand_upper_section);
+const next = getNavInfo(entry.data?.next_section);
+---
+
+{position === 'top' && (
+  <div class="doc-top-nav">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        {grandUpper && (
+          <li class="breadcrumb-item">
+            <a href={grandUpper.url}>{grandUpper.title}</a>
+          </li>
+        )}
+        {upper && (
+          <li class="breadcrumb-item">
+            <a href={upper.url}>{upper.title}</a>
+          </li>
+        )}
+        <li class="breadcrumb-item active" aria-current="page">
+          {entry.data?.title || collection}
+        </li>
+      </ol>
+    </nav>
+    <nav role="navigation" class="navigator">
+      <ul class="nav">
+        <li class="nav-item">
+          {previous ? <a class="nav-link" href={previous.url}>Previous</a> : <span class="nav-link disabled">Previous</span>}
+        </li>
+        <li class="nav-item">
+          {upper ? <a class="nav-link" href={upper.url}>Up</a> : <span class="nav-link disabled">Up</span>}
+        </li>
+        <li class="nav-item">
+          {next ? <a class="nav-link" href={next.url}>Next</a> : <span class="nav-link disabled">Next</span>}
+        </li>
+      </ul>
+    </nav>
+  </div>
+)}
+
+{position === 'bottom' && (
+  <div class="doc-bottom-nav">
+    <nav role="navigation" class="navigator">
+      <ul class="nav">
+        <li class="nav-item">
+          {previous ? <a class="nav-link" href={previous.url}>Previous</a> : <span class="nav-link disabled">Previous</span>}
+        </li>
+        <li class="nav-item">
+          {upper ? <a class="nav-link" href={upper.url}>Up</a> : <span class="nav-link disabled">Up</span>}
+        </li>
+        <li class="nav-item">
+          {next ? <a class="nav-link" href={next.url}>Next</a> : <span class="nav-link disabled">Next</span>}
+        </li>
+      </ul>
+    </nav>
+    {(previous || next) && (
+      <div class="nav-titles">
+        <div class="prev-title">{previous ? <a href={previous.url}>&laquo; {previous.title}</a> : ''}</div>
+        <div class="next-title">{next ? <a href={next.url}>{next.title} &raquo;</a> : ''}</div>
+      </div>
+    )}
+  </div>
+)}

@@ -1,0 +1,18 @@
+---
+const { items = [] } = Astro.props;
+const renderItems = (nodes) => nodes.map((item) => ({ ...item, children: item.menu || [] }));
+---
+<aside class="sidebar">
+  <div class="search"><div class="gcse-search"></div></div>
+  <nav aria-label="Documentation navigation">
+    <ul>
+      {renderItems(items).map((item) => <li>
+        {item.link ? <a href={item.link}>{item.caption}</a> : <span>{item.caption}</span>}
+        {item.children.length > 0 && <ul>{renderItems(item.children).map((child) => <li>
+          {child.link ? <a href={child.link}>{child.caption}</a> : <span>{child.caption}</span>}
+          {child.children.length > 0 && <ul>{renderItems(child.children).map((grandchild) => <li>{grandchild.link ? <a href={grandchild.link}>{grandchild.caption}</a> : <span>{grandchild.caption}</span>}</li>)}</ul>}
+        </li>)}</ul>}
+      </li>)}
+    </ul>
+  </nav>
+</aside>

@@ -1,3 +1,0 @@
-{% if site.disqus_shortname %}
-{% include set-current-collection %}<a class="{{ include.class }}" href="{% if include.url %}{% include get-absolute-url-ex url=include.url no_ext=globalcurrentcollection.no_ext %}{% else %}{% include get-absolute-url-ex url=page.url no_ext=globalcurrentcollection.no_ext %}{% endif %}#disqus_thread">Comments</a>
-{% endif %}

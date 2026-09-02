@@ -1,1 +1,0 @@
-{% if site.data.widgets.categories[include.category] %}{{ '/blog/categories/' | append: site.data.widgets.categories[include.category] | append: '.html' | relative_url }}{% else %}#{% endif %}

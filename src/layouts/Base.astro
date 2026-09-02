@@ -1,0 +1,34 @@
+---
+import '../styles/site.css';
+const { title = 'Rindow', description, canonical } = Astro.props;
+const pageTitle = title === 'Rindow' ? title : `${title} : Rindow`;
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description || 'Rindow develops PHP frameworks, machine learning tools, and mathematics libraries.'} />
+    <link rel="canonical" href={canonical || new URL(Astro.url.pathname, Astro.site)} />
+    <link rel="icon" href="/assets/themes/rindow/img/favicon.ico" />
+    <link rel="apple-touch-icon" href="/assets/themes/rindow/img/apple-touch-icon-precomposed.png" />
+    <title>{pageTitle}</title>
+    <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=UA-12321104-4"></script>
+    <script is:inline define:vars={{ id: 'UA-12321104-4' }}>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config',id);</script>
+    <script async src="https://cse.google.com/cse.js?cx=000482340f7b9f4bc"></script>
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="/">rindow</a>
+      <nav aria-label="Main navigation">
+        <a href="/neuralnetworks/index.html">Neural Networks</a>
+        <a href="/mathematics/index.html">Mathematics</a>
+        <a href="/framework/index.html">Framework</a>
+        <a href="/blog/index.html">Blog</a>
+        <a href="/about/index.html">About</a>
+      </nav>
+    </header>
+    <main><slot /></main>
+    <footer>rindow™(2025) All rights reserved. <a href="/about/index.html">About</a></footer>
+  </body>
+</html>

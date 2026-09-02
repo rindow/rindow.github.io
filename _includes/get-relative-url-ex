@@ -1,1 +1,0 @@
-{% if include.no_ext %}{% include get-relative-url-noext url=include.url %}{% else %}{% include get-relative-url url=include.url %}{% endif %}

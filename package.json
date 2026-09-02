@@ -1,0 +1,16 @@
+{
+  "name": "rindow-astro-site",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "import:jekyll": "node scripts/import-jekyll.mjs",
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview"
+  },
+  "dependencies": {
+    "@astrojs/sitemap": "^3.2.1",
+    "astro": "^5.0.0",
+    "yaml": "^2.6.1"
+  }
+}
