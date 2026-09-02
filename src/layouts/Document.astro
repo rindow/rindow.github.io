@@ -7,9 +7,23 @@ const { entry, Content } = Astro.props;
 const collection = entry.id.split('/')[0];
 const title = entry.data.title || collection;
 ---
-<Base title={title} description={entry.data.meta_description}>
+<Base title={title} description={entry.data.meta_description} bodyClass="docs-page">
   <div class="docs-shell">
-    <Sidebar items={navigation[collection] || []} />
+    <div class="docs-toolbar">
+      <button
+        class="docs-menu-toggle"
+        type="button"
+        aria-controls="docs-sidebar"
+        aria-expanded="false"
+        aria-label="Toggle navigation menu"
+      >
+        <span class="docs-menu-toggle-bar"></span>
+        <span class="docs-menu-toggle-bar"></span>
+        <span class="docs-menu-toggle-bar"></span>
+      </button>
+      <span class="docs-toolbar-title">{title}</span>
+    </div>
+    <Sidebar items={navigation[collection] || []} id="docs-sidebar" />
     <article class="prose">
       <DocNavigator entry={entry} position="top" />
       <h1>{title}</h1>
@@ -17,4 +31,38 @@ const title = entry.data.title || collection;
       <DocNavigator entry={entry} position="bottom" />
     </article>
   </div>
+  <div class="docs-overlay" hidden></div>
 </Base>
+
+<script>
+  const toggle = document.querySelector('.docs-menu-toggle');
+  const sidebar = document.getElementById('docs-sidebar');
+  const overlay = document.querySelector('.docs-overlay');
+  const body = document.body;
+
+  if (toggle && sidebar && overlay) {
+    const open = () => {
+      toggle.setAttribute('aria-expanded', 'true');
+      sidebar.classList.add('is-open');
+      overlay.hidden = false;
+      body.classList.add('docs-locked');
+    };
+    const close = () => {
+      toggle.setAttribute('aria-expanded', 'false');
+      sidebar.classList.remove('is-open');
+      overlay.hidden = true;
+      body.classList.remove('docs-locked');
+    };
+    toggle.addEventListener('click', () => {
+      sidebar.classList.contains('is-open') ? close() : open();
+    });
+    overlay.addEventListener('click', close);
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') close();
+    });
+    sidebar.querySelectorAll('a').forEach((link) => link.addEventListener('click', close));
+    window.addEventListener('resize', () => {
+      if (body.classList.contains('docs-locked')) close();
+    });
+  }
+</script>

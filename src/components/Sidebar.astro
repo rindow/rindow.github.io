@@ -1,8 +1,8 @@
 ---
-const { items = [] } = Astro.props;
+const { items = [], id } = Astro.props;
 const renderItems = (nodes) => nodes.map((item) => ({ ...item, children: item.menu || [] }));
 ---
-<aside class="sidebar">
+<aside class="sidebar" id={id}>
   <div class="search"><div class="gcse-search"></div></div>
   <nav aria-label="Documentation navigation">
     <ul>
