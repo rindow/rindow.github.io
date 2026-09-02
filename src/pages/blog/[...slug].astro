@@ -1,13 +1,30 @@
 ---
 import { getCollection } from 'astro:content';
 import Base from '../../layouts/Base.astro';
+
 export async function getStaticPaths() {
   const posts = (await getCollection('posts')).sort((a, b) => b.id.localeCompare(a.id));
-  return [{ params: { slug: 'index' }, props: { posts } }];
+  return [
+    { params: { slug: undefined }, props: { posts } },
+    { params: { slug: 'index' }, props: { posts } },
+    { params: { slug: 'index.html' }, props: { posts } },
+  ];
 }
+
 const { posts } = Astro.props;
-const href = (id) => { const m = id.match(/(\d{4})-(\d{2})-(\d{2})-(.+)$/); return m ? `/blog/${m[1]}/${m[2]}/${m[3]}/${m[4]}.html` : `/blog/${id}.html`; };
+const href = (id: string) => {
+  const m = id.match(/(\d{4})-(\d{2})-(\d{2})-(.+)$/);
+  return m ? `/blog/${m[1]}/${m[2]}/${m[3]}/${m[4]}.html` : `/blog/${id}.html`;
+};
 ---
 <Base title="Blog">
-  <section class="prose standalone"><h1>Blog</h1>{posts.map((post) => <article class="post-preview"><h2><a href={href(post.id)}>{post.data.title || post.id}</a></h2><p>{post.data.excerpt || post.data.description || ''}</p></article>)}</section>
+  <section class="prose standalone">
+    <h1>Blog</h1>
+    {posts.map((post) => (
+      <article class="post-preview">
+        <h2><a href={href(post.id)}>{post.data.title || post.id}</a></h2>
+        <p>{post.data.excerpt || post.data.description || ''}</p>
+      </article>
+    ))}
+  </section>
 </Base>

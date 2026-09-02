@@ -6,10 +6,42 @@ import Base from '../layouts/Base.astro';
 export async function getStaticPaths() {
   const docs = await getCollection('docs');
   const pages = await getCollection('pages');
-  return [...docs, ...pages].map((entry) => ({
-    params: { slug: entry.collection === 'pages' && entry.id === 'about' ? 'about/index' : entry.id },
-    props: { entry, kind: entry.collection },
-  }));
+  const paths = [];
+
+  for (const entry of [...docs, ...pages]) {
+    let slug = entry.id;
+    if (entry.collection === 'pages' && entry.id === 'about') {
+      slug = 'about/index';
+    }
+
+    paths.push({
+      params: { slug },
+      props: { entry, kind: entry.collection },
+    });
+
+    if (!slug.endsWith('.html')) {
+      paths.push({
+        params: { slug: `${slug}.html` },
+        props: { entry, kind: entry.collection },
+      });
+    }
+
+    if (slug.endsWith('/index')) {
+      const baseSlug = slug.replace(/\/index$/, '');
+      paths.push({
+        params: { slug: baseSlug },
+        props: { entry, kind: entry.collection },
+      });
+      if (!baseSlug.endsWith('.html')) {
+        paths.push({
+          params: { slug: `${baseSlug}.html` },
+          props: { entry, kind: entry.collection },
+        });
+      }
+    }
+  }
+
+  return paths;
 }
 const { entry, kind } = Astro.props;
 const { Content } = await render(entry);
