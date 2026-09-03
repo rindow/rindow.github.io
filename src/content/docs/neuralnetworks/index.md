@@ -40,6 +40,7 @@ Rindow Neural Networks is a high-level neural network library for PHP.
 It enables powerful machine learning in PHP.
 
 - You can build machine learning models such as DNN, CNN, RNN, and (Multi-Head)Attention.
+- You can train reinforcement-learning agents (DQN, PPO, A2C, DDPG, SAC, REINFORCE, Q-learning, Sarsa) with [Rindow RL Agents](reinforcement-learning.html).
 - You can leverage your knowledge of Python and Keras.
 - Popular computer vision and natural language processing samples are available.
 - By calling high-speed computation libraries, you can process data at speeds comparable to TensorFlow's CPU version.
@@ -105,6 +106,19 @@ Please see the [Machine learning tutorials on PHP](tutorials/tutorials.html) pag
 - [Learning Numerical Addition with seq2seq in PHP](tutorials/learn-add-numbers-with-rnn.html)
 - [Neural Machine Translation with Attention in PHP](tutorials/neural-machine-translation-with-attention.html)
 - [Neural Machine Translation with Transformer in PHP](tutorials/neural-machine-translation-with-transformer.html)
+
+
+Reinforcement Learning
+----------------------
+Rindow Neural Networks also supports reinforcement learning through
+[Rindow RL Agents](reinforcement-learning.html): DQN, PPO, A2C, DDPG, SAC,
+REINFORCE, Q-learning, and Sarsa agents with training runners, replay storage,
+and CartPole, MountainCar, Pendulum, and Maze environment adapters on CPU and
+GPU backends.
+
+Please see the [Reinforcement Learning](reinforcement-learning.html) page for
+an overview and demo videos, and the
+[Rindow RL Agents Reference](/rindow-rl-agents/) for the full documentation.
 
 
 Why Do Deep Learning with PHP?

@@ -3,6 +3,7 @@ layout: document
 title: "Automatic Differentiation"
 upper_section: index
 previous_section: custommodel
+next_section: reinforcement-learning
 ---
 
 Automatic Differentiation and Gradients

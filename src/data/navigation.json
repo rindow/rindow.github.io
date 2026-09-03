@@ -162,6 +162,28 @@
       ]
     },
     {
+      "caption": "Reinforcement Learning",
+      "link": "/neuralnetworks/reinforcement-learning.html",
+      "menu": [
+        {
+          "caption": "Overview",
+          "link": "/neuralnetworks/reinforcement-learning.html#overview"
+        },
+        {
+          "caption": "Supported agents",
+          "link": "/neuralnetworks/reinforcement-learning.html#supported-agents"
+        },
+        {
+          "caption": "Demo videos",
+          "link": "/neuralnetworks/reinforcement-learning.html#demo-videos"
+        },
+        {
+          "caption": "Next steps",
+          "link": "/neuralnetworks/reinforcement-learning.html#next-steps"
+        }
+      ]
+    },
+    {
       "caption": "API reference",
       "link": "/neuralnetworks/api/apitoc.html"
     }
