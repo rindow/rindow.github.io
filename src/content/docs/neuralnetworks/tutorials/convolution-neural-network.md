@@ -11,12 +11,12 @@ Experience how CNN uses images.
 Advance preparation
 -------------------
 Set up Rindow Neural Networks to work before you start. The installation procedure is
-See [Rindow Neural Networks installation](/neuralnetworks/install.md).
+See [Rindow Neural Networks installation](/neuralnetworks/install.html).
 
 Experience PHP running fast enough to learn image recognition.
 If you are using a Windows environment, we recommend using Rindow CLBlast / OpenCL.
 
-For those who have already completed the [Basic image clasification on PHP] (basic-image-classification.html) tutorial or have equivalent knowledge.
+For those who have already completed the [Basic image clasification on PHP](basic-image-classification.html) tutorial or have equivalent knowledge.
 
 Training data
 -------------

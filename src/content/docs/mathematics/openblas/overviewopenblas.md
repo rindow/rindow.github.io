@@ -13,7 +13,7 @@ The Rindow-MatlibFFI service functions as a backend library for Rindow-math-matr
 * Provides a one-dimensional universal buffer that enables efficient data exchange between C and PHP.
 * Offers a low-level interface to the OpenBLAS library that is almost identical to its C API, accessible from PHP. This allows for flexible numerical operations independent of array shapes.
 * The Rindow-matlib library is also accessible from PHP through a low-level interface that is almost identical to its C API.
-* By combining with [Rindow Math Matrix](https://www.google.com/search?q=/mathematics/matrix/matrix.html), high-performance N-dimensional array operations can be executed at high speed.
+* By combining with [Rindow Math Matrix](/mathematics/matrix/matrix.html), high-performance N-dimensional array operations can be executed at high speed.
 
 It demonstrates high performance in deep learning development with PHP.
 

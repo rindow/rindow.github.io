@@ -4,7 +4,7 @@ title: "ClassifiedDirectoryDataset"
 grand_upper_section: index
 upper_section: api/apitoc
 previous_section: api/csvdataset
-next_section: api/sequentialDataset
+next_section: api/sequentialdataset
 ---
 
 - **namespace**: Rindow\NeuralNetworks\Data\Dataset

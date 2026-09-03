@@ -155,7 +155,7 @@
             },
             {
               "caption": "Compiling the computational graph",
-              "link": "/neuralnetworks/compiling-the-computational-graph"
+              "link": "/neuralnetworks/autodiff.html#compiling-the-computational-graph"
             }
           ]
         }

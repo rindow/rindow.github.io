@@ -15,7 +15,7 @@ It's meant to give you an idea of what Rindow Neural Networks looks like, and do
 Experience the fact that you can create something like "This things works!" On your laptop anyway.
 
 Set up Rindow Neural Networks to work before you start. The installation procedure is
-See [Rindow Neural Networks installation](/neuralnetworks/install.md).
+See [Rindow Neural Networks installation](/neuralnetworks/install.html).
 
 Now let's create a model that classifies images of handwritten numbers.
 

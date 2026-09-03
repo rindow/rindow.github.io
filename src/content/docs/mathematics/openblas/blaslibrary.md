@@ -2,7 +2,7 @@
 layout: document
 title: "BLAS libray"
 upper_section: index
-previous_section: openblas/arrayobjects
+previous_section: openblas/arraybuffer
 next_section: openblas/mathlibrary
 ---
 ## What is BLAS?
@@ -26,7 +26,7 @@ The following are backend libraries that comply with the BLAS interface:
   * `rindow-openblas-ffi` package: Calls OpenBLAS for high-speed computations.
   * `rindow-clblast-ffi` package: Calls CLBlast to perform high-speed computations using the GPU.
 
-> For details on `rindow-clblast-ffi`, please refer to [here](/mathematics/acceleration/mathematics/opencl.html).
+> For details on `rindow-clblast-ffi`, please refer to [here](/mathematics/acceleration/opencl.html).
 
 These can be called from the LinearAlgebra class depending on the user's environment.
 You can also create your own backend library that complies with the BLAS interface and use it with the LinearAlgebra class.
@@ -35,7 +35,7 @@ The BLAS library provides a very large number of functions, but this `rindow-ope
 
 Memory regions are received via `Buffer` objects and passed to the OpenBLAS library.
 The difference from the OpenBLAS C language interface is the use of a buffer object and an offset to represent the starting address of the memory region. This is to minimize the number of memory copies when dealing with multi-dimensional arrays.
-For a detailed explanation of `Buffer`, please refer to [here](/mathematics/openblas/arraybuffer.md).
+For a detailed explanation of `Buffer`, please refer to [here](/mathematics/openblas/arraybuffer.html).
 
 The most important point to note is that the OpenBLAS library only supports 32-bit and 64-bit floating-point numbers.
 Integer calculations are not possible.

@@ -19,7 +19,7 @@ In this model, Attention indicates which part of the input gets the model's atte
 Advance preparation
 -------------------
 Set up Rindow Neural Networks to work before you start. The installation procedure is
-See [Rindow Neural Networks installation](/neuralnetworks/install.md).
+See [Rindow Neural Networks installation](/neuralnetworks/install.html).
 
 Experience that even PHP works fast enough for RNNs.
 If you are using a Windows environment, we recommend using Rindow CLBlast / OpenCL.

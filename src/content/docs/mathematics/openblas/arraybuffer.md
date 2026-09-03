@@ -30,7 +30,7 @@ Three Buffer modules are provided according to the current environment:
 
 In the future, by developing Buffer interfaces compatible with other C language libraries, we plan to make Rindow-Math usable in various environments.
 
-For details on `rindow-opencl-ffi`, please refer to [here](https://www.google.com/search?q=/mathematics/acceleration/mathematics/opencl.html).
+For details on `rindow-opencl-ffi`, please refer to [here](/mathematics/acceleration/opencl.html).
 
 ## PHP Interface
 

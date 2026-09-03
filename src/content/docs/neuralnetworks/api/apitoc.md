@@ -50,9 +50,9 @@ next_section: api/neuralnetworks
     - [GRU](gru.html)
     - [Attention](attention.html)
     - [MultiHeadAttention](multiheadattention.html)
-    - [Add](addlayer.md)
-    - [EinsumDense](einsumdense.md)
-    - [InheritMask](inheritmask.md)
+    - [Add](addlayer.html)
+    - [EinsumDense](einsumdense.html)
+    - [InheritMask](inheritmask.html)
 - Activations
     - [ReLU](relu.html)
     - [Sigmoid](sigmoid.html)
