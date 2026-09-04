@@ -758,6 +758,18 @@ echo $mo->toString($x);
 ## [0,1,2]
 ```
 
+### shapeToString
+```php
+public function shapeToString(array $shape) : string
+```
+Convert a shape array to string
+
+Example
+```php
+echo $mo->shapeToString([2,3]);
+## (2,3)
+```
+
 
 ### random
 ```php
@@ -784,4 +796,34 @@ Example
 ```php
 $x = $mo->array([1,2,3]);
 $mo->la()->scal(10,$x);
+```
+
+### setSeed
+```php
+public function setSeed(int $seed) : void
+```
+Set the seed for random number generation.
+Forwards the seed to the linear algebra library.
+Set the seed explicitly to get reproducible random sequences.
+
+Example
+```php
+$mo->setSeed(0);
+$a = $mo->randInt(0,100);
+$mo->setSeed(0);
+$b = $mo->randInt(0,100);
+## $a == $b
+```
+
+### randInt
+```php
+public function randInt(?int $min=null, ?int $max=null) : int
+```
+Generate a random integer between min and max.
+If omitted, min and max cover the int32 range.
+
+Example
+```php
+$x = $mo->randInt(0,10);
+## 0 <= $x <= 10
 ```

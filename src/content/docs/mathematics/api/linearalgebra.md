@@ -3593,3 +3593,302 @@ $la->masking($X,$A,axis:1);
 # ]
 
 ```
+
+### trsv
+```php
+public function trsv(
+    NDArray $A,
+    NDArray $X,
+    ?bool $lower=null,
+    ?bool $trans=null,
+    ?bool $conj=null,
+    ?bool $unit=null) : NDArray
+```
+Solve a triangular linear system A * x = b (BLAS trsv).
+
+Arguments
+- **A**: A triangular square matrix.
+    - 2D NDArray. The number of rows and columns must be the same.
+- **X**: The right-hand side vector. The solution overwrites it.
+    - 1D NDArray. The size must be the same as the rows of A.
+- **lower**: use lower side.
+    - If omitted, it is false (upper side).
+- **trans**: transpose A matrix.
+    - If omitted, it is false.
+- **conj**: conjugate A matrix.
+    - If omitted, it is the same trans.
+- **unit**: unitriangular.
+    - If omitted, it is false.
+
+Result
+- same X object.
+
+Examples
+
+```php
+$a = $mo->array([
+    [2,0],
+    [1,3],
+]);
+$x = $mo->array([4,7]);
+$la->trsv($a,$x,lower:true);
+# x => [2.0,1.6666666]
+```
+
+### solveg
+```php
+public function solveg(
+    NDArray $a,
+    NDArray $b,
+    ?float $epsilon=null) : NDArray
+```
+Solve a general square linear system a * x = b using Givens rotations and trsv.
+
+Arguments
+- **a**: A square coefficient matrix.
+    - 2D NDArray.
+- **b**: The right-hand side vector.
+    - 1D NDArray. The size must be the same as the rows of a.
+    - a and b must have the same data type.
+- **epsilon**: Threshold to detect a singular matrix. Default is 1e-7.
+
+Result
+- output vector x.
+
+If the matrix is singular or near-singular, a RuntimeException is thrown.
+
+Examples
+
+```php
+$a = $mo->array([
+    [3,1],
+    [1,2],
+]);
+$b = $mo->array([9,8]);
+$x = $la->solveg($a,$b);
+# x => [2.0,3.0]
+```
+
+### randomCategorical
+```php
+public function randomCategorical(
+    NDArray $probs,
+    ?int $numSamples=null,
+    ?int $dtype=null,
+    ?int $seed=null) : NDArray
+```
+Sample category indices from probabilities.
+
+Arguments
+- **probs**: Unnormalized probabilities (logits are also acceptable).
+    - float dtype NDArray.
+    - Without numSamples, it must be 2D (batches, numActions) and one index is sampled for each batch.
+    - With numSamples, it must be 1D and numSamples indices are sampled.
+- **numSamples**: Number of indices to sample from 1D probs.
+- **dtype**: The data type of the output index array. Default is int32.
+- **seed**: seed for randomize. If omitted, the seed set by setSeed() is used.
+
+Result
+- output index array.
+
+Examples
+
+```php
+$probs = $mo->array([
+    [0.2,0.5,0.3],
+    [0.7,0.2,0.1],
+]);
+$y = $la->randomCategorical($probs,seed:0);
+# $y shape is (2,) with dtype int32
+
+$probs = $mo->array([0.2,0.5,0.3]);
+$y = $la->randomCategorical($probs,numSamples:4,seed:0);
+# $y shape is (4,) with dtype int32
+```
+
+### isfinite
+```php
+public function isfinite(
+    NDArray $X
+    ) : NDArray
+```
+Returns which elements are finite.
+Replaces finite values with 1, INF and NAN with 0.
+
+Arguments
+- **X**: Arrays to test.
+
+Result
+- same X object.
+
+Examples
+
+```php
+$X = $mo->array([1,INF,NAN]);
+$la->isfinite($X);
+# X=[1,0,0],
+```
+
+### isinf
+```php
+public function isinf(
+    NDArray $X
+    ) : NDArray
+```
+Returns which elements are infinite.
+Replaces INF and -INF with 1, other values with 0.
+
+Arguments
+- **X**: Arrays to test.
+
+Result
+- same X object.
+
+Examples
+
+```php
+$X = $mo->array([1,INF,-INF,NAN]);
+$la->isinf($X);
+# X=[0,1,1,0],
+```
+
+### where
+```php
+public function where(
+    NDArray $condition,
+    NDArray $x,
+    NDArray $y,
+    ?bool $normalize=null,
+    ) : NDArray
+```
+Select elements from x where the condition is true, and from y otherwise.
+
+Arguments
+- **condition**: Boolean array.
+    - All inputs must have the same shape.
+- **x**: Values selected where the condition is true.
+- **y**: Values selected where the condition is false.
+- **normalize**: If true, a non-boolean condition is converted to boolean. Default is true.
+
+Result
+- output array with the shape of x.
+
+Examples
+
+```php
+$condition = $mo->array([true,false,true],dtype:NDArray::bool);
+$x = $mo->array([1,2,3]);
+$y = $mo->array([10,20,30]);
+$z = $la->where($condition,$x,$y);
+# z=[1,20,30],
+```
+
+### setSeed
+```php
+public function setSeed(int $seed) : void
+```
+Set the seed for random number generation.
+Set the seed explicitly to get reproducible random sequences.
+The random functions (randomUniform, randomNormal, randomSequence, randomCategorical, etc.) also accept a seed argument directly.
+
+Arguments
+- **seed**: seed for randomize.
+
+Examples
+
+```php
+$la->setSeed(0);
+$a = $la->randInt(0,100);
+$la->setSeed(0);
+$b = $la->randInt(0,100);
+# $a == $b
+```
+
+### randInt
+```php
+public function randInt(?int $min=null, ?int $max=null) : int
+```
+Generate a random integer between min and max.
+
+Arguments
+- **min**: Minimum value. Default covers the int32 range.
+- **max**: Maximum value. Default covers the int32 range.
+
+Result
+- A random integer.
+
+Examples
+
+```php
+$x = $la->randInt(0,10);
+# 0 <= $x <= 10
+```
+
+### dtypeToString
+```php
+public function dtypeToString(int $dtype) : string
+```
+Convert dtype of NDArray to string.
+
+Arguments
+- **dtype**: NDArray data type constant.
+
+Result
+- A string like 'float32', 'int32' or 'bool'. Unknown types return 'Unknown'.
+
+Examples
+
+```php
+$x = $mo->array([[1,2,3]]);
+echo $la->dtypeToString($x->dtype());
+# float32
+```
+
+### shapeToString
+```php
+public function shapeToString(array $shape) : string
+```
+Convert a shape array to string.
+
+Arguments
+- **shape**: Shape array.
+
+Result
+- A string like '(2,3)'.
+
+Examples
+
+```php
+echo $la->shapeToString([2,3]);
+# (2,3)
+```
+
+### toString
+```php
+public function toString(
+    NDArray $array,
+    ?string $format=null,
+    bool|int|null $indent=null) : string
+```
+Convert NDArray to string.
+
+Arguments
+- **array**: Input array.
+- **format**: sprintf format for each element. If omitted, values are output as is.
+- **indent**: If specified, pretty-print the array with line breaks and indentation.
+
+Result
+- The string image of the array.
+
+Examples
+
+```php
+$x = $mo->array([[1,2],[3,4]]);
+echo $la->toString($x);
+# [[1,2],[3,4]]
+echo $la->toString($x,indent:true);
+# [
+#  [1,2],
+#  [3,4]
+# ]
+```
