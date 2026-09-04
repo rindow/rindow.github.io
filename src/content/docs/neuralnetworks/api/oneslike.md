@@ -4,7 +4,7 @@ title: "onesLike"
 grand_upper_section: index
 upper_section: api/apitoc
 previous_section: api/ones
-next_section: api/reducemean
+next_section: api/randomcategorical
 ---
 
 - **namespace**: Rindow\NeuralNetworks\Gradient\Func

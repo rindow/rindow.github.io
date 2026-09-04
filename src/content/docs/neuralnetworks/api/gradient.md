@@ -23,6 +23,7 @@ gradient utilities
 
 Differentiable functions
 ------------------------
+- [**abs**](abs.html)
 - [**add**](add.html)
 - [**sub**](sub.html)
 - [**mul**](mul.html)
@@ -31,8 +32,27 @@ Differentiable functions
 - [**sqrt**](sqrt.html)
 - [**exp**](exp.html)
 - [**log**](log.html)
+- [**log1p**](log1p.html)
 - [**matmul**](matmul.html)
 - [**reduceMean**](reducemean.html)
+- [**reduceSum**](reducesum.html)
+- [**reduceMax**](reducemax.html)
+- [**concat**](concat.html)
+- [**softmax**](softmax_func.html)
+- [**logSoftmax**](logsoftmax.html)
+- [**masking**](masking.html)
+- [**gather**](gather_func.html)
+- [**expandDims**](expanddims_func.html)
+- [**squeeze**](squeeze.html)
+- [**minimum**](minimum.html)
+- [**maximum**](maximum.html)
+- [**randomNormal**](randomnormal.html)
+- [**randomCategorical**](randomcategorical.html)
+- [**tanh**](tanh_func.html)
+- [**relu**](relu_func.html)
+- [**sigmoid**](sigmoid_func.html)
+- [**where**](where.html)
+- [**l2norm**](l2norm.html)
 - etc.
 
 Examples

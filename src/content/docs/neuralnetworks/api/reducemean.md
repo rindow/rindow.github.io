@@ -3,7 +3,7 @@ layout: document
 title: "reduceMean"
 grand_upper_section: index
 upper_section: api/apitoc
-previous_section: api/oneslike
+previous_section: api/reducemax
 next_section: api/reducesum
 ---
 

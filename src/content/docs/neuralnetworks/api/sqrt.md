@@ -3,7 +3,7 @@ layout: document
 title: "sqrt"
 grand_upper_section: index
 upper_section: api/apitoc
-previous_section: api/shape
+previous_section: api/squeeze
 next_section: api/square
 ---
 

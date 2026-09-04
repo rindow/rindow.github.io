@@ -89,6 +89,47 @@ return $utils
 Get utils subclass builder Rindow\NeuralNetworks\Builder\Utils.
 The builder is a singleton.
 
+### la
+```php
+public function la()
+return $la
+```
+Get the math library for the current operation mode.
+In host mode (running on CPU), it returns Rindow\Math\Matrix\LinearAlgebra.
+In device mode (running with acceleration such as GPU), it returns Rindow\Math\Matrix\LinearAlgebraCL.
+Use it for direct numerical operations as follows.
+
+```php
+$la = $nn->la();
+$c = $la->multiply($a,$b);
+```
+
+### deviceArray
+```php
+public function deviceArray(NDArray $value, ?int $dtype=null)
+return $ndarray
+```
+Convert a host (CPU) memory array to a device (GPU, etc.) memory array.
+If a device array is passed, nothing happens and the original array is returned.
+If the operation mode is not GPU, it behaves the same as hostArray.
+
+```php
+$a = $nn->deviceArray($mo->array([1,2,3]));
+```
+
+### hostArray
+```php
+public function hostArray(NDArray $ndarray)
+return $ndarray
+```
+Convert a device (GPU, etc.) memory array to a host (CPU) memory array.
+If a host array is passed, nothing happens and the original array is returned.
+
+```php
+$a = $nn->deviceArray($mo->array([1,2,3]));
+$a = $nn->hostArray($a);
+```
+
 
 Example
 -------

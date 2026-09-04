@@ -3,7 +3,7 @@ layout: document
 title: "less"
 grand_upper_section: index
 upper_section: api/apitoc
-previous_section: api/increment
+previous_section: api/l2norm
 next_section: api/log
 ---
 

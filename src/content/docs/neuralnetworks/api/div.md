@@ -3,7 +3,7 @@ layout: document
 title: "div"
 grand_upper_section: index
 upper_section: api/apitoc
-previous_section: api/clipbyvalue
+previous_section: api/concat
 next_section: api/equal
 ---
 

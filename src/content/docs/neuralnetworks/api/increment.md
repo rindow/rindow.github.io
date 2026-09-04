@@ -4,7 +4,7 @@ title: "increment"
 grand_upper_section: index
 upper_section: api/apitoc
 previous_section: api/greater
-next_section: api/less
+next_section: api/l2norm
 ---
 
 - **namespace**: Rindow\NeuralNetworks\Gradient\Func

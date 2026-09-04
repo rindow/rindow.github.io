@@ -4,7 +4,7 @@ title: "sub"
 grand_upper_section: index
 upper_section: api/apitoc
 previous_section: api/stopgradient
-next_section: api/transpose
+next_section: api/tanh_func
 ---
 
 - **namespace**: Rindow\NeuralNetworks\Gradient\Func

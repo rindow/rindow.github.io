@@ -1,31 +1,31 @@
 ---
 layout: document
-title: "exp"
+title: "softmax"
 grand_upper_section: index
 upper_section: api/apitoc
-previous_section: api/equal
-next_section: api/expanddims_func
+previous_section: api/sigmoid_func
+next_section: api/squeeze
 ---
 
 - **namespace**: Rindow\NeuralNetworks\Gradient\Func
-- **classname**: Exp
+- **classname**: Softmax
 
-Differentiable exponential function.
+Differentiable softmax function.
 
 Methods
 -------
 
-### exp
+### softmax
 ```php
-$g->exp(
-    Variable|NDArray $a
+$g->softmax(
+    Variable|NDArray $x
 ) : Variable
 ```
 Create and execute the function in the builder method
 
 Arguments
 
-- **a**: The argument is Variable or NDArray. Implicitly create Variable for NDArray.
+- **x**: The argument is Variable or NDArray. Implicitly create Variable for NDArray.
 
 
 ```php
@@ -34,15 +34,13 @@ use Rindow\NeuralNetworks\Builder\NeuralNetworks;
 $mo = new MatrixOperator();
 $nn = new NeuralNetworks($mo);
 $g = $nn->gradient();
-$a = $g->Variable([1,2]);
+$a = $g->Variable([1,2,3]);
 $c = $nn->with($tape=$g->GradientTape(),function() use ($g,$a) {
-    return $g->exp($a);
+    return $g->softmax($a);
 });
 $da = $tape->gradient($c,$a);
-echo $mo->toString($c, '%6.3f')."\n";
-echo $mo->toString($da,'%6.3f')."\n";
+echo $mo->toString($c,'%6.3f')."\n";
 
-# [ 2.718, 7.389]
-# [ 2.718, 7.389]
+# [ 0.090, 0.245, 0.665]
 
 ```

@@ -4,7 +4,7 @@ title: "reduceSum"
 grand_upper_section: index
 upper_section: api/apitoc
 previous_section: api/reducemean
-next_section: api/repeat
+next_section: api/relu_func
 ---
 
 - **namespace**: Rindow\NeuralNetworks\Gradient\Func

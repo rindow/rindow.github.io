@@ -3,7 +3,7 @@ layout: document
 title: "get"
 grand_upper_section: index
 upper_section: api/apitoc
-previous_section: api/exp
+previous_section: api/gather_func
 next_section: api/greater
 ---
 

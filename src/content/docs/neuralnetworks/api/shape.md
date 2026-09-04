@@ -4,7 +4,7 @@ title: "shape"
 grand_upper_section: index
 upper_section: api/apitoc
 previous_section: api/scale
-next_section: api/sqrt
+next_section: api/sigmoid_func
 ---
 
 - **namespace**: Rindow\NeuralNetworks\Gradient\Func

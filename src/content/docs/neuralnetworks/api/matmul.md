@@ -3,8 +3,8 @@ layout: document
 title: "matmul"
 grand_upper_section: index
 upper_section: api/apitoc
-previous_section: api/log
-next_section: api/mul
+previous_section: api/masking
+next_section: api/maximum
 ---
 
 - **namespace**: Rindow\NeuralNetworks\Gradient\Func

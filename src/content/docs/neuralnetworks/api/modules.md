@@ -4,7 +4,7 @@ title: "Variable"
 grand_upper_section: index
 upper_section: api/apitoc
 previous_section: api/arrayspec
-next_section: api/add
+next_section: api/abs
 ---
 
 - **namespace**: Rindow\NeuralNetworks\Gradient\Core

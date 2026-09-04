@@ -1,32 +1,38 @@
 ---
 layout: document
-title: "mul"
+title: "concat"
 grand_upper_section: index
 upper_section: api/apitoc
-previous_section: api/minimum
-next_section: api/notequal
+previous_section: api/clipbyvalue
+next_section: api/div
 ---
 
 - **namespace**: Rindow\NeuralNetworks\Gradient\Func
-- **classname**: Mul
+- **classname**: Concat
 
-Differentiable Multiplication function.
+Differentiable concatenation function.
+
+Concatenates a list of inputs on the specified axis.
 
 Methods
 -------
 
-### mul
+### concat
 ```php
-$g->mul(
-    Variable|NDArray $a,
-    Variable|NDArray $b
+$g->concat(
+    array $values,
+    ?int $axis=null,
 ) : Variable
 ```
 Create and execute the function in the builder method
 
 Arguments
 
-- **a,b**: The arguments are Variable or NDArray. Implicitly create Variable for NDArray.
+- **values**: An array of Variable or NDArray. Implicitly create Variable for NDArray.
+
+Options
+
+- **axis**: Axis to join. The default is -1.
 
 
 ```php
@@ -35,19 +41,18 @@ use Rindow\NeuralNetworks\Builder\NeuralNetworks;
 $mo = new MatrixOperator();
 $nn = new NeuralNetworks($mo);
 $g = $nn->gradient();
-$a = $g->Variable([1,2]);
-$b = $g->Variable([2,3]);
+$a = $g->Variable([[1,2],[3,4]]);
+$b = $g->Variable([[5,6],[7,8]]);
 $c = $nn->with($tape=$g->GradientTape(),function() use ($g,$a,$b) {
-    return $g->mul($a,$b);
+    return $g->concat([$a,$b],axis:-1);
 });
 [$da,$db] = $tape->gradient($c,[$a,$b]);
 echo $mo->toString($c)."\n";
 echo $mo->toString($da)."\n";
 echo $mo->toString($db)."\n";
 
-# [2,6]
-# [2,3]
-# [1,2]
-
+# [[1,2,5,6],[3,4,7,8]]
+# [[1,1],[1,1]]
+# [[1,1],[1,1]]
 
 ```

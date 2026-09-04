@@ -3,8 +3,8 @@ layout: document
 title: "log"
 grand_upper_section: index
 upper_section: api/apitoc
-previous_section: api/exp
-next_section: api/matmul
+previous_section: api/less
+next_section: api/log1p
 ---
 
 - **namespace**: Rindow\NeuralNetworks\Gradient\Func

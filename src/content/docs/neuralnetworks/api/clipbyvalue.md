@@ -4,7 +4,7 @@ title: "clipByValue"
 grand_upper_section: index
 upper_section: api/apitoc
 previous_section: api/cast
-next_section: api/div
+next_section: api/concat
 ---
 
 - **namespace**: Rindow\NeuralNetworks\Gradient\Func

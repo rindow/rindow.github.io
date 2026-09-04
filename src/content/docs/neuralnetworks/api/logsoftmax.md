@@ -1,31 +1,34 @@
 ---
 layout: document
-title: "exp"
+title: "logSoftmax"
 grand_upper_section: index
 upper_section: api/apitoc
-previous_section: api/equal
-next_section: api/expanddims_func
+previous_section: api/log1p
+next_section: api/masking
 ---
 
 - **namespace**: Rindow\NeuralNetworks\Gradient\Func
-- **classname**: Exp
+- **classname**: LogSoftmax
 
-Differentiable exponential function.
+Differentiable log softmax function.
+
+Computes log(softmax(x)) in a numerically stable way.
+The input must be a vector or an array with a batch dimension.
 
 Methods
 -------
 
-### exp
+### logSoftmax
 ```php
-$g->exp(
-    Variable|NDArray $a
+$g->logSoftmax(
+    Variable|NDArray $x,
 ) : Variable
 ```
 Create and execute the function in the builder method
 
 Arguments
 
-- **a**: The argument is Variable or NDArray. Implicitly create Variable for NDArray.
+- **x**: The argument is Variable or NDArray. Implicitly create Variable for NDArray.
 
 
 ```php
@@ -34,15 +37,14 @@ use Rindow\NeuralNetworks\Builder\NeuralNetworks;
 $mo = new MatrixOperator();
 $nn = new NeuralNetworks($mo);
 $g = $nn->gradient();
-$a = $g->Variable([1,2]);
+$a = $g->Variable([1,2,3]);
 $c = $nn->with($tape=$g->GradientTape(),function() use ($g,$a) {
-    return $g->exp($a);
+    return $g->logSoftmax($a);
 });
 $da = $tape->gradient($c,$a);
-echo $mo->toString($c, '%6.3f')."\n";
+echo $mo->toString($c,'%6.3f')."\n";
 echo $mo->toString($da,'%6.3f')."\n";
 
-# [ 2.718, 7.389]
-# [ 2.718, 7.389]
+# [-2.408,-1.408,-0.408]
 
 ```

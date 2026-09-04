@@ -3,8 +3,8 @@ layout: document
 title: "transpose"
 grand_upper_section: index
 upper_section: api/apitoc
-previous_section: api/sub
-next_section: api/zeros
+previous_section: api/tanh_func
+next_section: api/where
 ---
 
 - **namespace**: Rindow\NeuralNetworks\Gradient\Func

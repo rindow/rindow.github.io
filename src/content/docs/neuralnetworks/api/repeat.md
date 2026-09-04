@@ -3,7 +3,7 @@ layout: document
 title: "repeat"
 grand_upper_section: index
 upper_section: api/apitoc
-previous_section: api/reducesum
+previous_section: api/relu_func
 next_section: api/reshape
 ---
 

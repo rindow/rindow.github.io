@@ -3,7 +3,7 @@ layout: document
 title: "zeros"
 grand_upper_section: index
 upper_section: api/apitoc
-previous_section: api/transpose
+previous_section: api/where
 next_section: api/zeroslike
 ---
 
