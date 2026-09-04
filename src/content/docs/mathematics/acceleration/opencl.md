@@ -39,7 +39,7 @@ This is an internal library within Rindow Math Matrix that provides various math
 
 The system requirements for using the GPU acceleration feature are as follows:
 
-*   **PHP**: 8.1, 8.2, 8.3, 8.4
+*   **PHP**: 8.1 or later
 *   **PHP Interface**: `interop-phpobjects/polite-math` 1.0.6 or later
 *   **OpenCL**: OpenCL 1.1 or later drivers and libraries
 *   **Operating System**: Windows 10, 11 or Linux (Ubuntu 22.04 or Debian 12 or later)

@@ -22,7 +22,6 @@ It demonstrates high performance in deep learning development with PHP.
 OpenBLAS and Rindow-Matlib are the primary backends that enable high-speed CPU-based computations written in the C language.
 
 OpenBLAS is a widely known high-performance linear algebra library, and Rindow-Matlib provides a variety of function groups useful for machine learning. These libraries achieve high-speed processing by leveraging multi-threaded parallel computation and CPU SIMD instructions.
-
 ### Portability
 
 From version 2 onwards, the method of calling C language interface libraries has been changed to use PHP's FFI (Foreign Function Interface) functionality (version 1 used a PHP extension).
@@ -35,7 +34,7 @@ Each function can be used directly from PHP as a low-level interface almost iden
 
 ## Requirements
 
-* PHP 8.1, PHP 8.2, PHP 8.3, or PHP 8.4
+* PHP 8.1 or later
 * Windows 10/11, Linux (Ubuntu 22.04 or later, Debian 12 or later), macOS
 * OpenBLAS library version 0.3.20 or later
 * Rindow-Math library version 1.1 or later

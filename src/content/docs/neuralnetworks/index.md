@@ -143,7 +143,7 @@ It's unnatural not to be able to use PHP.
 Requirements
 ------------
 
-- PHP 8.1, 8.2, 8.3, 8.4 (Use version 1.x if you want to use PHP 7.x and 8.0)
+- PHP 8.1 or later (Use version 1.x if you want to use PHP 7.x and 8.0)
 - Windows 10/11 or Ubuntu 22.04 or Debian 12 or later for using OpenBLAS and Rindow-Matlib
 - Rindow Math Matrix
 

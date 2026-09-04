@@ -17,7 +17,7 @@ Operating environment
 ---------------------
 Rindow Neural Networks has been tested in the following operating environments:
 
-- PHP 8.1, 8.2, 8.3, 8.4 (When using in PHP 7.x, 8.0 environment, please use Release 1.x.)
+- PHP 8.1 or later (When using in PHP 7.x, 8.0 environment, please use Release 1.x.)
 - Windows 10 20H2 or later.
 - Ubuntu 22.04 or Debian 12 or later
 - AMD/Intel CPU/APU 64bit (SSE2 or later)

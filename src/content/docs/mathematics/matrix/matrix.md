@@ -31,9 +31,10 @@ Structure Diagram:
 
 ## Requirements
 
-- PHP 8.1, 8.2, 8.3, 8.4
+- PHP 8.1 or later
    - (If using in a PHP 7.2 to 8.0 environment, please use release 1.1.)
-- Windows 10, 11, or Linux (when using OpenBLAS)
+- Windows 10, 11, Linux or macOS
+- OpenBLAS is required to speed up performance on Windows or Linux; on macOS, vecLib is used instead.
 
 
 ## Recommends
