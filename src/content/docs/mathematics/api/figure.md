@@ -15,9 +15,7 @@ Figures are separated by one or more "Axes".
 
 Methods
 -------
-{:.no_toc}
-* Table of contents
-{:toc}
+### Table of contents
 
 ### num
 ```php

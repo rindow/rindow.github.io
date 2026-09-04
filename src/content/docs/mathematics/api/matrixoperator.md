@@ -14,9 +14,7 @@ If you have loaded the “OpenBLAS”, enable it.
 
 Methods
 -------
-{:.no_toc}
-* Table of contents
-{:toc}
+### Table of contents
 
 ### constructor
 ```php

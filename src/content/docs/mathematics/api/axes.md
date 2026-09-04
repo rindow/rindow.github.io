@@ -14,9 +14,7 @@ And it calculates from the scale when the rendering command comes and draws the 
 
 Methods
 -------
-{:.no_toc}
-* Table of contents
-{:toc}
+### Table of contents
 
 ### bar
 ```php

@@ -20,9 +20,7 @@ When the OpenBLAS FFI is specified, high-speed operations are possible.
 
 Methods
 -------
-{:.no_toc}
-* Table of contents
-{:toc}
+### Table of contents
 
 ### constructor
 ```php

@@ -13,9 +13,7 @@ Call OpenBLAS functions.
 
 Methods
 -------
-{:.no_toc}
-* Table of contents
-{:toc}
+### Table of contents
 
 ### constructor
 ```php

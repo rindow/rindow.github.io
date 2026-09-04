@@ -1,7 +1,8 @@
 ---
 import '../styles/site.css';
-const { title = 'Rindow', description, canonical, bodyClass } = Astro.props;
+const { title = 'Rindow', description, canonical, bodyClass, math } = Astro.props;
 const pageTitle = title === 'Rindow' ? title : `${title} : Rindow`;
+const mathEnabled = math === true || math === 'enable' || math === 'true' || math === 'yes';
 ---
 <!doctype html>
 <html lang="en">
@@ -16,6 +17,7 @@ const pageTitle = title === 'Rindow' ? title : `${title} : Rindow`;
     <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=UA-12321104-4"></script>
     <script is:inline define:vars={{ id: 'UA-12321104-4' }}>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config',id);</script>
     <script async src="https://cse.google.com/cse.js?cx=000482340f7b9f4bc"></script>
+    {mathEnabled && <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.18.5/dist/katex.min.css" />}
   </head>
   <body class={bodyClass}>
     <header class="site-header">

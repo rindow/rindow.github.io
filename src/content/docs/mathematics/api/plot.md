@@ -12,9 +12,7 @@ Main component of rindow Math Plot. Perform the operation of each component from
 
 Methods
 -------
-{:.no_toc}
-* Table of contents
-{:toc}
+### Table of contents
 
 ### constructor
 ```php

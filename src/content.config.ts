@@ -7,6 +7,7 @@ const docs = defineCollection({
   schema: z.object({
     title: z.string().optional(),
     meta_description: z.string().optional(),
+    math: z.union([z.string(), z.boolean()]).optional(),
     previous_section: z.string().optional(),
     next_section: z.string().optional(),
     upper_section: z.string().optional(),

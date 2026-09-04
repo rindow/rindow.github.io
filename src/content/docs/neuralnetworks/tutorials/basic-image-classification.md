@@ -54,7 +54,7 @@ Programmers do not create objects directly for versatility and future lightweigh
 
 The third line retrieves the actual MNIST dataset.
 Calling loadData () will automatically download and cache the data.
-After that, it is converted to NDArray type so that it can be handled by PHP, and stored in variables such as $ train_img and $ train_label.
+After that, it is converted to NDArray type so that it can be handled by PHP, and stored in variables such as `$train_img` and `$train_label`.
 
 You can see that there are 60,000 training images and labels, and 10,000 verification images and labels.
 The image is a 28x28 single color.

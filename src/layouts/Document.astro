@@ -7,7 +7,7 @@ const { entry, Content } = Astro.props;
 const collection = entry.id.split('/')[0];
 const title = entry.data.title || collection;
 ---
-<Base title={title} description={entry.data.meta_description} bodyClass="docs-page">
+<Base title={title} description={entry.data.meta_description} bodyClass="docs-page" math={entry.data.math}>
   <div class="docs-shell">
     <div class="docs-toolbar">
       <button

@@ -46,4 +46,4 @@ export async function getStaticPaths() {
 const { entry, kind } = Astro.props;
 const { Content } = await render(entry);
 ---
-{kind === 'docs' ? <Document entry={entry} Content={Content} /> : <Base title={entry.data.title || 'Rindow'} description={entry.data.meta_description}><article class="prose standalone"><h1>{entry.data.title}</h1><Content /></article></Base>}
+{kind === 'docs' ? <Document entry={entry} Content={Content} /> : <Base title={entry.data.title || 'Rindow'} description={entry.data.meta_description} math={entry.data.math}><article class="prose standalone"><h1>{entry.data.title}</h1><Content /></article></Base>}

@@ -6,9 +6,7 @@ upper_section: api/apitoc
 previous_section: api/axes
 ---
 
-{:.no_toc}
-* Table of contents
-{:toc}
+### Table of contents
 
 Line Style
 ----------

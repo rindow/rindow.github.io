@@ -18,9 +18,7 @@ A N-dimensional array
 
 Methods
 -------
-{:.no_toc}
-* Table of contents
-{:toc}
+### Table of contents
 
 ### shape
 ```php
