@@ -31,3 +31,20 @@
   .col-lg-4, .col-md-4 { flex: 0 0 33.333333%; max-width: 33.333333%; }
 }
 
+/* Cool footer */
+.site-footer{background:linear-gradient(135deg,#1a1333 0%,#2b1d6e 55%,#3b2a9e 100%);color:#cfc8ee;margin-top:40px}
+.footer-inner{max-width:1280px;margin:0 auto;padding:44px 24px 28px;display:grid;grid-template-columns:1.2fr auto auto;gap:32px;align-items:start}
+.footer-logo{font-size:28px;font-weight:800;letter-spacing:-1px;color:#fff;text-decoration:none}
+.footer-logo:hover{color:#fff;text-decoration:none}
+.footer-tagline{margin:8px 0 0;font-size:14px;color:#a99fdf;max-width:320px;line-height:1.6}
+.footer-nav{display:flex;flex-wrap:wrap;gap:8px 20px;align-content:start;padding-top:8px}
+.footer-nav a{color:#e6e1ff;font-size:14px;font-weight:600;white-space:nowrap}
+.footer-nav a:hover{color:#fff}
+.footer-social{padding-top:4px}
+.github-link{display:inline-flex;align-items:center;gap:8px;padding:10px 16px;border:1px solid rgba(255,255,255,.28);border-radius:999px;color:#fff;font-size:14px;font-weight:700;background:rgba(255,255,255,.08);backdrop-filter:blur(6px);transition:background .2s,transform .2s,border-color .2s}
+.github-link:hover{background:rgba(255,255,255,.18);border-color:rgba(255,255,255,.5);color:#fff;text-decoration:none;transform:translateY(-1px)}
+.footer-legal{border-top:1px solid rgba(255,255,255,.16);padding:16px 24px 20px;display:flex;flex-wrap:wrap;gap:6px 10px;justify-content:center;align-items:center;font-size:13px;color:#a99fdf;max-width:1280px;margin:0 auto}
+.footer-legal a{color:#fff;font-weight:600}
+.footer-sep{opacity:.6}
+@media(max-width:820px){.footer-inner{grid-template-columns:1fr;gap:20px;padding:36px 24px 24px}.footer-nav{padding-top:0}}
+
