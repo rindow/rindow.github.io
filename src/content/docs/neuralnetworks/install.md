@@ -210,9 +210,11 @@ $ RINDOW_MATH_PLOT_VIEWER=/some/bin/dir/png-file-viewer
 $ export RINDOW_MATH_PLOT_VIEWER
 ```
 > Note: Specify "viewnior" etc. for RINDOW_MATH_PLOT_VIEWER
+> ```shell
 > $ sudo apt install viewnior
 > $ RINDOW_MATH_PLOT_VIEWER=viewnior
 > $ export RINDOW_MATH_PLOT_VIEWER
+> ```
 
 Install Rindow Neural Networks.
 ```shell
