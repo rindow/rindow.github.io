@@ -110,7 +110,7 @@ Install Rindow Neural Networks.
 C:TEMP>MKDIR \tutorials
 C:TEMP>CD \tutorials
 C:tutorials>composer require rindow/rindow-neuralnetworks
-C:tutorials>composer require rindow/rindow-matrlix-matlibffi
+C:tutorials>composer require rindow/rindow-matrix-matlibffi
 C:tutorials>composer require rindow/rindow-math-plot
 C:tutorials>vendor/bin/rindow-math-matrix
 Service Level   : Advanced
@@ -135,7 +135,7 @@ Run the sample program
 C:tutorials>MKDIR samples
 C:tutorials>CD samples
 C:tutorials\samples>COPY ..\vendor\rindow\rindow-neuralnetworks\samples\* .
-C:tutorials\samples>php mnist-basic-clasification.php
+C:tutorials\samples>php basic-image-clasification.php
 Downloading train-images-idx3-ubyte.gz ...Done
 ....
 Epoch 4/5 [.........................] 1 sec. remaining:00:00  - 2 sec.
@@ -209,8 +209,10 @@ Configure the image viewer.
 $ RINDOW_MATH_PLOT_VIEWER=/some/bin/dir/png-file-viewer
 $ export RINDOW_MATH_PLOT_VIEWER
 ```
-Note: Specify "viewnior" etc. for RINDOW_MATH_PLOT_VIEWER
-
+> Note: Specify "viewnior" etc. for RINDOW_MATH_PLOT_VIEWER
+> $ sudo apt install viewnior
+> $ RINDOW_MATH_PLOT_VIEWER=viewnior
+> $ export RINDOW_MATH_PLOT_VIEWER
 
 Install Rindow Neural Networks.
 ```shell
